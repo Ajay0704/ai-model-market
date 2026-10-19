@@ -3,7 +3,7 @@
 Approved by Ajay on 2026-10-19: both a Tableau Story and a Power BI report, like Olist.
 
 - [x] **0. Repo.** `~/ai-model-market`, with `.env` gitignored, a venv, and this plan.
-- [ ] **1. Pull and profile.** (Public model list pulled 2026-10-19: 470 models from 67 labs. The keyed pull is waiting for the key.) About 30 calls (the limit is 500/day):
+- [x] **1. Pull and profile.** Done 2026-10-19: all 51 Data API calls, the live model list, and 22 monthly Internet Archive snapshots of the model list (added for price history). See `docs/DATA_PROFILE.md` and `docs/DATA_DECISIONS.md`. About 30 calls (the limit is 500/day):
   - rankings-daily from 2025-01-01 (two 366-day windows)
   - the public model list
   - benchmarks (3 sources)

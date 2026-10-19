@@ -6,3 +6,4 @@ __pycache__/
 *.duckdb
 *.duckdb.wal
 ~$*
+data/raw/models_wayback/

@@ -1,0 +1,723 @@
+{
+ "request": {
+  "url": "https://openrouter.ai/api/v1/datasets/app-rankings",
+  "params": {
+   "start_date": "2026-08-01",
+   "end_date": "2026-08-31",
+   "sort": "popular",
+   "limit": 100,
+   "offset": 0
+  },
+  "pulled_at": "2026-10-19T23:44:55+00:00"
+ },
+ "response": {
+  "data": [
+   {
+    "rank": 1,
+    "app_id": 3067167,
+    "app_name": "Hermes Agent",
+    "total_tokens": "49792321779172",
+    "total_requests": 498200170
+   },
+   {
+    "rank": 2,
+    "app_id": 2627404,
+    "app_name": "Claude Code",
+    "total_tokens": "13545639530733",
+    "total_requests": 134181710
+   },
+   {
+    "rank": 3,
+    "app_id": 2262242,
+    "app_name": "Kilo Code",
+    "total_tokens": "9350111517928",
+    "total_requests": 114811412
+   },
+   {
+    "rank": 4,
+    "app_id": 4137556,
+    "app_name": "Freebuff",
+    "total_tokens": "7787476032412",
+    "total_requests": 64962679
+   },
+   {
+    "rank": 5,
+    "app_id": 190604,
+    "app_name": "Cline",
+    "total_tokens": "7406724995145",
+    "total_requests": 69069096
+   },
+   {
+    "rank": 6,
+    "app_id": 2853275,
+    "app_name": "pi",
+    "total_tokens": "5418881480863",
+    "total_requests": 67347998
+   },
+   {
+    "rank": 7,
+    "app_id": 2725608,
+    "app_name": "OpenClaw",
+    "total_tokens": "4668138165499",
+    "total_requests": 77004647
+   },
+   {
+    "rank": 8,
+    "app_id": 3682314,
+    "app_name": "omp",
+    "total_tokens": "4168455922673",
+    "total_requests": 29790859
+   },
+   {
+    "rank": 9,
+    "app_id": 4706207,
+    "app_name": "DeepSeek Harness",
+    "total_tokens": "3391317665710",
+    "total_requests": 25667808
+   },
+   {
+    "rank": 10,
+    "app_id": 3335353,
+    "app_name": "Framer",
+    "total_tokens": "2671238688712",
+    "total_requests": 19840977
+   },
+   {
+    "rank": 11,
+    "app_id": 2668297,
+    "app_name": "Codex",
+    "total_tokens": "2375598078254",
+    "total_requests": 35255805
+   },
+   {
+    "rank": 12,
+    "app_id": 2938662,
+    "app_name": "Nous Research API",
+    "total_tokens": "1815733252165",
+    "total_requests": 40320190
+   },
+   {
+    "rank": 13,
+    "app_id": 4132065,
+    "app_name": "Hello Minds, powered by Ethoswarm",
+    "total_tokens": "1279981076078",
+    "total_requests": 5818794
+   },
+   {
+    "rank": 14,
+    "app_id": 2699842,
+    "app_name": "ISEKAI ZERO",
+    "total_tokens": "1279967810172",
+    "total_requests": 39300969
+   },
+   {
+    "rank": 15,
+    "app_id": 2308106,
+    "app_name": "Descript",
+    "total_tokens": "1260335176992",
+    "total_requests": 19280597
+   },
+   {
+    "rank": 16,
+    "app_id": 2823243,
+    "app_name": "ZCode",
+    "total_tokens": "1258435369731",
+    "total_requests": 7351283
+   },
+   {
+    "rank": 17,
+    "app_id": 2637375,
+    "app_name": "Lemonade",
+    "total_tokens": "1095989133340",
+    "total_requests": 29620297
+   },
+   {
+    "rank": 18,
+    "app_id": 169155,
+    "app_name": "Janitor AI",
+    "total_tokens": "1046102353087",
+    "total_requests": 69019373
+   },
+   {
+    "rank": 19,
+    "app_id": 4580043,
+    "app_name": "schema-markup-generation",
+    "total_tokens": "924595972789",
+    "total_requests": 15987869
+   },
+   {
+    "rank": 20,
+    "app_id": 2237546,
+    "app_name": "Cursor",
+    "total_tokens": "915635436473",
+    "total_requests": 6967388
+   },
+   {
+    "rank": 21,
+    "app_id": 4580044,
+    "app_name": "HighLevel",
+    "total_tokens": "810197396360",
+    "total_requests": 15965262
+   },
+   {
+    "rank": 22,
+    "app_id": 3909382,
+    "app_name": "Command Code",
+    "total_tokens": "716827924927",
+    "total_requests": 6663041
+   },
+   {
+    "rank": 23,
+    "app_id": 169295,
+    "app_name": "Portkey AI",
+    "total_tokens": "712872345152",
+    "total_requests": 19651896
+   },
+   {
+    "rank": 24,
+    "app_id": 2344758,
+    "app_name": "Sahasra ICP Classifier",
+    "total_tokens": "703681283205",
+    "total_requests": 12260407
+   },
+   {
+    "rank": 25,
+    "app_id": 189563,
+    "app_name": "OpenHands",
+    "total_tokens": "695228969668",
+    "total_requests": 9525632
+   },
+   {
+    "rank": 26,
+    "app_id": 2640550,
+    "app_name": "Peezy Gateway",
+    "total_tokens": "638665933815",
+    "total_requests": 11654313
+   },
+   {
+    "rank": 27,
+    "app_id": 2267189,
+    "app_name": "Zed Editor",
+    "total_tokens": "586376321425",
+    "total_requests": 4269755
+   },
+   {
+    "rank": 28,
+    "app_id": 171054,
+    "app_name": "HackerAI",
+    "total_tokens": "581042269775",
+    "total_requests": 13527817
+   },
+   {
+    "rank": 29,
+    "app_id": 2524738,
+    "app_name": "LangChain",
+    "total_tokens": "466264823915",
+    "total_requests": 50414976
+   },
+   {
+    "rank": 30,
+    "app_id": 3844484,
+    "app_name": "Craft",
+    "total_tokens": "460214416514",
+    "total_requests": 32841847
+   },
+   {
+    "rank": 31,
+    "app_id": 3296290,
+    "app_name": "Mira is the leading AI agent inside Telegram",
+    "total_tokens": "446768846149",
+    "total_requests": 29293561
+   },
+   {
+    "rank": 32,
+    "app_id": 3178860,
+    "app_name": "Ito",
+    "total_tokens": "437037654798",
+    "total_requests": 12011306
+   },
+   {
+    "rank": 33,
+    "app_id": 3906588,
+    "app_name": "Zoo Code",
+    "total_tokens": "431925208908",
+    "total_requests": 4023901
+   },
+   {
+    "rank": 34,
+    "app_id": 3760213,
+    "app_name": "OceanAPI",
+    "total_tokens": "395786280673",
+    "total_requests": 3035313
+   },
+   {
+    "rank": 35,
+    "app_id": 2299688,
+    "app_name": "GDevelop",
+    "total_tokens": "360763948824",
+    "total_requests": 7119931
+   },
+   {
+    "rank": 36,
+    "app_id": 142576,
+    "app_name": "SillyTavern",
+    "total_tokens": "356883780557",
+    "total_requests": 19470310
+   },
+   {
+    "rank": 37,
+    "app_id": 3003505,
+    "app_name": "Strix",
+    "total_tokens": "326774266641",
+    "total_requests": 3150684
+   },
+   {
+    "rank": 38,
+    "app_id": 4482429,
+    "app_name": "Cheaper Inference",
+    "total_tokens": "309526473856",
+    "total_requests": 2508765
+   },
+   {
+    "rank": 39,
+    "app_id": 2605040,
+    "app_name": "claude-mem",
+    "total_tokens": "308094950310",
+    "total_requests": 4773232
+   },
+   {
+    "rank": 40,
+    "app_id": 2285082,
+    "app_name": "Websim Builder",
+    "total_tokens": "289545366298",
+    "total_requests": 11713750
+   },
+   {
+    "rank": 41,
+    "app_id": 3097485,
+    "app_name": "Studs.gg",
+    "total_tokens": "275826474459",
+    "total_requests": 8207027
+   },
+   {
+    "rank": 42,
+    "app_id": 1275184,
+    "app_name": "Codebuff",
+    "total_tokens": "272072959953",
+    "total_requests": 3949874
+   },
+   {
+    "rank": 43,
+    "app_id": 184102,
+    "app_name": "Open WebUI",
+    "total_tokens": "269428780904",
+    "total_requests": 6937941
+   },
+   {
+    "rank": 44,
+    "app_id": 831074,
+    "app_name": "Roo Code",
+    "total_tokens": "214402017037",
+    "total_requests": 1521975
+   },
+   {
+    "rank": 45,
+    "app_id": 3940184,
+    "app_name": "Sekai",
+    "total_tokens": "188781282391",
+    "total_requests": 15218168
+   },
+   {
+    "rank": 46,
+    "app_id": 2235067,
+    "app_name": "HammerAI",
+    "total_tokens": "186761515419",
+    "total_requests": 52206278
+   },
+   {
+    "rank": 47,
+    "app_id": 2235775,
+    "app_name": "shapes.inc Velocity relevance",
+    "total_tokens": "180498841456",
+    "total_requests": 31782152
+   },
+   {
+    "rank": 48,
+    "app_id": 2400879,
+    "app_name": "Sophia's LoreBary",
+    "total_tokens": "179267924697",
+    "total_requests": 8243717
+   },
+   {
+    "rank": 49,
+    "app_id": 2755681,
+    "app_name": "Pieces.app: Ambient Artificial Memory",
+    "total_tokens": "177492796592",
+    "total_requests": 20441409
+   },
+   {
+    "rank": 50,
+    "app_id": 4056540,
+    "app_name": "Halluna",
+    "total_tokens": "175057015646",
+    "total_requests": 15762638
+   },
+   {
+    "rank": 51,
+    "app_id": 3248223,
+    "app_name": "goose",
+    "total_tokens": "163161721981",
+    "total_requests": 2387391
+   },
+   {
+    "rank": 52,
+    "app_id": 3350625,
+    "app_name": "extra.email",
+    "total_tokens": "163123276028",
+    "total_requests": 23482195
+   },
+   {
+    "rank": 53,
+    "app_id": 2354934,
+    "app_name": "Qwen Code",
+    "total_tokens": "140204259420",
+    "total_requests": 1151960
+   },
+   {
+    "rank": 54,
+    "app_id": 4012572,
+    "app_name": "MavenBio",
+    "total_tokens": "135201055233",
+    "total_requests": 3336576
+   },
+   {
+    "rank": 55,
+    "app_id": 2531485,
+    "app_name": "LOVE",
+    "total_tokens": "135062091832",
+    "total_requests": 5437313
+   },
+   {
+    "rank": 56,
+    "app_id": 2299803,
+    "app_name": "Pocket AI",
+    "total_tokens": "133005251374",
+    "total_requests": 13598969
+   },
+   {
+    "rank": 57,
+    "app_id": 188881,
+    "app_name": "Chub AI",
+    "total_tokens": "132038987961",
+    "total_requests": 9901421
+   },
+   {
+    "rank": 58,
+    "app_id": 3980383,
+    "app_name": "mimocode",
+    "total_tokens": "130021328724",
+    "total_requests": 902179
+   },
+   {
+    "rank": 59,
+    "app_id": 3886237,
+    "app_name": "ChainPatrol",
+    "total_tokens": "127576316925",
+    "total_requests": 33396348
+   },
+   {
+    "rank": 60,
+    "app_id": 174617,
+    "app_name": "ppq.ai",
+    "total_tokens": "127453455138",
+    "total_requests": 3209222
+   },
+   {
+    "rank": 61,
+    "app_id": 3828701,
+    "app_name": "Letaido",
+    "total_tokens": "120742577866",
+    "total_requests": 1578862
+   },
+   {
+    "rank": 62,
+    "app_id": 2330063,
+    "app_name": "HeyDitto",
+    "total_tokens": "118983054970",
+    "total_requests": 27355568
+   },
+   {
+    "rank": 63,
+    "app_id": 3321349,
+    "app_name": "Landingsite",
+    "total_tokens": "117795778640",
+    "total_requests": 1175847
+   },
+   {
+    "rank": 64,
+    "app_id": 2447026,
+    "app_name": "CSS AI Pro",
+    "total_tokens": "111643675182",
+    "total_requests": 2079736
+   },
+   {
+    "rank": 65,
+    "app_id": 4783088,
+    "app_name": "Strate Systems / Codex CLI",
+    "total_tokens": "103417778117",
+    "total_requests": 478328
+   },
+   {
+    "rank": 66,
+    "app_id": 2721535,
+    "app_name": "jcode",
+    "total_tokens": "102336402275",
+    "total_requests": 778269
+   },
+   {
+    "rank": 67,
+    "app_id": 2351296,
+    "app_name": "Crush",
+    "total_tokens": "96015681723",
+    "total_requests": 878940
+   },
+   {
+    "rank": 68,
+    "app_id": 3174833,
+    "app_name": "OrationAI",
+    "total_tokens": "95740111107",
+    "total_requests": 2787100
+   },
+   {
+    "rank": 69,
+    "app_id": 2250749,
+    "app_name": "My Dream Companion",
+    "total_tokens": "92914460387",
+    "total_requests": 14228533
+   },
+   {
+    "rank": 70,
+    "app_id": 1926822,
+    "app_name": "Avian.io",
+    "total_tokens": "91018564802",
+    "total_requests": 3583079
+   },
+   {
+    "rank": 71,
+    "app_id": 4343219,
+    "app_name": "unit-reason-graph",
+    "total_tokens": "90215219075",
+    "total_requests": 9332402
+   },
+   {
+    "rank": 72,
+    "app_id": 3944927,
+    "app_name": "Hermes Web UI",
+    "total_tokens": "85517682388",
+    "total_requests": 580681
+   },
+   {
+    "rank": 73,
+    "app_id": 2469970,
+    "app_name": "OP.GG",
+    "total_tokens": "84555372203",
+    "total_requests": 5564909
+   },
+   {
+    "rank": 74,
+    "app_id": 146907,
+    "app_name": "Miniapps.ai",
+    "total_tokens": "83217354698",
+    "total_requests": 12859502
+   },
+   {
+    "rank": 75,
+    "app_id": 3107220,
+    "app_name": "Orchid",
+    "total_tokens": "82446275717",
+    "total_requests": 9528694
+   },
+   {
+    "rank": 76,
+    "app_id": 190307,
+    "app_name": "KoalaBear",
+    "total_tokens": "79772081259",
+    "total_requests": 16727867
+   },
+   {
+    "rank": 77,
+    "app_id": 3316379,
+    "app_name": "ProVision.ai",
+    "total_tokens": "78526824599",
+    "total_requests": 12116561
+   },
+   {
+    "rank": 78,
+    "app_id": 4606398,
+    "app_name": "LUNATALK-test",
+    "total_tokens": "78180175390",
+    "total_requests": 4450957
+   },
+   {
+    "rank": 79,
+    "app_id": 4483145,
+    "app_name": "OpenCode",
+    "total_tokens": "76471513337",
+    "total_requests": 398703
+   },
+   {
+    "rank": 80,
+    "app_id": 2374769,
+    "app_name": "SquadStack AI",
+    "total_tokens": "75859017107",
+    "total_requests": 11079614
+   },
+   {
+    "rank": 81,
+    "app_id": 2293498,
+    "app_name": "Agent Zero",
+    "total_tokens": "74085077076",
+    "total_requests": 2057717
+   },
+   {
+    "rank": 82,
+    "app_id": 4773282,
+    "app_name": "grok-openrouter-ox",
+    "total_tokens": "73868631293",
+    "total_requests": 719529
+   },
+   {
+    "rank": 83,
+    "app_id": 3405080,
+    "app_name": "msai-mimo-eval",
+    "total_tokens": "73363301296",
+    "total_requests": 2125721
+   },
+   {
+    "rank": 84,
+    "app_id": 2236212,
+    "app_name": "Cherry Studio",
+    "total_tokens": "73123065911",
+    "total_requests": 1392913
+   },
+   {
+    "rank": 85,
+    "app_id": 4084276,
+    "app_name": "spacedb-search",
+    "total_tokens": "71842100502",
+    "total_requests": 5786698
+   },
+   {
+    "rank": 86,
+    "app_id": 2275362,
+    "app_name": "SkyrimNet",
+    "total_tokens": "71736529391",
+    "total_requests": 16974644
+   },
+   {
+    "rank": 87,
+    "app_id": 2464416,
+    "app_name": "JobLeads LLM",
+    "total_tokens": "71225025844",
+    "total_requests": 8342921
+   },
+   {
+    "rank": 88,
+    "app_id": 4265147,
+    "app_name": "payready-document-extraction",
+    "total_tokens": "70482363441",
+    "total_requests": 10564541
+   },
+   {
+    "rank": 89,
+    "app_id": 4510737,
+    "app_name": "Buzz POC check",
+    "total_tokens": "66610378513",
+    "total_requests": 1042927
+   },
+   {
+    "rank": 90,
+    "app_id": 4217612,
+    "app_name": "Sentry MCP",
+    "total_tokens": "66334610545",
+    "total_requests": 12069844
+   },
+   {
+    "rank": 91,
+    "app_id": 3288259,
+    "app_name": "Tracer III RLVR Pipeline",
+    "total_tokens": "65436521040",
+    "total_requests": 6076575
+   },
+   {
+    "rank": 92,
+    "app_id": 4069892,
+    "app_name": "gemini-replay-probe",
+    "total_tokens": "64308539700",
+    "total_requests": 7984504
+   },
+   {
+    "rank": 93,
+    "app_id": 4768646,
+    "app_name": "LawSathi Judgements Extraction",
+    "total_tokens": "64276173757",
+    "total_requests": 4177784
+   },
+   {
+    "rank": 94,
+    "app_id": 181596,
+    "app_name": "Continue",
+    "total_tokens": "63955912836",
+    "total_requests": 1225289
+   },
+   {
+    "rank": 95,
+    "app_id": 3305564,
+    "app_name": "Shelf Insights",
+    "total_tokens": "63315158459",
+    "total_requests": 5817453
+   },
+   {
+    "rank": 96,
+    "app_id": 2735766,
+    "app_name": "nanobot",
+    "total_tokens": "63142346827",
+    "total_requests": 1604775
+   },
+   {
+    "rank": 97,
+    "app_id": 194607,
+    "app_name": "Chatbox AI",
+    "total_tokens": "61750754027",
+    "total_requests": 1476747
+   },
+   {
+    "rank": 98,
+    "app_id": 2338620,
+    "app_name": "BuddyPro AI",
+    "total_tokens": "60200216435",
+    "total_requests": 4844420
+   },
+   {
+    "rank": 99,
+    "app_id": 2318385,
+    "app_name": "Traycer",
+    "total_tokens": "59992401058",
+    "total_requests": 361447
+   },
+   {
+    "rank": 100,
+    "app_id": 144889,
+    "app_name": "https://muah.ai",
+    "total_tokens": "59573384832",
+    "total_requests": 10500489
+   }
+  ],
+  "meta": {
+   "as_of": "2026-10-19T23:44:55.403Z",
+   "version": "v1",
+   "start_date": "2026-08-01",
+   "end_date": "2026-08-31"
+  }
+ }
+}

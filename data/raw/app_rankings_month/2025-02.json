@@ -1,0 +1,723 @@
+{
+ "request": {
+  "url": "https://openrouter.ai/api/v1/datasets/app-rankings",
+  "params": {
+   "start_date": "2025-02-01",
+   "end_date": "2025-02-28",
+   "sort": "popular",
+   "limit": 100,
+   "offset": 0
+  },
+  "pulled_at": "2026-10-19T23:44:03+00:00"
+ },
+ "response": {
+  "data": [
+   {
+    "rank": 1,
+    "app_id": 190604,
+    "app_name": "Cline",
+    "total_tokens": "790740842009",
+    "total_requests": 10753795
+   },
+   {
+    "rank": 2,
+    "app_id": 831074,
+    "app_name": "Roo Code",
+    "total_tokens": "510647868685",
+    "total_requests": 7237867
+   },
+   {
+    "rank": 3,
+    "app_id": 182275,
+    "app_name": "aide",
+    "total_tokens": "128454147062",
+    "total_requests": 2606226
+   },
+   {
+    "rank": 4,
+    "app_id": 142576,
+    "app_name": "SillyTavern",
+    "total_tokens": "51193749070",
+    "total_requests": 6419670
+   },
+   {
+    "rank": 5,
+    "app_id": 2224351,
+    "app_name": "Fraction AI",
+    "total_tokens": "39308585997",
+    "total_requests": 47125688
+   },
+   {
+    "rank": 6,
+    "app_id": 188881,
+    "app_name": "Chub AI",
+    "total_tokens": "18480338854",
+    "total_requests": 2912489
+   },
+   {
+    "rank": 7,
+    "app_id": 192577,
+    "app_name": "Rubii.ai - Best AI Roleplay Ever!",
+    "total_tokens": "14525603395",
+    "total_requests": 208719
+   },
+   {
+    "rank": 8,
+    "app_id": 158029,
+    "app_name": "novelcrafter",
+    "total_tokens": "14466640112",
+    "total_requests": 1137421
+   },
+   {
+    "rank": 9,
+    "app_id": 143418,
+    "app_name": "Aider",
+    "total_tokens": "11388801361",
+    "total_requests": 747760
+   },
+   {
+    "rank": 10,
+    "app_id": 192826,
+    "app_name": "Secret Desires AI",
+    "total_tokens": "10355240721",
+    "total_requests": 4241762
+   },
+   {
+    "rank": 11,
+    "app_id": 1784029,
+    "app_name": "Goose",
+    "total_tokens": "9604091508",
+    "total_requests": 220022
+   },
+   {
+    "rank": 12,
+    "app_id": 2231311,
+    "app_name": "Fish Audio - the most realistic AI voice generator",
+    "total_tokens": "9224839313",
+    "total_requests": 314404
+   },
+   {
+    "rank": 13,
+    "app_id": 184102,
+    "app_name": "Open WebUI",
+    "total_tokens": "8951104147",
+    "total_requests": 1893174
+   },
+   {
+    "rank": 14,
+    "app_id": 172824,
+    "app_name": "Infinite Worlds",
+    "total_tokens": "8104814105",
+    "total_requests": 997829
+   },
+   {
+    "rank": 15,
+    "app_id": 2222004,
+    "app_name": "DeepWriter",
+    "total_tokens": "7416492601",
+    "total_requests": 111114
+   },
+   {
+    "rank": 16,
+    "app_id": 146907,
+    "app_name": "Miniapps.ai",
+    "total_tokens": "7279321185",
+    "total_requests": 4761699
+   },
+   {
+    "rank": 17,
+    "app_id": 170472,
+    "app_name": "FunTalk AI",
+    "total_tokens": "6980388717",
+    "total_requests": 3337272
+   },
+   {
+    "rank": 18,
+    "app_id": 190217,
+    "app_name": "FantasyGF.ai - AI Chat with AI Girlfriend",
+    "total_tokens": "6068166969",
+    "total_requests": 1508369
+   },
+   {
+    "rank": 19,
+    "app_id": 179168,
+    "app_name": "Tipsy Chat",
+    "total_tokens": "5934472841",
+    "total_requests": 1826424
+   },
+   {
+    "rank": 20,
+    "app_id": 189156,
+    "app_name": "OpenCharacter",
+    "total_tokens": "5899649480",
+    "total_requests": 808700
+   },
+   {
+    "rank": 21,
+    "app_id": 166185,
+    "app_name": "BotHub",
+    "total_tokens": "5551199413",
+    "total_requests": 3050080
+   },
+   {
+    "rank": 22,
+    "app_id": 187947,
+    "app_name": "CHIM",
+    "total_tokens": "5461149129",
+    "total_requests": 1495671
+   },
+   {
+    "rank": 23,
+    "app_id": 169155,
+    "app_name": "Janitor AI",
+    "total_tokens": "5256187881",
+    "total_requests": 487778
+   },
+   {
+    "rank": 24,
+    "app_id": 173340,
+    "app_name": "Mantella",
+    "total_tokens": "4985752250",
+    "total_requests": 1125925
+   },
+   {
+    "rank": 25,
+    "app_id": 144974,
+    "app_name": "One API",
+    "total_tokens": "4574996880",
+    "total_requests": 4885505
+   },
+   {
+    "rank": 26,
+    "app_id": 2226374,
+    "app_name": "CoolCline",
+    "total_tokens": "3821549975",
+    "total_requests": 51004
+   },
+   {
+    "rank": 27,
+    "app_id": 1918745,
+    "app_name": "Aaru Agents",
+    "total_tokens": "3512780389",
+    "total_requests": 689488
+   },
+   {
+    "rank": 28,
+    "app_id": 142364,
+    "app_name": "RisuAI",
+    "total_tokens": "3351357367",
+    "total_requests": 386937
+   },
+   {
+    "rank": 29,
+    "app_id": 2208327,
+    "app_name": "Cod3x",
+    "total_tokens": "3087920496",
+    "total_requests": 817589
+   },
+   {
+    "rank": 30,
+    "app_id": 191435,
+    "app_name": "galaxy.ai",
+    "total_tokens": "2892669981",
+    "total_requests": 859950
+   },
+   {
+    "rank": 31,
+    "app_id": 189159,
+    "app_name": "Algorithmic Lens",
+    "total_tokens": "2856265629",
+    "total_requests": 260917
+   },
+   {
+    "rank": 32,
+    "app_id": 174188,
+    "app_name": "Magai",
+    "total_tokens": "2645371918",
+    "total_requests": 197332
+   },
+   {
+    "rank": 33,
+    "app_id": 1666006,
+    "app_name": "HermStudio",
+    "total_tokens": "2591667945",
+    "total_requests": 319584
+   },
+   {
+    "rank": 34,
+    "app_id": 2222561,
+    "app_name": "NexusTrade",
+    "total_tokens": "2566985227",
+    "total_requests": 41568
+   },
+   {
+    "rank": 35,
+    "app_id": 144130,
+    "app_name": "Spicy Chat AI (iOS)",
+    "total_tokens": "2432010127",
+    "total_requests": 1229710
+   },
+   {
+    "rank": 36,
+    "app_id": 182696,
+    "app_name": "Bot9",
+    "total_tokens": "2092300999",
+    "total_requests": 233920
+   },
+   {
+    "rank": 37,
+    "app_id": 190307,
+    "app_name": "KoalaBear",
+    "total_tokens": "1993030965",
+    "total_requests": 1136287
+   },
+   {
+    "rank": 38,
+    "app_id": 181402,
+    "app_name": "ZimmWriter",
+    "total_tokens": "1957605190",
+    "total_requests": 3038111
+   },
+   {
+    "rank": 39,
+    "app_id": 2231402,
+    "app_name": "Senuto Blog Excerpt Generator",
+    "total_tokens": "1921674095",
+    "total_requests": 67951
+   },
+   {
+    "rank": 40,
+    "app_id": 2222801,
+    "app_name": "CoolCline",
+    "total_tokens": "1885059261",
+    "total_requests": 23767
+   },
+   {
+    "rank": 41,
+    "app_id": 189637,
+    "app_name": "Kuli Kuli",
+    "total_tokens": "1865509538",
+    "total_requests": 2479623
+   },
+   {
+    "rank": 42,
+    "app_id": 194607,
+    "app_name": "Chatbox AI",
+    "total_tokens": "1778827814",
+    "total_requests": 294447
+   },
+   {
+    "rank": 43,
+    "app_id": 186422,
+    "app_name": "Atlas",
+    "total_tokens": "1769692996",
+    "total_requests": 353093
+   },
+   {
+    "rank": 44,
+    "app_id": 183889,
+    "app_name": "Agility Writer",
+    "total_tokens": "1765899328",
+    "total_requests": 505499
+   },
+   {
+    "rank": 45,
+    "app_id": 189563,
+    "app_name": "OpenHands",
+    "total_tokens": "1744842387",
+    "total_requests": 55670
+   },
+   {
+    "rank": 46,
+    "app_id": 1443973,
+    "app_name": "Taptale: Free Unlimited Roleplay Chat",
+    "total_tokens": "1724790959",
+    "total_requests": 551845
+   },
+   {
+    "rank": 47,
+    "app_id": 141885,
+    "app_name": "Agnaistic",
+    "total_tokens": "1688711651",
+    "total_requests": 252539
+   },
+   {
+    "rank": 48,
+    "app_id": 190794,
+    "app_name": "Voices of the Court",
+    "total_tokens": "1536827999",
+    "total_requests": 390864
+   },
+   {
+    "rank": 49,
+    "app_id": 144360,
+    "app_name": "Voxta",
+    "total_tokens": "1397335762",
+    "total_requests": 835850
+   },
+   {
+    "rank": 50,
+    "app_id": 183580,
+    "app_name": "CraftIQ",
+    "total_tokens": "1385883580",
+    "total_requests": 1033107
+   },
+   {
+    "rank": 51,
+    "app_id": 142443,
+    "app_name": "TypingMind",
+    "total_tokens": "1334607790",
+    "total_requests": 127678
+   },
+   {
+    "rank": 52,
+    "app_id": 150064,
+    "app_name": "LibreChat",
+    "total_tokens": "1204499041",
+    "total_requests": 190497
+   },
+   {
+    "rank": 53,
+    "app_id": 2233171,
+    "app_name": "BrixLabs Data Processing",
+    "total_tokens": "1184336427",
+    "total_requests": 518058
+   },
+   {
+    "rank": 54,
+    "app_id": 2224822,
+    "app_name": "Aether",
+    "total_tokens": "1154592537",
+    "total_requests": 14416
+   },
+   {
+    "rank": 55,
+    "app_id": 188146,
+    "app_name": "ScribeShadow",
+    "total_tokens": "1153965059",
+    "total_requests": 244632
+   },
+   {
+    "rank": 56,
+    "app_id": 2223506,
+    "app_name": "tyan.ai",
+    "total_tokens": "1110407527",
+    "total_requests": 538124
+   },
+   {
+    "rank": 57,
+    "app_id": 1832261,
+    "app_name": "\u05d0\u05d9\u05d9 \u05d0\u05dc \u05e6\u2019\u05d0\u05d8",
+    "total_tokens": "1100702323",
+    "total_requests": 548842
+   },
+   {
+    "rank": 58,
+    "app_id": 156983,
+    "app_name": "Straico",
+    "total_tokens": "1040700852",
+    "total_requests": 302196
+   },
+   {
+    "rank": 59,
+    "app_id": 171711,
+    "app_name": "WyvernChat",
+    "total_tokens": "1019002573",
+    "total_requests": 71853
+   },
+   {
+    "rank": 60,
+    "app_id": 169258,
+    "app_name": "Brutus AI",
+    "total_tokens": "971798911",
+    "total_requests": 277071
+   },
+   {
+    "rank": 61,
+    "app_id": 1615180,
+    "app_name": "Noya",
+    "total_tokens": "962671329",
+    "total_requests": 1054416
+   },
+   {
+    "rank": 62,
+    "app_id": 944077,
+    "app_name": "Chat Bot",
+    "total_tokens": "922432848",
+    "total_requests": 499448
+   },
+   {
+    "rank": 63,
+    "app_id": 170637,
+    "app_name": "DreamTavern",
+    "total_tokens": "865006419",
+    "total_requests": 357919
+   },
+   {
+    "rank": 64,
+    "app_id": 175657,
+    "app_name": "Layla",
+    "total_tokens": "824305534",
+    "total_requests": 166150
+   },
+   {
+    "rank": 65,
+    "app_id": 178118,
+    "app_name": "Msty",
+    "total_tokens": "803447112",
+    "total_requests": 86186
+   },
+   {
+    "rank": 66,
+    "app_id": 143947,
+    "app_name": "ChatHub",
+    "total_tokens": "799571032",
+    "total_requests": 274447
+   },
+   {
+    "rank": 67,
+    "app_id": 186442,
+    "app_name": "Future Fiction Academy (Raptor Write)",
+    "total_tokens": "791672224",
+    "total_requests": 56515
+   },
+   {
+    "rank": 68,
+    "app_id": 169675,
+    "app_name": "Caveduck",
+    "total_tokens": "756836315",
+    "total_requests": 160657
+   },
+   {
+    "rank": 69,
+    "app_id": 1824546,
+    "app_name": "MessengerX.io",
+    "total_tokens": "707718181",
+    "total_requests": 475824
+   },
+   {
+    "rank": 70,
+    "app_id": 183676,
+    "app_name": "AnythingLLM",
+    "total_tokens": "705406284",
+    "total_requests": 77947
+   },
+   {
+    "rank": 71,
+    "app_id": 2221984,
+    "app_name": "QnA3.AI",
+    "total_tokens": "604354291",
+    "total_requests": 716342
+   },
+   {
+    "rank": 72,
+    "app_id": 150036,
+    "app_name": "big-AGI",
+    "total_tokens": "579753334",
+    "total_requests": 47525
+   },
+   {
+    "rank": 73,
+    "app_id": 1677711,
+    "app_name": "Aline",
+    "total_tokens": "578523626",
+    "total_requests": 9180
+   },
+   {
+    "rank": 74,
+    "app_id": 2223423,
+    "app_name": "Forking Tokens Analysis",
+    "total_tokens": "571119350",
+    "total_requests": 1337328
+   },
+   {
+    "rank": 75,
+    "app_id": 2226149,
+    "app_name": "GovPro AI",
+    "total_tokens": "556480676",
+    "total_requests": 113960
+   },
+   {
+    "rank": 76,
+    "app_id": 2224887,
+    "app_name": "Fluxus Bedrock Proxy",
+    "total_tokens": "551016362",
+    "total_requests": 2011
+   },
+   {
+    "rank": 77,
+    "app_id": 177656,
+    "app_name": "Nekotina",
+    "total_tokens": "541305422",
+    "total_requests": 641969
+   },
+   {
+    "rank": 78,
+    "app_id": 2226645,
+    "app_name": "Local Operator",
+    "total_tokens": "531300130",
+    "total_requests": 31714
+   },
+   {
+    "rank": 79,
+    "app_id": 190375,
+    "app_name": "DreamyBot | Free AI Dream Interpretation",
+    "total_tokens": "480650073",
+    "total_requests": 80216
+   },
+   {
+    "rank": 80,
+    "app_id": 173328,
+    "app_name": "Lobe Chat",
+    "total_tokens": "457468250",
+    "total_requests": 97202
+   },
+   {
+    "rank": 81,
+    "app_id": 2225569,
+    "app_name": "Omakase",
+    "total_tokens": "451209040",
+    "total_requests": 86499
+   },
+   {
+    "rank": 82,
+    "app_id": 2224187,
+    "app_name": "Q-Parser",
+    "total_tokens": "422803906",
+    "total_requests": 704151
+   },
+   {
+    "rank": 83,
+    "app_id": 190906,
+    "app_name": "Nightcall - AI Girlfriend",
+    "total_tokens": "403102209",
+    "total_requests": 137452
+   },
+   {
+    "rank": 84,
+    "app_id": 179158,
+    "app_name": "gengjiawen_ai",
+    "total_tokens": "394226922",
+    "total_requests": 969
+   },
+   {
+    "rank": 85,
+    "app_id": 1718095,
+    "app_name": "REACTOR",
+    "total_tokens": "390880671",
+    "total_requests": 7241
+   },
+   {
+    "rank": 86,
+    "app_id": 193396,
+    "app_name": "Waifu VR",
+    "total_tokens": "390566060",
+    "total_requests": 463441
+   },
+   {
+    "rank": 87,
+    "app_id": 2224983,
+    "app_name": "NSFWGirlfriend AI",
+    "total_tokens": "379497410",
+    "total_requests": 102722
+   },
+   {
+    "rank": 88,
+    "app_id": 169295,
+    "app_name": "Portkey AI",
+    "total_tokens": "374262274",
+    "total_requests": 69176
+   },
+   {
+    "rank": 89,
+    "app_id": 785658,
+    "app_name": "ChatWise",
+    "total_tokens": "371660954",
+    "total_requests": 32891
+   },
+   {
+    "rank": 90,
+    "app_id": 193283,
+    "app_name": "n8n OpenRouter Node",
+    "total_tokens": "365892342",
+    "total_requests": 61215
+   },
+   {
+    "rank": 91,
+    "app_id": 175758,
+    "app_name": "AIR-CLINIC",
+    "total_tokens": "341560151",
+    "total_requests": 10499
+   },
+   {
+    "rank": 92,
+    "app_id": 2227736,
+    "app_name": "Kill Team Rules Fine-tuning",
+    "total_tokens": "341527778",
+    "total_requests": 23461
+   },
+   {
+    "rank": 93,
+    "app_id": 820337,
+    "app_name": "eWitness",
+    "total_tokens": "340161947",
+    "total_requests": 235258
+   },
+   {
+    "rank": 94,
+    "app_id": 191541,
+    "app_name": "Quack",
+    "total_tokens": "336667074",
+    "total_requests": 90220
+   },
+   {
+    "rank": 95,
+    "app_id": 2228997,
+    "app_name": "AnticoAntico Spam Filter",
+    "total_tokens": "317771614",
+    "total_requests": 429781
+   },
+   {
+    "rank": 96,
+    "app_id": 2231134,
+    "app_name": "Scrimba",
+    "total_tokens": "314199557",
+    "total_requests": 105389
+   },
+   {
+    "rank": 97,
+    "app_id": 169624,
+    "app_name": "FreedomGPT",
+    "total_tokens": "312548788",
+    "total_requests": 183362
+   },
+   {
+    "rank": 98,
+    "app_id": 181505,
+    "app_name": "LexiBot",
+    "total_tokens": "297583371",
+    "total_requests": 115607
+   },
+   {
+    "rank": 99,
+    "app_id": 380946,
+    "app_name": "Mirai",
+    "total_tokens": "295491455",
+    "total_requests": 186263
+   },
+   {
+    "rank": 100,
+    "app_id": 175787,
+    "app_name": "Eigen",
+    "total_tokens": "277067060",
+    "total_requests": 153434
+   }
+  ],
+  "meta": {
+   "as_of": "2026-10-19T23:44:03.158Z",
+   "version": "v1",
+   "start_date": "2025-02-01",
+   "end_date": "2025-02-28"
+  }
+ }
+}

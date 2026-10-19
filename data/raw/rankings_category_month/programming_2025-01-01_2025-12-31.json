@@ -1,0 +1,2062 @@
+{
+ "request": {
+  "url": "https://openrouter.ai/api/v1/datasets/rankings-daily",
+  "params": {
+   "start_date": "2025-01-01",
+   "end_date": "2025-12-31",
+   "period": "month",
+   "category": "programming"
+  },
+  "pulled_at": "2026-10-19T23:42:44+00:00"
+ },
+ "response": {
+  "data": [
+   {
+    "date": "2025-05-01",
+    "model_permaslug": "anthropic/claude-4-sonnet-20250522",
+    "total_tokens": "250121886400"
+   },
+   {
+    "date": "2025-05-01",
+    "model_permaslug": "anthropic/claude-3-7-sonnet-20250219",
+    "total_tokens": "171276807600"
+   },
+   {
+    "date": "2025-05-01",
+    "model_permaslug": "google/gemini-2.5-pro-preview-03-25",
+    "total_tokens": "115829211600"
+   },
+   {
+    "date": "2025-05-01",
+    "model_permaslug": "google/gemini-2.5-flash-preview-05-20",
+    "total_tokens": "114227222400"
+   },
+   {
+    "date": "2025-05-01",
+    "model_permaslug": "openai/gpt-4o-mini",
+    "total_tokens": "100079282800"
+   },
+   {
+    "date": "2025-05-01",
+    "model_permaslug": "google/gemini-2.5-flash-preview-04-17",
+    "total_tokens": "59336354000"
+   },
+   {
+    "date": "2025-05-01",
+    "model_permaslug": "openai/gpt-4.1-2025-04-14",
+    "total_tokens": "35992331600"
+   },
+   {
+    "date": "2025-05-01",
+    "model_permaslug": "openai/gpt-4o-2024-11-20",
+    "total_tokens": "17778397200"
+   },
+   {
+    "date": "2025-05-01",
+    "model_permaslug": "anthropic/claude-4-opus-20250522",
+    "total_tokens": "13196057600"
+   },
+   {
+    "date": "2025-05-01",
+    "model_permaslug": "google/gemini-2.0-flash-001",
+    "total_tokens": "12365788800"
+   },
+   {
+    "date": "2025-05-01",
+    "model_permaslug": "anthropic/claude-3.5-sonnet",
+    "total_tokens": "11259169200"
+   },
+   {
+    "date": "2025-05-01",
+    "model_permaslug": "openai/gpt-4.1-mini-2025-04-14",
+    "total_tokens": "10138748400"
+   },
+   {
+    "date": "2025-05-01",
+    "model_permaslug": "deepseek/deepseek-chat-v3-0324",
+    "total_tokens": "8527134400"
+   },
+   {
+    "date": "2025-05-01",
+    "model_permaslug": "deepseek/deepseek-chat-v3",
+    "total_tokens": "6489412400"
+   },
+   {
+    "date": "2025-05-01",
+    "model_permaslug": "deepseek/deepseek-r1-0528",
+    "total_tokens": "6009070400"
+   },
+   {
+    "date": "2025-05-01",
+    "model_permaslug": "anthropic/claude-3-5-haiku",
+    "total_tokens": "4150658400"
+   },
+   {
+    "date": "2025-05-01",
+    "model_permaslug": "mistralai/devstral-small-2505",
+    "total_tokens": "3087743200"
+   },
+   {
+    "date": "2025-05-01",
+    "model_permaslug": "qwen/qwen3-235b-a22b-04-28",
+    "total_tokens": "3006201600"
+   },
+   {
+    "date": "2025-05-01",
+    "model_permaslug": "meta-llama/llama-4-maverick-17b-128e-instruct",
+    "total_tokens": "2803522000"
+   },
+   {
+    "date": "2025-05-01",
+    "model_permaslug": "x-ai/grok-3-beta",
+    "total_tokens": "2329668800"
+   },
+   {
+    "date": "2025-05-01",
+    "model_permaslug": "openai/o4-mini-2025-04-16",
+    "total_tokens": "2100610800"
+   },
+   {
+    "date": "2025-05-01",
+    "model_permaslug": "deepseek/deepseek-r1",
+    "total_tokens": "2023672800"
+   },
+   {
+    "date": "2025-05-01",
+    "model_permaslug": "openai/o4-mini-high-2025-04-16",
+    "total_tokens": "1971040400"
+   },
+   {
+    "date": "2025-05-01",
+    "model_permaslug": "meta-llama/llama-3.3-70b-instruct",
+    "total_tokens": "1763748400"
+   },
+   {
+    "date": "2025-05-01",
+    "model_permaslug": "deepseek/deepseek-r1-distill-llama-70b",
+    "total_tokens": "1576433600"
+   },
+   {
+    "date": "2025-05-01",
+    "model_permaslug": "qwen/qwen-2.5-72b-instruct",
+    "total_tokens": "1269369200"
+   },
+   {
+    "date": "2025-05-01",
+    "model_permaslug": "google/gemini-flash-1.5",
+    "total_tokens": "1184510800"
+   },
+   {
+    "date": "2025-05-01",
+    "model_permaslug": "openai/gpt-4o",
+    "total_tokens": "1042649600"
+   },
+   {
+    "date": "2025-05-01",
+    "model_permaslug": "google/gemini-2.0-flash-lite-001",
+    "total_tokens": "961938000"
+   },
+   {
+    "date": "2025-05-01",
+    "model_permaslug": "openai/gpt-4.1-nano-2025-04-14",
+    "total_tokens": "865701200"
+   },
+   {
+    "date": "2025-05-01",
+    "model_permaslug": "google/gemini-2.0-flash-exp",
+    "total_tokens": "803092800"
+   },
+   {
+    "date": "2025-05-01",
+    "model_permaslug": "qwen/qwen-2.5-coder-32b-instruct",
+    "total_tokens": "758775600"
+   },
+   {
+    "date": "2025-05-01",
+    "model_permaslug": "anthropic/claude-3.5-sonnet-20240620",
+    "total_tokens": "705450400"
+   },
+   {
+    "date": "2025-05-01",
+    "model_permaslug": "mistralai/codestral-2501",
+    "total_tokens": "550980000"
+   },
+   {
+    "date": "2025-05-01",
+    "model_permaslug": "openai/codex-mini",
+    "total_tokens": "487425600"
+   },
+   {
+    "date": "2025-05-01",
+    "model_permaslug": "x-ai/grok-3-mini-beta",
+    "total_tokens": "451152800"
+   },
+   {
+    "date": "2025-05-01",
+    "model_permaslug": "nvidia/llama-3.1-nemotron-70b-instruct",
+    "total_tokens": "396587600"
+   },
+   {
+    "date": "2025-05-01",
+    "model_permaslug": "qwen/qwen3-14b-04-28",
+    "total_tokens": "388772000"
+   },
+   {
+    "date": "2025-05-01",
+    "model_permaslug": "qwen/qwen3-32b-04-28",
+    "total_tokens": "387540000"
+   },
+   {
+    "date": "2025-05-01",
+    "model_permaslug": "qwen/qwq-32b",
+    "total_tokens": "379668400"
+   },
+   {
+    "date": "2025-05-01",
+    "model_permaslug": "google/gemma-3-27b-it",
+    "total_tokens": "353717600"
+   },
+   {
+    "date": "2025-05-01",
+    "model_permaslug": "openai/chatgpt-4o-latest",
+    "total_tokens": "325578800"
+   },
+   {
+    "date": "2025-05-01",
+    "model_permaslug": "microsoft/mai-ds-r1",
+    "total_tokens": "300523600"
+   },
+   {
+    "date": "2025-05-01",
+    "model_permaslug": "deepseek/deepseek-r1-distill-llama-8b",
+    "total_tokens": "262560000"
+   },
+   {
+    "date": "2025-05-01",
+    "model_permaslug": "tngtech/deepseek-r1t-chimera",
+    "total_tokens": "257374800"
+   },
+   {
+    "date": "2025-05-01",
+    "model_permaslug": "anthropic/claude-3-5-haiku-20241022",
+    "total_tokens": "240352400"
+   },
+   {
+    "date": "2025-05-01",
+    "model_permaslug": "deepseek/deepseek-r1-0528-qwen3-8b",
+    "total_tokens": "207984400"
+   },
+   {
+    "date": "2025-05-01",
+    "model_permaslug": "openai/gpt-4o-mini-2024-07-18",
+    "total_tokens": "207259600"
+   },
+   {
+    "date": "2025-05-01",
+    "model_permaslug": "openai/o3-2025-04-16",
+    "total_tokens": "195848000"
+   },
+   {
+    "date": "2025-05-01",
+    "model_permaslug": "meta-llama/llama-4-scout-17b-16e-instruct",
+    "total_tokens": "188185200"
+   },
+   {
+    "date": "2025-05-01",
+    "model_permaslug": "other",
+    "total_tokens": "3818476000"
+   },
+   {
+    "date": "2025-06-01",
+    "model_permaslug": "anthropic/claude-4-sonnet-20250522",
+    "total_tokens": "2118829940800"
+   },
+   {
+    "date": "2025-06-01",
+    "model_permaslug": "anthropic/claude-3-7-sonnet-20250219",
+    "total_tokens": "753672780800"
+   },
+   {
+    "date": "2025-06-01",
+    "model_permaslug": "google/gemini-2.5-flash-preview-05-20",
+    "total_tokens": "451242580800"
+   },
+   {
+    "date": "2025-06-01",
+    "model_permaslug": "google/gemini-2.5-pro-preview-06-05",
+    "total_tokens": "292005767600"
+   },
+   {
+    "date": "2025-06-01",
+    "model_permaslug": "google/gemini-2.5-pro",
+    "total_tokens": "279790324400"
+   },
+   {
+    "date": "2025-06-01",
+    "model_permaslug": "google/gemini-2.5-pro-preview-03-25",
+    "total_tokens": "192344034800"
+   },
+   {
+    "date": "2025-06-01",
+    "model_permaslug": "x-ai/grok-3-beta",
+    "total_tokens": "156320197600"
+   },
+   {
+    "date": "2025-06-01",
+    "model_permaslug": "openai/gpt-4o-mini",
+    "total_tokens": "137847066800"
+   },
+   {
+    "date": "2025-06-01",
+    "model_permaslug": "google/gemini-2.0-flash-001",
+    "total_tokens": "129805204400"
+   },
+   {
+    "date": "2025-06-01",
+    "model_permaslug": "openai/gpt-4.1-2025-04-14",
+    "total_tokens": "118146405600"
+   },
+   {
+    "date": "2025-06-01",
+    "model_permaslug": "google/gemini-2.5-flash",
+    "total_tokens": "116508051200"
+   },
+   {
+    "date": "2025-06-01",
+    "model_permaslug": "google/gemini-2.5-flash-preview-04-17",
+    "total_tokens": "111004257600"
+   },
+   {
+    "date": "2025-06-01",
+    "model_permaslug": "deepseek/deepseek-chat-v3-0324",
+    "total_tokens": "108829559200"
+   },
+   {
+    "date": "2025-06-01",
+    "model_permaslug": "anthropic/claude-4-opus-20250522",
+    "total_tokens": "105765790400"
+   },
+   {
+    "date": "2025-06-01",
+    "model_permaslug": "deepseek/deepseek-chat-v3",
+    "total_tokens": "53031825600"
+   },
+   {
+    "date": "2025-06-01",
+    "model_permaslug": "deepseek/deepseek-r1-0528",
+    "total_tokens": "39732476000"
+   },
+   {
+    "date": "2025-06-01",
+    "model_permaslug": "anthropic/claude-3.5-sonnet",
+    "total_tokens": "35757158000"
+   },
+   {
+    "date": "2025-06-01",
+    "model_permaslug": "openai/gpt-4.1-mini-2025-04-14",
+    "total_tokens": "33481916400"
+   },
+   {
+    "date": "2025-06-01",
+    "model_permaslug": "google/gemini-2.0-flash-lite-001",
+    "total_tokens": "30933729200"
+   },
+   {
+    "date": "2025-06-01",
+    "model_permaslug": "openai/gpt-4o-2024-11-20",
+    "total_tokens": "26125497200"
+   },
+   {
+    "date": "2025-06-01",
+    "model_permaslug": "google/gemini-2.5-flash-lite-preview-06-17",
+    "total_tokens": "15997035600"
+   },
+   {
+    "date": "2025-06-01",
+    "model_permaslug": "deepseek/deepseek-r1",
+    "total_tokens": "14891904000"
+   },
+   {
+    "date": "2025-06-01",
+    "model_permaslug": "openai/gpt-4.1-nano-2025-04-14",
+    "total_tokens": "13351215600"
+   },
+   {
+    "date": "2025-06-01",
+    "model_permaslug": "qwen/qwen-2.5-coder-32b-instruct",
+    "total_tokens": "11116378400"
+   },
+   {
+    "date": "2025-06-01",
+    "model_permaslug": "mistralai/devstral-small-2505",
+    "total_tokens": "10597981600"
+   },
+   {
+    "date": "2025-06-01",
+    "model_permaslug": "meta-llama/llama-4-maverick-17b-128e-instruct",
+    "total_tokens": "9790035200"
+   },
+   {
+    "date": "2025-06-01",
+    "model_permaslug": "openai/gpt-4o",
+    "total_tokens": "9547721200"
+   },
+   {
+    "date": "2025-06-01",
+    "model_permaslug": "openai/o4-mini-high-2025-04-16",
+    "total_tokens": "7446041600"
+   },
+   {
+    "date": "2025-06-01",
+    "model_permaslug": "openai/o4-mini-2025-04-16",
+    "total_tokens": "7093350000"
+   },
+   {
+    "date": "2025-06-01",
+    "model_permaslug": "qwen/qwen-2.5-72b-instruct",
+    "total_tokens": "6151896400"
+   },
+   {
+    "date": "2025-06-01",
+    "model_permaslug": "google/gemini-flash-1.5",
+    "total_tokens": "6129806000"
+   },
+   {
+    "date": "2025-06-01",
+    "model_permaslug": "anthropic/claude-3-5-haiku",
+    "total_tokens": "5843588400"
+   },
+   {
+    "date": "2025-06-01",
+    "model_permaslug": "qwen/qwen3-32b-04-28",
+    "total_tokens": "5303788800"
+   },
+   {
+    "date": "2025-06-01",
+    "model_permaslug": "meta-llama/llama-3.3-70b-instruct",
+    "total_tokens": "5158228000"
+   },
+   {
+    "date": "2025-06-01",
+    "model_permaslug": "google/gemma-3-27b-it",
+    "total_tokens": "4794686000"
+   },
+   {
+    "date": "2025-06-01",
+    "model_permaslug": "qwen/qwen3-235b-a22b-04-28",
+    "total_tokens": "4595248400"
+   },
+   {
+    "date": "2025-06-01",
+    "model_permaslug": "deepseek/deepseek-r1-distill-llama-70b",
+    "total_tokens": "4427792800"
+   },
+   {
+    "date": "2025-06-01",
+    "model_permaslug": "google/gemini-2.0-flash-exp",
+    "total_tokens": "4015074800"
+   },
+   {
+    "date": "2025-06-01",
+    "model_permaslug": "openai/chatgpt-4o-latest",
+    "total_tokens": "3895693200"
+   },
+   {
+    "date": "2025-06-01",
+    "model_permaslug": "openai/o3-2025-04-16",
+    "total_tokens": "3067935600"
+   },
+   {
+    "date": "2025-06-01",
+    "model_permaslug": "meta-llama/llama-3.2-3b-instruct",
+    "total_tokens": "2983855200"
+   },
+   {
+    "date": "2025-06-01",
+    "model_permaslug": "anthropic/claude-3.5-sonnet-20240620",
+    "total_tokens": "2949183200"
+   },
+   {
+    "date": "2025-06-01",
+    "model_permaslug": "meta-llama/llama-4-scout-17b-16e-instruct",
+    "total_tokens": "2882130800"
+   },
+   {
+    "date": "2025-06-01",
+    "model_permaslug": "mistralai/codestral-2501",
+    "total_tokens": "2704751200"
+   },
+   {
+    "date": "2025-06-01",
+    "model_permaslug": "x-ai/grok-3-mini-beta",
+    "total_tokens": "2570857200"
+   },
+   {
+    "date": "2025-06-01",
+    "model_permaslug": "deepseek/deepseek-r1-0528-qwen3-8b",
+    "total_tokens": "2171798800"
+   },
+   {
+    "date": "2025-06-01",
+    "model_permaslug": "meta-llama/llama-3.1-70b-instruct",
+    "total_tokens": "2169344400"
+   },
+   {
+    "date": "2025-06-01",
+    "model_permaslug": "meta-llama/llama-3.1-8b-instruct",
+    "total_tokens": "2140643600"
+   },
+   {
+    "date": "2025-06-01",
+    "model_permaslug": "google/gemini-flash-1.5-8b",
+    "total_tokens": "2006342800"
+   },
+   {
+    "date": "2025-06-01",
+    "model_permaslug": "anthropic/claude-3-5-haiku-20241022",
+    "total_tokens": "1990537200"
+   },
+   {
+    "date": "2025-06-01",
+    "model_permaslug": "other",
+    "total_tokens": "43577869600"
+   },
+   {
+    "date": "2025-07-01",
+    "model_permaslug": "anthropic/claude-4-sonnet-20250522",
+    "total_tokens": "1801260160400"
+   },
+   {
+    "date": "2025-07-01",
+    "model_permaslug": "google/gemini-2.5-pro",
+    "total_tokens": "446124079200"
+   },
+   {
+    "date": "2025-07-01",
+    "model_permaslug": "qwen/qwen3-coder-480b-a35b-07-25",
+    "total_tokens": "366986403200"
+   },
+   {
+    "date": "2025-07-01",
+    "model_permaslug": "openrouter/horizon-alpha",
+    "total_tokens": "330463862400"
+   },
+   {
+    "date": "2025-07-01",
+    "model_permaslug": "google/gemini-2.5-flash",
+    "total_tokens": "305084584000"
+   },
+   {
+    "date": "2025-07-01",
+    "model_permaslug": "anthropic/claude-3-7-sonnet-20250219",
+    "total_tokens": "206940049200"
+   },
+   {
+    "date": "2025-07-01",
+    "model_permaslug": "moonshotai/kimi-k2",
+    "total_tokens": "141517560400"
+   },
+   {
+    "date": "2025-07-01",
+    "model_permaslug": "x-ai/grok-4-07-09",
+    "total_tokens": "131134398400"
+   },
+   {
+    "date": "2025-07-01",
+    "model_permaslug": "anthropic/claude-4-opus-20250522",
+    "total_tokens": "104859471600"
+   },
+   {
+    "date": "2025-07-01",
+    "model_permaslug": "deepseek/deepseek-chat-v3-0324",
+    "total_tokens": "80669106800"
+   },
+   {
+    "date": "2025-07-01",
+    "model_permaslug": "google/gemini-2.5-flash-preview-05-20",
+    "total_tokens": "74262806400"
+   },
+   {
+    "date": "2025-07-01",
+    "model_permaslug": "openai/gpt-4.1-2025-04-14",
+    "total_tokens": "57389720400"
+   },
+   {
+    "date": "2025-07-01",
+    "model_permaslug": "openrouter/horizon-beta",
+    "total_tokens": "56274655600"
+   },
+   {
+    "date": "2025-07-01",
+    "model_permaslug": "openai/gpt-4.1-mini-2025-04-14",
+    "total_tokens": "48949120400"
+   },
+   {
+    "date": "2025-07-01",
+    "model_permaslug": "google/gemini-2.0-flash-001",
+    "total_tokens": "47538255200"
+   },
+   {
+    "date": "2025-07-01",
+    "model_permaslug": "qwen/qwen3-235b-a22b-07-25",
+    "total_tokens": "43966164400"
+   },
+   {
+    "date": "2025-07-01",
+    "model_permaslug": "deepseek/deepseek-r1-0528",
+    "total_tokens": "29922310000"
+   },
+   {
+    "date": "2025-07-01",
+    "model_permaslug": "z-ai/glm-4.5",
+    "total_tokens": "29410256400"
+   },
+   {
+    "date": "2025-07-01",
+    "model_permaslug": "google/gemini-2.5-flash-lite-preview-06-17",
+    "total_tokens": "27121944000"
+   },
+   {
+    "date": "2025-07-01",
+    "model_permaslug": "google/gemini-2.5-flash-preview-04-17",
+    "total_tokens": "20637206000"
+   },
+   {
+    "date": "2025-07-01",
+    "model_permaslug": "deepseek/deepseek-chat-v3",
+    "total_tokens": "17546078000"
+   },
+   {
+    "date": "2025-07-01",
+    "model_permaslug": "x-ai/grok-3-beta",
+    "total_tokens": "17126850800"
+   },
+   {
+    "date": "2025-07-01",
+    "model_permaslug": "anthropic/claude-3.5-sonnet",
+    "total_tokens": "16731986400"
+   },
+   {
+    "date": "2025-07-01",
+    "model_permaslug": "z-ai/glm-4.5-air",
+    "total_tokens": "16469240400"
+   },
+   {
+    "date": "2025-07-01",
+    "model_permaslug": "openai/gpt-4o-mini",
+    "total_tokens": "12948845600"
+   },
+   {
+    "date": "2025-07-01",
+    "model_permaslug": "anthropic/claude-3-haiku",
+    "total_tokens": "9473788000"
+   },
+   {
+    "date": "2025-07-01",
+    "model_permaslug": "deepseek/deepseek-r1",
+    "total_tokens": "9286658000"
+   },
+   {
+    "date": "2025-07-01",
+    "model_permaslug": "qwen/qwen-2.5-coder-32b-instruct",
+    "total_tokens": "8208256400"
+   },
+   {
+    "date": "2025-07-01",
+    "model_permaslug": "google/gemini-2.0-flash-exp",
+    "total_tokens": "8204718800"
+   },
+   {
+    "date": "2025-07-01",
+    "model_permaslug": "openai/gpt-4o",
+    "total_tokens": "7428648000"
+   },
+   {
+    "date": "2025-07-01",
+    "model_permaslug": "google/gemini-2.5-flash-lite",
+    "total_tokens": "7374747600"
+   },
+   {
+    "date": "2025-07-01",
+    "model_permaslug": "meta-llama/llama-4-maverick-17b-128e-instruct",
+    "total_tokens": "6604673200"
+   },
+   {
+    "date": "2025-07-01",
+    "model_permaslug": "anthropic/claude-3-5-haiku",
+    "total_tokens": "6134390000"
+   },
+   {
+    "date": "2025-07-01",
+    "model_permaslug": "qwen/qwen3-32b-04-28",
+    "total_tokens": "5380897600"
+   },
+   {
+    "date": "2025-07-01",
+    "model_permaslug": "tngtech/deepseek-r1t2-chimera",
+    "total_tokens": "4809864800"
+   },
+   {
+    "date": "2025-07-01",
+    "model_permaslug": "openai/o4-mini-2025-04-16",
+    "total_tokens": "4645360000"
+   },
+   {
+    "date": "2025-07-01",
+    "model_permaslug": "mistralai/devstral-small-2507",
+    "total_tokens": "4393443200"
+   },
+   {
+    "date": "2025-07-01",
+    "model_permaslug": "openai/o4-mini-high-2025-04-16",
+    "total_tokens": "4140986800"
+   },
+   {
+    "date": "2025-07-01",
+    "model_permaslug": "openai/gpt-4.1-nano-2025-04-14",
+    "total_tokens": "3984231200"
+   },
+   {
+    "date": "2025-07-01",
+    "model_permaslug": "google/gemma-3-27b-it",
+    "total_tokens": "3889943200"
+   },
+   {
+    "date": "2025-07-01",
+    "model_permaslug": "deepseek/deepseek-r1-distill-llama-70b",
+    "total_tokens": "3756874800"
+   },
+   {
+    "date": "2025-07-01",
+    "model_permaslug": "qwen/qwen3-235b-a22b-04-28",
+    "total_tokens": "3323527600"
+   },
+   {
+    "date": "2025-07-01",
+    "model_permaslug": "google/gemini-flash-1.5",
+    "total_tokens": "3160129600"
+   },
+   {
+    "date": "2025-07-01",
+    "model_permaslug": "meta-llama/llama-3.1-70b-instruct",
+    "total_tokens": "3108449200"
+   },
+   {
+    "date": "2025-07-01",
+    "model_permaslug": "qwen/qwen3-235b-a22b-thinking-2507",
+    "total_tokens": "3064843200"
+   },
+   {
+    "date": "2025-07-01",
+    "model_permaslug": "mistralai/devstral-medium-2507",
+    "total_tokens": "3002130800"
+   },
+   {
+    "date": "2025-07-01",
+    "model_permaslug": "openai/o3-2025-04-16",
+    "total_tokens": "2904215600"
+   },
+   {
+    "date": "2025-07-01",
+    "model_permaslug": "meta-llama/llama-3.3-70b-instruct",
+    "total_tokens": "2861210000"
+   },
+   {
+    "date": "2025-07-01",
+    "model_permaslug": "deepseek/deepseek-r1-0528-qwen3-8b",
+    "total_tokens": "2796174400"
+   },
+   {
+    "date": "2025-07-01",
+    "model_permaslug": "openai/chatgpt-4o-latest",
+    "total_tokens": "2359670800"
+   },
+   {
+    "date": "2025-07-01",
+    "model_permaslug": "other",
+    "total_tokens": "56311580400"
+   },
+   {
+    "date": "2025-08-01",
+    "model_permaslug": "anthropic/claude-4-sonnet-20250522",
+    "total_tokens": "1441035872000"
+   },
+   {
+    "date": "2025-08-01",
+    "model_permaslug": "qwen/qwen3-coder-480b-a35b-07-25",
+    "total_tokens": "759733545200"
+   },
+   {
+    "date": "2025-08-01",
+    "model_permaslug": "x-ai/grok-code-fast-1",
+    "total_tokens": "390513583200"
+   },
+   {
+    "date": "2025-08-01",
+    "model_permaslug": "moonshotai/kimi-k2",
+    "total_tokens": "238122273200"
+   },
+   {
+    "date": "2025-08-01",
+    "model_permaslug": "google/gemini-2.5-pro",
+    "total_tokens": "209110266800"
+   },
+   {
+    "date": "2025-08-01",
+    "model_permaslug": "openai/gpt-5-2025-08-07",
+    "total_tokens": "194429438000"
+   },
+   {
+    "date": "2025-08-01",
+    "model_permaslug": "google/gemini-2.5-flash",
+    "total_tokens": "190594169200"
+   },
+   {
+    "date": "2025-08-01",
+    "model_permaslug": "deepseek/deepseek-chat-v3.1",
+    "total_tokens": "187032207600"
+   },
+   {
+    "date": "2025-08-01",
+    "model_permaslug": "x-ai/grok-4-07-09",
+    "total_tokens": "173264440800"
+   },
+   {
+    "date": "2025-08-01",
+    "model_permaslug": "openrouter/horizon-beta",
+    "total_tokens": "172612872000"
+   },
+   {
+    "date": "2025-08-01",
+    "model_permaslug": "z-ai/glm-4.5-air",
+    "total_tokens": "136118327200"
+   },
+   {
+    "date": "2025-08-01",
+    "model_permaslug": "anthropic/claude-3-7-sonnet-20250219",
+    "total_tokens": "122462624800"
+   },
+   {
+    "date": "2025-08-01",
+    "model_permaslug": "z-ai/glm-4.5",
+    "total_tokens": "120079016400"
+   },
+   {
+    "date": "2025-08-01",
+    "model_permaslug": "openai/gpt-5-mini-2025-08-07",
+    "total_tokens": "85440840400"
+   },
+   {
+    "date": "2025-08-01",
+    "model_permaslug": "anthropic/claude-4.1-opus-20250805",
+    "total_tokens": "71718588400"
+   },
+   {
+    "date": "2025-08-01",
+    "model_permaslug": "google/gemini-2.0-flash-001",
+    "total_tokens": "40761463600"
+   },
+   {
+    "date": "2025-08-01",
+    "model_permaslug": "deepseek/deepseek-r1-0528",
+    "total_tokens": "37780208800"
+   },
+   {
+    "date": "2025-08-01",
+    "model_permaslug": "deepseek/deepseek-chat-v3-0324",
+    "total_tokens": "37150189200"
+   },
+   {
+    "date": "2025-08-01",
+    "model_permaslug": "anthropic/claude-4-opus-20250522",
+    "total_tokens": "34773116800"
+   },
+   {
+    "date": "2025-08-01",
+    "model_permaslug": "openai/gpt-4.1-2025-04-14",
+    "total_tokens": "30642280000"
+   },
+   {
+    "date": "2025-08-01",
+    "model_permaslug": "openai/gpt-oss-120b",
+    "total_tokens": "22524686400"
+   },
+   {
+    "date": "2025-08-01",
+    "model_permaslug": "openai/gpt-5-chat-2025-08-07",
+    "total_tokens": "19983527600"
+   },
+   {
+    "date": "2025-08-01",
+    "model_permaslug": "openai/gpt-4.1-mini-2025-04-14",
+    "total_tokens": "16507357600"
+   },
+   {
+    "date": "2025-08-01",
+    "model_permaslug": "openai/gpt-4o-mini",
+    "total_tokens": "13630188000"
+   },
+   {
+    "date": "2025-08-01",
+    "model_permaslug": "qwen/qwen3-235b-a22b-07-25",
+    "total_tokens": "13093314000"
+   },
+   {
+    "date": "2025-08-01",
+    "model_permaslug": "anthropic/claude-3.5-sonnet",
+    "total_tokens": "12562859600"
+   },
+   {
+    "date": "2025-08-01",
+    "model_permaslug": "anthropic/claude-3-haiku",
+    "total_tokens": "12467950400"
+   },
+   {
+    "date": "2025-08-01",
+    "model_permaslug": "google/gemini-2.0-flash-exp",
+    "total_tokens": "12453017600"
+   },
+   {
+    "date": "2025-08-01",
+    "model_permaslug": "google/gemini-2.5-flash-lite",
+    "total_tokens": "12326505600"
+   },
+   {
+    "date": "2025-08-01",
+    "model_permaslug": "deepseek/deepseek-r1",
+    "total_tokens": "12275047200"
+   },
+   {
+    "date": "2025-08-01",
+    "model_permaslug": "deepseek/deepseek-chat-v3",
+    "total_tokens": "10470680800"
+   },
+   {
+    "date": "2025-08-01",
+    "model_permaslug": "deepseek/deepseek-r1-distill-llama-70b",
+    "total_tokens": "9509260400"
+   },
+   {
+    "date": "2025-08-01",
+    "model_permaslug": "openai/gpt-oss-20b",
+    "total_tokens": "8823332000"
+   },
+   {
+    "date": "2025-08-01",
+    "model_permaslug": "google/gemma-3-12b-it",
+    "total_tokens": "7979668000"
+   },
+   {
+    "date": "2025-08-01",
+    "model_permaslug": "google/gemini-2.5-flash-lite-preview-06-17",
+    "total_tokens": "7322927200"
+   },
+   {
+    "date": "2025-08-01",
+    "model_permaslug": "qwen/qwen3-235b-a22b-04-28",
+    "total_tokens": "6937218000"
+   },
+   {
+    "date": "2025-08-01",
+    "model_permaslug": "openai/gpt-5-nano-2025-08-07",
+    "total_tokens": "6719966000"
+   },
+   {
+    "date": "2025-08-01",
+    "model_permaslug": "tngtech/deepseek-r1t2-chimera",
+    "total_tokens": "6236904800"
+   },
+   {
+    "date": "2025-08-01",
+    "model_permaslug": "qwen/qwen3-235b-a22b-thinking-2507",
+    "total_tokens": "6220345200"
+   },
+   {
+    "date": "2025-08-01",
+    "model_permaslug": "openai/gpt-4o",
+    "total_tokens": "5139480400"
+   },
+   {
+    "date": "2025-08-01",
+    "model_permaslug": "google/gemma-3-27b-it",
+    "total_tokens": "4745453200"
+   },
+   {
+    "date": "2025-08-01",
+    "model_permaslug": "meta-llama/llama-4-maverick-17b-128e-instruct",
+    "total_tokens": "4729838800"
+   },
+   {
+    "date": "2025-08-01",
+    "model_permaslug": "qwen/qwen3-32b-04-28",
+    "total_tokens": "4715370800"
+   },
+   {
+    "date": "2025-08-01",
+    "model_permaslug": "qwen/qwen-2.5-coder-32b-instruct",
+    "total_tokens": "4516827200"
+   },
+   {
+    "date": "2025-08-01",
+    "model_permaslug": "mistralai/devstral-small-2507",
+    "total_tokens": "4389968800"
+   },
+   {
+    "date": "2025-08-01",
+    "model_permaslug": "anthropic/claude-3-5-haiku",
+    "total_tokens": "3826347200"
+   },
+   {
+    "date": "2025-08-01",
+    "model_permaslug": "meta-llama/llama-3.3-70b-instruct",
+    "total_tokens": "3380202000"
+   },
+   {
+    "date": "2025-08-01",
+    "model_permaslug": "google/gemini-flash-1.5",
+    "total_tokens": "3247002000"
+   },
+   {
+    "date": "2025-08-01",
+    "model_permaslug": "x-ai/grok-3",
+    "total_tokens": "3204714400"
+   },
+   {
+    "date": "2025-08-01",
+    "model_permaslug": "openai/gpt-4.1-nano-2025-04-14",
+    "total_tokens": "2566553200"
+   },
+   {
+    "date": "2025-08-01",
+    "model_permaslug": "other",
+    "total_tokens": "56914139200"
+   },
+   {
+    "date": "2025-09-01",
+    "model_permaslug": "x-ai/grok-code-fast-1",
+    "total_tokens": "5398551322000"
+   },
+   {
+    "date": "2025-09-01",
+    "model_permaslug": "anthropic/claude-4-sonnet-20250522",
+    "total_tokens": "1591304923600"
+   },
+   {
+    "date": "2025-09-01",
+    "model_permaslug": "openai/gpt-4.1-mini-2025-04-14",
+    "total_tokens": "401099427200"
+   },
+   {
+    "date": "2025-09-01",
+    "model_permaslug": "x-ai/grok-4-fast",
+    "total_tokens": "400741507200"
+   },
+   {
+    "date": "2025-09-01",
+    "model_permaslug": "openai/gpt-5-2025-08-07",
+    "total_tokens": "374385986000"
+   },
+   {
+    "date": "2025-09-01",
+    "model_permaslug": "qwen/qwen3-coder-480b-a35b-07-25",
+    "total_tokens": "266932129200"
+   },
+   {
+    "date": "2025-09-01",
+    "model_permaslug": "openrouter/sonoma-sky-alpha",
+    "total_tokens": "232825136400"
+   },
+   {
+    "date": "2025-09-01",
+    "model_permaslug": "google/gemini-2.5-flash",
+    "total_tokens": "214213700400"
+   },
+   {
+    "date": "2025-09-01",
+    "model_permaslug": "anthropic/claude-4.5-sonnet-20250929",
+    "total_tokens": "195414978000"
+   },
+   {
+    "date": "2025-09-01",
+    "model_permaslug": "google/gemini-2.5-pro",
+    "total_tokens": "190288017200"
+   },
+   {
+    "date": "2025-09-01",
+    "model_permaslug": "deepseek/deepseek-chat-v3.1",
+    "total_tokens": "174258005200"
+   },
+   {
+    "date": "2025-09-01",
+    "model_permaslug": "google/gemma-3-12b-it",
+    "total_tokens": "136779742800"
+   },
+   {
+    "date": "2025-09-01",
+    "model_permaslug": "x-ai/grok-4-07-09",
+    "total_tokens": "106596843200"
+   },
+   {
+    "date": "2025-09-01",
+    "model_permaslug": "openai/gpt-oss-20b",
+    "total_tokens": "99928688400"
+   },
+   {
+    "date": "2025-09-01",
+    "model_permaslug": "z-ai/glm-4.5-air",
+    "total_tokens": "93775779600"
+   },
+   {
+    "date": "2025-09-01",
+    "model_permaslug": "anthropic/claude-3-7-sonnet-20250219",
+    "total_tokens": "86104330400"
+   },
+   {
+    "date": "2025-09-01",
+    "model_permaslug": "moonshotai/kimi-k2-0905",
+    "total_tokens": "79397273600"
+   },
+   {
+    "date": "2025-09-01",
+    "model_permaslug": "openrouter/sonoma-dusk-alpha",
+    "total_tokens": "76493036000"
+   },
+   {
+    "date": "2025-09-01",
+    "model_permaslug": "openai/gpt-5-mini-2025-08-07",
+    "total_tokens": "70943166000"
+   },
+   {
+    "date": "2025-09-01",
+    "model_permaslug": "anthropic/claude-4.1-opus-20250805",
+    "total_tokens": "66437944400"
+   },
+   {
+    "date": "2025-09-01",
+    "model_permaslug": "z-ai/glm-4.5",
+    "total_tokens": "62742473200"
+   },
+   {
+    "date": "2025-09-01",
+    "model_permaslug": "openai/gpt-5-codex",
+    "total_tokens": "61038027200"
+   },
+   {
+    "date": "2025-09-01",
+    "model_permaslug": "google/gemini-2.0-flash-001",
+    "total_tokens": "48231213200"
+   },
+   {
+    "date": "2025-09-01",
+    "model_permaslug": "z-ai/glm-4.6",
+    "total_tokens": "37032999200"
+   },
+   {
+    "date": "2025-09-01",
+    "model_permaslug": "qwen/qwen3-coder-30b-a3b-instruct",
+    "total_tokens": "37019636800"
+   },
+   {
+    "date": "2025-09-01",
+    "model_permaslug": "openai/gpt-oss-120b",
+    "total_tokens": "28238316000"
+   },
+   {
+    "date": "2025-09-01",
+    "model_permaslug": "deepseek/deepseek-r1-distill-llama-70b",
+    "total_tokens": "23562730800"
+   },
+   {
+    "date": "2025-09-01",
+    "model_permaslug": "moonshotai/kimi-k2",
+    "total_tokens": "22822890800"
+   },
+   {
+    "date": "2025-09-01",
+    "model_permaslug": "qwen/qwen3-235b-a22b-07-25",
+    "total_tokens": "21888403600"
+   },
+   {
+    "date": "2025-09-01",
+    "model_permaslug": "openai/gpt-4.1-2025-04-14",
+    "total_tokens": "20548062000"
+   },
+   {
+    "date": "2025-09-01",
+    "model_permaslug": "qwen/qwen3-next-80b-a3b-instruct-2509",
+    "total_tokens": "16556197600"
+   },
+   {
+    "date": "2025-09-01",
+    "model_permaslug": "deepseek/deepseek-r1-0528",
+    "total_tokens": "15590993200"
+   },
+   {
+    "date": "2025-09-01",
+    "model_permaslug": "google/gemini-2.5-flash-lite",
+    "total_tokens": "14460097600"
+   },
+   {
+    "date": "2025-09-01",
+    "model_permaslug": "openai/gpt-4o-mini",
+    "total_tokens": "12796031600"
+   },
+   {
+    "date": "2025-09-01",
+    "model_permaslug": "anthropic/claude-3.5-sonnet",
+    "total_tokens": "12244775600"
+   },
+   {
+    "date": "2025-09-01",
+    "model_permaslug": "deepseek/deepseek-chat-v3",
+    "total_tokens": "11761151200"
+   },
+   {
+    "date": "2025-09-01",
+    "model_permaslug": "qwen/qwen3-coder-plus",
+    "total_tokens": "11615422400"
+   },
+   {
+    "date": "2025-09-01",
+    "model_permaslug": "google/gemini-2.0-flash-exp",
+    "total_tokens": "11529848400"
+   },
+   {
+    "date": "2025-09-01",
+    "model_permaslug": "google/gemini-2.5-flash-preview-09-2025",
+    "total_tokens": "10469082800"
+   },
+   {
+    "date": "2025-09-01",
+    "model_permaslug": "deepseek/deepseek-chat-v3-0324",
+    "total_tokens": "8949539600"
+   },
+   {
+    "date": "2025-09-01",
+    "model_permaslug": "qwen/qwen3-max",
+    "total_tokens": "8726630000"
+   },
+   {
+    "date": "2025-09-01",
+    "model_permaslug": "anthropic/claude-4-opus-20250522",
+    "total_tokens": "8666158000"
+   },
+   {
+    "date": "2025-09-01",
+    "model_permaslug": "openai/gpt-5-chat-2025-08-07",
+    "total_tokens": "8637898400"
+   },
+   {
+    "date": "2025-09-01",
+    "model_permaslug": "openai/gpt-5-nano-2025-08-07",
+    "total_tokens": "7995512000"
+   },
+   {
+    "date": "2025-09-01",
+    "model_permaslug": "meta-llama/llama-3.3-70b-instruct",
+    "total_tokens": "7591375200"
+   },
+   {
+    "date": "2025-09-01",
+    "model_permaslug": "deepseek/deepseek-r1",
+    "total_tokens": "7577946000"
+   },
+   {
+    "date": "2025-09-01",
+    "model_permaslug": "openai/gpt-4.1-nano-2025-04-14",
+    "total_tokens": "7270360400"
+   },
+   {
+    "date": "2025-09-01",
+    "model_permaslug": "deepseek/deepseek-v3.1-terminus",
+    "total_tokens": "7141576000"
+   },
+   {
+    "date": "2025-09-01",
+    "model_permaslug": "meta-llama/llama-4-maverick-17b-128e-instruct",
+    "total_tokens": "6951449600"
+   },
+   {
+    "date": "2025-09-01",
+    "model_permaslug": "qwen/qwen3-vl-235b-a22b-instruct",
+    "total_tokens": "6081103200"
+   },
+   {
+    "date": "2025-09-01",
+    "model_permaslug": "other",
+    "total_tokens": "126680398000"
+   },
+   {
+    "date": "2025-10-01",
+    "model_permaslug": "x-ai/grok-code-fast-1",
+    "total_tokens": "5050364782800"
+   },
+   {
+    "date": "2025-10-01",
+    "model_permaslug": "anthropic/claude-4.5-sonnet-20250929",
+    "total_tokens": "1329116672800"
+   },
+   {
+    "date": "2025-10-01",
+    "model_permaslug": "anthropic/claude-4-sonnet-20250522",
+    "total_tokens": "415602106400"
+   },
+   {
+    "date": "2025-10-01",
+    "model_permaslug": "minimax/minimax-m2",
+    "total_tokens": "204974576000"
+   },
+   {
+    "date": "2025-10-01",
+    "model_permaslug": "openai/gpt-oss-20b",
+    "total_tokens": "178963083200"
+   },
+   {
+    "date": "2025-10-01",
+    "model_permaslug": "openai/gpt-5-2025-08-07",
+    "total_tokens": "177884245200"
+   },
+   {
+    "date": "2025-10-01",
+    "model_permaslug": "qwen/qwen3-coder-30b-a3b-instruct",
+    "total_tokens": "159384504800"
+   },
+   {
+    "date": "2025-10-01",
+    "model_permaslug": "z-ai/glm-4.6",
+    "total_tokens": "155361684000"
+   },
+   {
+    "date": "2025-10-01",
+    "model_permaslug": "qwen/qwen3-coder-480b-a35b-07-25",
+    "total_tokens": "140303568000"
+   },
+   {
+    "date": "2025-10-01",
+    "model_permaslug": "google/gemini-2.5-flash",
+    "total_tokens": "139654694000"
+   },
+   {
+    "date": "2025-10-01",
+    "model_permaslug": "google/gemini-2.5-pro",
+    "total_tokens": "117454952000"
+   },
+   {
+    "date": "2025-10-01",
+    "model_permaslug": "x-ai/grok-4-fast",
+    "total_tokens": "116488321600"
+   },
+   {
+    "date": "2025-10-01",
+    "model_permaslug": "anthropic/claude-4.5-haiku-20251001",
+    "total_tokens": "87020692000"
+   },
+   {
+    "date": "2025-10-01",
+    "model_permaslug": "openai/gpt-5-codex",
+    "total_tokens": "86847680000"
+   },
+   {
+    "date": "2025-10-01",
+    "model_permaslug": "z-ai/glm-4.5-air",
+    "total_tokens": "71584213600"
+   },
+   {
+    "date": "2025-10-01",
+    "model_permaslug": "google/gemma-3-12b-it",
+    "total_tokens": "66138049600"
+   },
+   {
+    "date": "2025-10-01",
+    "model_permaslug": "openai/gpt-5-mini-2025-08-07",
+    "total_tokens": "44359400800"
+   },
+   {
+    "date": "2025-10-01",
+    "model_permaslug": "openai/gpt-4.1-mini-2025-04-14",
+    "total_tokens": "40916013600"
+   },
+   {
+    "date": "2025-10-01",
+    "model_permaslug": "openai/gpt-oss-120b",
+    "total_tokens": "33790682000"
+   },
+   {
+    "date": "2025-10-01",
+    "model_permaslug": "x-ai/grok-4-07-09",
+    "total_tokens": "32910472800"
+   },
+   {
+    "date": "2025-10-01",
+    "model_permaslug": "google/gemini-2.5-flash-lite-preview-09-2025",
+    "total_tokens": "27130321200"
+   },
+   {
+    "date": "2025-10-01",
+    "model_permaslug": "anthropic/claude-3-7-sonnet-20250219",
+    "total_tokens": "26301124800"
+   },
+   {
+    "date": "2025-10-01",
+    "model_permaslug": "google/gemini-2.5-flash-preview-09-2025",
+    "total_tokens": "25930224400"
+   },
+   {
+    "date": "2025-10-01",
+    "model_permaslug": "google/gemini-2.0-flash-001",
+    "total_tokens": "24557592400"
+   },
+   {
+    "date": "2025-10-01",
+    "model_permaslug": "z-ai/glm-4.5",
+    "total_tokens": "22213628400"
+   },
+   {
+    "date": "2025-10-01",
+    "model_permaslug": "deepseek/deepseek-v3.2-exp",
+    "total_tokens": "19930911200"
+   },
+   {
+    "date": "2025-10-01",
+    "model_permaslug": "deepseek/deepseek-chat-v3.1",
+    "total_tokens": "19815846400"
+   },
+   {
+    "date": "2025-10-01",
+    "model_permaslug": "moonshotai/kimi-k2-0905",
+    "total_tokens": "19043853600"
+   },
+   {
+    "date": "2025-10-01",
+    "model_permaslug": "deepseek/deepseek-v3.1-terminus",
+    "total_tokens": "18497343200"
+   },
+   {
+    "date": "2025-10-01",
+    "model_permaslug": "anthropic/claude-4.1-opus-20250805",
+    "total_tokens": "17686868000"
+   },
+   {
+    "date": "2025-10-01",
+    "model_permaslug": "qwen/qwen3-235b-a22b-07-25",
+    "total_tokens": "16936374800"
+   },
+   {
+    "date": "2025-10-01",
+    "model_permaslug": "qwen/qwen3-vl-235b-a22b-instruct",
+    "total_tokens": "13958573200"
+   },
+   {
+    "date": "2025-10-01",
+    "model_permaslug": "openai/gpt-5-nano-2025-08-07",
+    "total_tokens": "13626310000"
+   },
+   {
+    "date": "2025-10-01",
+    "model_permaslug": "deepseek/deepseek-chat-v3",
+    "total_tokens": "10651319200"
+   },
+   {
+    "date": "2025-10-01",
+    "model_permaslug": "google/gemini-2.5-flash-lite",
+    "total_tokens": "10408977200"
+   },
+   {
+    "date": "2025-10-01",
+    "model_permaslug": "google/gemini-2.0-flash-exp",
+    "total_tokens": "9644610000"
+   },
+   {
+    "date": "2025-10-01",
+    "model_permaslug": "mistralai/codestral-2508",
+    "total_tokens": "9630310400"
+   },
+   {
+    "date": "2025-10-01",
+    "model_permaslug": "qwen/qwen3-coder-plus",
+    "total_tokens": "9622601200"
+   },
+   {
+    "date": "2025-10-01",
+    "model_permaslug": "anthropic/claude-3.5-sonnet",
+    "total_tokens": "9383903600"
+   },
+   {
+    "date": "2025-10-01",
+    "model_permaslug": "openai/gpt-4o-mini",
+    "total_tokens": "9292332800"
+   },
+   {
+    "date": "2025-10-01",
+    "model_permaslug": "openai/gpt-4.1-2025-04-14",
+    "total_tokens": "9249924400"
+   },
+   {
+    "date": "2025-10-01",
+    "model_permaslug": "deepseek/deepseek-r1-distill-llama-70b",
+    "total_tokens": "7238917200"
+   },
+   {
+    "date": "2025-10-01",
+    "model_permaslug": "qwen/qwen3-coder-flash",
+    "total_tokens": "6278590000"
+   },
+   {
+    "date": "2025-10-01",
+    "model_permaslug": "x-ai/grok-3-mini",
+    "total_tokens": "6206142400"
+   },
+   {
+    "date": "2025-10-01",
+    "model_permaslug": "tngtech/deepseek-r1t2-chimera",
+    "total_tokens": "6150446000"
+   },
+   {
+    "date": "2025-10-01",
+    "model_permaslug": "openai/gpt-5-chat-2025-08-07",
+    "total_tokens": "5013586800"
+   },
+   {
+    "date": "2025-10-01",
+    "model_permaslug": "deepseek/deepseek-chat-v3-0324",
+    "total_tokens": "4784537200"
+   },
+   {
+    "date": "2025-10-01",
+    "model_permaslug": "meta-llama/llama-4-maverick-17b-128e-instruct",
+    "total_tokens": "4511194400"
+   },
+   {
+    "date": "2025-10-01",
+    "model_permaslug": "qwen/qwen3-next-80b-a3b-instruct-2509",
+    "total_tokens": "4507724800"
+   },
+   {
+    "date": "2025-10-01",
+    "model_permaslug": "qwen/qwen3-32b-04-28",
+    "total_tokens": "4430220000"
+   },
+   {
+    "date": "2025-10-01",
+    "model_permaslug": "other",
+    "total_tokens": "96854434800"
+   },
+   {
+    "date": "2025-11-01",
+    "model_permaslug": "x-ai/grok-code-fast-1",
+    "total_tokens": "4876481958400"
+   },
+   {
+    "date": "2025-11-01",
+    "model_permaslug": "anthropic/claude-4.5-sonnet-20250929",
+    "total_tokens": "1271817012400"
+   },
+   {
+    "date": "2025-11-01",
+    "model_permaslug": "minimax/minimax-m2",
+    "total_tokens": "890786160400"
+   },
+   {
+    "date": "2025-11-01",
+    "model_permaslug": "google/gemini-2.5-flash",
+    "total_tokens": "195256412800"
+   },
+   {
+    "date": "2025-11-01",
+    "model_permaslug": "anthropic/claude-4-sonnet-20250522",
+    "total_tokens": "189982189200"
+   },
+   {
+    "date": "2025-11-01",
+    "model_permaslug": "google/gemini-3-pro-preview-20251117",
+    "total_tokens": "170914260000"
+   },
+   {
+    "date": "2025-11-01",
+    "model_permaslug": "z-ai/glm-4.6",
+    "total_tokens": "150995276800"
+   },
+   {
+    "date": "2025-11-01",
+    "model_permaslug": "kwaipilot/kat-coder-pro-v1",
+    "total_tokens": "144333142000"
+   },
+   {
+    "date": "2025-11-01",
+    "model_permaslug": "qwen/qwen3-coder-30b-a3b-instruct",
+    "total_tokens": "120344667200"
+   },
+   {
+    "date": "2025-11-01",
+    "model_permaslug": "anthropic/claude-4.5-haiku-20251001",
+    "total_tokens": "120110973200"
+   },
+   {
+    "date": "2025-11-01",
+    "model_permaslug": "qwen/qwen3-coder-480b-a35b-07-25",
+    "total_tokens": "111265687200"
+   },
+   {
+    "date": "2025-11-01",
+    "model_permaslug": "qwen/qwen3-vl-235b-a22b-instruct",
+    "total_tokens": "110691944400"
+   },
+   {
+    "date": "2025-11-01",
+    "model_permaslug": "openai/gpt-5-2025-08-07",
+    "total_tokens": "110268483600"
+   },
+   {
+    "date": "2025-11-01",
+    "model_permaslug": "x-ai/grok-4.1-fast",
+    "total_tokens": "106585097600"
+   },
+   {
+    "date": "2025-11-01",
+    "model_permaslug": "openrouter/polaris-alpha",
+    "total_tokens": "95707436400"
+   },
+   {
+    "date": "2025-11-01",
+    "model_permaslug": "google/gemini-2.5-pro",
+    "total_tokens": "90755666400"
+   },
+   {
+    "date": "2025-11-01",
+    "model_permaslug": "anthropic/claude-4.5-opus-20251124",
+    "total_tokens": "76999514400"
+   },
+   {
+    "date": "2025-11-01",
+    "model_permaslug": "openai/gpt-4.1-mini-2025-04-14",
+    "total_tokens": "70871655200"
+   },
+   {
+    "date": "2025-11-01",
+    "model_permaslug": "moonshotai/kimi-k2-thinking-20251106",
+    "total_tokens": "69338688000"
+   },
+   {
+    "date": "2025-11-01",
+    "model_permaslug": "x-ai/grok-4-fast",
+    "total_tokens": "66844494000"
+   },
+   {
+    "date": "2025-11-01",
+    "model_permaslug": "openai/gpt-oss-120b",
+    "total_tokens": "53769991200"
+   },
+   {
+    "date": "2025-11-01",
+    "model_permaslug": "openai/gpt-5-mini-2025-08-07",
+    "total_tokens": "48600522800"
+   },
+   {
+    "date": "2025-11-01",
+    "model_permaslug": "openai/gpt-5.1-20251113",
+    "total_tokens": "46750865200"
+   },
+   {
+    "date": "2025-11-01",
+    "model_permaslug": "deepseek/deepseek-v3.2-exp",
+    "total_tokens": "46607946800"
+   },
+   {
+    "date": "2025-11-01",
+    "model_permaslug": "x-ai/grok-4-07-09",
+    "total_tokens": "45593896800"
+   },
+   {
+    "date": "2025-11-01",
+    "model_permaslug": "google/gemini-2.5-flash-lite-preview-09-2025",
+    "total_tokens": "40228173600"
+   },
+   {
+    "date": "2025-11-01",
+    "model_permaslug": "z-ai/glm-4.5-air",
+    "total_tokens": "39666307600"
+   },
+   {
+    "date": "2025-11-01",
+    "model_permaslug": "openai/gpt-5-codex",
+    "total_tokens": "39252419200"
+   },
+   {
+    "date": "2025-11-01",
+    "model_permaslug": "openai/gpt-5.1-codex-20251113",
+    "total_tokens": "39029361200"
+   },
+   {
+    "date": "2025-11-01",
+    "model_permaslug": "moonshotai/kimi-k2-0905",
+    "total_tokens": "25951044400"
+   },
+   {
+    "date": "2025-11-01",
+    "model_permaslug": "qwen/qwen3-next-80b-a3b-instruct-2509",
+    "total_tokens": "24435596400"
+   },
+   {
+    "date": "2025-11-01",
+    "model_permaslug": "google/gemini-2.0-flash-001",
+    "total_tokens": "24059430400"
+   },
+   {
+    "date": "2025-11-01",
+    "model_permaslug": "google/gemma-3-12b-it",
+    "total_tokens": "22771602800"
+   },
+   {
+    "date": "2025-11-01",
+    "model_permaslug": "openrouter/sherlock-think-alpha",
+    "total_tokens": "22712283200"
+   },
+   {
+    "date": "2025-11-01",
+    "model_permaslug": "deepseek/deepseek-v3.1-terminus",
+    "total_tokens": "22106358800"
+   },
+   {
+    "date": "2025-11-01",
+    "model_permaslug": "mistralai/codestral-2508",
+    "total_tokens": "20629223600"
+   },
+   {
+    "date": "2025-11-01",
+    "model_permaslug": "anthropic/claude-3-7-sonnet-20250219",
+    "total_tokens": "20332960800"
+   },
+   {
+    "date": "2025-11-01",
+    "model_permaslug": "qwen/qwen3-235b-a22b-07-25",
+    "total_tokens": "18236738400"
+   },
+   {
+    "date": "2025-11-01",
+    "model_permaslug": "google/gemini-2.5-flash-preview-09-2025",
+    "total_tokens": "18001448400"
+   },
+   {
+    "date": "2025-11-01",
+    "model_permaslug": "openrouter/sherlock-dash-alpha",
+    "total_tokens": "15374705600"
+   },
+   {
+    "date": "2025-11-01",
+    "model_permaslug": "google/gemini-2.5-flash-lite",
+    "total_tokens": "13708382800"
+   },
+   {
+    "date": "2025-11-01",
+    "model_permaslug": "openai/gpt-5.1-codex-mini-20251113",
+    "total_tokens": "13318206000"
+   },
+   {
+    "date": "2025-11-01",
+    "model_permaslug": "deepseek/deepseek-chat-v3.1",
+    "total_tokens": "12835958000"
+   },
+   {
+    "date": "2025-11-01",
+    "model_permaslug": "openai/gpt-4.1-2025-04-14",
+    "total_tokens": "12265331200"
+   },
+   {
+    "date": "2025-11-01",
+    "model_permaslug": "deepseek/deepseek-chat-v3",
+    "total_tokens": "12219121600"
+   },
+   {
+    "date": "2025-11-01",
+    "model_permaslug": "anthropic/claude-4.1-opus-20250805",
+    "total_tokens": "12064458400"
+   },
+   {
+    "date": "2025-11-01",
+    "model_permaslug": "z-ai/glm-4.5",
+    "total_tokens": "10145983600"
+   },
+   {
+    "date": "2025-11-01",
+    "model_permaslug": "qwen/qwen-2.5-72b-instruct",
+    "total_tokens": "9374739200"
+   },
+   {
+    "date": "2025-11-01",
+    "model_permaslug": "mistralai/devstral-small-2507",
+    "total_tokens": "8721472400"
+   },
+   {
+    "date": "2025-11-01",
+    "model_permaslug": "openai/gpt-4o-mini",
+    "total_tokens": "8719046400"
+   },
+   {
+    "date": "2025-11-01",
+    "model_permaslug": "other",
+    "total_tokens": "164031439100"
+   },
+   {
+    "date": "2025-12-01",
+    "model_permaslug": "x-ai/grok-code-fast-1",
+    "total_tokens": "3194821995200"
+   },
+   {
+    "date": "2025-12-01",
+    "model_permaslug": "anthropic/claude-4.5-sonnet-20250929",
+    "total_tokens": "864515040000"
+   },
+   {
+    "date": "2025-12-01",
+    "model_permaslug": "anthropic/claude-4.5-opus-20251124",
+    "total_tokens": "654391716000"
+   },
+   {
+    "date": "2025-12-01",
+    "model_permaslug": "minimax/minimax-m2",
+    "total_tokens": "533041881600"
+   },
+   {
+    "date": "2025-12-01",
+    "model_permaslug": "kwaipilot/kat-coder-pro-v1",
+    "total_tokens": "436914028000"
+   },
+   {
+    "date": "2025-12-01",
+    "model_permaslug": "openai/gpt-5.2-20251211",
+    "total_tokens": "353417379200"
+   },
+   {
+    "date": "2025-12-01",
+    "model_permaslug": "openai/gpt-oss-120b",
+    "total_tokens": "353377617600"
+   },
+   {
+    "date": "2025-12-01",
+    "model_permaslug": "mistralai/devstral-2512",
+    "total_tokens": "346402438400"
+   },
+   {
+    "date": "2025-12-01",
+    "model_permaslug": "google/gemini-3-flash-preview-20251217",
+    "total_tokens": "280380850400"
+   },
+   {
+    "date": "2025-12-01",
+    "model_permaslug": "google/gemini-3-pro-preview-20251117",
+    "total_tokens": "267113755200"
+   },
+   {
+    "date": "2025-12-01",
+    "model_permaslug": "xiaomi/mimo-v2-flash-20251210",
+    "total_tokens": "181701922400"
+   },
+   {
+    "date": "2025-12-01",
+    "model_permaslug": "qwen/qwen3-coder-480b-a35b-07-25",
+    "total_tokens": "157764400000"
+   },
+   {
+    "date": "2025-12-01",
+    "model_permaslug": "anthropic/claude-4.5-haiku-20251001",
+    "total_tokens": "151993119200"
+   },
+   {
+    "date": "2025-12-01",
+    "model_permaslug": "minimax/minimax-m2.1",
+    "total_tokens": "114942413600"
+   },
+   {
+    "date": "2025-12-01",
+    "model_permaslug": "anthropic/claude-4-sonnet-20250522",
+    "total_tokens": "106795397600"
+   },
+   {
+    "date": "2025-12-01",
+    "model_permaslug": "google/gemini-2.5-flash",
+    "total_tokens": "105417704800"
+   },
+   {
+    "date": "2025-12-01",
+    "model_permaslug": "z-ai/glm-4.7-20251222",
+    "total_tokens": "100271280000"
+   },
+   {
+    "date": "2025-12-01",
+    "model_permaslug": "z-ai/glm-4.6",
+    "total_tokens": "91704748000"
+   },
+   {
+    "date": "2025-12-01",
+    "model_permaslug": "deepseek/deepseek-v3.2-20251201",
+    "total_tokens": "81193948800"
+   },
+   {
+    "date": "2025-12-01",
+    "model_permaslug": "openai/gpt-5-2025-08-07",
+    "total_tokens": "68317752800"
+   },
+   {
+    "date": "2025-12-01",
+    "model_permaslug": "x-ai/grok-4.1-fast",
+    "total_tokens": "68229717600"
+   },
+   {
+    "date": "2025-12-01",
+    "model_permaslug": "google/gemini-2.5-pro",
+    "total_tokens": "58388608000"
+   },
+   {
+    "date": "2025-12-01",
+    "model_permaslug": "openai/gpt-5.1-codex-20251113",
+    "total_tokens": "55576982400"
+   },
+   {
+    "date": "2025-12-01",
+    "model_permaslug": "qwen/qwen3-next-80b-a3b-instruct-2509",
+    "total_tokens": "52043545600"
+   },
+   {
+    "date": "2025-12-01",
+    "model_permaslug": "openai/gpt-5.1-20251113",
+    "total_tokens": "43898265600"
+   },
+   {
+    "date": "2025-12-01",
+    "model_permaslug": "moonshotai/kimi-k2-thinking-20251106",
+    "total_tokens": "37243473600"
+   },
+   {
+    "date": "2025-12-01",
+    "model_permaslug": "x-ai/grok-4-fast",
+    "total_tokens": "34458914400"
+   },
+   {
+    "date": "2025-12-01",
+    "model_permaslug": "google/gemini-2.5-flash-lite",
+    "total_tokens": "33652925600"
+   },
+   {
+    "date": "2025-12-01",
+    "model_permaslug": "qwen/qwen3-vl-235b-a22b-instruct",
+    "total_tokens": "30068514400"
+   },
+   {
+    "date": "2025-12-01",
+    "model_permaslug": "openai/gpt-5-mini-2025-08-07",
+    "total_tokens": "30022353600"
+   },
+   {
+    "date": "2025-12-01",
+    "model_permaslug": "moonshotai/kimi-k2-0905",
+    "total_tokens": "29351152800"
+   },
+   {
+    "date": "2025-12-01",
+    "model_permaslug": "google/gemini-2.0-flash-001",
+    "total_tokens": "27896541600"
+   },
+   {
+    "date": "2025-12-01",
+    "model_permaslug": "mistralai/codestral-2508",
+    "total_tokens": "25396445600"
+   },
+   {
+    "date": "2025-12-01",
+    "model_permaslug": "qwen/qwen3-coder-plus",
+    "total_tokens": "24223070400"
+   },
+   {
+    "date": "2025-12-01",
+    "model_permaslug": "x-ai/grok-4-07-09",
+    "total_tokens": "22374848000"
+   },
+   {
+    "date": "2025-12-01",
+    "model_permaslug": "deepseek/deepseek-v3.2-speciale-20251201",
+    "total_tokens": "21356934400"
+   },
+   {
+    "date": "2025-12-01",
+    "model_permaslug": "google/gemini-2.5-flash-lite-preview-09-2025",
+    "total_tokens": "20413587200"
+   },
+   {
+    "date": "2025-12-01",
+    "model_permaslug": "openai/gpt-5.1-codex-max-20251204",
+    "total_tokens": "19963682400"
+   },
+   {
+    "date": "2025-12-01",
+    "model_permaslug": "nex-agi/deepseek-v3.1-nex-n1",
+    "total_tokens": "19718281600"
+   },
+   {
+    "date": "2025-12-01",
+    "model_permaslug": "z-ai/glm-4.5-air",
+    "total_tokens": "18690288800"
+   },
+   {
+    "date": "2025-12-01",
+    "model_permaslug": "deepseek/deepseek-v3.2-exp",
+    "total_tokens": "18418976000"
+   },
+   {
+    "date": "2025-12-01",
+    "model_permaslug": "anthropic/claude-3-7-sonnet-20250219",
+    "total_tokens": "15665748800"
+   },
+   {
+    "date": "2025-12-01",
+    "model_permaslug": "qwen/qwen3-235b-a22b-07-25",
+    "total_tokens": "15025043200"
+   },
+   {
+    "date": "2025-12-01",
+    "model_permaslug": "deepseek/deepseek-chat-v3.1",
+    "total_tokens": "13642444800"
+   },
+   {
+    "date": "2025-12-01",
+    "model_permaslug": "openai/gpt-5.1-codex-mini-20251113",
+    "total_tokens": "13515383200"
+   },
+   {
+    "date": "2025-12-01",
+    "model_permaslug": "openai/gpt-4o-mini",
+    "total_tokens": "13063709600"
+   },
+   {
+    "date": "2025-12-01",
+    "model_permaslug": "openai/gpt-4.1-2025-04-14",
+    "total_tokens": "12676438400"
+   },
+   {
+    "date": "2025-12-01",
+    "model_permaslug": "amazon/nova-2-lite-v1",
+    "total_tokens": "11366388000"
+   },
+   {
+    "date": "2025-12-01",
+    "model_permaslug": "google/gemini-2.5-flash-preview-09-2025",
+    "total_tokens": "10908780000"
+   },
+   {
+    "date": "2025-12-01",
+    "model_permaslug": "deepseek/deepseek-chat-v3-0324",
+    "total_tokens": "10148425600"
+   },
+   {
+    "date": "2025-12-01",
+    "model_permaslug": "other",
+    "total_tokens": "227809705800"
+   }
+  ],
+  "meta": {
+   "as_of": "2026-10-19T23:42:43.684Z",
+   "version": "v1",
+   "start_date": "2025-01-01",
+   "end_date": "2025-12-31"
+  }
+ }
+}

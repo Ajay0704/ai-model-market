@@ -10,6 +10,8 @@ uv venv .venv && uv pip install -p .venv/bin/python -r requirements.txt
 cp .env.example .env   # then paste your own OpenRouter key into .env
 .venv/bin/python scripts/pull.py models       # public, no key
 .venv/bin/python scripts/pull.py all          # needs the key
+.venv/bin/python scripts/pull_wayback_models.py  # monthly price history
+.venv/bin/python scripts/profile.py           # writes docs/DATA_PROFILE.md
 ```
 
 ## Data and license

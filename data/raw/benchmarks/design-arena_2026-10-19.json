@@ -1,0 +1,2114 @@
+{
+ "request": {
+  "url": "https://openrouter.ai/api/v1/benchmarks",
+  "params": {
+   "source": "design-arena",
+   "max_results": 100
+  },
+  "pulled_at": "2026-10-19T23:45:03+00:00"
+ },
+ "response": {
+  "data": [
+   {
+    "source": "design-arena",
+    "model_permaslug": "anthropic/claude-sonnet-5.5-20260928",
+    "display_name": "Claude Sonnet 5.5",
+    "arena": "models",
+    "category": "gamedev",
+    "elo": 1482,
+    "win_rate": 73.5,
+    "avg_generation_time_ms": 360967,
+    "tournament_stats": {
+     "first_place": 0,
+     "second_place": 0,
+     "third_place": 0,
+     "fourth_place": 0,
+     "total": 0
+    },
+    "pricing": {
+     "prompt": "0.000002",
+     "completion": "0.00001"
+    }
+   },
+   {
+    "source": "design-arena",
+    "model_permaslug": "anthropic/claude-opus-5.5-20260921",
+    "display_name": "Claude Opus 5.5",
+    "arena": "models",
+    "category": "3d",
+    "elo": 1478,
+    "win_rate": 72,
+    "avg_generation_time_ms": 295645,
+    "tournament_stats": {
+     "first_place": 0,
+     "second_place": 0,
+     "third_place": 0,
+     "fourth_place": 0,
+     "total": 0
+    },
+    "pricing": {
+     "prompt": "0.0000044",
+     "completion": "0.000022"
+    }
+   },
+   {
+    "source": "design-arena",
+    "model_permaslug": "anthropic/claude-opus-5.5-20260921",
+    "display_name": "Claude Opus 5.5",
+    "arena": "models",
+    "category": "gamedev",
+    "elo": 1460,
+    "win_rate": 72.1,
+    "avg_generation_time_ms": 336141,
+    "tournament_stats": {
+     "first_place": 0,
+     "second_place": 0,
+     "third_place": 0,
+     "fourth_place": 0,
+     "total": 0
+    },
+    "pricing": {
+     "prompt": "0.0000044",
+     "completion": "0.000022"
+    }
+   },
+   {
+    "source": "design-arena",
+    "model_permaslug": "openai/gpt-6.1-sol-20260929",
+    "display_name": "GPT-6.1 Sol",
+    "arena": "models",
+    "category": "3d",
+    "elo": 1458,
+    "win_rate": 70.4,
+    "avg_generation_time_ms": 188349,
+    "tournament_stats": {
+     "first_place": 0,
+     "second_place": 0,
+     "third_place": 0,
+     "fourth_place": 0,
+     "total": 0
+    },
+    "pricing": {
+     "prompt": "0.000012",
+     "completion": "0.00006"
+    }
+   },
+   {
+    "source": "design-arena",
+    "model_permaslug": "google/gemini-3.8-flash-tts-20260922",
+    "display_name": "Google Gemini 3.8 Flash TTS",
+    "arena": "models",
+    "category": "text-to-speech",
+    "elo": 1454,
+    "win_rate": 77.8,
+    "avg_generation_time_ms": 20703,
+    "tournament_stats": {
+     "first_place": 0,
+     "second_place": 0,
+     "third_place": 0,
+     "fourth_place": 0,
+     "total": 0
+    },
+    "pricing": {
+     "prompt": "0.0000005",
+     "completion": "0.000009"
+    }
+   },
+   {
+    "source": "design-arena",
+    "model_permaslug": "anthropic/claude-sonnet-5.5-20260928",
+    "display_name": "Claude Sonnet 5.5",
+    "arena": "models",
+    "category": "3d",
+    "elo": 1453,
+    "win_rate": 69.1,
+    "avg_generation_time_ms": 398574,
+    "tournament_stats": {
+     "first_place": 0,
+     "second_place": 0,
+     "third_place": 0,
+     "fourth_place": 0,
+     "total": 0
+    },
+    "pricing": {
+     "prompt": "0.000002",
+     "completion": "0.00001"
+    }
+   },
+   {
+    "source": "design-arena",
+    "model_permaslug": "meta/muse-wonder-20261012",
+    "display_name": "Muse Wonder (max)",
+    "arena": "models",
+    "category": "3d",
+    "elo": 1429,
+    "win_rate": 68,
+    "avg_generation_time_ms": 213066,
+    "tournament_stats": {
+     "first_place": 0,
+     "second_place": 0,
+     "third_place": 0,
+     "fourth_place": 0,
+     "total": 0
+    },
+    "pricing": {
+     "prompt": "0.000004",
+     "completion": "0.00002"
+    }
+   },
+   {
+    "source": "design-arena",
+    "model_permaslug": "sourceful/riverflow-v2.5-pro-20260605",
+    "display_name": "Riverflow 2.5 Pro",
+    "arena": "models",
+    "category": "graphicdesign",
+    "elo": 1411,
+    "win_rate": 74.4,
+    "avg_generation_time_ms": 180066,
+    "tournament_stats": {
+     "first_place": 0,
+     "second_place": 0,
+     "third_place": 0,
+     "fourth_place": 0,
+     "total": 0
+    },
+    "pricing": {
+     "prompt": "0",
+     "completion": "0"
+    }
+   },
+   {
+    "source": "design-arena",
+    "model_permaslug": "anthropic/claude-opus-5.5-20260921",
+    "display_name": "Claude Opus 5.5",
+    "arena": "models",
+    "category": "dataviz",
+    "elo": 1399,
+    "win_rate": 64.8,
+    "avg_generation_time_ms": 180675,
+    "tournament_stats": {
+     "first_place": 0,
+     "second_place": 0,
+     "third_place": 0,
+     "fourth_place": 0,
+     "total": 0
+    },
+    "pricing": {
+     "prompt": "0.0000044",
+     "completion": "0.000022"
+    }
+   },
+   {
+    "source": "design-arena",
+    "model_permaslug": "meta/muse-spark-1.3-20260902",
+    "display_name": "Muse Spark 1.3 Max",
+    "arena": "models",
+    "category": "3d",
+    "elo": 1397,
+    "win_rate": 63.5,
+    "avg_generation_time_ms": 235085,
+    "tournament_stats": {
+     "first_place": 0,
+     "second_place": 0,
+     "third_place": 0,
+     "fourth_place": 0,
+     "total": 0
+    },
+    "pricing": {
+     "prompt": "0.00000125",
+     "completion": "0.00000425"
+    }
+   },
+   {
+    "source": "design-arena",
+    "model_permaslug": "anthropic/claude-fable-5.1-20260831",
+    "display_name": "Claude Fable 5.1",
+    "arena": "models",
+    "category": "3d",
+    "elo": 1393,
+    "win_rate": 67.7,
+    "avg_generation_time_ms": 304684,
+    "tournament_stats": {
+     "first_place": 0,
+     "second_place": 0,
+     "third_place": 0,
+     "fourth_place": 0,
+     "total": 0
+    },
+    "pricing": {
+     "prompt": "0.000005",
+     "completion": "0.000025"
+    }
+   },
+   {
+    "source": "design-arena",
+    "model_permaslug": "google/gemini-4-argon-20261013",
+    "display_name": "Gemini 4 Argon",
+    "arena": "models",
+    "category": "3d",
+    "elo": 1393,
+    "win_rate": 65.2,
+    "avg_generation_time_ms": 146144,
+    "tournament_stats": {
+     "first_place": 0,
+     "second_place": 0,
+     "third_place": 0,
+     "fourth_place": 0,
+     "total": 0
+    },
+    "pricing": {
+     "prompt": "0.0000022",
+     "completion": "0.000011"
+    }
+   },
+   {
+    "source": "design-arena",
+    "model_permaslug": "anthropic/claude-opus-5.5-20260921",
+    "display_name": "Claude Opus 5.5",
+    "arena": "models",
+    "category": "codecategories",
+    "elo": 1391,
+    "win_rate": 63.9,
+    "avg_generation_time_ms": 286920,
+    "tournament_stats": {
+     "first_place": 0,
+     "second_place": 0,
+     "third_place": 0,
+     "fourth_place": 0,
+     "total": 0
+    },
+    "pricing": {
+     "prompt": "0.0000044",
+     "completion": "0.000022"
+    }
+   },
+   {
+    "source": "design-arena",
+    "model_permaslug": "moonshotai/kimi-k3-20260715",
+    "display_name": "Kimi K3",
+    "arena": "models",
+    "category": "3d",
+    "elo": 1389,
+    "win_rate": 67.2,
+    "avg_generation_time_ms": 650333,
+    "tournament_stats": {
+     "first_place": 0,
+     "second_place": 0,
+     "third_place": 0,
+     "fourth_place": 0,
+     "total": 0
+    },
+    "pricing": {
+     "prompt": "0.0000012",
+     "completion": "0.000009"
+    }
+   },
+   {
+    "source": "design-arena",
+    "model_permaslug": "anthropic/claude-sonnet-5.5-20260928",
+    "display_name": "Claude Sonnet 5.5",
+    "arena": "models",
+    "category": "dataviz",
+    "elo": 1388,
+    "win_rate": 67,
+    "avg_generation_time_ms": 237795,
+    "tournament_stats": {
+     "first_place": 0,
+     "second_place": 0,
+     "third_place": 0,
+     "fourth_place": 0,
+     "total": 0
+    },
+    "pricing": {
+     "prompt": "0.000002",
+     "completion": "0.00001"
+    }
+   },
+   {
+    "source": "design-arena",
+    "model_permaslug": "meta/muse-wonder-20261012",
+    "display_name": "Muse Wonder (max)",
+    "arena": "models",
+    "category": "uicomponent",
+    "elo": 1388,
+    "win_rate": 64.2,
+    "avg_generation_time_ms": 143910,
+    "tournament_stats": {
+     "first_place": 0,
+     "second_place": 0,
+     "third_place": 0,
+     "fourth_place": 0,
+     "total": 0
+    },
+    "pricing": {
+     "prompt": "0.000004",
+     "completion": "0.00002"
+    }
+   },
+   {
+    "source": "design-arena",
+    "model_permaslug": "openai/gpt-6.1-sol-20260929",
+    "display_name": "GPT-6.1 Sol",
+    "arena": "models",
+    "category": "gamedev",
+    "elo": 1387,
+    "win_rate": 63.4,
+    "avg_generation_time_ms": 235372,
+    "tournament_stats": {
+     "first_place": 0,
+     "second_place": 0,
+     "third_place": 0,
+     "fourth_place": 0,
+     "total": 0
+    },
+    "pricing": {
+     "prompt": "0.000012",
+     "completion": "0.00006"
+    }
+   },
+   {
+    "source": "design-arena",
+    "model_permaslug": "anthropic/claude-fable-5.1-20260831",
+    "display_name": "Claude Fable 5.1",
+    "arena": "models",
+    "category": "gamedev",
+    "elo": 1383,
+    "win_rate": 65.6,
+    "avg_generation_time_ms": 380919,
+    "tournament_stats": {
+     "first_place": 0,
+     "second_place": 0,
+     "third_place": 0,
+     "fourth_place": 0,
+     "total": 0
+    },
+    "pricing": {
+     "prompt": "0.000005",
+     "completion": "0.000025"
+    }
+   },
+   {
+    "source": "design-arena",
+    "model_permaslug": "anthropic/claude-sonnet-5.5-20260928",
+    "display_name": "Claude Sonnet 5.5",
+    "arena": "models",
+    "category": "uicomponent",
+    "elo": 1381,
+    "win_rate": 63.6,
+    "avg_generation_time_ms": 217705,
+    "tournament_stats": {
+     "first_place": 0,
+     "second_place": 0,
+     "third_place": 0,
+     "fourth_place": 0,
+     "total": 0
+    },
+    "pricing": {
+     "prompt": "0.000002",
+     "completion": "0.00001"
+    }
+   },
+   {
+    "source": "design-arena",
+    "model_permaslug": "anthropic/claude-opus-5.5-20260921",
+    "display_name": "Claude Opus 5.5",
+    "arena": "models",
+    "category": "uicomponent",
+    "elo": 1379,
+    "win_rate": 63.5,
+    "avg_generation_time_ms": 202585,
+    "tournament_stats": {
+     "first_place": 0,
+     "second_place": 0,
+     "third_place": 0,
+     "fourth_place": 0,
+     "total": 0
+    },
+    "pricing": {
+     "prompt": "0.0000044",
+     "completion": "0.000022"
+    }
+   },
+   {
+    "source": "design-arena",
+    "model_permaslug": "meta/muse-wonder-20261012",
+    "display_name": "Muse Wonder (max)",
+    "arena": "models",
+    "category": "gamedev",
+    "elo": 1377,
+    "win_rate": 63,
+    "avg_generation_time_ms": 225101,
+    "tournament_stats": {
+     "first_place": 0,
+     "second_place": 0,
+     "third_place": 0,
+     "fourth_place": 0,
+     "total": 0
+    },
+    "pricing": {
+     "prompt": "0.000004",
+     "completion": "0.00002"
+    }
+   },
+   {
+    "source": "design-arena",
+    "model_permaslug": "google/gemini-4-argon-20261013",
+    "display_name": "Gemini 4 Argon",
+    "arena": "models",
+    "category": "gamedev",
+    "elo": 1372,
+    "win_rate": 62.7,
+    "avg_generation_time_ms": 215566,
+    "tournament_stats": {
+     "first_place": 0,
+     "second_place": 0,
+     "third_place": 0,
+     "fourth_place": 0,
+     "total": 0
+    },
+    "pricing": {
+     "prompt": "0.0000022",
+     "completion": "0.000011"
+    }
+   },
+   {
+    "source": "design-arena",
+    "model_permaslug": "meta/muse-wonder-20261012",
+    "display_name": "Muse Wonder (max)",
+    "arena": "models",
+    "category": "codecategories",
+    "elo": 1370,
+    "win_rate": 62.9,
+    "avg_generation_time_ms": 170091,
+    "tournament_stats": {
+     "first_place": 0,
+     "second_place": 0,
+     "third_place": 0,
+     "fourth_place": 0,
+     "total": 0
+    },
+    "pricing": {
+     "prompt": "0.000004",
+     "completion": "0.00002"
+    }
+   },
+   {
+    "source": "design-arena",
+    "model_permaslug": "z-ai/glm-5.1-20260406",
+    "display_name": "GLM 5.1",
+    "arena": "models",
+    "category": "dataviz",
+    "elo": 1366,
+    "win_rate": 67,
+    "avg_generation_time_ms": 259663,
+    "tournament_stats": {
+     "first_place": 3354,
+     "second_place": 2584,
+     "third_place": 0,
+     "fourth_place": 1,
+     "total": 5939
+    },
+    "pricing": {
+     "prompt": "0.00000133",
+     "completion": "0.00000418"
+    }
+   },
+   {
+    "source": "design-arena",
+    "model_permaslug": "anthropic/claude-sonnet-5.5-20260928",
+    "display_name": "Claude Sonnet 5.5",
+    "arena": "models",
+    "category": "codecategories",
+    "elo": 1365,
+    "win_rate": 60.6,
+    "avg_generation_time_ms": 290736,
+    "tournament_stats": {
+     "first_place": 0,
+     "second_place": 0,
+     "third_place": 0,
+     "fourth_place": 0,
+     "total": 0
+    },
+    "pricing": {
+     "prompt": "0.000002",
+     "completion": "0.00001"
+    }
+   },
+   {
+    "source": "design-arena",
+    "model_permaslug": "moonshotai/kimi-k3-20260715",
+    "display_name": "Kimi K3",
+    "arena": "models",
+    "category": "codecategories",
+    "elo": 1362,
+    "win_rate": 62.4,
+    "avg_generation_time_ms": 772874,
+    "tournament_stats": {
+     "first_place": 0,
+     "second_place": 0,
+     "third_place": 0,
+     "fourth_place": 0,
+     "total": 0
+    },
+    "pricing": {
+     "prompt": "0.0000012",
+     "completion": "0.000009"
+    }
+   },
+   {
+    "source": "design-arena",
+    "model_permaslug": "moonshotai/kimi-k3-20260715",
+    "display_name": "Kimi K3",
+    "arena": "models",
+    "category": "gamedev",
+    "elo": 1362,
+    "win_rate": 60.8,
+    "avg_generation_time_ms": 968896,
+    "tournament_stats": {
+     "first_place": 0,
+     "second_place": 0,
+     "third_place": 0,
+     "fourth_place": 0,
+     "total": 0
+    },
+    "pricing": {
+     "prompt": "0.0000012",
+     "completion": "0.000009"
+    }
+   },
+   {
+    "source": "design-arena",
+    "model_permaslug": "meta/muse-spark-1.3-20260902",
+    "display_name": "Muse Spark 1.3 (xhigh)",
+    "arena": "models",
+    "category": "3d",
+    "elo": 1361,
+    "win_rate": 58.8,
+    "avg_generation_time_ms": 156101,
+    "tournament_stats": {
+     "first_place": 0,
+     "second_place": 0,
+     "third_place": 0,
+     "fourth_place": 0,
+     "total": 0
+    },
+    "pricing": {
+     "prompt": "0.00000125",
+     "completion": "0.00000425"
+    }
+   },
+   {
+    "source": "design-arena",
+    "model_permaslug": "sourceful/riverflow-v2.5-pro-20260605",
+    "display_name": "Riverflow 2.5 Pro",
+    "arena": "models",
+    "category": "image",
+    "elo": 1361,
+    "win_rate": 67.9,
+    "avg_generation_time_ms": 176771,
+    "tournament_stats": {
+     "first_place": 0,
+     "second_place": 0,
+     "third_place": 0,
+     "fourth_place": 0,
+     "total": 0
+    },
+    "pricing": {
+     "prompt": "0",
+     "completion": "0"
+    }
+   },
+   {
+    "source": "design-arena",
+    "model_permaslug": "meta/muse-wonder-20261012",
+    "display_name": "Muse Wonder (max)",
+    "arena": "models",
+    "category": "website",
+    "elo": 1360,
+    "win_rate": 62.3,
+    "avg_generation_time_ms": 154422,
+    "tournament_stats": {
+     "first_place": 0,
+     "second_place": 0,
+     "third_place": 0,
+     "fourth_place": 0,
+     "total": 0
+    },
+    "pricing": {
+     "prompt": "0.000004",
+     "completion": "0.00002"
+    }
+   },
+   {
+    "source": "design-arena",
+    "model_permaslug": "meta/muse-spark-1.3-20260902",
+    "display_name": "Muse Spark 1.3 (xhigh)",
+    "arena": "models",
+    "category": "website",
+    "elo": 1356,
+    "win_rate": 58.2,
+    "avg_generation_time_ms": 197459,
+    "tournament_stats": {
+     "first_place": 0,
+     "second_place": 0,
+     "third_place": 0,
+     "fourth_place": 0,
+     "total": 0
+    },
+    "pricing": {
+     "prompt": "0.00000125",
+     "completion": "0.00000425"
+    }
+   },
+   {
+    "source": "design-arena",
+    "model_permaslug": "meta/muse-spark-1.3-20260902",
+    "display_name": "Muse Spark 1.3 (xhigh)",
+    "arena": "models",
+    "category": "codecategories",
+    "elo": 1353,
+    "win_rate": 57.3,
+    "avg_generation_time_ms": 194619,
+    "tournament_stats": {
+     "first_place": 0,
+     "second_place": 0,
+     "third_place": 0,
+     "fourth_place": 0,
+     "total": 0
+    },
+    "pricing": {
+     "prompt": "0.00000125",
+     "completion": "0.00000425"
+    }
+   },
+   {
+    "source": "design-arena",
+    "model_permaslug": "meta/muse-spark-1.3-20260902",
+    "display_name": "Muse Spark 1.3 (xhigh)",
+    "arena": "models",
+    "category": "uicomponent",
+    "elo": 1352,
+    "win_rate": 57.7,
+    "avg_generation_time_ms": 119022,
+    "tournament_stats": {
+     "first_place": 0,
+     "second_place": 0,
+     "third_place": 0,
+     "fourth_place": 0,
+     "total": 0
+    },
+    "pricing": {
+     "prompt": "0.00000125",
+     "completion": "0.00000425"
+    }
+   },
+   {
+    "source": "design-arena",
+    "model_permaslug": "meta/muse-spark-1.3-20260902",
+    "display_name": "Muse Spark 1.3 Max",
+    "arena": "models",
+    "category": "codecategories",
+    "elo": 1352,
+    "win_rate": 56.7,
+    "avg_generation_time_ms": 253546,
+    "tournament_stats": {
+     "first_place": 0,
+     "second_place": 0,
+     "third_place": 0,
+     "fourth_place": 0,
+     "total": 0
+    },
+    "pricing": {
+     "prompt": "0.00000125",
+     "completion": "0.00000425"
+    }
+   },
+   {
+    "source": "design-arena",
+    "model_permaslug": "moonshotai/kimi-k3-20260715",
+    "display_name": "Kimi K3",
+    "arena": "models",
+    "category": "dataviz",
+    "elo": 1350,
+    "win_rate": 63.2,
+    "avg_generation_time_ms": 655654,
+    "tournament_stats": {
+     "first_place": 0,
+     "second_place": 0,
+     "third_place": 0,
+     "fourth_place": 0,
+     "total": 0
+    },
+    "pricing": {
+     "prompt": "0.0000012",
+     "completion": "0.000009"
+    }
+   },
+   {
+    "source": "design-arena",
+    "model_permaslug": "anthropic/claude-opus-5-20260723",
+    "display_name": "Claude Opus 5",
+    "arena": "models",
+    "category": "asciiart",
+    "elo": 1349,
+    "win_rate": 66.8,
+    "avg_generation_time_ms": 245913,
+    "tournament_stats": {
+     "first_place": 0,
+     "second_place": 0,
+     "third_place": 0,
+     "fourth_place": 0,
+     "total": 0
+    },
+    "pricing": {
+     "prompt": "0.0000055",
+     "completion": "0.0000275"
+    }
+   },
+   {
+    "source": "design-arena",
+    "model_permaslug": "anthropic/claude-haiku-5.5-20261007",
+    "display_name": "Claude Haiku 5.5",
+    "arena": "models",
+    "category": "3d",
+    "elo": 1348,
+    "win_rate": 58.9,
+    "avg_generation_time_ms": 156678,
+    "tournament_stats": {
+     "first_place": 0,
+     "second_place": 0,
+     "third_place": 0,
+     "fourth_place": 0,
+     "total": 0
+    },
+    "pricing": {
+     "prompt": "0.00000011",
+     "completion": "0.00000055"
+    }
+   },
+   {
+    "source": "design-arena",
+    "model_permaslug": "anthropic/claude-opus-5-20260723",
+    "display_name": "Claude Opus 5",
+    "arena": "models",
+    "category": "uicomponent",
+    "elo": 1348,
+    "win_rate": 60.7,
+    "avg_generation_time_ms": 221235,
+    "tournament_stats": {
+     "first_place": 0,
+     "second_place": 0,
+     "third_place": 0,
+     "fourth_place": 0,
+     "total": 0
+    },
+    "pricing": {
+     "prompt": "0.0000055",
+     "completion": "0.0000275"
+    }
+   },
+   {
+    "source": "design-arena",
+    "model_permaslug": "meta/muse-spark-1.3-20260902",
+    "display_name": "Muse Spark 1.3 Max",
+    "arena": "models",
+    "category": "uicomponent",
+    "elo": 1347,
+    "win_rate": 57.5,
+    "avg_generation_time_ms": 187720,
+    "tournament_stats": {
+     "first_place": 0,
+     "second_place": 0,
+     "third_place": 0,
+     "fourth_place": 0,
+     "total": 0
+    },
+    "pricing": {
+     "prompt": "0.00000125",
+     "completion": "0.00000425"
+    }
+   },
+   {
+    "source": "design-arena",
+    "model_permaslug": "moonshotai/kimi-k3-20260715",
+    "display_name": "Kimi K3",
+    "arena": "models",
+    "category": "uicomponent",
+    "elo": 1346,
+    "win_rate": 60.3,
+    "avg_generation_time_ms": 738187,
+    "tournament_stats": {
+     "first_place": 0,
+     "second_place": 0,
+     "third_place": 0,
+     "fourth_place": 0,
+     "total": 0
+    },
+    "pricing": {
+     "prompt": "0.0000012",
+     "completion": "0.000009"
+    }
+   },
+   {
+    "source": "design-arena",
+    "model_permaslug": "meta/muse-spark-1.3-20260902",
+    "display_name": "Muse Spark 1.3 Max",
+    "arena": "models",
+    "category": "website",
+    "elo": 1346,
+    "win_rate": 56.2,
+    "avg_generation_time_ms": 251902,
+    "tournament_stats": {
+     "first_place": 0,
+     "second_place": 0,
+     "third_place": 0,
+     "fourth_place": 0,
+     "total": 0
+    },
+    "pricing": {
+     "prompt": "0.00000125",
+     "completion": "0.00000425"
+    }
+   },
+   {
+    "source": "design-arena",
+    "model_permaslug": "openai/gpt-6.1-sol-20260929",
+    "display_name": "GPT-6.1 Sol",
+    "arena": "models",
+    "category": "codecategories",
+    "elo": 1345,
+    "win_rate": 58.3,
+    "avg_generation_time_ms": 268745,
+    "tournament_stats": {
+     "first_place": 0,
+     "second_place": 0,
+     "third_place": 0,
+     "fourth_place": 0,
+     "total": 0
+    },
+    "pricing": {
+     "prompt": "0.000012",
+     "completion": "0.00006"
+    }
+   },
+   {
+    "source": "design-arena",
+    "model_permaslug": "anthropic/claude-fable-5.1-20260831",
+    "display_name": "Claude Fable 5.1",
+    "arena": "models",
+    "category": "dataviz",
+    "elo": 1344,
+    "win_rate": 61.8,
+    "avg_generation_time_ms": 242746,
+    "tournament_stats": {
+     "first_place": 0,
+     "second_place": 0,
+     "third_place": 0,
+     "fourth_place": 0,
+     "total": 0
+    },
+    "pricing": {
+     "prompt": "0.000005",
+     "completion": "0.000025"
+    }
+   },
+   {
+    "source": "design-arena",
+    "model_permaslug": "meta/muse-spark-1.3-20260902",
+    "display_name": "Muse Spark 1.3 (xhigh)",
+    "arena": "models",
+    "category": "dataviz",
+    "elo": 1344,
+    "win_rate": 58.1,
+    "avg_generation_time_ms": 148723,
+    "tournament_stats": {
+     "first_place": 0,
+     "second_place": 0,
+     "third_place": 0,
+     "fourth_place": 0,
+     "total": 0
+    },
+    "pricing": {
+     "prompt": "0.00000125",
+     "completion": "0.00000425"
+    }
+   },
+   {
+    "source": "design-arena",
+    "model_permaslug": "meta/muse-spark-1.3-20260902",
+    "display_name": "Muse Spark 1.3 Max",
+    "arena": "models",
+    "category": "gamedev",
+    "elo": 1344,
+    "win_rate": 56,
+    "avg_generation_time_ms": 277087,
+    "tournament_stats": {
+     "first_place": 0,
+     "second_place": 0,
+     "third_place": 0,
+     "fourth_place": 0,
+     "total": 0
+    },
+    "pricing": {
+     "prompt": "0.00000125",
+     "completion": "0.00000425"
+    }
+   },
+   {
+    "source": "design-arena",
+    "model_permaslug": "qwen/qwen3.8-max-20260803",
+    "display_name": "Qwen3.8 Max",
+    "arena": "models",
+    "category": "uicomponent",
+    "elo": 1342,
+    "win_rate": 58.3,
+    "avg_generation_time_ms": 583621,
+    "tournament_stats": {
+     "first_place": 0,
+     "second_place": 0,
+     "third_place": 0,
+     "fourth_place": 0,
+     "total": 0
+    },
+    "pricing": null
+   },
+   {
+    "source": "design-arena",
+    "model_permaslug": "anthropic/claude-fable-5.1-20260831",
+    "display_name": "Claude Fable 5.1",
+    "arena": "models",
+    "category": "uicomponent",
+    "elo": 1340,
+    "win_rate": 59.6,
+    "avg_generation_time_ms": 215969,
+    "tournament_stats": {
+     "first_place": 0,
+     "second_place": 0,
+     "third_place": 0,
+     "fourth_place": 0,
+     "total": 0
+    },
+    "pricing": {
+     "prompt": "0.000005",
+     "completion": "0.000025"
+    }
+   },
+   {
+    "source": "design-arena",
+    "model_permaslug": "anthropic/claude-opus-5-20260723",
+    "display_name": "Claude Opus 5",
+    "arena": "models",
+    "category": "gamedev",
+    "elo": 1339,
+    "win_rate": 58.5,
+    "avg_generation_time_ms": 394725,
+    "tournament_stats": {
+     "first_place": 0,
+     "second_place": 0,
+     "third_place": 0,
+     "fourth_place": 0,
+     "total": 0
+    },
+    "pricing": {
+     "prompt": "0.0000055",
+     "completion": "0.0000275"
+    }
+   },
+   {
+    "source": "design-arena",
+    "model_permaslug": "google/gemini-4-argon-20261013",
+    "display_name": "Gemini 4 Argon",
+    "arena": "models",
+    "category": "dataviz",
+    "elo": 1339,
+    "win_rate": 61.1,
+    "avg_generation_time_ms": 181681,
+    "tournament_stats": {
+     "first_place": 0,
+     "second_place": 0,
+     "third_place": 0,
+     "fourth_place": 0,
+     "total": 0
+    },
+    "pricing": {
+     "prompt": "0.0000022",
+     "completion": "0.000011"
+    }
+   },
+   {
+    "source": "design-arena",
+    "model_permaslug": "xiaomi/mimo-v2.6-pro-20260921",
+    "display_name": "MiMo-V2.6-Pro",
+    "arena": "models",
+    "category": "uicomponent",
+    "elo": 1339,
+    "win_rate": 59.2,
+    "avg_generation_time_ms": 216523,
+    "tournament_stats": {
+     "first_place": 0,
+     "second_place": 0,
+     "third_place": 0,
+     "fourth_place": 0,
+     "total": 0
+    },
+    "pricing": {
+     "prompt": "0.000000435",
+     "completion": "0.00000087"
+    }
+   },
+   {
+    "source": "design-arena",
+    "model_permaslug": "xiaomi/mimo-v2.6-pro-20260921",
+    "display_name": "MiMo-V2.6-Pro",
+    "arena": "models",
+    "category": "dataviz",
+    "elo": 1338,
+    "win_rate": 58.8,
+    "avg_generation_time_ms": 208034,
+    "tournament_stats": {
+     "first_place": 0,
+     "second_place": 0,
+     "third_place": 0,
+     "fourth_place": 0,
+     "total": 0
+    },
+    "pricing": {
+     "prompt": "0.000000435",
+     "completion": "0.00000087"
+    }
+   },
+   {
+    "source": "design-arena",
+    "model_permaslug": "qwen/qwen3.8-max-20260803",
+    "display_name": "Qwen3.8 Max",
+    "arena": "models",
+    "category": "3d",
+    "elo": 1338,
+    "win_rate": 56.4,
+    "avg_generation_time_ms": 633063,
+    "tournament_stats": {
+     "first_place": 0,
+     "second_place": 0,
+     "third_place": 0,
+     "fourth_place": 0,
+     "total": 0
+    },
+    "pricing": null
+   },
+   {
+    "source": "design-arena",
+    "model_permaslug": "anthropic/claude-5-fable-20260609",
+    "display_name": "Claude Fable 5",
+    "arena": "models",
+    "category": "gamedev",
+    "elo": 1337,
+    "win_rate": 60.8,
+    "avg_generation_time_ms": 218781,
+    "tournament_stats": {
+     "first_place": 0,
+     "second_place": 0,
+     "third_place": 0,
+     "fourth_place": 0,
+     "total": 0
+    },
+    "pricing": {
+     "prompt": "0.00001",
+     "completion": "0.00005"
+    }
+   },
+   {
+    "source": "design-arena",
+    "model_permaslug": "anthropic/claude-fable-5.1-20260831",
+    "display_name": "Claude Fable 5.1",
+    "arena": "models",
+    "category": "codecategories",
+    "elo": 1336,
+    "win_rate": 59.3,
+    "avg_generation_time_ms": 323402,
+    "tournament_stats": {
+     "first_place": 0,
+     "second_place": 0,
+     "third_place": 0,
+     "fourth_place": 0,
+     "total": 0
+    },
+    "pricing": {
+     "prompt": "0.000005",
+     "completion": "0.000025"
+    }
+   },
+   {
+    "source": "design-arena",
+    "model_permaslug": "anthropic/claude-opus-5-20260723",
+    "display_name": "Claude Opus 5",
+    "arena": "models",
+    "category": "3d",
+    "elo": 1336,
+    "win_rate": 59.7,
+    "avg_generation_time_ms": 330693,
+    "tournament_stats": {
+     "first_place": 0,
+     "second_place": 0,
+     "third_place": 0,
+     "fourth_place": 0,
+     "total": 0
+    },
+    "pricing": {
+     "prompt": "0.0000055",
+     "completion": "0.0000275"
+    }
+   },
+   {
+    "source": "design-arena",
+    "model_permaslug": "z-ai/glm-5.1-20260406",
+    "display_name": "GLM 5.1",
+    "arena": "models",
+    "category": "3d",
+    "elo": 1336,
+    "win_rate": 62.6,
+    "avg_generation_time_ms": 292283,
+    "tournament_stats": {
+     "first_place": 3354,
+     "second_place": 2584,
+     "third_place": 0,
+     "fourth_place": 1,
+     "total": 5939
+    },
+    "pricing": {
+     "prompt": "0.00000133",
+     "completion": "0.00000418"
+    }
+   },
+   {
+    "source": "design-arena",
+    "model_permaslug": "moonshotai/kimi-k3-20260715",
+    "display_name": "Kimi K3",
+    "arena": "models",
+    "category": "website",
+    "elo": 1336,
+    "win_rate": 59.3,
+    "avg_generation_time_ms": 850613,
+    "tournament_stats": {
+     "first_place": 0,
+     "second_place": 0,
+     "third_place": 0,
+     "fourth_place": 0,
+     "total": 0
+    },
+    "pricing": {
+     "prompt": "0.0000012",
+     "completion": "0.000009"
+    }
+   },
+   {
+    "source": "design-arena",
+    "model_permaslug": "anthropic/claude-opus-5.5-20260921",
+    "display_name": "Claude Opus 5.5",
+    "arena": "models",
+    "category": "website",
+    "elo": 1335,
+    "win_rate": 57.6,
+    "avg_generation_time_ms": 303025,
+    "tournament_stats": {
+     "first_place": 0,
+     "second_place": 0,
+     "third_place": 0,
+     "fourth_place": 0,
+     "total": 0
+    },
+    "pricing": {
+     "prompt": "0.0000044",
+     "completion": "0.000022"
+    }
+   },
+   {
+    "source": "design-arena",
+    "model_permaslug": "meta/muse-spark-1.2-20260805",
+    "display_name": "Muse Spark 1.2",
+    "arena": "models",
+    "category": "dataviz",
+    "elo": 1335,
+    "win_rate": 57.7,
+    "avg_generation_time_ms": 157217,
+    "tournament_stats": {
+     "first_place": 0,
+     "second_place": 0,
+     "third_place": 0,
+     "fourth_place": 0,
+     "total": 0
+    },
+    "pricing": {
+     "prompt": "0.00000125",
+     "completion": "0.00000425"
+    }
+   },
+   {
+    "source": "design-arena",
+    "model_permaslug": "z-ai/glm-5.3-20260816",
+    "display_name": "GLM-5.3",
+    "arena": "models",
+    "category": "3d",
+    "elo": 1334,
+    "win_rate": 59.4,
+    "avg_generation_time_ms": 478299,
+    "tournament_stats": {
+     "first_place": 0,
+     "second_place": 0,
+     "third_place": 0,
+     "fourth_place": 0,
+     "total": 0
+    },
+    "pricing": {
+     "prompt": "0.0000012",
+     "completion": "0.000004"
+    }
+   },
+   {
+    "source": "design-arena",
+    "model_permaslug": "anthropic/claude-opus-5.5-20260921",
+    "display_name": "Claude Opus 5.5",
+    "arena": "models",
+    "category": "svg",
+    "elo": 1332,
+    "win_rate": 51.9,
+    "avg_generation_time_ms": 44300,
+    "tournament_stats": {
+     "first_place": 0,
+     "second_place": 0,
+     "third_place": 0,
+     "fourth_place": 0,
+     "total": 0
+    },
+    "pricing": {
+     "prompt": "0.0000044",
+     "completion": "0.000022"
+    }
+   },
+   {
+    "source": "design-arena",
+    "model_permaslug": "xiaomi/mimo-v2.6-pro-20260921",
+    "display_name": "MiMo-V2.6-Pro",
+    "arena": "models",
+    "category": "3d",
+    "elo": 1332,
+    "win_rate": 56.8,
+    "avg_generation_time_ms": 270335,
+    "tournament_stats": {
+     "first_place": 0,
+     "second_place": 0,
+     "third_place": 0,
+     "fourth_place": 0,
+     "total": 0
+    },
+    "pricing": {
+     "prompt": "0.000000435",
+     "completion": "0.00000087"
+    }
+   },
+   {
+    "source": "design-arena",
+    "model_permaslug": "anthropic/claude-5-fable-20260609",
+    "display_name": "Claude Fable 5",
+    "arena": "models",
+    "category": "asciiart",
+    "elo": 1330,
+    "win_rate": 68.1,
+    "avg_generation_time_ms": 86119,
+    "tournament_stats": {
+     "first_place": 0,
+     "second_place": 0,
+     "third_place": 0,
+     "fourth_place": 0,
+     "total": 0
+    },
+    "pricing": {
+     "prompt": "0.00001",
+     "completion": "0.00005"
+    }
+   },
+   {
+    "source": "design-arena",
+    "model_permaslug": "anthropic/claude-opus-5-20260723",
+    "display_name": "Claude Opus 5",
+    "arena": "models",
+    "category": "dataviz",
+    "elo": 1330,
+    "win_rate": 58.2,
+    "avg_generation_time_ms": 224603,
+    "tournament_stats": {
+     "first_place": 0,
+     "second_place": 0,
+     "third_place": 0,
+     "fourth_place": 0,
+     "total": 0
+    },
+    "pricing": {
+     "prompt": "0.0000055",
+     "completion": "0.0000275"
+    }
+   },
+   {
+    "source": "design-arena",
+    "model_permaslug": "deepseek/deepseek-v4.1-flash-20261017",
+    "display_name": "DeepSeek-V4.1-Flash-1017",
+    "arena": "models",
+    "category": "gamedev",
+    "elo": 1330,
+    "win_rate": 58.6,
+    "avg_generation_time_ms": 129692,
+    "tournament_stats": {
+     "first_place": 0,
+     "second_place": 0,
+     "third_place": 0,
+     "fourth_place": 0,
+     "total": 0
+    },
+    "pricing": {
+     "prompt": "0.00000009",
+     "completion": "0.00000018"
+    }
+   },
+   {
+    "source": "design-arena",
+    "model_permaslug": "microsoft/mai-image-2.6-20260904",
+    "display_name": "MAI-Image-2.6",
+    "arena": "models",
+    "category": "graphicdesign",
+    "elo": 1330,
+    "win_rate": 62.7,
+    "avg_generation_time_ms": 28062,
+    "tournament_stats": {
+     "first_place": 0,
+     "second_place": 0,
+     "third_place": 0,
+     "fourth_place": 0,
+     "total": 0
+    },
+    "pricing": {
+     "prompt": "0.000005",
+     "completion": "0"
+    }
+   },
+   {
+    "source": "design-arena",
+    "model_permaslug": "meta/muse-wonder-20261012",
+    "display_name": "Muse Wonder (max)",
+    "arena": "models",
+    "category": "dataviz",
+    "elo": 1330,
+    "win_rate": 61.4,
+    "avg_generation_time_ms": 114714,
+    "tournament_stats": {
+     "first_place": 834,
+     "second_place": 494,
+     "third_place": 371,
+     "fourth_place": 281,
+     "total": 1980
+    },
+    "pricing": {
+     "prompt": "0.000004",
+     "completion": "0.00002"
+    }
+   },
+   {
+    "source": "design-arena",
+    "model_permaslug": "google/gemini-4-argon-20261013",
+    "display_name": "Gemini 4 Argon",
+    "arena": "models",
+    "category": "uicomponent",
+    "elo": 1329,
+    "win_rate": 57.6,
+    "avg_generation_time_ms": 144854,
+    "tournament_stats": {
+     "first_place": 0,
+     "second_place": 0,
+     "third_place": 0,
+     "fourth_place": 0,
+     "total": 0
+    },
+    "pricing": {
+     "prompt": "0.0000022",
+     "completion": "0.000011"
+    }
+   },
+   {
+    "source": "design-arena",
+    "model_permaslug": "meta/muse-spark-1.3-20260902",
+    "display_name": "Muse Spark 1.3 (xhigh)",
+    "arena": "models",
+    "category": "gamedev",
+    "elo": 1329,
+    "win_rate": 54.3,
+    "avg_generation_time_ms": 199540,
+    "tournament_stats": {
+     "first_place": 0,
+     "second_place": 0,
+     "third_place": 0,
+     "fourth_place": 0,
+     "total": 0
+    },
+    "pricing": {
+     "prompt": "0.00000125",
+     "completion": "0.00000425"
+    }
+   },
+   {
+    "source": "design-arena",
+    "model_permaslug": "google/gemini-4-argon-20261013",
+    "display_name": "Gemini 4 Argon",
+    "arena": "models",
+    "category": "codecategories",
+    "elo": 1328,
+    "win_rate": 57.7,
+    "avg_generation_time_ms": 229093,
+    "tournament_stats": {
+     "first_place": 0,
+     "second_place": 0,
+     "third_place": 0,
+     "fourth_place": 0,
+     "total": 0
+    },
+    "pricing": {
+     "prompt": "0.0000022",
+     "completion": "0.000011"
+    }
+   },
+   {
+    "source": "design-arena",
+    "model_permaslug": "anthropic/claude-fable-5.1-20260831",
+    "display_name": "Claude Fable 5.1",
+    "arena": "models",
+    "category": "asciiart",
+    "elo": 1325,
+    "win_rate": 65,
+    "avg_generation_time_ms": 188435,
+    "tournament_stats": {
+     "first_place": 0,
+     "second_place": 0,
+     "third_place": 0,
+     "fourth_place": 0,
+     "total": 0
+    },
+    "pricing": {
+     "prompt": "0.000005",
+     "completion": "0.000025"
+    }
+   },
+   {
+    "source": "design-arena",
+    "model_permaslug": "anthropic/claude-opus-5-20260723",
+    "display_name": "Claude Opus 5",
+    "arena": "models",
+    "category": "codecategories",
+    "elo": 1324,
+    "win_rate": 57.3,
+    "avg_generation_time_ms": 318191,
+    "tournament_stats": {
+     "first_place": 0,
+     "second_place": 0,
+     "third_place": 0,
+     "fourth_place": 0,
+     "total": 0
+    },
+    "pricing": {
+     "prompt": "0.0000055",
+     "completion": "0.0000275"
+    }
+   },
+   {
+    "source": "design-arena",
+    "model_permaslug": "anthropic/claude-sonnet-5.5-20260928",
+    "display_name": "Claude Sonnet 5.5",
+    "arena": "models",
+    "category": "website",
+    "elo": 1324,
+    "win_rate": 55.7,
+    "avg_generation_time_ms": 273300,
+    "tournament_stats": {
+     "first_place": 0,
+     "second_place": 0,
+     "third_place": 0,
+     "fourth_place": 0,
+     "total": 0
+    },
+    "pricing": {
+     "prompt": "0.000002",
+     "completion": "0.00001"
+    }
+   },
+   {
+    "source": "design-arena",
+    "model_permaslug": "deepseek/deepseek-v4.1-flash-20261017",
+    "display_name": "DeepSeek-V4.1-Flash-1017",
+    "arena": "models",
+    "category": "website",
+    "elo": 1323,
+    "win_rate": 58.5,
+    "avg_generation_time_ms": 120150,
+    "tournament_stats": {
+     "first_place": 0,
+     "second_place": 0,
+     "third_place": 0,
+     "fourth_place": 0,
+     "total": 0
+    },
+    "pricing": {
+     "prompt": "0.00000009",
+     "completion": "0.00000018"
+    }
+   },
+   {
+    "source": "design-arena",
+    "model_permaslug": "meta/muse-spark-1.3-20260902",
+    "display_name": "Muse Spark 1.3 Max",
+    "arena": "models",
+    "category": "svg",
+    "elo": 1322,
+    "win_rate": 54,
+    "avg_generation_time_ms": 154964,
+    "tournament_stats": {
+     "first_place": 0,
+     "second_place": 0,
+     "third_place": 0,
+     "fourth_place": 0,
+     "total": 0
+    },
+    "pricing": {
+     "prompt": "0.00000125",
+     "completion": "0.00000425"
+    }
+   },
+   {
+    "source": "design-arena",
+    "model_permaslug": "openai/gpt-6.1-sol-20260929",
+    "display_name": "GPT-6.1 Sol",
+    "arena": "models",
+    "category": "dataviz",
+    "elo": 1321,
+    "win_rate": 57.4,
+    "avg_generation_time_ms": 199935,
+    "tournament_stats": {
+     "first_place": 432,
+     "second_place": 360,
+     "third_place": 232,
+     "fourth_place": 190,
+     "total": 1214
+    },
+    "pricing": {
+     "prompt": "0.000012",
+     "completion": "0.00006"
+    }
+   },
+   {
+    "source": "design-arena",
+    "model_permaslug": "openai/gpt-6.1-sol-20260929",
+    "display_name": "GPT-6.1 Sol",
+    "arena": "models",
+    "category": "uicomponent",
+    "elo": 1321,
+    "win_rate": 53.7,
+    "avg_generation_time_ms": 179617,
+    "tournament_stats": {
+     "first_place": 0,
+     "second_place": 0,
+     "third_place": 0,
+     "fourth_place": 0,
+     "total": 0
+    },
+    "pricing": {
+     "prompt": "0.000012",
+     "completion": "0.00006"
+    }
+   },
+   {
+    "source": "design-arena",
+    "model_permaslug": "openai/gpt-6.1-sol-20260929",
+    "display_name": "GPT-6.1 Sol",
+    "arena": "models",
+    "category": "website",
+    "elo": 1321,
+    "win_rate": 55.8,
+    "avg_generation_time_ms": 293190,
+    "tournament_stats": {
+     "first_place": 0,
+     "second_place": 0,
+     "third_place": 0,
+     "fourth_place": 0,
+     "total": 0
+    },
+    "pricing": {
+     "prompt": "0.000012",
+     "completion": "0.00006"
+    }
+   },
+   {
+    "source": "design-arena",
+    "model_permaslug": "google/gemini-3.8-flash-20260902",
+    "display_name": "Gemini 3.8 Flash",
+    "arena": "models",
+    "category": "uicomponent",
+    "elo": 1320,
+    "win_rate": 53.8,
+    "avg_generation_time_ms": 88165,
+    "tournament_stats": {
+     "first_place": 0,
+     "second_place": 0,
+     "third_place": 0,
+     "fourth_place": 0,
+     "total": 0
+    },
+    "pricing": {
+     "prompt": "0.000000825",
+     "completion": "0.000004125"
+    }
+   },
+   {
+    "source": "design-arena",
+    "model_permaslug": "anthropic/claude-5-fable-20260609",
+    "display_name": "Claude Fable 5",
+    "arena": "models",
+    "category": "3d",
+    "elo": 1319,
+    "win_rate": 61.8,
+    "avg_generation_time_ms": 135284,
+    "tournament_stats": {
+     "first_place": 0,
+     "second_place": 0,
+     "third_place": 0,
+     "fourth_place": 0,
+     "total": 0
+    },
+    "pricing": {
+     "prompt": "0.00001",
+     "completion": "0.00005"
+    }
+   },
+   {
+    "source": "design-arena",
+    "model_permaslug": "google/gemini-3.7-flash-20260813",
+    "display_name": "Gemini 3.7 Flash",
+    "arena": "models",
+    "category": "gamedev",
+    "elo": 1319,
+    "win_rate": 53.5,
+    "avg_generation_time_ms": 109287,
+    "tournament_stats": {
+     "first_place": 0,
+     "second_place": 0,
+     "third_place": 0,
+     "fourth_place": 0,
+     "total": 0
+    },
+    "pricing": {
+     "prompt": "0.000000825",
+     "completion": "0.000004125"
+    }
+   },
+   {
+    "source": "design-arena",
+    "model_permaslug": "microsoft/mai-image-2.6-20260904",
+    "display_name": "MAI-Image-2.6",
+    "arena": "models",
+    "category": "image",
+    "elo": 1319,
+    "win_rate": 61.1,
+    "avg_generation_time_ms": 26450,
+    "tournament_stats": {
+     "first_place": 0,
+     "second_place": 0,
+     "third_place": 0,
+     "fourth_place": 0,
+     "total": 0
+    },
+    "pricing": {
+     "prompt": "0.000005",
+     "completion": "0"
+    }
+   },
+   {
+    "source": "design-arena",
+    "model_permaslug": "z-ai/glm-5.3-flash-20260826",
+    "display_name": "GLM-5.3-Flash",
+    "arena": "models",
+    "category": "uicomponent",
+    "elo": 1319,
+    "win_rate": 54.8,
+    "avg_generation_time_ms": 324901,
+    "tournament_stats": {
+     "first_place": 0,
+     "second_place": 0,
+     "third_place": 0,
+     "fourth_place": 0,
+     "total": 0
+    },
+    "pricing": {
+     "prompt": "0.00000005",
+     "completion": "0.00000018"
+    }
+   },
+   {
+    "source": "design-arena",
+    "model_permaslug": "anthropic/claude-5-fable-20260609",
+    "display_name": "Claude Fable 5",
+    "arena": "models",
+    "category": "uicomponent",
+    "elo": 1318,
+    "win_rate": 58.1,
+    "avg_generation_time_ms": 132191,
+    "tournament_stats": {
+     "first_place": 0,
+     "second_place": 0,
+     "third_place": 0,
+     "fourth_place": 0,
+     "total": 0
+    },
+    "pricing": {
+     "prompt": "0.00001",
+     "completion": "0.00005"
+    }
+   },
+   {
+    "source": "design-arena",
+    "model_permaslug": "z-ai/glm-5.3-flash-20260826",
+    "display_name": "GLM-5.3-Flash",
+    "arena": "models",
+    "category": "3d",
+    "elo": 1318,
+    "win_rate": 56.2,
+    "avg_generation_time_ms": 524851,
+    "tournament_stats": {
+     "first_place": 0,
+     "second_place": 0,
+     "third_place": 0,
+     "fourth_place": 0,
+     "total": 0
+    },
+    "pricing": {
+     "prompt": "0.00000005",
+     "completion": "0.00000018"
+    }
+   },
+   {
+    "source": "design-arena",
+    "model_permaslug": "xiaomi/mimo-v2.6-pro-20260921",
+    "display_name": "MiMo-V2.6-Pro",
+    "arena": "models",
+    "category": "codecategories",
+    "elo": 1317,
+    "win_rate": 52.5,
+    "avg_generation_time_ms": 412403,
+    "tournament_stats": {
+     "first_place": 0,
+     "second_place": 0,
+     "third_place": 0,
+     "fourth_place": 0,
+     "total": 0
+    },
+    "pricing": {
+     "prompt": "0.000000435",
+     "completion": "0.00000087"
+    }
+   },
+   {
+    "source": "design-arena",
+    "model_permaslug": "anthropic/claude-haiku-5.5-20261007",
+    "display_name": "Claude Haiku 5.5",
+    "arena": "models",
+    "category": "gamedev",
+    "elo": 1316,
+    "win_rate": 53.8,
+    "avg_generation_time_ms": 255278,
+    "tournament_stats": {
+     "first_place": 0,
+     "second_place": 0,
+     "third_place": 0,
+     "fourth_place": 0,
+     "total": 0
+    },
+    "pricing": {
+     "prompt": "0.00000011",
+     "completion": "0.00000055"
+    }
+   },
+   {
+    "source": "design-arena",
+    "model_permaslug": "google/gemini-3.7-flash-20260813",
+    "display_name": "Gemini 3.7 Flash",
+    "arena": "models",
+    "category": "dataviz",
+    "elo": 1316,
+    "win_rate": 55.3,
+    "avg_generation_time_ms": 88527,
+    "tournament_stats": {
+     "first_place": 0,
+     "second_place": 0,
+     "third_place": 0,
+     "fourth_place": 0,
+     "total": 0
+    },
+    "pricing": {
+     "prompt": "0.000000825",
+     "completion": "0.000004125"
+    }
+   },
+   {
+    "source": "design-arena",
+    "model_permaslug": "google/gemini-4-argon-20261013",
+    "display_name": "Gemini 4 Argon",
+    "arena": "models",
+    "category": "website",
+    "elo": 1315,
+    "win_rate": 56.3,
+    "avg_generation_time_ms": 246644,
+    "tournament_stats": {
+     "first_place": 0,
+     "second_place": 0,
+     "third_place": 0,
+     "fourth_place": 0,
+     "total": 0
+    },
+    "pricing": {
+     "prompt": "0.0000022",
+     "completion": "0.000011"
+    }
+   },
+   {
+    "source": "design-arena",
+    "model_permaslug": "anthropic/claude-fable-5.1-20260831",
+    "display_name": "Claude Fable 5.1",
+    "arena": "models",
+    "category": "website",
+    "elo": 1314,
+    "win_rate": 56.3,
+    "avg_generation_time_ms": 323652,
+    "tournament_stats": {
+     "first_place": 0,
+     "second_place": 0,
+     "third_place": 0,
+     "fourth_place": 0,
+     "total": 0
+    },
+    "pricing": {
+     "prompt": "0.000005",
+     "completion": "0.000025"
+    }
+   },
+   {
+    "source": "design-arena",
+    "model_permaslug": "z-ai/glm-5.3-20260816",
+    "display_name": "GLM-5.3",
+    "arena": "models",
+    "category": "uicomponent",
+    "elo": 1314,
+    "win_rate": 56.7,
+    "avg_generation_time_ms": 344379,
+    "tournament_stats": {
+     "first_place": 0,
+     "second_place": 0,
+     "third_place": 0,
+     "fourth_place": 0,
+     "total": 0
+    },
+    "pricing": {
+     "prompt": "0.0000012",
+     "completion": "0.000004"
+    }
+   },
+   {
+    "source": "design-arena",
+    "model_permaslug": "meta/muse-spark-1.2-20260805",
+    "display_name": "Muse Spark 1.2",
+    "arena": "models",
+    "category": "codecategories",
+    "elo": 1314,
+    "win_rate": 52,
+    "avg_generation_time_ms": 175409,
+    "tournament_stats": {
+     "first_place": 0,
+     "second_place": 0,
+     "third_place": 0,
+     "fourth_place": 0,
+     "total": 0
+    },
+    "pricing": {
+     "prompt": "0.00000125",
+     "completion": "0.00000425"
+    }
+   },
+   {
+    "source": "design-arena",
+    "model_permaslug": "qwen/qwen3.8-max-20260803",
+    "display_name": "Qwen3.8 Max",
+    "arena": "models",
+    "category": "gamedev",
+    "elo": 1314,
+    "win_rate": 52.7,
+    "avg_generation_time_ms": 870808,
+    "tournament_stats": {
+     "first_place": 0,
+     "second_place": 0,
+     "third_place": 0,
+     "fourth_place": 0,
+     "total": 0
+    },
+    "pricing": null
+   },
+   {
+    "source": "design-arena",
+    "model_permaslug": "xiaomi/mimo-v2.6-pro-20260921",
+    "display_name": "MiMo-V2.6-Pro",
+    "arena": "models",
+    "category": "gamedev",
+    "elo": 1313,
+    "win_rate": 53,
+    "avg_generation_time_ms": 341517,
+    "tournament_stats": {
+     "first_place": 0,
+     "second_place": 0,
+     "third_place": 0,
+     "fourth_place": 0,
+     "total": 0
+    },
+    "pricing": {
+     "prompt": "0.000000435",
+     "completion": "0.00000087"
+    }
+   },
+   {
+    "source": "design-arena",
+    "model_permaslug": "meta/muse-spark-1.2-20260805",
+    "display_name": "Muse Spark 1.2",
+    "arena": "models",
+    "category": "website",
+    "elo": 1313,
+    "win_rate": 52.1,
+    "avg_generation_time_ms": 162770,
+    "tournament_stats": {
+     "first_place": 0,
+     "second_place": 0,
+     "third_place": 0,
+     "fourth_place": 0,
+     "total": 0
+    },
+    "pricing": {
+     "prompt": "0.00000125",
+     "completion": "0.00000425"
+    }
+   },
+   {
+    "source": "design-arena",
+    "model_permaslug": "anthropic/claude-5-fable-20260609",
+    "display_name": "Claude Fable 5",
+    "arena": "models",
+    "category": "codecategories",
+    "elo": 1312,
+    "win_rate": 57.7,
+    "avg_generation_time_ms": 166521,
+    "tournament_stats": {
+     "first_place": 0,
+     "second_place": 0,
+     "third_place": 0,
+     "fourth_place": 0,
+     "total": 0
+    },
+    "pricing": {
+     "prompt": "0.00001",
+     "completion": "0.00005"
+    }
+   },
+   {
+    "source": "design-arena",
+    "model_permaslug": "z-ai/glm-5.3-20260816",
+    "display_name": "GLM-5.3",
+    "arena": "models",
+    "category": "gamedev",
+    "elo": 1312,
+    "win_rate": 52.5,
+    "avg_generation_time_ms": 496273,
+    "tournament_stats": {
+     "first_place": 0,
+     "second_place": 0,
+     "third_place": 0,
+     "fourth_place": 0,
+     "total": 0
+    },
+    "pricing": {
+     "prompt": "0.0000012",
+     "completion": "0.000004"
+    }
+   },
+   {
+    "source": "design-arena",
+    "model_permaslug": "x-ai/grok-4.7-20260916",
+    "display_name": "Grok 4.7",
+    "arena": "models",
+    "category": "gamedev",
+    "elo": 1312,
+    "win_rate": 52.6,
+    "avg_generation_time_ms": 1077914,
+    "tournament_stats": {
+     "first_place": 0,
+     "second_place": 0,
+     "third_place": 0,
+     "fourth_place": 0,
+     "total": 0
+    },
+    "pricing": {
+     "prompt": "0.0000022",
+     "completion": "0.0000066"
+    }
+   },
+   {
+    "source": "design-arena",
+    "model_permaslug": "anthropic/claude-opus-5-20260723",
+    "display_name": "Claude Opus 5",
+    "arena": "models",
+    "category": "svg",
+    "elo": 1310,
+    "win_rate": 58.2,
+    "avg_generation_time_ms": 106394,
+    "tournament_stats": {
+     "first_place": 0,
+     "second_place": 0,
+     "third_place": 0,
+     "fourth_place": 0,
+     "total": 0
+    },
+    "pricing": {
+     "prompt": "0.0000055",
+     "completion": "0.0000275"
+    }
+   },
+   {
+    "source": "design-arena",
+    "model_permaslug": "anthropic/claude-opus-5-20260723",
+    "display_name": "Claude Opus 5",
+    "arena": "models",
+    "category": "website",
+    "elo": 1309,
+    "win_rate": 55.9,
+    "avg_generation_time_ms": 315172,
+    "tournament_stats": {
+     "first_place": 0,
+     "second_place": 0,
+     "third_place": 0,
+     "fourth_place": 0,
+     "total": 0
+    },
+    "pricing": {
+     "prompt": "0.0000055",
+     "completion": "0.0000275"
+    }
+   }
+  ],
+  "meta": {
+   "as_of": "2026-10-19T12:01:14.611Z",
+   "version": "v1",
+   "source": "design-arena",
+   "source_url": "https://www.designarena.ai",
+   "citation": "Source: Design Arena (www.designarena.ai) via OpenRouter (openrouter.ai/rankings).",
+   "model_count": 24,
+   "task_type": null
+  }
+ }
+}
