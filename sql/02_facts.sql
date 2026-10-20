@@ -10,7 +10,7 @@ CREATE TABLE fct_price_month AS
 WITH months AS (SELECT DISTINCT month FROM dim_date),
 models AS (SELECT model_permaslug, base_slug, is_free_variant FROM dim_model WHERE model_permaslug <> 'other'),
 cand AS (
-    SELECT mo.month, md.model_permaslug, s.snapshot_date, s.prompt_price, s.completion_price,
+    SELECT mo.month, md.model_permaslug, s.snapshot_date, s.id, s.prompt_price, s.completion_price,
            CASE WHEN s.match_key = md.model_permaslug THEN 'exact' ELSE 'base' END AS price_match,
            abs(date_diff('day', CAST(s.snapshot_date AS DATE), mo.month + INTERVAL 14 DAY)) AS dist
     FROM months mo
@@ -21,7 +21,7 @@ cand AS (
 best AS (
     SELECT * FROM cand
     QUALIFY row_number() OVER (PARTITION BY month, model_permaslug
-                               ORDER BY (price_match = 'exact') DESC, dist, snapshot_date DESC) = 1
+                               ORDER BY (price_match = 'exact') DESC, dist, snapshot_date DESC, id) = 1
 ),
 grid AS (SELECT mo.month, md.model_permaslug, md.is_free_variant FROM months mo CROSS JOIN models md)
 SELECT

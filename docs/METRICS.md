@@ -33,6 +33,9 @@ Each metric is defined once here and computed once in `sql/`. Tableau and Power 
 | Blended price, 3:1 | Same, with Artificial Analysis's 3:1 convention | Sensitivity check only |
 | Estimated spend | Tokens x blended price | List price before caching discounts, BYOK and negotiated rates, so an **upper bound**. Use for **shares, not dollar totals** |
 | Spend share | Estimated spend / estimated spend of all priced tokens that month | The long tail has no price, so it can't enter this denominator |
+| Average price paid ($/M) | Estimated spend / priced tokens that month (token-weighted blended price) | How the price of the typical token moves, not the price of a typical model |
+| Open-weight share | Tokens from models with open weights / **all** tokens that period | Stealth, the long tail and unknown-status models stay in the denominator, so this is a floor |
+| Free-variant share | Tokens on `:free` slugs / all tokens | Free variants are separate slugs, so this is exact |
 | HHI | 10,000 x sum of squared shares of named tokens (families, or labs) | The `other` row is many models, so it's excluded. Reference line: the DOJ/FTC 2023 Merger Guidelines call a market above 1,800 "highly concentrated" (a benchmark for reading the number, not a legal claim) |
 | Top-5 family share | Tokens of the 5 largest families / all tokens | Shares of all tokens, so it can't exceed reality |
 | Launch week | The first day a family enters the top 50, for families first seen on or after 2025-02-01 | Families already there on 2025-01-01 have unknown launch dates |

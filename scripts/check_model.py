@@ -44,6 +44,10 @@ def main():
         FROM fct_model_day f JOIN dim_model m USING (model_permaslug)""")
     check("Every named lab is in the sourced lookup", (pend_share or 0) == 0,
           f"{100 * (pend_share or 0):.2f}% of tokens still 'Pending lookup'")
+    clash = q("""SELECT count(*) FROM (SELECT snapshot_date, match_key FROM stg_models
+        GROUP BY 1, 2 HAVING count(DISTINCT (prompt_price, completion_price)) > 1)""")[0]
+    check("No price key holds two different prices in one snapshot", clash == 0,
+          f"{clash} (snapshot, key) pairs with conflicting prices")
     missing = q("SELECT count(*) FROM dim_date WHERE is_missing_day")[0]
     check("Missing days are flagged, not filled", missing == 2, f"{missing} days flagged")
     dev = q("SELECT max(abs(s - 1)) FROM (SELECT month, sum(token_share) s FROM mart_lab_month GROUP BY 1)")[0]

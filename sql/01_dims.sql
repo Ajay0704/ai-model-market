@@ -60,9 +60,9 @@ parsed AS (
 ),
 -- Latest snapshot entry per match key: the newest name, release date, context length and Hugging Face link.
 latest AS (
-    SELECT match_key, name, created, context_length, has_hf_field, hugging_face_id
+    SELECT match_key, id, name, created, context_length, has_hf_field, hugging_face_id
     FROM stg_models
-    QUALIFY row_number() OVER (PARTITION BY match_key ORDER BY snapshot_date DESC) = 1
+    QUALIFY row_number() OVER (PARTITION BY match_key ORDER BY snapshot_date DESC, id) = 1
 ),
 -- Whether any snapshot ever showed this key with the hugging_face_id field (older snapshots lack the field).
 hf AS (

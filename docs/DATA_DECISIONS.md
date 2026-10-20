@@ -13,6 +13,12 @@ Each finding comes from `docs/DATA_PROFILE.md` (regenerate it with `python scrip
 | 7 | **Benchmarks are a snapshot**, not history. Artificial Analysis covers 69% of the last 90 days' named tokens; Design Arena only 16%. | The quality-vs-price chart uses the **last 90 days**, Artificial Analysis's intelligence index, and states its coverage on the chart. Design Arena is left out. |
 | 8 | **The task mix is a 7-day snapshot** only. | It's used as a "this week" panel. Task history comes from the monthly categories (finding 6). |
 
+## Found by the answer key and the spot-check (step 3)
+| # | Finding | Fix or decision |
+|---|---|---|
+| 9 | **Variant ids claimed the base model's price.** A `:batch` or `:free` id shares its base model's canonical slug, and both registered under one key. The model sometimes priced Claude Opus 5 at the batch price ($3.13/M, not $6.25) and MiniMax M3 at $0. That moved September 2026's China spend share from 39.7% to 45.4%. Both the model and the first answer key had the flaw; they disagreed only because they broke the tie differently. | Variant ids now register only as `canonical:variant`. Ties break on `id`, so the choice is deterministic. A new check fails if any (snapshot, key) pair holds two prices. Lesson: two calculations agreeing is not proof when they share an assumption. January 2025 had agreed while both were wrong. |
+| 10 | **The top-50 cut undercounts models near the cutoff.** On the public page Step 5 Preview's week is 8.22T; the API gives 8.21T, because its last 3 days fell outside the top 50. | Leave the data as it is. Model-level numbers for models near the cutoff are a slight floor, and the `other` row bounds the gap. It's in the caveats. |
+
 ## Lab lookup (`data/reference/labs.csv`)
 - **Country means the developer's stated HQ**, from its own legal, imprint, contact, investor or about page. It's not where the model is hosted, and not the origin of a base model it was tuned from. TNG's DeepSeek "Chimera" merges count as Germany.
 - **Judgment calls, written down:**

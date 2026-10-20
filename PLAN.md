@@ -16,7 +16,9 @@ Approved by Ajay on 2026-10-19: both a Tableau Story and a Power BI report, like
   - `docs/METRICS.md` is the metric dictionary.
   - `data/reference/labs.csv` maps 45 prefixes to 42 organizations, each with a source (44 first-party, 1 secondary).
   - `scripts/check_model.py` runs 15 integrity checks, all passing (`docs/MODEL_CHECKS.md`).
-- [ ] **3. Answer key.** Recompute the headline numbers a second, independent way (pandas vs DuckDB SQL), then spot-check against openrouter.ai/rankings.
+- [x] **3. Answer key.** Done 2026-10-19.
+  - `scripts/answer_key.py` recomputes 42 headline numbers in pandas from the raw files only: **42/42 match** the DuckDB marts (`docs/ANSWER_KEY.md`). It caught one real bug, variant ids claiming the base model's price (`docs/DATA_DECISIONS.md` #9).
+  - `scripts/spotcheck_rankings.py` against the public openrouter.ai/rankings page: **29/30** top-10 rows match on model and rounded tokens. The 1 miss is the documented top-50 cut (#10). The benchmark top 10 also matches.
 - [ ] **4. Explore.** Test H1-H6 from `docs/BRIEF.md`. Keep only findings that are big, reliable across cuts, and that someone can act on.
 - [ ] **5. Build.**
   - **Tableau Story**: one story point per stakeholder. The `.twbx` is generated in code with the `tableau_xml.py` approach from `~/olist-text2sql/scripts/`, then published to Tableau Public (like the SaaS Pricing viz).

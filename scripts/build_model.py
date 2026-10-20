@@ -50,11 +50,15 @@ def staging():
     for stamp, source, f in snaps:
         for m in resp(f)["data"]:
             mid, canon = m["id"], m.get("canonical_slug")
+            # A variant id (x:free, x:batch) shares its base model's canonical slug, so it must only
+            # register as canonical:variant. Registering the bare canonical too let a :batch or :free
+            # price stand in for the full price (caught by the answer key, 2026-10-19).
             keys = {mid}
             if canon:
-                keys.add(canon)
                 if ":" in mid and ":" not in canon:
                     keys.add(f"{canon}:{mid.split(':', 1)[1]}")
+                else:
+                    keys.add(canon)
             p = m.get("pricing") or {}
             for k in keys:
                 models.append({"snapshot_date": f"{stamp[:4]}-{stamp[4:6]}-{stamp[6:8]}", "source": source,

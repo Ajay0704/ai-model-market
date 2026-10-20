@@ -1,0 +1,31 @@
+window,rank,model,author,tokens_shown
+today,1,DeepSeek V4.1 Flash 1017,deepseek,3.61T
+today,2,DeepSeek V4.1 Flash,deepseek,2.8T
+today,3,GLM 5.3 Flash,z-ai,1.74T
+today,4,Hy4 preview,tencent,1.37T
+today,5,MiMo-V2.6-Flash,xiaomi,1.23T
+today,6,Claude Opus 5.5,anthropic,1.08T
+today,7,MiniMax M3.1 Flash (free),minimax,1.05T
+today,8,GPT-6 Luna,openai,878B
+today,9,Nemotron 3 Ultra (free),nvidia,803B
+today,10,GLM 5.3,z-ai,745B
+week,1,DeepSeek V4.1 Flash,deepseek,29.6T
+week,2,GLM 5.3 Flash,z-ai,11.9T
+week,3,MiMo-V2.6-Flash,xiaomi,9.57T
+week,4,Step 5 Preview,stepfun,8.22T
+week,5,Hy4 preview,tencent,7.82T
+week,6,DeepSeek V4.1 Flash 1017,deepseek,7.34T
+week,7,Claude Opus 5.5,anthropic,6.47T
+week,8,GPT-6 Luna,openai,6.23T
+week,9,GLM 5.3,z-ai,5.29T
+week,10,DeepSeek V4 Flash 0731,deepseek,4.73T
+month,1,DeepSeek V4.1 Flash,deepseek,124T
+month,2,Space Bunny Alpha,stealth,56.7T
+month,3,GLM 5.3 Flash,z-ai,54.8T
+month,4,MiMo-V2.6-Flash,xiaomi,37.8T
+month,5,Hy4 preview,tencent,35.3T
+month,6,DeepSeek V4 Flash 0731,deepseek,25.2T
+month,7,Nemotron 3 Ultra (free),nvidia,24.7T
+month,8,GPT-6 Luna,openai,23.2T
+month,9,Step 5 Preview,stepfun,20.3T
+month,10,GPT-5.6 Luna,openai,17.9T
