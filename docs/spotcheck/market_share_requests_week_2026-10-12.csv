@@ -1,0 +1,11 @@
+rank,author,share_of_requests,change_in_requests
+1,DeepSeek,24.4%,+3%
+2,Google,19.7%,+14%
+3,OpenAI,18.5%,+3%
+4,Z.ai,12.2%,-6%
+5,Qwen,5.3%,+1%
+6,Anthropic,4.7%,+25%
+7,Xiaomi,2.4%,-14%
+8,Meta Llama,2.1%,
+9,Mistral AI,2.0%,+5%
+,All other authors,8.6%,-9%
