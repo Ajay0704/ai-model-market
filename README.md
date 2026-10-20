@@ -2,7 +2,7 @@
 
 A Tableau Story and a Power BI report on which AI models and labs win usage on OpenRouter, the largest public marketplace for AI models. Built from OpenRouter's public Data API (daily data from January 2025).
 
-Status: Tableau Story built (`tableau/AI_Model_Market.twbx`); Power BI report live, with its DAX reconciled 22/22 to the answer key. Case study and portfolio page next. See [PLAN.md](PLAN.md), the [brief](docs/BRIEF.md) and the [metric dictionary](docs/METRICS.md).
+Status: Tableau Story built (`tableau/AI_Model_Market.twbx`); Power BI report live, with its DAX reconciled 22/22 to the answer key. Case study: [docs/case_study/AI_Model_Market_Case_Study.pdf](docs/case_study/AI_Model_Market_Case_Study.pdf) (source: `case_study.html`). See [PLAN.md](PLAN.md), the [brief](docs/BRIEF.md) and the [metric dictionary](docs/METRICS.md).
 
 ## How it's built
 ```
@@ -38,3 +38,6 @@ Source: OpenRouter (openrouter.ai/rankings). The data is licensed under CC BY 4.
 - `powerbi/measures.dax` holds every measure. `gen_tmdl.py` writes `model_full.tmdl` (tables with typed M partitions that read this repo's CSVs from GitHub, plus relationships and measures); paste it into Power BI web's TMDL view.
 - `gen_report.py` writes the PBIR report (theme from `docs/STYLE_GUIDE.md`). `publish_report.js` creates or updates it through the Fabric REST API from a signed-in app.powerbi.com tab.
 - `reconcile.py` compares the live model's DAX with the pandas answer key: `docs/POWERBI_RECONCILIATION.md` (22/22).
+
+## How AI assisted
+Built with Claude Code (Anthropic's coding assistant) working under my direction. It wrote most of the code (pull scripts, SQL, the Tableau and Power BI generators, DAX) and first drafts of the docs. I chose the question, approved each step of [PLAN.md](PLAN.md), the metric definitions, which findings to keep, and the design mockup. No number is trusted because the assistant produced it: each one is checked by the independent answer key (`docs/ANSWER_KEY.md`, 42/42), the public-page spot-check (29/30) and the live DAX reconciliation (22/22).

@@ -1,0 +1,246 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<title>Who's winning the AI model market? An end-to-end BI case study</title>
+<style>
+@page { size: Letter; margin: 0.7in 0.75in 0.75in;
+  @bottom-left { content: "AI model market case study · Ajay Karthick"; font: 8.5pt Helvetica, Arial, sans-serif; color: #6b7280; }
+  @bottom-right { content: counter(page); font: 8.5pt Helvetica, Arial, sans-serif; color: #6b7280; } }
+@page :first { margin: 0; @bottom-left { content: none } @bottom-right { content: none } }
+* { box-sizing: border-box; }
+body { font: 10.5pt/1.5 Helvetica, Arial, sans-serif; color: #1f2937; margin: 0; }
+.cover-band { background: #0b1f4b; color: #fff; padding: 0.8in 0.85in 0.55in; border-bottom: 6px solid #8fd3d8; }
+.cover-band .kicker { font-weight: 700; letter-spacing: .04em; font-size: 11pt; }
+.cover-band .src { color: #c7d2fe; font-size: 9.5pt; margin-top: 4px; }
+.cover { padding: 0.45in 0.85in 0; }
+.cover h1 { font-size: 27pt; line-height: 1.12; color: #0b1f4b; margin: 0.25in 0 8px; }
+.cover .lede { font-size: 12.5pt; color: #4b5563; margin: 0 0 18px; }
+h2.ch { font-size: 19pt; color: #0b1f4b; margin: 0 0 10px; padding-bottom: 6px; border-bottom: 3px solid #8fd3d8; break-before: page; }
+h3 { font-size: 11.5pt; color: #0b1f4b; margin: 16px 0 6px; }
+p { margin: 6px 0 8px; }
+table { width: 100%; border-collapse: collapse; margin: 8px 0 12px; font-size: 9.2pt; break-inside: avoid; }
+th { background: #0b1f4b; color: #fff; text-align: left; padding: 6px 8px; font-weight: 700; }
+td { padding: 5px 8px; border-bottom: 1px solid #e5e7eb; vertical-align: top; }
+tr:nth-child(even) td { background: #f5f7fb; }
+td.num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.tip { border-left: 4px solid #2563eb; background: #eef2f8; padding: 9px 12px; margin: 12px 0; font-size: 9.6pt; break-inside: avoid; }
+.warn { border-left-color: #d97706; }
+.standard { border-left: 5px solid #0b1f4b; background: #eef2f8; padding: 11px 14px; margin: 14px 0; }
+ul { margin: 4px 0 10px 0; padding-left: 18px; } li { margin: 3px 0; }
+.steps { display: grid; grid-template-columns: repeat(11, 1fr); gap: 3px; margin: 16px 0; }
+.steps div { background: #0b1f4b; color: #fff; font-size: 7.6pt; text-align: center; padding: 7px 2px; line-height: 1.25; }
+.steps b { display: block; font-size: 9pt; }
+figure { margin: 10px 0 12px; break-inside: avoid; text-align: center; }
+figure img { max-width: 100%; max-height: 3.9in; border: 1px solid #d1d5db; }
+figcaption { font-size: 8.8pt; color: #4b5563; font-style: italic; margin-top: 4px; text-align: left; }
+code { font: 8.8pt Menlo, Consolas, monospace; background: #f3f4f6; padding: 0 3px; }
+.small { font-size: 8.8pt; color: #6b7280; }
+</style></head><body>
+
+<div class="cover-band"><div class="kicker">END-TO-END CASE STUDY &nbsp;·&nbsp; TABLEAU + POWER BI</div>
+<div class="src">OpenRouter Data API (CC BY 4.0) &nbsp;·&nbsp; data as of 2026-10-19</div></div>
+<div class="cover">
+<h1>Who's winning the AI model market?</h1>
+<p class="lede">How an analyst would build a tech-industry dashboard from a real marketplace's usage data: the business questions, the data decisions, the checks, and how each chart was chosen and built in two tools.</p>
+<table>
+<tr><th style="width:20%">What</th><th>Detail</th></tr>
+<tr><td>Business</td><td>OpenRouter, a marketplace that routes apps' requests to AI models: 470 models on 2026-10-19. Labs are the sellers, apps are the buyers, tokens are the volume.</td></tr>
+<tr><td>Data</td><td>Daily top-50 models by tokens, 2025-01-01 to 2026-10-18 (654 days, 2.37 quadrillion tokens); monthly task categories; monthly top-100 apps; benchmarks; and 22 monthly snapshots of the price list (Internet Archive).</td></tr>
+<tr><td>Audience</td><td>Leadership, pricing &amp; finance, AI platform team, competitive intelligence, product &amp; GTM</td></tr>
+<tr><td>Deliverables</td><td>Tableau Story (5 story points, 5 dashboards, 13 sheets) and Power BI report (5 pages, 23 DAX measures, 15 tables), both generated as code from one DuckDB model</td></tr>
+<tr><td>Headline</td><td>Chinese labs have processed more OpenRouter tokens than US labs every week since April 27, 2026 (58.5% vs 28.9% in September), but US labs still take an estimated 60.3% of the spend</td></tr>
+</table>
+<div class="tip"><b>How to read this.</b> Each chapter is one stage of the work, written as the steps an analyst takes, with the decision made and why. The build was automated (Python, DuckDB, generated Tableau XML and Power BI TMDL/PBIR, and an AI assistant), but every decision, definition and check is one you would make by hand, and every number is the project's verified number.</div>
+<div class="steps">
+<div><b>1</b>Brief</div><div><b>2</b>Data</div><div><b>3</b>Model</div><div><b>4</b>Answer key</div><div><b>5</b>Explore</div><div><b>6</b>Charts</div><div><b>7</b>Power BI</div><div><b>8</b>Tableau</div><div><b>9</b>Story</div><div><b>10</b>Checks</div><div><b>11</b>Limits</div>
+</div>
+</div>
+
+<h2 class="ch">1. Start with the business, not the data</h2>
+<p>Who will use the dashboard, and what decision does each person own? OpenRouter is a two-sided marketplace, like Olist: labs supply models, apps buy tokens. The stakeholders and questions below are my own design.</p>
+<table>
+<tr><th>Stakeholder</th><th>Decision they own</th><th>Question the dashboard must answer</th></tr>
+<tr><td>Leadership / strategy</td><td>Which labs to partner with or bet on</td><td>Who is winning tokens, and is the market concentrating or spreading out?</td></tr>
+<tr><td>Pricing / finance</td><td>How to price, and where the money is</td><td>Does the cheapest model win? How does a lab's token share compare with its share of spend?</td></tr>
+<tr><td>AI platform team</td><td>Which model to route each workload to</td><td>Which models give the best quality for the price?</td></tr>
+<tr><td>Competitive intelligence</td><td>Where the threats come from</td><td>Are open-weight models and Chinese labs gaining on closed US models?</td></tr>
+<tr><td>Product / GTM</td><td>Launch planning; which apps and tasks to court</td><td>Do new models keep their usage after launch? Which apps and tasks drive demand?</td></tr>
+</table>
+<p><b>Why this subject.</b> I coded 221 analyst postings from 58 tech companies (my own job-search scans, Oct 9-19, 2026). With company boilerplate removed, 43% ask analysts to use AI tools in the work, 15% ask them to analyze AI itself (product usage, AI cost, model evaluation), and Tableau appears in 25% against Power BI's 8%. A real-data answer to "who is winning AI usage?" speaks to that demand directly.</p>
+<div class="tip"><b>Analyst tip.</b> Phrase each question as a decision: "Should we route bulk jobs to a cheaper model?" beats "show model usage". It tells you which chart wins.</div>
+
+<h2 class="ch">2. Understand the data before trusting it</h2>
+<p>Pull everything once, keep each response whole with its <code>as_of</code> stamp, then profile it: row counts, keys, date ranges, gaps, odd values.</p>
+<table>
+<tr><th>Source</th><th>What it holds</th><th>History</th></tr>
+<tr><td>Rankings (daily)</td><td>Top 50 models per day by tokens, plus one "other" row</td><td>From 2025-01-01</td></tr>
+<tr><td>Rankings by category (monthly)</td><td>Top models within 12 task categories (sampled)</td><td>From 2025-05</td></tr>
+<tr><td>App rankings (monthly)</td><td>Top 100 apps by tokens and requests</td><td>From 2025-01</td></tr>
+<tr><td>Benchmarks</td><td>Artificial Analysis indices, Design Arena, OpenRouter evals</td><td>Snapshot</td></tr>
+<tr><td>Model list + 22 Internet Archive snapshots</td><td>Prices, release dates, Hugging Face links (open weights)</td><td>Monthly, Jan 2025 to Oct 2026</td></tr>
+</table>
+<p>51 API calls, capped and stopped at the first error. Eight findings shaped every later step:</p>
+<ul>
+<li><b>Explosive growth.</b> Monthly tokens grew 258-fold (2.2T to 575.9T, Jan 2025 to Sep 2026), so an "all-time share" is really the last few months. Shares are always shown per month.</li>
+<li><b>Two missing days</b> (2025-06-15 and 2025-07-15) stay gaps, never zeros; monthly volume is shown as average tokens per day.</li>
+<li><b>One model, many IDs.</b> Of 436 slugs, 166 carry a release-date suffix and 80 are <code>:free</code> variants, so each slug rolls up to a model family and a lab.</li>
+<li><b>Unattributable tokens.</b> The long tail outside each day's top 50 is 6.6% of tokens; unnamed stealth models are 4.8% of named tokens. Both are their own groups, never guessed.</li>
+<li><b>Prices change and models retire.</b> Today's price list covers 88.2% of named tokens; adding the monthly Archive snapshots raises that to 97.7%.</li>
+<li><b>Partial edge buckets.</b> Each yearly category pull also returned a partial month before its start date (about 12% of the real value). Twelve were dropped.</li>
+<li><b>Categories are samples</b> summing to 85-91% of tokens, so they are used as mix shares, not totals.</li>
+<li><b>Benchmarks are a snapshot</b> covering 69% of the last 90 days' named tokens, so the quality chart uses that window and says so.</li>
+</ul>
+<div class="tip"><b>Analyst tip.</b> An API pull is a snapshot. Store the response's own timestamp with every number you publish: OpenRouter notes its figures can be restated.</div>
+
+<h2 class="ch">3. Model the data and agree the definitions</h2>
+<p><b>A small star schema in DuckDB.</b> Facts hold what you add up; dimensions hold what you filter by. Every foreign key is checked.</p>
+<table>
+<tr><th>Table</th><th>Grain</th><th>Why it exists</th></tr>
+<tr><td>fct_model_day</td><td>model × day</td><td>Token volume; shares and concentration</td></tr>
+<tr><td>mart_model_month</td><td>model × month</td><td>Tokens at that month's list price: estimated spend, price tiers</td></tr>
+<tr><td>dim_model</td><td>model slug</td><td>Family, variant, lab, release date, open weights</td></tr>
+<tr><td>dim_lab</td><td>organization</td><td>Country and type: 45 prefixes map to 42 organizations, each with a source (44 first-party)</td></tr>
+<tr><td>dim_date / dim_month</td><td>day / month</td><td>Calendar, missing-day flags, data days per month</td></tr>
+</table>
+<p><b>Metric dictionary.</b> Each metric is defined once and reused by both tools.</p>
+<table>
+<tr><th>Metric</th><th>Definition</th><th>Decision behind it</th></tr>
+<tr><td>Token share</td><td>Tokens / all tokens that period, including the long tail</td><td>A share of named tokens would inflate every lab</td></tr>
+<tr><td>Blended price</td><td>15/16 input price + 1/16 output price</td><td>OpenRouter's own 100T-token study reports about 6K prompt vs 400 completion tokens per request; 3:1 kept as a check</td></tr>
+<tr><td>Estimated spend</td><td>Tokens × blended list price</td><td>Before caching discounts, so an upper bound: used for shares, never dollar totals</td></tr>
+<tr><td>Lab HHI</td><td>10,000 × sum of squared lab shares of named tokens</td><td>Read against the DOJ/FTC 2023 line: above 1,800 is "highly concentrated"</td></tr>
+<tr><td>Launch curve</td><td>A model family's daily share by week since it entered the top 50</td><td>Only families first seen on or after 2025-02-01, so a launch is a real entry</td></tr>
+<tr><td>Country</td><td>The developer's stated headquarters</td><td>Not where a model is hosted, and not a base model's origin</td></tr>
+</table>
+<p>16 integrity checks run after every build: tokens reconcile exactly to the raw pulls (2,368,187,299,116,173), shares sum to 100% every month, no orphan keys, no conflicting prices per snapshot.</p>
+
+<h2 class="ch">4. Build the answer key first</h2>
+<p>Before any chart, compute the headline numbers a second, independent way: pandas reading only the raw files, sharing no code with the DuckDB model. These are the numbers every dashboard must match.</p>
+<table>
+<tr><th>Check</th><th class="num">Value</th><th>Check</th><th class="num">Value</th></tr>
+<tr><td>China token share, Sep 2026</td><td class="num">58.51%</td><td>US token share, Sep 2026</td><td class="num">28.87%</td></tr>
+<tr><td>China token share, Jan 2025</td><td class="num">5.99%</td><td>US token share, Jan 2025</td><td class="num">81.14%</td></tr>
+<tr><td>China spend share, Sep 2026</td><td class="num">39.68%</td><td>US spend share, Sep 2026</td><td class="num">60.25%</td></tr>
+<tr><td>Lab HHI, Jan 2025 → Sep 2026</td><td class="num">3,072 → 1,356</td><td>Average price paid, $/M</td><td class="num">$2.03 → $0.68</td></tr>
+<tr><td>Top app, Sep 2026</td><td class="num">Hermes Agent 8.56%</td><td>Programming share of categories</td><td class="num">58.60%</td></tr>
+</table>
+<p><b>Result:</b> 42 of 42 checks match the model. Reconciling first also caught a bug that looked plausible on screen:</p>
+<table>
+<tr><th>What looked fine</th><th>What was actually wrong</th><th>Fix</th></tr>
+<tr><td>China's Sep 2026 spend share: 45.4%</td><td>A model's <code>:batch</code> or <code>:free</code> variant shares its base model's ID, and both registered under one price key. Claude Opus 5 was priced at the batch rate ($3.13/M, not $6.25) and MiniMax M3 at $0</td><td>Variants register only as <code>model:variant</code>; ties break deterministically; a new check fails on two prices per key. True value: 39.7%</td></tr>
+</table>
+<p><b>Spot-check against the public page.</b> The live openrouter.ai/rankings leaderboard (Today, This Week, This Month top 10s) was rebuilt from one extra API call: 29 of 30 rows match on model and rounded tokens. The one miss (Step 5 Preview, 8.21T vs 8.22T) is the top-50 cut: the model's last three days fell into "other". The two pulls also agreed on all 306 overlapping rows, so nothing was restated.</p>
+<div class="tip warn"><b>Analyst tip.</b> Two calculations agreeing is not proof when they share an assumption. The price bug lived in both sides; they disagreed only because they broke a tie differently. January 2025 had agreed while both were wrong.</div>
+
+<h2 class="ch">5. Explore, then decide what is important</h2>
+<p>Each hypothesis was tested with several cuts. A finding makes the story only if it is big, reliable across cuts (including the 3:1 price blend) and actionable.</p>
+<table>
+<tr><th style="width:24%">Hypothesis</th><th>What the data said</th><th style="width:20%">Verdict</th></tr>
+<tr><td>Chinese models now lead tokens</td><td>China first passed the US the week of Mar 23, 2026 and has led every week since Apr 27. It holds if every unattributed token were American (58.5% vs 40.3%) and without DeepSeek (47.2% vs 36.8%). It fails in March 2026 under every cut.</td><td>Kept: the hook. By requests it is a tie (44.3% vs 45.0%, one week)</td></tr>
+<tr><td>Tokens and spend tell different stories</td><td>Sep 2026: China 58.5% of tokens but 39.7% of spend; Anthropic 3.4% of tokens but 28.3% of spend; DeepSeek 21.5% of tokens but 5.3% of spend. The gap was at least 18.8 points every month of 2026.</td><td>Kept: the central finding (the gap, not the level)</td></tr>
+<tr><td>Cheap models win volume, premium wins spend</td><td>Models under $0.25/M carry 59.7% of tokens but 6.2% of spend. The average token got 67% cheaper; the same models' list prices fell 10%, so about nine-tenths of the drop is mix.</td><td>Kept</td></tr>
+<tr><td>New models peak, then fade</td><td>103 notable launches: by week 12 a model keeps 21% of its peak share, but its lab keeps 70%. US labs keep 72%, Chinese labs 49%.</td><td>Kept, reframed: models churn, labs retain</td></tr>
+<tr><td>The market is spreading out</td><td>Lab HHI fell from 2,855 (Q1 2025) to 1,110 (Q2 2026) and has been below 1,800 every month since Dec 2025, but rose again in Q3 2026.</td><td>Kept, with the reversal stated</td></tr>
+<tr><td>Top scorers aren't the most used</td><td>The 5 highest-scoring models took 2.0% of tokens in 90 days; the 5 most-used (scores 24.4-41.8) took 32.5%. Rank correlation 0.19.</td><td>Kept, framed as routing</td></tr>
+</table>
+<p><b>Guarding against over-claiming,</b> written into the story rather than hidden:</p>
+<ul>
+<li><b>OpenRouter is not the market.</b> Direct API traffic to OpenAI, Anthropic or Google is invisible here; Menlo Ventures' late-2025 enterprise survey puts Anthropic at 40% of enterprise LLM API spend. Two markets, both real.</li>
+<li><b>Tokens are not requests, and requests are not users.</b> The lead holds on tokens; by requests it is a tie.</li>
+<li><b>Estimated spend is an upper bound</b> (list price, before caching). It is used for shares only.</li>
+<li><b>Benchmarks score one setting per model,</b> while usage counts every setting; cheap models can be the right choice for bulk jobs like classification, the largest task by usage share in the 7-day task snapshot.</li>
+</ul>
+
+<h2 class="ch">6. Choosing each chart, the way a tech company would</h2>
+<p>Rule of thumb: the job decides the chart. Every chart gets one message, and the title states it with a verified number.</p>
+<table>
+<tr><th>Question</th><th>Chart chosen</th><th>Why this, and what was rejected</th></tr>
+<tr><td>Who is winning, over time?</td><td>Weekly share lines: China, US, everyone else</td><td>A stacked area was rejected by the color validator (gray next to aqua: normal-vision ΔE 14.7, floor 15)</td></tr>
+<tr><td>Tokens vs spend, by country and lab</td><td>Dumbbell / paired bars on one % axis</td><td>Same unit, so one axis; a dual-axis chart was ruled out</td></tr>
+<tr><td>Did prices fall, or did mix shift?</td><td>Two indexed lines, Jan 2025 = 100</td><td>Indexing puts both on one scale instead of two axes</td></tr>
+<tr><td>Quality for the price</td><td>Bubble scatter, log price axis</td><td>Prices span $0.06-$75/M; a linear axis crams the cheap models into a corner</td></tr>
+<tr><td>Is it one lab or many?</td><td>Small multiples, shared y-axis</td><td>Six lines on one chart would need six hues</td></tr>
+<tr><td>Do launches stick?</td><td>Model vs lab line, indexed to the peak week</td><td>Shows the reframed finding in one glance</td></tr>
+</table>
+<p><b>Style rules, sourced to tech companies' own design systems:</b> summary first and one chart per panel (GitLab Pajamas, dashboards); categorical colors in a strict fixed order (IBM Carbon), so China is blue and the US orange on every page; chart color on data marks only, and fade the rest for emphasis (Atlassian). Non-country charts are monochrome: violet for the measure the title is about, gray for its comparison. Every palette was run through a colorblind and contrast validator in light and dark.</p>
+<figure><img style="max-height:3.25in" src="../screenshots/mockup_leadership.jpg" alt="Approved HTML mockup of the leadership page"><figcaption>Approved design mock (HTML, real numbers): the leadership page. It was signed off before either tool was opened.</figcaption></figure>
+
+<h2 class="ch">7. Building it in Power BI</h2>
+<p>Steps, in the order you would do them in the Power BI service (here on a Mac, with a Free license, so no Desktop):</p>
+<ul>
+<li><b>Get data:</b> one seed table through Power Query Online ("Text/CSV, link to file"), then the full model pasted into the TMDL view: 15 tables with typed queries reading the project's CSVs from GitHub, so a refresh needs no gateway.</li>
+<li><b>Model view:</b> 6 single-direction, many-to-one relationships; months reach the daily fact through dates.</li>
+<li><b>Measures, not columns:</b> 23 DAX measures from one <code>measures.dax</code>, including lab HHI as a SUMX over labs and spend share with REMOVEFILTERS.</li>
+<li><b>Reconcile:</b> one DAX query returning 22 headline numbers; all 22 match the pandas answer key to 9 significant digits.</li>
+<li><b>Pages:</b> one per stakeholder, KPI row on top; the report is generated as PBIR files and published with the Fabric REST API.</li>
+</ul>
+<figure><img src="../screenshots/powerbi_2_pricing_finance.jpg" alt="Power BI pricing page"><figcaption>Power BI: Pricing &amp; finance page (tokens vs spend by country and lab, price tiers, price vs mix).</figcaption></figure>
+<p><b>Problems the live build found, each fixed and re-checked:</b> a measure named <code>Tokens</code> collided with the <code>tokens</code> column (DAX names ignore case); the log axis and the small-multiples grid needed Power BI's real property names, read back after setting them once in the editor; chart titles fell back to a serif font until the theme used web-font stacks; and redefining a date column broke Power BI's hidden date table, so model patches now add columns only.</p>
+
+<h2 class="ch">8. Building it in Tableau, as a Story</h2>
+<p><b>Design before you build.</b> All five pages were mocked up in HTML with the real numbers and approved before any Tableau work. Changing a mock takes minutes; re-laying a dashboard takes an hour.</p>
+<figure><img src="../screenshots/mockup_pricing.jpg" alt="Approved HTML mockup of the pricing page"><figcaption>Approved design mock: Pricing &amp; finance. Tableau draws the dumbbells as dot plots (gray = tokens, violet = spend).</figcaption></figure>
+<ul>
+<li><b>One sheet per chart</b> (13 sheets), each reading one flat CSV exported from the same data the mockup used, so titles and KPI tiles cannot drift.</li>
+<li><b>Format in the house style:</b> Tableau Book and Semibold, hairline solid gridlines, no borders or bands, card-style dashboard zones, fixed palettes per entity.</li>
+<li><b>Story:</b> five story points, one per stakeholder, each caption the finding itself.</li>
+<li><b>Generated as code:</b> the workbook XML is written by a Python generator extended from the Olist project, using only formatting attributes found in Tableau-saved workbooks.</li>
+<li><b>Checked through Tableau's own log:</b> opening the workbook in Tableau Desktop showed every sheet, dashboard and story point parsed and queried with no errors, after one fix (two manual sorts on text months failed; the months became real dates).</li>
+</ul>
+
+<h2 class="ch">9. Telling the story</h2>
+<p>A dashboard shows data; a story makes an argument. The story points follow an arc: hook, the twist, the mechanism, the threat, the lever.</p>
+<table>
+<tr><th>Story point</th><th>Role in the argument</th><th>Caption (the one thing to remember)</th></tr>
+<tr><td>1 Leadership</td><td>Hook: the center of gravity moved</td><td>Chinese labs have led OpenRouter tokens every week since April 27</td></tr>
+<tr><td>2 Pricing &amp; finance</td><td>Twist: volume isn't money</td><td>China wins the tokens; US labs still win the money</td></tr>
+<tr><td>3 AI platform</td><td>Mechanism: routing follows cost, not score</td><td>The most-used models are cheap mid-scorers</td></tr>
+<tr><td>4 Competitive intel</td><td>Threat: it's broad, not one lab</td><td>China's lead holds without DeepSeek and under the worst-case count</td></tr>
+<tr><td>5 Product &amp; GTM</td><td>Lever: continuity keeps users</td><td>Models churn within weeks; labs keep most of their users</td></tr>
+</table>
+<p><b>Recommendations</b> (my analysis, drawn from the findings):</p>
+<ul>
+<li><b>Track tokens and spend side by side.</b> On open marketplaces Chinese labs carry the volume (58.5%) while US labs keep the spend (60.3%); a token-only view would misread the market.</li>
+<li><b>Forecast on mix, not list prices.</b> The average token got 67% cheaper while the same models got 10% cheaper; revenue plans should model the shift to cheaper tiers.</li>
+<li><b>Route by task, benchmark the frontier first.</b> Bulk work runs on cheap mid-scorers; the 7 price-quality frontier models are the short list to test.</li>
+<li><b>Make the upgrade path the retention plan.</b> A model keeps 21% of its peak by week 12 but its lab keeps 70%; US labs hold 72% against 49% for Chinese labs.</li>
+<li><b>Watch the bench, not one lab.</b> Five Chinese labs each carry 2%+ of tokens, and the lead survives without DeepSeek.</li>
+</ul>
+
+<figure><img style="max-height:2.6in" src="../screenshots/powerbi_5_product_gtm.jpg" alt="Power BI product and GTM page"><figcaption>Power BI: Product &amp; GTM page (model vs lab retention after launch, coding vs roleplay, top apps).</figcaption></figure>
+
+<h2 class="ch">10. How the story was checked</h2>
+<p>Five layers of checks, from numbers to narrative. Each one catches a different kind of mistake.</p>
+<table>
+<tr><th>Layer</th><th>What you check</th><th>How</th></tr>
+<tr><td>1 Numbers</td><td>Every KPI and chart total equals the answer key</td><td>Pandas answer key 42/42; live Power BI DAX 22/22; public-page spot-check 29/30</td></tr>
+<tr><td>2 Definitions</td><td>The same metric means the same thing everywhere</td><td>One metric dictionary; Tableau and Power BI read the same exported numbers</td></tr>
+<tr><td>3 Title claims</td><td>Every number in a title or caption is true</td><td>Titles are computed from the verified export, not typed; prose numbers re-checked against the data</td></tr>
+<tr><td>4 Sanity</td><td>Parts add up; nothing silently dropped</td><td>16 integrity checks: exact token reconciliation, shares sum to 100%, no orphan keys</td></tr>
+<tr><td>5 Render</td><td>What the viewer sees matches the data</td><td>Every Power BI page inspected on screen; Tableau load checked through its own log</td></tr>
+</table>
+<p><b>Checking caught these before publishing:</b> the variant-price bug (spend share 45.4% → 39.7%); lab retention for Chinese labs overstated (59% → 49%) because labs that left the top 50 had been skipped instead of counted as zero; a crossover date stated as July 6 that was really April 27; a price-tier share added from rounded parts (59.8% → 59.7%); and a "below 1,800 since Q4 2025" claim that was really "since December 2025".</p>
+<p><b>Questions to ask a reviewer</b> before publishing: would a stakeholder reach a different conclusion from the same chart? Is any claim causal that the data only shows as a correlation? What would make the main finding wrong (direct API traffic, caching discounts, stealth models)?</p>
+<div class="standard"><b>The standard.</b> A number goes on a slide only if it reconciles to the answer key, its definition is written down, and someone other than the builder could recompute it.</div>
+
+<h2 class="ch">11. Limitations and next steps</h2>
+<ul>
+<li><b>One marketplace.</b> OpenRouter traffic only; enterprise contracts and direct API use are not in the data.</li>
+<li><b>Top 50 per day.</b> Models near the cutoff are slightly undercounted; the "other" row bounds the gap.</li>
+<li><b>List prices.</b> Estimated spend ignores caching, batch and negotiated discounts, so only shares are reported.</li>
+<li><b>Benchmarks</b> are a snapshot of one setting per model; stealth models have no lab; country is the developer's HQ.</li>
+<li><b>Next:</b> a scheduled daily pull so both dashboards refresh themselves; cache-aware spend if cache rates become available; and an enterprise-spend comparison to put the two markets side by side.</li>
+</ul>
+<h3>Checklist you can reuse</h3>
+<table>
+<tr><th style="width:18%">Stage</th><th>Done when</th></tr>
+<tr><td>Brief</td><td>Each stakeholder has written questions and a decision attached</td></tr>
+<tr><td>Data</td><td>Every response stored with its as-of stamp; gaps, IDs and partial periods understood</td></tr>
+<tr><td>Model</td><td>Star schema with checked keys; metric dictionary written; lookups sourced</td></tr>
+<tr><td>Answer key</td><td>Headline numbers computed independently, plus a check against the public source</td></tr>
+<tr><td>Explore</td><td>Each kept finding is big, reliable and actionable; caveats written down</td></tr>
+<tr><td>Charts</td><td>One message per chart; insight title with a verified number; palette validated</td></tr>
+<tr><td>Build</td><td>Both tools reconcile; titles generated from data; render checked</td></tr>
+<tr><td>Story</td><td>Captions tell the argument in order; recommendations labelled as analysis</td></tr>
+</table>
+<p class="small"><b>Sources.</b> OpenRouter Data API and rankings (openrouter.ai/docs/cookbook/administration/data-api; openrouter.ai/rankings), CC BY 4.0, as of 2026-10-19. Benchmarks: Artificial Analysis via OpenRouter. "State of AI: An Empirical 100 Trillion Token Study with OpenRouter" (arXiv 2601.10088). Menlo Ventures 2025 State of Generative AI in the Enterprise (as reported by BigDATAwire). DOJ/FTC 2023 Merger Guidelines (HHI 1,800). IBM Carbon, GitLab Pajamas and Atlassian design systems (data visualization guidance). Independent analysis, not affiliated with OpenRouter or any lab. Code, data and definitions: github.com/Ajay0704/ai-model-market.</p>
+</body></html>

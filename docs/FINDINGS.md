@@ -19,7 +19,7 @@ Every number below is from the model the answer key verified (`docs/ANSWER_KEY.m
 | H6 | The highest-scoring model is not the most used | Across 72 benchmarked models with usage, rank correlation between Intelligence Index and tokens is **0.19** (weak). The **5 highest scorers (52.7-57.6) take 2.0%** of the last 90 days' tokens; the **5 most-used (scores 24.4-41.8) take 32.5%**. Only 7 of 91 scored models sit on the price-quality frontier, carrying 13.2% of scored usage. | The frontier set and its share are identical under the 3:1 blend. | **Kept.** Frame it as routing, not a market ignoring quality (see caveats). |
 
 ## Context only (true, but no decision hangs on it alone)
-- **Volume grew about 260x** (2.2T to 575.9T tokens a month, Jan 2025 to Sep 2026). It's the opening number, not a finding.
+- **Volume grew 258x** (2.2T to 575.9T tokens a month, Jan 2025 to Sep 2026). It's the opening number, not a finding.
 - **Coding took over:** programming went from 18.4% of categorized tokens (May 2025) to 58.6% (Sep 2026), and roleplay fell from 17.6% to 5.8%. It swings (35.6% in Jan 2026), and categories are sampled. The top apps are coding agents (Hermes Agent, Kilo Code, Claude Code, Cline).
 - **Open weights carry 63% of tokens** (Sep 2026). It overlaps H1, since most Chinese models are open-weight.
 
@@ -33,7 +33,7 @@ Every number below is from the model the answer key verified (`docs/ANSWER_KEY.m
 ## How the findings map to the story (input to step 5)
 | Stakeholder page | Finding | Chart job |
 |---|---|---|
-| Leadership | H1 + growth context + H5 | Share over time (stacked area by country group), with the crossover week marked |
+| Leadership | H1 + growth context + H5 | Share over time by country group (lines: the palette validator rejected a stacked area), with the crossover weeks marked |
 | Pricing / finance | H2 + H3 | Tokens vs spend side by side, by country and lab; price-vs-mix line pair |
 | AI platform team | H6 | Price-quality scatter with the frontier, bubble = usage |
 | Competitive intel | H1 cuts + breadth | Chinese labs' shares (small multiples); the robustness table |
