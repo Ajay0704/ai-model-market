@@ -1,0 +1,173 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
+  "name": "42dfa27cb8016d1e68d3",
+  "position": {
+    "x": 648,
+    "y": 576,
+    "z": 7,
+    "height": 330,
+    "width": 616,
+    "tabOrder": 7
+  },
+  "visual": {
+    "visualType": "lineChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "dim_month"
+                    }
+                  },
+                  "Property": "month_label"
+                }
+              },
+              "queryRef": "dim_month.month_label",
+              "nativeQueryRef": "month_label",
+              "active": true
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "mart_model_month"
+                    }
+                  },
+                  "Property": "Lab HHI (full months)"
+                }
+              },
+              "queryRef": "mart_model_month.Lab HHI (full months)",
+              "nativeQueryRef": "Lab HHI (full months)",
+              "displayName": "Lab HHI"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "mart_model_month"
+                    }
+                  },
+                  "Property": "Highly Concentrated Line"
+                }
+              },
+              "queryRef": "mart_model_month.Highly Concentrated Line",
+              "nativeQueryRef": "Highly Concentrated Line",
+              "displayName": "1,800 \"highly concentrated\" (DOJ/FTC 2023)"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "dim_month"
+                  }
+                },
+                "Property": "month_label"
+              }
+            },
+            "direction": "Ascending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Lab concentration fell from 3,072 to a low of 992 (Apr 2026), then rose to 1,356'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "subTitle": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Herfindahl-Hirschman Index of lab shares, full months · line at 1,800 · Source: OpenRouter (openrouter.ai/rankings), as of 2026-10-19 · CC BY 4.0'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "objects": {
+      "dataPoint": [
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#6250d6'"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "mart_model_month.Lab HHI (full months)"
+          }
+        },
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#898781'"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "mart_model_month.Highly Concentrated Line"
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

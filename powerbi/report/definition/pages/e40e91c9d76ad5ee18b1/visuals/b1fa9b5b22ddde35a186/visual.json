@@ -1,0 +1,84 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
+  "name": "b1fa9b5b22ddde35a186",
+  "position": {
+    "x": 16,
+    "y": 930,
+    "z": 9,
+    "height": 64,
+    "width": 1248,
+    "tabOrder": 9
+  },
+  "visual": {
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "Estimated spend ",
+                    "textStyle": {
+                      "fontWeight": "bold",
+                      "fontSize": "9pt",
+                      "color": "#0b0b0b"
+                    }
+                  },
+                  {
+                    "value": "= tokens × list price, blending input and output 15:1 (OpenRouter's own study reports about 6K prompt vs 400 completion tokens per request). It's before caching discounts, so it's an upper bound: use it for shares, not dollar totals. Under a 3:1 blend, China's September spend share is 36.5% and the US's is 63.5%.",
+                    "textStyle": {
+                      "fontSize": "9pt",
+                      "color": "#52514e"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "Source: OpenRouter (openrouter.ai/rankings), as of 2026-10-19 · CC BY 4.0. Model and report generated as code: github.com/Ajay0704/ai-model-market",
+                    "textStyle": {
+                      "fontSize": "8pt",
+                      "color": "#6f6d67"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "background": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "border": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

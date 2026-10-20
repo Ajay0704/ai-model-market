@@ -1,0 +1,84 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
+  "name": "b7a254a46625e4fb6a68",
+  "position": {
+    "x": 16,
+    "y": 916,
+    "z": 6,
+    "height": 64,
+    "width": 1248,
+    "tabOrder": 6
+  },
+  "visual": {
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "Routing, not taste: ",
+                    "textStyle": {
+                      "fontWeight": "bold",
+                      "fontSize": "9pt",
+                      "color": "#0b0b0b"
+                    }
+                  },
+                  {
+                    "value": "benchmarks score one setting per model (for example \"Max\" reasoning), while usage counts every setting. Bulk jobs such as classification, the largest task by requests this week, can rationally use cheap models. One free model is left off the log scale.",
+                    "textStyle": {
+                      "fontSize": "9pt",
+                      "color": "#52514e"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "Source: OpenRouter (openrouter.ai/rankings), as of 2026-10-19 · CC BY 4.0. Model and report generated as code: github.com/Ajay0704/ai-model-market",
+                    "textStyle": {
+                      "fontSize": "8pt",
+                      "color": "#6f6d67"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "background": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "border": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

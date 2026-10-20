@@ -1,0 +1,8 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.1.0/schema.json",
+  "name": "be91f5f5b6b3176b052b",
+  "displayName": "Competitive intel",
+  "displayOption": "FitToWidth",
+  "height": 1000,
+  "width": 1280
+}

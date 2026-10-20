@@ -1,0 +1,359 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
+  "name": "5586acf94f7b8d45a35d",
+  "position": {
+    "x": 16,
+    "y": 200,
+    "z": 5,
+    "height": 700,
+    "width": 1248,
+    "tabOrder": 5
+  },
+  "visual": {
+    "visualType": "scatterChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "chart_quality_price"
+                    }
+                  },
+                  "Property": "Model"
+                }
+              },
+              "queryRef": "chart_quality_price.Model",
+              "nativeQueryRef": "Model",
+              "active": true
+            }
+          ]
+        },
+        "Series": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "chart_quality_price"
+                    }
+                  },
+                  "Property": "Group"
+                }
+              },
+              "queryRef": "chart_quality_price.Group",
+              "nativeQueryRef": "Group",
+              "active": true
+            }
+          ]
+        },
+        "X": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "chart_quality_price"
+                        }
+                      },
+                      "Property": "Price per M"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(chart_quality_price.Price per M)",
+              "nativeQueryRef": "Price per M",
+              "displayName": "Blended price per million tokens"
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "chart_quality_price"
+                        }
+                      },
+                      "Property": "Intelligence Index"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(chart_quality_price.Intelligence Index)",
+              "nativeQueryRef": "Intelligence Index",
+              "displayName": "Intelligence Index"
+            }
+          ]
+        },
+        "Size": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "chart_quality_price"
+                        }
+                      },
+                      "Property": "Share of 90-day Tokens"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(chart_quality_price.Share of 90-day Tokens)",
+              "nativeQueryRef": "Share of 90-day Tokens",
+              "displayName": "Share of last-90-day tokens"
+            }
+          ]
+        }
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Usage piles up at low prices and middling scores; the top scorers are niche'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "subTitle": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Last 90 days · x: blended price per million tokens (log) · y: Intelligence Index · size: share of tokens · labeled: top 5 by usage and the price-quality frontier · Benchmarks: Artificial Analysis via OpenRouter · Source: OpenRouter (openrouter.ai/rankings), as of 2026-10-19 · CC BY 4.0'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "objects": {
+      "dataPoint": [
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#2a78d6'"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "chart_quality_price"
+                          }
+                        },
+                        "Property": "Group"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'China'"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#eb6834'"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "chart_quality_price"
+                          }
+                        },
+                        "Property": "Group"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'US'"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#898781'"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "chart_quality_price"
+                          }
+                        },
+                        "Property": "Group"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'Other'"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "categoryAxis": [
+        {
+          "properties": {
+            "axisScale": {
+              "expr": {
+                "Literal": {
+                  "Value": "'log'"
+                }
+              }
+            },
+            "showAxisTitle": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "valueAxis": [
+        {
+          "properties": {
+            "start": {
+              "expr": {
+                "Literal": {
+                  "Value": "10D"
+                }
+              }
+            },
+            "end": {
+              "expr": {
+                "Literal": {
+                  "Value": "60D"
+                }
+              }
+            },
+            "showAxisTitle": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "categoryLabels": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

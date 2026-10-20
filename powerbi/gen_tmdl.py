@@ -35,6 +35,7 @@ TABLES = {
     "chart_launch_curve": "tableau/data/launch_curve.csv",
     "chart_categories": "tableau/data/categories.csv",
     "chart_top_apps": "tableau/data/top_apps.csv",
+    "chart_labs_tokens_spend": "tableau/data/labs_tokens_spend.csv",
 }
 # (from table, column) -> (to table, column); all many-to-one, single direction
 RELATIONSHIPS = [
@@ -45,16 +46,18 @@ RELATIONSHIPS = [
     ("mart_model_month", "month", "dim_month", "month"),
     ("mart_model_month", "model_permaslug", "dim_model", "model_permaslug"),
 ]
-HOME = {"Tokens": "fct_model_day", "Spend": "mart_model_month"}
+HOME = {"Tokens": "fct_model_day", "Spend": "mart_model_month", "Charts": "mart_model_month", "Robustness": "chart_robustness"}
 DATES = {"date", "month", "week_start", "listed_date", "first_seen_date", "last_seen_date", "Month", "Week"}
 BOOLS = {"is_missing_day", "is_partial", "is_free_variant", "is_stealth", "open_weights"}
 INTS = {"tokens", "days_in_top50", "data_days", "month_sort", "year", "context_length", "Tier Order", "Lab Order",
         "Cut Order", "Rank", "Weeks Since Launch", "Spend Rank", "Group Order"}
 SORT_BY = {("dim_month", "month_label"): "month_sort", ("chart_price_tiers", "Tier"): "Tier Order",
-           ("chart_robustness", "Way of Counting"): "Cut Order", ("chart_china_labs", "Lab"): "Lab Order"}
+           ("chart_robustness", "Way of Counting"): "Cut Order", ("chart_china_labs", "Lab"): "Lab Order",
+           ("chart_labs_tokens_spend", "Lab"): "Spend Rank"}
 COLUMN_FORMATS = {
     ("chart_price_tiers", "Share"): "0.0%", ("chart_china_labs", "Share"): "0.0%", ("chart_categories", "Share"): "0.0%",
-    ("chart_top_apps", "Share of September Tokens"): "0.0%", ("chart_quality_price", "Share of 90-day Tokens"): "0.00%",
+    ("chart_top_apps", "Share of September Tokens"): "0.0%", ("chart_labs_tokens_spend", "Share"): "0.0%",
+    ("chart_price_index", "Index (Jan 2025 = 100)"): "0", ("chart_launch_curve", "Share (% of peak)"): "0", ("chart_quality_price", "Share of 90-day Tokens"): "0.00%",
     ("chart_quality_price", "Price per M"): r"\$#,0.00", ("mart_model_month", "token_share"): "0.0%",
     ("mart_model_month", "est_spend_usd"): r"\$#,0", ("mart_model_month", "blended_price_per_m"): r"\$#,0.00",
 }
@@ -141,7 +144,7 @@ def table_tmdl(table: str, path: str, measures: list) -> list[str]:
         f = COLUMN_FORMATS.get((table, c)) or ("yyyy-mm-dd" if dt == "dateTime" else None)
         if f:
             lines.append(f"\t\t\tformatString: {f}")
-        if c in {"month_sort", "Tier Order", "Cut Order", "Lab Order"}:
+        if c in {"month_sort", "Tier Order", "Cut Order", "Lab Order", "Spend Rank"}:
             lines.append("\t\t\tisHidden")
         lines.append(f"\t\t\tsummarizeBy: {'sum' if c in {'tokens', 'est_spend_usd', 'est_spend_usd_3to1'} else 'none'}")
         lines.append(f"\t\t\tsourceColumn: {c}")

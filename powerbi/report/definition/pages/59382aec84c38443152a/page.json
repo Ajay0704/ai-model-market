@@ -1,0 +1,8 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.1.0/schema.json",
+  "name": "59382aec84c38443152a",
+  "displayName": "Leadership",
+  "displayOption": "FitToWidth",
+  "height": 1000,
+  "width": 1280
+}

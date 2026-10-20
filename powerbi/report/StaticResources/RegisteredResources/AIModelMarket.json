@@ -1,0 +1,189 @@
+{
+  "name": "AI Model Market",
+  "dataColors": [
+    "#2a78d6",
+    "#eb6834",
+    "#898781",
+    "#6250d6",
+    "#1baf7a",
+    "#eda100",
+    "#e87ba4",
+    "#008300"
+  ],
+  "background": "#fcfcfb",
+  "foreground": "#0b0b0b",
+  "tableAccent": "#6250d6",
+  "textClasses": {
+    "title": {
+      "fontFace": "Segoe UI Semibold",
+      "fontSize": 11,
+      "color": "#0b0b0b"
+    },
+    "label": {
+      "fontFace": "Segoe UI",
+      "fontSize": 9,
+      "color": "#52514e"
+    },
+    "callout": {
+      "fontFace": "Segoe UI Semibold",
+      "fontSize": 20,
+      "color": "#0b0b0b"
+    },
+    "header": {
+      "fontFace": "Segoe UI Semibold",
+      "fontSize": 10,
+      "color": "#0b0b0b"
+    }
+  },
+  "visualStyles": {
+    "page": {
+      "*": {
+        "background": [
+          {
+            "color": {
+              "solid": {
+                "color": "#f9f9f7"
+              }
+            },
+            "transparency": 0
+          }
+        ]
+      }
+    },
+    "*": {
+      "*": {
+        "background": [
+          {
+            "show": true,
+            "color": {
+              "solid": {
+                "color": "#fcfcfb"
+              }
+            },
+            "transparency": 0
+          }
+        ],
+        "border": [
+          {
+            "show": true,
+            "color": {
+              "solid": {
+                "color": "#e1e0d9"
+              }
+            },
+            "radius": 10
+          }
+        ],
+        "padding": [
+          {
+            "top": 12,
+            "bottom": 10,
+            "left": 14,
+            "right": 14
+          }
+        ],
+        "title": [
+          {
+            "fontColor": {
+              "solid": {
+                "color": "#0b0b0b"
+              }
+            },
+            "fontFamily": "Segoe UI Semibold",
+            "fontSize": 11,
+            "alignment": "left"
+          }
+        ],
+        "subTitle": [
+          {
+            "fontColor": {
+              "solid": {
+                "color": "#6f6d67"
+              }
+            },
+            "fontFamily": "Segoe UI",
+            "fontSize": 8
+          }
+        ],
+        "valueAxis": [
+          {
+            "gridlineShow": true,
+            "gridlineColor": {
+              "solid": {
+                "color": "#e1e0d9"
+              }
+            },
+            "gridlineStyle": "solid",
+            "gridlineThickness": 1,
+            "labelColor": {
+              "solid": {
+                "color": "#52514e"
+              }
+            },
+            "fontSize": 8,
+            "showAxisTitle": false
+          }
+        ],
+        "categoryAxis": [
+          {
+            "gridlineShow": false,
+            "labelColor": {
+              "solid": {
+                "color": "#52514e"
+              }
+            },
+            "fontSize": 8,
+            "showAxisTitle": false
+          }
+        ],
+        "legend": [
+          {
+            "show": true,
+            "position": "TopLeft",
+            "labelColor": {
+              "solid": {
+                "color": "#52514e"
+              }
+            },
+            "fontSize": 8,
+            "showTitle": false
+          }
+        ],
+        "labels": [
+          {
+            "color": {
+              "solid": {
+                "color": "#0b0b0b"
+              }
+            },
+            "fontSize": 8
+          }
+        ]
+      }
+    },
+    "lineChart": {
+      "*": {
+        "lineStyles": [
+          {
+            "strokeWidth": 2,
+            "showMarker": false
+          }
+        ]
+      }
+    },
+    "textbox": {
+      "*": {
+        "background": [
+          {
+            "show": false
+          }
+        ],
+        "border": [
+          {
+            "show": false
+          }
+        ]
+      }
+    }
+  }
+}

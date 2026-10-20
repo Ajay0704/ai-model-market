@@ -215,10 +215,6 @@ createOrReplace
 			formatString: #,0
 			displayFolder: Tokens
 
-		measure 'Highly Concentrated Line' = IF ( NOT ISBLANK ( [Lab HHI] ), 1800 )
-			formatString: #,0
-			displayFolder: Tokens
-
 		column date
 			dataType: dateTime
 			formatString: yyyy-mm-dd
@@ -286,6 +282,22 @@ createOrReplace
 		measure 'US Spend Share' = CALCULATE ( [Spend Share], dim_lab[country_group] = "US" )
 			formatString: 0.0%
 			displayFolder: Spend
+
+		measure 'Token Share Sep 2026' = CALCULATE ( [Month Token Share], dim_month[month] = DATE ( 2026, 9, 1 ) )
+			formatString: 0.0%
+			displayFolder: Charts
+
+		measure 'Spend Share Sep 2026' = CALCULATE ( [Spend Share], dim_month[month] = DATE ( 2026, 9, 1 ) )
+			formatString: 0.0%
+			displayFolder: Charts
+
+		measure 'Lab HHI (full months)' = IF ( SELECTEDVALUE ( dim_month[is_partial] ) = FALSE (), [Lab HHI] )
+			formatString: #,0
+			displayFolder: Charts
+
+		measure 'Highly Concentrated Line' = IF ( NOT ISBLANK ( [Lab HHI (full months)] ), 1800 )
+			formatString: #,0
+			displayFolder: Charts
 
 		column month
 			dataType: dateTime
@@ -406,6 +418,7 @@ createOrReplace
 
 		column 'Index (Jan 2025 = 100)'
 			dataType: double
+			formatString: 0
 			summarizeBy: none
 			sourceColumn: Index (Jan 2025 = 100)
 
@@ -516,6 +529,10 @@ createOrReplace
 
 	table chart_robustness
 
+		measure 'Robustness Result' = SELECTEDVALUE ( chart_robustness[Result] )
+			formatString: #,0
+			displayFolder: Robustness
+
 		column 'Way of Counting'
 			dataType: string
 			summarizeBy: none
@@ -568,6 +585,7 @@ createOrReplace
 
 		column 'Share (% of peak)'
 			dataType: double
+			formatString: 0
 			summarizeBy: none
 			sourceColumn: Share (% of peak)
 
@@ -635,6 +653,41 @@ createOrReplace
 						Source = Csv.Document(Web.Contents("https://raw.githubusercontent.com", [RelativePath = "Ajay0704/ai-model-market/main/tableau/data/top_apps.csv"]), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
 						Headers = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
 						Typed = Table.TransformColumnTypes(Headers, {{"App", type text}, {"Rank", Int64.Type}, {"Share of September Tokens", type number}}, "en-US")
+					in
+						Typed
+
+	table chart_labs_tokens_spend
+
+		column Lab
+			dataType: string
+			summarizeBy: none
+			sourceColumn: Lab
+			sortByColumn: 'Spend Rank'
+
+		column 'Spend Rank'
+			dataType: int64
+			isHidden
+			summarizeBy: none
+			sourceColumn: Spend Rank
+
+		column Measure
+			dataType: string
+			summarizeBy: none
+			sourceColumn: Measure
+
+		column Share
+			dataType: double
+			formatString: 0.0%
+			summarizeBy: none
+			sourceColumn: Share
+
+		partition chart_labs_tokens_spend = m
+			mode: import
+			source =
+					let
+						Source = Csv.Document(Web.Contents("https://raw.githubusercontent.com", [RelativePath = "Ajay0704/ai-model-market/main/tableau/data/labs_tokens_spend.csv"]), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+						Headers = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+						Typed = Table.TransformColumnTypes(Headers, {{"Lab", type text}, {"Spend Rank", Int64.Type}, {"Measure", type text}, {"Share", type number}}, "en-US")
 					in
 						Typed
 

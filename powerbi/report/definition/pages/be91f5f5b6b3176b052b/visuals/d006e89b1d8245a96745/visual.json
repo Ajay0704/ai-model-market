@@ -1,0 +1,84 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
+  "name": "d006e89b1d8245a96745",
+  "position": {
+    "x": 16,
+    "y": 920,
+    "z": 7,
+    "height": 64,
+    "width": 1248,
+    "tabOrder": 7
+  },
+  "visual": {
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "Country ",
+                    "textStyle": {
+                      "fontWeight": "bold",
+                      "fontSize": "9pt",
+                      "color": "#0b0b0b"
+                    }
+                  },
+                  {
+                    "value": "means the developer's stated headquarters, from each lab's own legal or about page (data/reference/labs.csv): not where a model is hosted, and not where a base model it was tuned from came from.",
+                    "textStyle": {
+                      "fontSize": "9pt",
+                      "color": "#52514e"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "Source: OpenRouter (openrouter.ai/rankings), as of 2026-10-19 · CC BY 4.0. Model and report generated as code: github.com/Ajay0704/ai-model-market",
+                    "textStyle": {
+                      "fontSize": "8pt",
+                      "color": "#6f6d67"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "background": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "border": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

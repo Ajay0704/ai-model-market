@@ -1,0 +1,143 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
+  "name": "edec408ccc3f2628d008",
+  "position": {
+    "x": 16,
+    "y": 636,
+    "z": 6,
+    "height": 270,
+    "width": 1248,
+    "tabOrder": 6
+  },
+  "visual": {
+    "visualType": "pivotTable",
+    "query": {
+      "queryState": {
+        "Rows": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "chart_robustness"
+                    }
+                  },
+                  "Property": "Way of Counting"
+                }
+              },
+              "queryRef": "chart_robustness.Way of Counting",
+              "nativeQueryRef": "Way of Counting",
+              "active": true,
+              "displayName": "Way of counting"
+            }
+          ]
+        },
+        "Columns": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "chart_robustness"
+                    }
+                  },
+                  "Property": "Month"
+                }
+              },
+              "queryRef": "chart_robustness.Month",
+              "nativeQueryRef": "Month",
+              "active": true,
+              "displayName": "Month"
+            }
+          ]
+        },
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "chart_robustness"
+                    }
+                  },
+                  "Property": "Robustness Result"
+                }
+              },
+              "queryRef": "chart_robustness.Robustness Result",
+              "nativeQueryRef": "Robustness Result",
+              "displayName": "China vs US share of tokens"
+            }
+          ]
+        }
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'China leads in June and September under every cut, but in March under none'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "subTitle": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'China vs US share of tokens under four ways of counting · the requests row is from the public rankings page, one week · Source: OpenRouter (openrouter.ai/rankings), as of 2026-10-19 · CC BY 4.0'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "objects": {
+      "subTotals": [
+        {
+          "properties": {
+            "rowSubtotals": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "columnSubtotals": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

@@ -20,8 +20,6 @@ VAR NamedTokens = CALCULATE ( [Tokens], NOT dim_lab[org_type] IN { "stealth", "l
 VAR Labs = CALCULATETABLE ( VALUES ( dim_lab[org_name] ), NOT dim_lab[org_type] IN { "stealth", "long_tail", "pending" } )
 RETURN 10000 * SUMX ( Labs, DIVIDE ( CALCULATE ( [Tokens] ), NamedTokens ) ^ 2 )
 
-Highly Concentrated Line = IF ( NOT ISBLANK ( [Lab HHI] ), 1800 )
-
 // ---------- Spend ----------
 // Monthly model facts (mart_model_month) at that month's list price. Estimated spend is an upper bound; use shares.
 
@@ -44,3 +42,18 @@ Avg Price Paid = DIVIDE ( [Est Spend], [Priced Tokens] ) * 1E6
 China Spend Share = CALCULATE ( [Spend Share], dim_lab[country_group] = "China" )
 
 US Spend Share = CALCULATE ( [Spend Share], dim_lab[country_group] = "US" )
+
+// ---------- Charts ----------
+// Fixed-period versions the report pages show (the pricing page is a September 2026 snapshot).
+
+Token Share Sep 2026 = CALCULATE ( [Month Token Share], dim_month[month] = DATE ( 2026, 9, 1 ) )
+
+Spend Share Sep 2026 = CALCULATE ( [Spend Share], dim_month[month] = DATE ( 2026, 9, 1 ) )
+
+Lab HHI (full months) = IF ( SELECTEDVALUE ( dim_month[is_partial] ) = FALSE (), [Lab HHI] )
+
+Highly Concentrated Line = IF ( NOT ISBLANK ( [Lab HHI (full months)] ), 1800 )
+
+// ---------- Robustness ----------
+
+Robustness Result = SELECTEDVALUE ( chart_robustness[Result] )
