@@ -248,7 +248,7 @@ def pages() -> list[Page]:
              {"dataPoint": single(CHINA),
               "smallMultiplesLayout": [{"properties": {"rowCount": lit("2L"), "columnCount": lit("3L")}}]}, sort=(cm, "Ascending"))
     p4.chart("pivotTable", (G, 636, W - 2 * G, 270), "Robustness",
-             {"Rows": [(C("chart_robustness", "Way of Counting"), "Way of counting")], "Columns": [(C("chart_robustness", "Month"), "Month")],
+             {"Rows": [(C("chart_robustness", "Way of Counting"), "Way of counting")], "Columns": [(C("chart_robustness", "Month Label"), "Month")],
               "Values": [(M("chart_robustness", "Robustness Result"), "China vs US share of tokens")]},
              {"subTotals": [{"properties": {"rowSubtotals": lit("false"), "columnSubtotals": lit("false")}}]})
     p4.note(920)

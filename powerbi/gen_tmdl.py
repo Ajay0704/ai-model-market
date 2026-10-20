@@ -51,10 +51,10 @@ HOME = {"Tokens": "fct_model_day", "Spend": "mart_model_month", "Charts": "mart_
 DATES = {"date", "month", "week_start", "listed_date", "first_seen_date", "last_seen_date", "Month", "Week"}
 BOOLS = {"is_missing_day", "is_partial", "is_free_variant", "is_stealth", "open_weights"}
 INTS = {"tokens", "days_in_top50", "data_days", "month_sort", "year", "context_length", "Tier Order", "Lab Order",
-        "Cut Order", "Rank", "Weeks Since Launch", "Spend Rank", "Group Order"}
+        "Cut Order", "Rank", "Weeks Since Launch", "Spend Rank", "Group Order", "Month Sort"}
 SORT_BY = {("dim_month", "month_label"): "month_sort", ("chart_price_tiers", "Tier"): "Tier Order",
            ("chart_robustness", "Way of Counting"): "Cut Order", ("chart_china_labs", "Lab"): "Lab Order",
-           ("chart_labs_tokens_spend", "Lab"): "Spend Rank"}
+           ("chart_labs_tokens_spend", "Lab"): "Spend Rank", ("chart_robustness", "Month Label"): "Month Sort"}
 COLUMN_FORMATS = {
     ("chart_price_tiers", "Share"): "0.0%", ("chart_china_labs", "Share"): "0.0%", ("chart_categories", "Share"): "0.0%",
     ("chart_top_apps", "Share of September Tokens"): "0.0%", ("chart_labs_tokens_spend", "Share"): "0.0%",
@@ -146,7 +146,7 @@ def table_tmdl(table: str, path: str, measures: list) -> list[str]:
         f = COLUMN_FORMATS.get((table, c)) or ("yyyy-mm-dd" if dt == "dateTime" else None)
         if f:
             lines.append(f"\t\t\tformatString: {f}")
-        if c in {"month_sort", "Tier Order", "Cut Order", "Lab Order", "Spend Rank"}:
+        if c in {"month_sort", "Tier Order", "Cut Order", "Lab Order", "Spend Rank", "Month Sort"}:
             lines.append("\t\t\tisHidden")
         lines.append(f"\t\t\tsummarizeBy: {'sum' if c in {'tokens', 'est_spend_usd', 'est_spend_usd_3to1'} else 'none'}")
         lines.append(f"\t\t\tsourceColumn: {c}")
@@ -184,17 +184,24 @@ def main() -> None:
     print(f"{len(TABLES)} tables (+ seed {SEED_TABLE}), {len(measures)} measures, {len(RELATIONSHIPS)} relationships -> powerbi/model_full.tmdl")
 
 
-def patch(tables: list[str]) -> None:
-    """`ref table` + every column + a fresh partition, for live tables with date columns (a full replace fails
-    there because the service hangs hidden auto date/time tables off them; see the Olist build notes)."""
-    lines = ["createOrReplace", ""]
-    for t in tables:
-        block = table_tmdl(t, TABLES[t], [])
-        lines += [f"\tref table {t}", ""] + block[1:]
-    (HERE / "model_patch.tmdl").write_text("\n".join(lines) + "\n")
-    print(f"patch for {', '.join(tables)} -> powerbi/model_patch.tmdl")
+def patch(spec: str) -> None:
+    """Add columns to a live table: `ref table` + only the named columns + a fresh partition. Never redefine an
+    existing date column: that drops its link to the hidden auto date/time table and the apply fails."""
+    table, cols = spec.split(":")
+    wanted = set(cols.split("|"))
+    block = table_tmdl(table, TABLES[table], [])
+    out, keep = [f"\tref table {table}", ""], False
+    for line in block[1:]:
+        if line.startswith("\t\tcolumn "):
+            keep = line.split("column ", 1)[1].strip("'") in wanted
+        elif line.startswith("\t\tpartition "):
+            keep = True
+        if keep:
+            out.append(line)
+    (HERE / "model_patch.tmdl").write_text("\n".join(["createOrReplace", ""] + out) + "\n")
+    print(f"patch: {table} + {sorted(wanted)} -> powerbi/model_patch.tmdl")
 
 
 if __name__ == "__main__":
     import sys
-    patch(sys.argv[sys.argv.index("--patch") + 1].split(",")) if "--patch" in sys.argv else main()
+    patch(sys.argv[sys.argv.index("--patch") + 1]) if "--patch" in sys.argv else main()

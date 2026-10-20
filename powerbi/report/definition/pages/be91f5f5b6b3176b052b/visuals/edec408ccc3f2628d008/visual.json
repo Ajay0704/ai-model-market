@@ -43,11 +43,11 @@
                       "Entity": "chart_robustness"
                     }
                   },
-                  "Property": "Month"
+                  "Property": "Month Label"
                 }
               },
-              "queryRef": "chart_robustness.Month",
-              "nativeQueryRef": "Month",
+              "queryRef": "chart_robustness.Month Label",
+              "nativeQueryRef": "Month Label",
               "active": true,
               "displayName": "Month"
             }

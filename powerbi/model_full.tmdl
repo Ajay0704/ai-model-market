@@ -608,13 +608,25 @@ createOrReplace
 			summarizeBy: none
 			sourceColumn: Leader
 
+		column 'Month Label'
+			dataType: string
+			summarizeBy: none
+			sourceColumn: Month Label
+			sortByColumn: 'Month Sort'
+
+		column 'Month Sort'
+			dataType: int64
+			isHidden
+			summarizeBy: none
+			sourceColumn: Month Sort
+
 		partition chart_robustness = m
 			mode: import
 			source =
 					let
 						Source = Csv.Document(Web.Contents("https://raw.githubusercontent.com", [RelativePath = "Ajay0704/ai-model-market/main/tableau/data/robustness.csv"]), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
 						Headers = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
-						Typed = Table.TransformColumnTypes(Headers, {{"Way of Counting", type text}, {"Cut Order", Int64.Type}, {"Month", type date}, {"Result", type text}, {"Leader", type text}}, "en-US")
+						Typed = Table.TransformColumnTypes(Headers, {{"Way of Counting", type text}, {"Cut Order", Int64.Type}, {"Month", type date}, {"Result", type text}, {"Leader", type text}, {"Month Label", type text}, {"Month Sort", Int64.Type}}, "en-US")
 					in
 						Typed
 

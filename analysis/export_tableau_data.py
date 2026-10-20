@@ -78,10 +78,11 @@ rows = []
 for i, cut in enumerate(CUTS):
     for r in [x for x in D["robustness"] if x["cut"] == cut]:
         who = "China ahead" if r["china"] > r["us"] else "US ahead"
-        rows.append([cut[0].upper() + cut[1:], i + 1, r["month"] + "-01", f"{who}   {pct(r['china'])} vs {pct(r['us'])}", who])
+        rows.append([cut[0].upper() + cut[1:], i + 1, r["month"] + "-01", f"{who}   {pct(r['china'])} vs {pct(r['us'])}", who,
+                     mlabel(r["month"]).replace(" ", " 20"), int(r["month"].replace("-", ""))])
 rq = D["requests_week"]
-rows.append(["By requests, not tokens (week of Oct 12)", 5, "2026-09-01", f"Tie   {pct(rq['china'])} vs {pct(rq['us'])}", "Tie"])
-write("robustness.csv", ["Way of Counting", "Cut Order", "Month", "Result", "Leader"], rows)
+rows.append(["By requests, not tokens (week of Oct 12)", 5, "2026-09-01", f"Tie   {pct(rq['china'])} vs {pct(rq['us'])}", "Tie", "Sep 2026", 202609])
+write("robustness.csv", ["Way of Counting", "Cut Order", "Month", "Result", "Leader", "Month Label", "Month Sort"], rows)
 
 # 5 Product & GTM
 write("launch_curve.csv", ["Weeks Since Launch", "Series", "Share (% of peak)"],
