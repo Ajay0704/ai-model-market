@@ -3,7 +3,7 @@
   "version": "4.0",
   "datasetReference": {
     "byConnection": {
-      "connectionString": "Data Source=\"powerbi://api.powerbi.com/v1.0/myorg/My workspace\";initial catalog=\"AI Model Market\";integrated security=ClaimsToken;semanticmodelid=00000000-0000-0000-0000-000000000000"
+      "connectionString": "Data Source=\"powerbi://api.powerbi.com/v1.0/myorg/My workspace\";initial catalog=\"AI Model Market\";integrated security=ClaimsToken;semanticmodelid=6922d090-0624-428c-aeda-22f0399d64ea"
     }
   }
 }
