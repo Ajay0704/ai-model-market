@@ -24,7 +24,7 @@ DB = ROOT / "data" / "model.duckdb"
 INPUT_WEIGHT = 15 / 16
 INPUT_WEIGHT_ALT = 3 / 4
 
-EXPORT = ["dim_date", "dim_lab", "dim_model", "fct_model_day", "fct_price_month", "mart_model_month",
+EXPORT = ["dim_date", "dim_month", "dim_lab", "dim_model", "fct_model_day", "fct_price_month", "mart_model_month",
           "mart_lab_month", "mart_concentration_month", "mart_launch_weekly", "mart_quality_price_90d",
           "mart_category_month", "mart_app_month", "mart_task_snapshot", "tableau_model_day"]
 

@@ -1,0 +1,664 @@
+createOrReplace
+
+	table dim_date
+		dataCategory: Time
+
+		column date
+			dataType: dateTime
+			isKey
+			formatString: yyyy-mm-dd
+			summarizeBy: none
+			sourceColumn: date
+
+		column month
+			dataType: dateTime
+			formatString: yyyy-mm-dd
+			summarizeBy: none
+			sourceColumn: month
+
+		column week_start
+			dataType: dateTime
+			formatString: yyyy-mm-dd
+			summarizeBy: none
+			sourceColumn: week_start
+
+		column year
+			dataType: int64
+			summarizeBy: none
+			sourceColumn: year
+
+		column is_missing_day
+			dataType: boolean
+			summarizeBy: none
+			sourceColumn: is_missing_day
+
+		partition dim_date = m
+			mode: import
+			source =
+					let
+						Source = Csv.Document(Web.Contents("https://raw.githubusercontent.com", [RelativePath = "Ajay0704/ai-model-market/main/data/processed/dim_date.csv"]), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+						Headers = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+						Typed = Table.TransformColumnTypes(Headers, {{"date", type date}, {"month", type date}, {"week_start", type date}, {"year", Int64.Type}, {"is_missing_day", type logical}}, "en-US")
+					in
+						Typed
+
+	table dim_month
+
+		column month
+			dataType: dateTime
+			formatString: yyyy-mm-dd
+			summarizeBy: none
+			sourceColumn: month
+
+		column month_label
+			dataType: string
+			summarizeBy: none
+			sourceColumn: month_label
+			sortByColumn: month_sort
+
+		column month_sort
+			dataType: int64
+			isHidden
+			summarizeBy: none
+			sourceColumn: month_sort
+
+		column data_days
+			dataType: int64
+			summarizeBy: none
+			sourceColumn: data_days
+
+		column is_partial
+			dataType: boolean
+			summarizeBy: none
+			sourceColumn: is_partial
+
+		partition dim_month = m
+			mode: import
+			source =
+					let
+						Source = Csv.Document(Web.Contents("https://raw.githubusercontent.com", [RelativePath = "Ajay0704/ai-model-market/main/data/processed/dim_month.csv"]), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+						Headers = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+						Typed = Table.TransformColumnTypes(Headers, {{"month", type date}, {"month_label", type text}, {"month_sort", Int64.Type}, {"data_days", Int64.Type}, {"is_partial", type logical}}, "en-US")
+					in
+						Typed
+
+	table dim_model
+
+		column model_permaslug
+			dataType: string
+			summarizeBy: none
+			sourceColumn: model_permaslug
+
+		column prefix
+			dataType: string
+			summarizeBy: none
+			sourceColumn: prefix
+
+		column base_slug
+			dataType: string
+			summarizeBy: none
+			sourceColumn: base_slug
+
+		column model_family
+			dataType: string
+			summarizeBy: none
+			sourceColumn: model_family
+
+		column variant
+			dataType: string
+			summarizeBy: none
+			sourceColumn: variant
+
+		column is_free_variant
+			dataType: boolean
+			summarizeBy: none
+			sourceColumn: is_free_variant
+
+		column is_stealth
+			dataType: boolean
+			summarizeBy: none
+			sourceColumn: is_stealth
+
+		column org_name
+			dataType: string
+			summarizeBy: none
+			sourceColumn: org_name
+
+		column display_name
+			dataType: string
+			summarizeBy: none
+			sourceColumn: display_name
+
+		column listed_date
+			dataType: dateTime
+			formatString: yyyy-mm-dd
+			summarizeBy: none
+			sourceColumn: listed_date
+
+		column context_length
+			dataType: int64
+			summarizeBy: none
+			sourceColumn: context_length
+
+		column open_weights
+			dataType: boolean
+			summarizeBy: none
+			sourceColumn: open_weights
+
+		column hugging_face_id
+			dataType: string
+			summarizeBy: none
+			sourceColumn: hugging_face_id
+
+		column first_seen_date
+			dataType: dateTime
+			formatString: yyyy-mm-dd
+			summarizeBy: none
+			sourceColumn: first_seen_date
+
+		column last_seen_date
+			dataType: dateTime
+			formatString: yyyy-mm-dd
+			summarizeBy: none
+			sourceColumn: last_seen_date
+
+		column days_in_top50
+			dataType: int64
+			summarizeBy: none
+			sourceColumn: days_in_top50
+
+		partition dim_model = m
+			mode: import
+			source =
+					let
+						Source = Csv.Document(Web.Contents("https://raw.githubusercontent.com", [RelativePath = "Ajay0704/ai-model-market/main/data/processed/dim_model.csv"]), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+						Headers = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+						Typed = Table.TransformColumnTypes(Headers, {{"model_permaslug", type text}, {"prefix", type text}, {"base_slug", type text}, {"model_family", type text}, {"variant", type text}, {"is_free_variant", type logical}, {"is_stealth", type logical}, {"org_name", type text}, {"display_name", type text}, {"listed_date", type date}, {"context_length", Int64.Type}, {"open_weights", type logical}, {"hugging_face_id", type text}, {"first_seen_date", type date}, {"last_seen_date", type date}, {"days_in_top50", Int64.Type}}, "en-US")
+					in
+						Typed
+
+	table fct_model_day
+
+		measure Tokens = SUM ( fct_model_day[tokens] )
+			formatString: #,0
+			displayFolder: Tokens
+
+		measure 'All Tokens' = CALCULATE ( [Tokens], REMOVEFILTERS ( dim_model ), REMOVEFILTERS ( dim_lab ) )
+			formatString: #,0
+			displayFolder: Tokens
+
+		measure 'Token Share' = DIVIDE ( [Tokens], [All Tokens] )
+			formatString: 0.0%
+			displayFolder: Tokens
+
+		measure 'Data Days' = CALCULATE ( COUNTROWS ( dim_date ), dim_date[is_missing_day] == FALSE () )
+			formatString: #,0
+			displayFolder: Tokens
+
+		measure 'Tokens per Day (T)' = DIVIDE ( [Tokens], [Data Days] ) / 1E12
+			formatString: #,0.0
+			displayFolder: Tokens
+
+		measure 'China Token Share' = CALCULATE ( [Token Share], dim_lab[country_group] = "China" )
+			formatString: 0.0%
+			displayFolder: Tokens
+
+		measure 'US Token Share' = CALCULATE ( [Token Share], dim_lab[country_group] = "US" )
+			formatString: 0.0%
+			displayFolder: Tokens
+
+		measure 'Lab HHI' = ```
+				VAR NamedTokens = CALCULATE ( [Tokens], NOT dim_lab[org_type] IN { "stealth", "long_tail", "pending" } )
+				VAR Labs = CALCULATETABLE ( VALUES ( dim_lab[org_name] ), NOT dim_lab[org_type] IN { "stealth", "long_tail", "pending" } )
+				RETURN 10000 * SUMX ( Labs, DIVIDE ( CALCULATE ( [Tokens] ), NamedTokens ) ^ 2 )
+				```
+			formatString: #,0
+			displayFolder: Tokens
+
+		measure 'Highly Concentrated Line' = IF ( NOT ISBLANK ( [Lab HHI] ), 1800 )
+			formatString: #,0
+			displayFolder: Tokens
+
+		column date
+			dataType: dateTime
+			formatString: yyyy-mm-dd
+			summarizeBy: none
+			sourceColumn: date
+
+		column model_permaslug
+			dataType: string
+			summarizeBy: none
+			sourceColumn: model_permaslug
+
+		column tokens
+			dataType: int64
+			summarizeBy: sum
+			sourceColumn: tokens
+
+		partition fct_model_day = m
+			mode: import
+			source =
+					let
+						Source = Csv.Document(Web.Contents("https://raw.githubusercontent.com", [RelativePath = "Ajay0704/ai-model-market/main/data/processed/fct_model_day.csv"]), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+						Headers = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+						Typed = Table.TransformColumnTypes(Headers, {{"date", type date}, {"model_permaslug", type text}, {"tokens", Int64.Type}}, "en-US")
+					in
+						Typed
+
+	table mart_model_month
+
+		measure 'Month Tokens' = SUM ( mart_model_month[tokens] )
+			formatString: #,0
+			displayFolder: Spend
+
+		measure 'Month Token Share' = DIVIDE ( [Month Tokens], CALCULATE ( [Month Tokens], REMOVEFILTERS ( dim_model ), REMOVEFILTERS ( dim_lab ) ) )
+			formatString: 0.0%
+			displayFolder: Spend
+
+		measure 'Est Spend' = SUM ( mart_model_month[est_spend_usd] )
+			formatString: \$#,0
+			displayFolder: Spend
+
+		measure 'Est Spend 3to1' = SUM ( mart_model_month[est_spend_usd_3to1] )
+			formatString: \$#,0
+			displayFolder: Spend
+
+		measure 'Spend Share' = DIVIDE ( [Est Spend], CALCULATE ( [Est Spend], REMOVEFILTERS ( dim_model ), REMOVEFILTERS ( dim_lab ) ) )
+			formatString: 0.0%
+			displayFolder: Spend
+
+		measure 'Spend Share 3to1' = DIVIDE ( [Est Spend 3to1], CALCULATE ( [Est Spend 3to1], REMOVEFILTERS ( dim_model ), REMOVEFILTERS ( dim_lab ) ) )
+			formatString: 0.0%
+			displayFolder: Spend
+
+		measure 'Priced Tokens' = CALCULATE ( [Month Tokens], NOT ISBLANK ( mart_model_month[est_spend_usd] ) )
+			formatString: \$#,0.00
+			displayFolder: Spend
+
+		measure 'Avg Price Paid' = DIVIDE ( [Est Spend], [Priced Tokens] ) * 1E6
+			formatString: \$#,0.00
+			displayFolder: Spend
+
+		measure 'China Spend Share' = CALCULATE ( [Spend Share], dim_lab[country_group] = "China" )
+			formatString: 0.0%
+			displayFolder: Spend
+
+		measure 'US Spend Share' = CALCULATE ( [Spend Share], dim_lab[country_group] = "US" )
+			formatString: 0.0%
+			displayFolder: Spend
+
+		column month
+			dataType: dateTime
+			formatString: yyyy-mm-dd
+			summarizeBy: none
+			sourceColumn: month
+
+		column model_permaslug
+			dataType: string
+			summarizeBy: none
+			sourceColumn: model_permaslug
+
+		column tokens
+			dataType: int64
+			summarizeBy: sum
+			sourceColumn: tokens
+
+		column days_in_top50
+			dataType: int64
+			summarizeBy: none
+			sourceColumn: days_in_top50
+
+		column avg_tokens_per_day
+			dataType: double
+			summarizeBy: none
+			sourceColumn: avg_tokens_per_day
+
+		column token_share
+			dataType: double
+			formatString: 0.0%
+			summarizeBy: none
+			sourceColumn: token_share
+
+		column blended_price_per_m
+			dataType: double
+			formatString: \$#,0.00
+			summarizeBy: none
+			sourceColumn: blended_price_per_m
+
+		column est_spend_usd
+			dataType: double
+			formatString: \$#,0
+			summarizeBy: sum
+			sourceColumn: est_spend_usd
+
+		column est_spend_usd_3to1
+			dataType: double
+			summarizeBy: sum
+			sourceColumn: est_spend_usd_3to1
+
+		column price_match
+			dataType: string
+			summarizeBy: none
+			sourceColumn: price_match
+
+		column price_tier
+			dataType: string
+			summarizeBy: none
+			sourceColumn: price_tier
+
+		partition mart_model_month = m
+			mode: import
+			source =
+					let
+						Source = Csv.Document(Web.Contents("https://raw.githubusercontent.com", [RelativePath = "Ajay0704/ai-model-market/main/data/processed/mart_model_month.csv"]), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+						Headers = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+						Typed = Table.TransformColumnTypes(Headers, {{"month", type date}, {"model_permaslug", type text}, {"tokens", Int64.Type}, {"days_in_top50", Int64.Type}, {"avg_tokens_per_day", type number}, {"token_share", type number}, {"blended_price_per_m", type number}, {"est_spend_usd", type number}, {"est_spend_usd_3to1", type number}, {"price_match", type text}, {"price_tier", type text}}, "en-US")
+					in
+						Typed
+
+	table chart_price_tiers
+
+		column Tier
+			dataType: string
+			summarizeBy: none
+			sourceColumn: Tier
+			sortByColumn: 'Tier Order'
+
+		column 'Tier Order'
+			dataType: int64
+			isHidden
+			summarizeBy: none
+			sourceColumn: Tier Order
+
+		column Measure
+			dataType: string
+			summarizeBy: none
+			sourceColumn: Measure
+
+		column Share
+			dataType: double
+			formatString: 0.0%
+			summarizeBy: none
+			sourceColumn: Share
+
+		partition chart_price_tiers = m
+			mode: import
+			source =
+					let
+						Source = Csv.Document(Web.Contents("https://raw.githubusercontent.com", [RelativePath = "Ajay0704/ai-model-market/main/tableau/data/price_tiers.csv"]), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+						Headers = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+						Typed = Table.TransformColumnTypes(Headers, {{"Tier", type text}, {"Tier Order", Int64.Type}, {"Measure", type text}, {"Share", type number}}, "en-US")
+					in
+						Typed
+
+	table chart_price_index
+
+		column Month
+			dataType: dateTime
+			formatString: yyyy-mm-dd
+			summarizeBy: none
+			sourceColumn: Month
+
+		column Series
+			dataType: string
+			summarizeBy: none
+			sourceColumn: Series
+
+		column 'Index (Jan 2025 = 100)'
+			dataType: double
+			summarizeBy: none
+			sourceColumn: Index (Jan 2025 = 100)
+
+		partition chart_price_index = m
+			mode: import
+			source =
+					let
+						Source = Csv.Document(Web.Contents("https://raw.githubusercontent.com", [RelativePath = "Ajay0704/ai-model-market/main/tableau/data/price_index.csv"]), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+						Headers = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+						Typed = Table.TransformColumnTypes(Headers, {{"Month", type date}, {"Series", type text}, {"Index (Jan 2025 = 100)", type number}}, "en-US")
+					in
+						Typed
+
+	table chart_quality_price
+
+		column Model
+			dataType: string
+			summarizeBy: none
+			sourceColumn: Model
+
+		column Lab
+			dataType: string
+			summarizeBy: none
+			sourceColumn: Lab
+
+		column Group
+			dataType: string
+			summarizeBy: none
+			sourceColumn: Group
+
+		column 'Intelligence Index'
+			dataType: double
+			summarizeBy: none
+			sourceColumn: Intelligence Index
+
+		column 'Price per M'
+			dataType: double
+			formatString: \$#,0.00
+			summarizeBy: none
+			sourceColumn: Price per M
+
+		column 'Share of 90-day Tokens'
+			dataType: double
+			formatString: 0.00%
+			summarizeBy: none
+			sourceColumn: Share of 90-day Tokens
+
+		column 'Point Label'
+			dataType: string
+			summarizeBy: none
+			sourceColumn: Point Label
+
+		column Highlight
+			dataType: string
+			summarizeBy: none
+			sourceColumn: Highlight
+
+		partition chart_quality_price = m
+			mode: import
+			source =
+					let
+						Source = Csv.Document(Web.Contents("https://raw.githubusercontent.com", [RelativePath = "Ajay0704/ai-model-market/main/tableau/data/quality_price.csv"]), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+						Headers = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+						Typed = Table.TransformColumnTypes(Headers, {{"Model", type text}, {"Lab", type text}, {"Group", type text}, {"Intelligence Index", type number}, {"Price per M", type number}, {"Share of 90-day Tokens", type number}, {"Point Label", type text}, {"Highlight", type text}}, "en-US")
+					in
+						Typed
+
+	table chart_china_labs
+
+		column Lab
+			dataType: string
+			summarizeBy: none
+			sourceColumn: Lab
+			sortByColumn: 'Lab Order'
+
+		column 'Lab Order'
+			dataType: int64
+			isHidden
+			summarizeBy: none
+			sourceColumn: Lab Order
+
+		column 'Lab Title'
+			dataType: string
+			summarizeBy: none
+			sourceColumn: Lab Title
+
+		column Month
+			dataType: dateTime
+			formatString: yyyy-mm-dd
+			summarizeBy: none
+			sourceColumn: Month
+
+		column Share
+			dataType: double
+			formatString: 0.0%
+			summarizeBy: none
+			sourceColumn: Share
+
+		partition chart_china_labs = m
+			mode: import
+			source =
+					let
+						Source = Csv.Document(Web.Contents("https://raw.githubusercontent.com", [RelativePath = "Ajay0704/ai-model-market/main/tableau/data/china_labs.csv"]), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+						Headers = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+						Typed = Table.TransformColumnTypes(Headers, {{"Lab", type text}, {"Lab Order", Int64.Type}, {"Lab Title", type text}, {"Month", type date}, {"Share", type number}}, "en-US")
+					in
+						Typed
+
+	table chart_robustness
+
+		column 'Way of Counting'
+			dataType: string
+			summarizeBy: none
+			sourceColumn: Way of Counting
+			sortByColumn: 'Cut Order'
+
+		column 'Cut Order'
+			dataType: int64
+			isHidden
+			summarizeBy: none
+			sourceColumn: Cut Order
+
+		column Month
+			dataType: dateTime
+			formatString: yyyy-mm-dd
+			summarizeBy: none
+			sourceColumn: Month
+
+		column Result
+			dataType: string
+			summarizeBy: none
+			sourceColumn: Result
+
+		column Leader
+			dataType: string
+			summarizeBy: none
+			sourceColumn: Leader
+
+		partition chart_robustness = m
+			mode: import
+			source =
+					let
+						Source = Csv.Document(Web.Contents("https://raw.githubusercontent.com", [RelativePath = "Ajay0704/ai-model-market/main/tableau/data/robustness.csv"]), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+						Headers = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+						Typed = Table.TransformColumnTypes(Headers, {{"Way of Counting", type text}, {"Cut Order", Int64.Type}, {"Month", type date}, {"Result", type text}, {"Leader", type text}}, "en-US")
+					in
+						Typed
+
+	table chart_launch_curve
+
+		column 'Weeks Since Launch'
+			dataType: int64
+			summarizeBy: none
+			sourceColumn: Weeks Since Launch
+
+		column Series
+			dataType: string
+			summarizeBy: none
+			sourceColumn: Series
+
+		column 'Share (% of peak)'
+			dataType: double
+			summarizeBy: none
+			sourceColumn: Share (% of peak)
+
+		partition chart_launch_curve = m
+			mode: import
+			source =
+					let
+						Source = Csv.Document(Web.Contents("https://raw.githubusercontent.com", [RelativePath = "Ajay0704/ai-model-market/main/tableau/data/launch_curve.csv"]), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+						Headers = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+						Typed = Table.TransformColumnTypes(Headers, {{"Weeks Since Launch", Int64.Type}, {"Series", type text}, {"Share (% of peak)", type number}}, "en-US")
+					in
+						Typed
+
+	table chart_categories
+
+		column Month
+			dataType: dateTime
+			formatString: yyyy-mm-dd
+			summarizeBy: none
+			sourceColumn: Month
+
+		column Category
+			dataType: string
+			summarizeBy: none
+			sourceColumn: Category
+
+		column Share
+			dataType: double
+			formatString: 0.0%
+			summarizeBy: none
+			sourceColumn: Share
+
+		partition chart_categories = m
+			mode: import
+			source =
+					let
+						Source = Csv.Document(Web.Contents("https://raw.githubusercontent.com", [RelativePath = "Ajay0704/ai-model-market/main/tableau/data/categories.csv"]), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+						Headers = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+						Typed = Table.TransformColumnTypes(Headers, {{"Month", type date}, {"Category", type text}, {"Share", type number}}, "en-US")
+					in
+						Typed
+
+	table chart_top_apps
+
+		column App
+			dataType: string
+			summarizeBy: none
+			sourceColumn: App
+
+		column Rank
+			dataType: int64
+			summarizeBy: none
+			sourceColumn: Rank
+
+		column 'Share of September Tokens'
+			dataType: double
+			formatString: 0.0%
+			summarizeBy: none
+			sourceColumn: Share of September Tokens
+
+		partition chart_top_apps = m
+			mode: import
+			source =
+					let
+						Source = Csv.Document(Web.Contents("https://raw.githubusercontent.com", [RelativePath = "Ajay0704/ai-model-market/main/tableau/data/top_apps.csv"]), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+						Headers = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+						Typed = Table.TransformColumnTypes(Headers, {{"App", type text}, {"Rank", Int64.Type}, {"Share of September Tokens", type number}}, "en-US")
+					in
+						Typed
+
+	relationship fct_model_day_date__dim_date
+		fromColumn: fct_model_day.date
+		toColumn: dim_date.date
+
+	relationship dim_date_month__dim_month
+		fromColumn: dim_date.month
+		toColumn: dim_month.month
+
+	relationship fct_model_day_model_permaslug__dim_model
+		fromColumn: fct_model_day.model_permaslug
+		toColumn: dim_model.model_permaslug
+
+	relationship dim_model_org_name__dim_lab
+		fromColumn: dim_model.org_name
+		toColumn: dim_lab.org_name
+
+	relationship mart_model_month_month__dim_month
+		fromColumn: mart_model_month.month
+		toColumn: dim_month.month
+
+	relationship mart_model_month_model_permaslug__dim_model
+		fromColumn: mart_model_month.model_permaslug
+		toColumn: dim_model.model_permaslug
+

@@ -19,7 +19,11 @@ SELECT
     any_value(p.blended_price_per_m) AS blended_price_per_m,
     sum(f.tokens) * any_value(p.blended_price_per_m) / 1e6 AS est_spend_usd,
     sum(f.tokens) * any_value(p.blended_price_per_m_3to1) / 1e6 AS est_spend_usd_3to1,
-    any_value(p.price_match) AS price_match
+    any_value(p.price_match) AS price_match,
+    -- price tier by blended list price per million tokens (as charted on the pricing page)
+    CASE WHEN any_value(p.blended_price_per_m) IS NULL THEN NULL WHEN any_value(p.blended_price_per_m) = 0 THEN 'Free'
+         WHEN any_value(p.blended_price_per_m) < 0.25 THEN 'Under $0.25' WHEN any_value(p.blended_price_per_m) < 1 THEN '$0.25-1'
+         WHEN any_value(p.blended_price_per_m) < 5 THEN '$1-5' ELSE '$5+' END AS price_tier
 FROM fct_model_day f
 JOIN dim_date d USING (date)
 JOIN month_days md USING (month)

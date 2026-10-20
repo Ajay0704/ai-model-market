@@ -42,6 +42,17 @@ SELECT
     org_type, source_url, source_type
 FROM (SELECT * FROM sourced UNION ALL SELECT * FROM synthetic);
 
+-- The three-way grouping the dashboards chart (China, US, everyone else), so every tool groups the same way.
+ALTER TABLE dim_lab ADD COLUMN chart_group VARCHAR;
+UPDATE dim_lab SET chart_group = CASE WHEN country_group IN ('China', 'US') THEN country_group ELSE 'Everyone else' END;
+
+-- One row per month, for tools that relate monthly facts (Power BI needs a unique key per relationship).
+CREATE TABLE dim_month AS
+SELECT month, strftime(month, '%b %Y') AS month_label, CAST(strftime(month, '%Y%m') AS INTEGER) AS month_sort,
+       count(*) FILTER (WHERE NOT is_missing_day) AS data_days,
+       month = (SELECT max(month) FROM dim_date) AS is_partial
+FROM dim_date GROUP BY month;
+
 -- One row per model slug seen in the daily rankings (plus the 'other' row).
 CREATE TABLE dim_model AS
 WITH slugs AS (
