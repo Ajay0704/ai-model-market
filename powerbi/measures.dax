@@ -1,24 +1,24 @@
 // ---------- Tokens ----------
 // Daily tokens per model (fct_model_day). Shares use ALL tokens as the denominator, including the long tail.
 
-Tokens = SUM ( fct_model_day[tokens] )
+Total Tokens = SUM ( fct_model_day[tokens] )
 
-All Tokens = CALCULATE ( [Tokens], REMOVEFILTERS ( dim_model ), REMOVEFILTERS ( dim_lab ) )
+All Tokens = CALCULATE ( [Total Tokens], REMOVEFILTERS ( dim_model ), REMOVEFILTERS ( dim_lab ) )
 
-Token Share = DIVIDE ( [Tokens], [All Tokens] )
+Token Share = DIVIDE ( [Total Tokens], [All Tokens] )
 
 Data Days = CALCULATE ( COUNTROWS ( dim_date ), dim_date[is_missing_day] == FALSE () )
 
-Tokens per Day (T) = DIVIDE ( [Tokens], [Data Days] ) / 1E12
+Tokens per Day (T) = DIVIDE ( [Total Tokens], [Data Days] ) / 1E12
 
 China Token Share = CALCULATE ( [Token Share], dim_lab[country_group] = "China" )
 
 US Token Share = CALCULATE ( [Token Share], dim_lab[country_group] = "US" )
 
 Lab HHI =
-VAR NamedTokens = CALCULATE ( [Tokens], NOT dim_lab[org_type] IN { "stealth", "long_tail", "pending" } )
+VAR NamedTokens = CALCULATE ( [Total Tokens], NOT dim_lab[org_type] IN { "stealth", "long_tail", "pending" } )
 VAR Labs = CALCULATETABLE ( VALUES ( dim_lab[org_name] ), NOT dim_lab[org_type] IN { "stealth", "long_tail", "pending" } )
-RETURN 10000 * SUMX ( Labs, DIVIDE ( CALCULATE ( [Tokens] ), NamedTokens ) ^ 2 )
+RETURN 10000 * SUMX ( Labs, DIVIDE ( CALCULATE ( [Total Tokens] ), NamedTokens ) ^ 2 )
 
 // ---------- Spend ----------
 // Monthly model facts (mart_model_month) at that month's list price. Estimated spend is an upper bound; use shares.

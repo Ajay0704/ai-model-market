@@ -226,15 +226,15 @@ createOrReplace
 
 	table fct_model_day
 
-		measure Tokens = SUM ( fct_model_day[tokens] )
+		measure 'Total Tokens' = SUM ( fct_model_day[tokens] )
 			formatString: #,0
 			displayFolder: Tokens
 
-		measure 'All Tokens' = CALCULATE ( [Tokens], REMOVEFILTERS ( dim_model ), REMOVEFILTERS ( dim_lab ) )
+		measure 'All Tokens' = CALCULATE ( [Total Tokens], REMOVEFILTERS ( dim_model ), REMOVEFILTERS ( dim_lab ) )
 			formatString: #,0
 			displayFolder: Tokens
 
-		measure 'Token Share' = DIVIDE ( [Tokens], [All Tokens] )
+		measure 'Token Share' = DIVIDE ( [Total Tokens], [All Tokens] )
 			formatString: 0.0%
 			displayFolder: Tokens
 
@@ -242,7 +242,7 @@ createOrReplace
 			formatString: #,0
 			displayFolder: Tokens
 
-		measure 'Tokens per Day (T)' = DIVIDE ( [Tokens], [Data Days] ) / 1E12
+		measure 'Tokens per Day (T)' = DIVIDE ( [Total Tokens], [Data Days] ) / 1E12
 			formatString: #,0.0
 			displayFolder: Tokens
 
@@ -255,9 +255,9 @@ createOrReplace
 			displayFolder: Tokens
 
 		measure 'Lab HHI' = ```
-				VAR NamedTokens = CALCULATE ( [Tokens], NOT dim_lab[org_type] IN { "stealth", "long_tail", "pending" } )
+				VAR NamedTokens = CALCULATE ( [Total Tokens], NOT dim_lab[org_type] IN { "stealth", "long_tail", "pending" } )
 				VAR Labs = CALCULATETABLE ( VALUES ( dim_lab[org_name] ), NOT dim_lab[org_type] IN { "stealth", "long_tail", "pending" } )
-				RETURN 10000 * SUMX ( Labs, DIVIDE ( CALCULATE ( [Tokens] ), NamedTokens ) ^ 2 )
+				RETURN 10000 * SUMX ( Labs, DIVIDE ( CALCULATE ( [Total Tokens] ), NamedTokens ) ^ 2 )
 				```
 			formatString: #,0
 			displayFolder: Tokens
