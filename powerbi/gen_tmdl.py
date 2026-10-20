@@ -58,7 +58,8 @@ SORT_BY = {("dim_month", "month_label"): "month_sort", ("chart_price_tiers", "Ti
 COLUMN_FORMATS = {
     ("chart_price_tiers", "Share"): "0.0%", ("chart_china_labs", "Share"): "0.0%", ("chart_categories", "Share"): "0.0%",
     ("chart_top_apps", "Share of September Tokens"): "0.0%", ("chart_labs_tokens_spend", "Share"): "0.0%",
-    ("chart_price_index", "Index (Jan 2025 = 100)"): "0", ("chart_launch_curve", "Share (% of peak)"): "0", ("chart_quality_price", "Share of 90-day Tokens"): "0.00%",
+    ("chart_price_index", "Index (Jan 2025 = 100)"): "0", ("chart_launch_curve", "Share (% of peak)"): "0",
+    ("chart_robustness", "Month"): "mmm yyyy", ("chart_quality_price", "Share of 90-day Tokens"): "0.00%",
     ("chart_quality_price", "Price per M"): r"\$#,0.00", ("mart_model_month", "token_share"): "0.0%",
     ("mart_model_month", "est_spend_usd"): r"\$#,0", ("mart_model_month", "blended_price_per_m"): r"\$#,0.00",
 }
@@ -183,5 +184,17 @@ def main() -> None:
     print(f"{len(TABLES)} tables (+ seed {SEED_TABLE}), {len(measures)} measures, {len(RELATIONSHIPS)} relationships -> powerbi/model_full.tmdl")
 
 
+def patch(tables: list[str]) -> None:
+    """`ref table` + every column + a fresh partition, for live tables with date columns (a full replace fails
+    there because the service hangs hidden auto date/time tables off them; see the Olist build notes)."""
+    lines = ["createOrReplace", ""]
+    for t in tables:
+        block = table_tmdl(t, TABLES[t], [])
+        lines += [f"\tref table {t}", ""] + block[1:]
+    (HERE / "model_patch.tmdl").write_text("\n".join(lines) + "\n")
+    print(f"patch for {', '.join(tables)} -> powerbi/model_patch.tmdl")
+
+
 if __name__ == "__main__":
-    main()
+    import sys
+    patch(sys.argv[sys.argv.index("--patch") + 1].split(",")) if "--patch" in sys.argv else main()

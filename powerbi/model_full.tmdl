@@ -594,7 +594,7 @@ createOrReplace
 
 		column Month
 			dataType: dateTime
-			formatString: yyyy-mm-dd
+			formatString: mmm yyyy
 			summarizeBy: none
 			sourceColumn: Month
 

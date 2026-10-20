@@ -3,7 +3,7 @@
   "name": "2440d48f86e88b496466",
   "position": {
     "x": 16,
-    "y": 200,
+    "y": 240,
     "z": 5,
     "height": 420,
     "width": 1248,
@@ -149,6 +149,26 @@
                       "Value": "'#2a78d6'"
                     }
                   }
+                }
+              }
+            }
+          }
+        }
+      ],
+      "smallMultiplesLayout": [
+        {
+          "properties": {
+            "rowCount": {
+              "expr": {
+                "Literal": {
+                  "Value": "2L"
+                }
+              }
+            },
+            "columnCount": {
+              "expr": {
+                "Literal": {
+                  "Value": "3L"
                 }
               }
             }

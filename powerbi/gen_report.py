@@ -22,11 +22,14 @@ sys.path.insert(0, str(ROOT / "tableau"))
 import make_workbook as TW  # noqa: E402  (titles, KPI tiles and notes)
 
 MODEL_NAME = "AI Model Market"
-W, H, G = 1280, 1000, 16
+W, H, G = 1280, 1040, 16
+DY = 40  # extra height given to the header and KPI tiles
 HALF = (W - 3 * G) // 2
 SCHEMA = "https://developer.microsoft.com/json-schemas/fabric/item/report/definition"
 THEME_NAME = "AIModelMarket.json"
 INK, INK2, MUTED = "#0b0b0b", "#52514e", "#6f6d67"
+SEMI = "'Segoe UI Semibold', wf_segoe-ui_semibold, helvetica, arial, sans-serif"
+BOOK = "'Segoe UI', wf_segoe-ui_normal, helvetica, arial, sans-serif"
 PLANE, SURFACE, BORDER, GRID = "#f9f9f7", "#fcfcfb", "#e1e0d9", "#e1e0d9"
 CHINA, US, GRAY, ACCENT = "#2a78d6", "#eb6834", "#898781", "#6250d6"
 
@@ -35,10 +38,10 @@ THEME = {
     "dataColors": [CHINA, US, GRAY, ACCENT, "#1baf7a", "#eda100", "#e87ba4", "#008300"],
     "background": SURFACE, "foreground": INK, "tableAccent": ACCENT,
     "textClasses": {
-        "title": {"fontFace": "Segoe UI Semibold", "fontSize": 11, "color": INK},
-        "label": {"fontFace": "Segoe UI", "fontSize": 9, "color": INK2},
-        "callout": {"fontFace": "Segoe UI Semibold", "fontSize": 20, "color": INK},
-        "header": {"fontFace": "Segoe UI Semibold", "fontSize": 10, "color": INK},
+        "title": {"fontFace": SEMI, "fontSize": 11, "color": INK},
+        "label": {"fontFace": BOOK, "fontSize": 9, "color": INK2},
+        "callout": {"fontFace": SEMI, "fontSize": 20, "color": INK},
+        "header": {"fontFace": SEMI, "fontSize": 10, "color": INK},
     },
     "visualStyles": {
         "page": {"*": {"background": [{"color": {"solid": {"color": PLANE}}, "transparency": 0}]}},
@@ -46,8 +49,8 @@ THEME = {
             "background": [{"show": True, "color": {"solid": {"color": SURFACE}}, "transparency": 0}],
             "border": [{"show": True, "color": {"solid": {"color": BORDER}}, "radius": 10}],
             "padding": [{"top": 12, "bottom": 10, "left": 14, "right": 14}],
-            "title": [{"fontColor": {"solid": {"color": INK}}, "fontFamily": "Segoe UI Semibold", "fontSize": 11, "alignment": "left"}],
-            "subTitle": [{"fontColor": {"solid": {"color": MUTED}}, "fontFamily": "Segoe UI", "fontSize": 8}],
+            "title": [{"fontColor": {"solid": {"color": INK}}, "fontFamily": SEMI, "fontSize": 11, "alignment": "left"}],
+            "subTitle": [{"fontColor": {"solid": {"color": MUTED}}, "fontFamily": BOOK, "fontSize": 8}],
             "valueAxis": [{"gridlineShow": True, "gridlineColor": {"solid": {"color": GRID}}, "gridlineStyle": "solid",
                            "gridlineThickness": 1, "labelColor": {"solid": {"color": INK2}}, "fontSize": 8, "showAxisTitle": False}],
             "categoryAxis": [{"gridlineShow": False, "labelColor": {"solid": {"color": INK2}}, "fontSize": 8, "showAxisTitle": False}],
@@ -135,15 +138,17 @@ class Page:
         self.visuals, self.z, self.height = [], 0, height
         rows = next(r for n, _, r in TW.PAGES if n == tab)
         head = [t.strip() for t, _ in rows[0][1][0][1]]
-        self.text((G, 8, W - 2 * G, 84), [(head[0], 9, MUTED, False), (head[1], 18, INK, True), (head[2], 10, INK2, False)])
+        self.text((G, 8, W - 2 * G, 104), [(head[0], 9, MUTED, False), (head[1], 18, INK, True), (head[2], 10, INK2, False)])
         kw = (W - 2 * G - 3 * G) // 4
         for i, (_, runs, _) in enumerate(rows[1][1]):
             label, value, delta = [t.strip() for t, _ in runs]
-            self.text((G + i * (kw + G), 100, kw, 84), [(label, 9, INK2, False), (value, 20, INK, True), (delta, 8, MUTED, False)], card=True)
+            self.text((G + i * (kw + G), 120, kw, 104), [(label, 9, INK2, False), (value, 20, INK, True), (delta, 8, MUTED, False)], card=True)
         self.note_runs = [t for t, _ in rows[-1][1][0][1]]
 
-    def add(self, box, visual: dict):
+    def add(self, box, visual: dict, shift: bool = True):
         x, y, w, h = box
+        if shift and y >= 180:  # charts and notes sit below the taller header block
+            y += DY
         vid = hashlib.sha1(f"{self.name}{len(self.visuals)}".encode()).hexdigest()[:20]
         visual.setdefault("drillFilterOtherVisuals", True)
         self.visuals.append({"$schema": f"{SCHEMA}/visualContainer/2.13.0/schema.json", "name": vid,
@@ -231,7 +236,7 @@ def pages() -> list[Page]:
               "Y": [(A("chart_quality_price", "Intelligence Index"), "Intelligence Index")],
               "Size": [(A("chart_quality_price", "Share of 90-day Tokens"), "Share of last-90-day tokens")]},
              {"dataPoint": by_value(qg, {"China": CHINA, "US": US, "Other": GRAY}),
-              "categoryAxis": [{"properties": {"axisScale": lit("'log'"), "showAxisTitle": lit("true")}}],
+              "categoryAxis": [{"properties": {"logAxisScale": lit("true"), "showAxisTitle": lit("true")}}],  # name read back from the editor
               "valueAxis": [{"properties": {"start": lit("10D"), "end": lit("60D"), "showAxisTitle": lit("true")}}],
               "categoryLabels": [{"properties": {"show": lit("false")}}]})
     p3.note(916)
@@ -240,7 +245,8 @@ def pages() -> list[Page]:
     cm = C("chart_china_labs", "Month")
     p4.chart("lineChart", (G, 200, W - 2 * G, 420), "Chinese labs",
              {"Category": [cm], "Y": [(A("chart_china_labs", "Share"), "Share of tokens")], "Rows": [C("chart_china_labs", "Lab")]},
-             {"dataPoint": single(CHINA)}, sort=(cm, "Ascending"))
+             {"dataPoint": single(CHINA),
+              "smallMultiplesLayout": [{"properties": {"rowCount": lit("2L"), "columnCount": lit("3L")}}]}, sort=(cm, "Ascending"))
     p4.chart("pivotTable", (G, 636, W - 2 * G, 270), "Robustness",
              {"Rows": [(C("chart_robustness", "Way of Counting"), "Way of counting")], "Columns": [(C("chart_robustness", "Month"), "Month")],
               "Values": [(M("chart_robustness", "Robustness Result"), "China vs US share of tokens")]},

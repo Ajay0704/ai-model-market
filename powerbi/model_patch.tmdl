@@ -1,0 +1,43 @@
+createOrReplace
+
+	ref table chart_robustness
+
+
+		column 'Way of Counting'
+			dataType: string
+			summarizeBy: none
+			sourceColumn: Way of Counting
+			sortByColumn: 'Cut Order'
+
+		column 'Cut Order'
+			dataType: int64
+			isHidden
+			summarizeBy: none
+			sourceColumn: Cut Order
+
+		column Month
+			dataType: dateTime
+			formatString: mmm yyyy
+			summarizeBy: none
+			sourceColumn: Month
+
+		column Result
+			dataType: string
+			summarizeBy: none
+			sourceColumn: Result
+
+		column Leader
+			dataType: string
+			summarizeBy: none
+			sourceColumn: Leader
+
+		partition chart_robustness = m
+			mode: import
+			source =
+					let
+						Source = Csv.Document(Web.Contents("https://raw.githubusercontent.com", [RelativePath = "Ajay0704/ai-model-market/main/tableau/data/robustness.csv"]), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+						Headers = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+						Typed = Table.TransformColumnTypes(Headers, {{"Way of Counting", type text}, {"Cut Order", Int64.Type}, {"Month", type date}, {"Result", type text}, {"Leader", type text}}, "en-US")
+					in
+						Typed
+
