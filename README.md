@@ -2,7 +2,7 @@
 
 A Tableau Story and a Power BI report on which AI models and labs win usage on OpenRouter, the largest public marketplace for AI models. Built from OpenRouter's public Data API (daily data from January 2025).
 
-Status: in progress. See [PLAN.md](PLAN.md), the [brief](docs/BRIEF.md) and the [metric dictionary](docs/METRICS.md).
+Status: Tableau Story built (`tableau/AI_Model_Market.twbx`); Power BI report live, with its DAX reconciled 22/22 to the answer key. Case study and portfolio page next. See [PLAN.md](PLAN.md), the [brief](docs/BRIEF.md) and the [metric dictionary](docs/METRICS.md).
 
 ## How it's built
 ```
@@ -33,3 +33,8 @@ cp .env.example .env   # then paste your own OpenRouter key into .env
 
 ## Data and license
 Source: OpenRouter (openrouter.ai/rankings). The data is licensed under CC BY 4.0. Each published number is marked with the `as_of` date of the pull it came from.
+
+## Power BI (as code)
+- `powerbi/measures.dax` holds every measure. `gen_tmdl.py` writes `model_full.tmdl` (tables with typed M partitions that read this repo's CSVs from GitHub, plus relationships and measures); paste it into Power BI web's TMDL view.
+- `gen_report.py` writes the PBIR report (theme from `docs/STYLE_GUIDE.md`). `publish_report.js` creates or updates it through the Fabric REST API from a signed-in app.powerbi.com tab.
+- `reconcile.py` compares the live model's DAX with the pandas answer key: `docs/POWERBI_RECONCILIATION.md` (22/22).

@@ -30,7 +30,10 @@ Approved by Ajay on 2026-10-19: both a Tableau Story and a Power BI report, like
     - Verified through Tableau Desktop's own log: the workbook, sheets, dashboards and story parse, and the opening pages' queries run with 0 issues. One manual-sort error was found and fixed.
     - Not verifiable without a screen: the log-scale x-axis on "Quality vs price" (`scale='log'` isn't in any sample workbook) and overall visual polish.
     - Next: Ajay's look, then publish to Tableau Public (needs his sign-in).
-  - [ ] **5c. Power BI report**: one page per stakeholder, built in Power BI web (a Mac and a Free license). As with the Olist report (`Ajay0704/ecommerce-powerbi`), the CSVs live in a public GitHub repo and Power Query Online reads them over HTTPS. The model is TMDL plus DAX, as in `~/retail-margin-churn/powerbi/`. Creating the public GitHub repo needs Ajay's go first.
+  - [x] **5c. Power BI report.** Live 2026-10-19 in Ajay's My workspace: semantic model "AI Model Market" (6922d090-...) and report (1eae3240-...).
+    - Built as code, the Olist way: `powerbi/gen_tmdl.py` (15 tables, 6 relationships, 23 DAX measures; typed M partitions read this public repo's CSVs anonymously, so no gateway) and `powerbi/gen_report.py` (PBIR, 5 pages, 43 visuals, published with `publish_report.js` through the Fabric REST API).
+    - **The live DAX matches the pandas answer key 22/22** (`docs/POWERBI_RECONCILIATION.md`).
+    - Fixed on the way: a measure named like a column (DAX is case-insensitive); Power BI's real property names for the log axis (`logAxisScale`) and the small-multiples grid (`smallMultiplesLayout`), read back from the editor; web-font stacks (a bare "Segoe UI" fell back to serif); never redefining a date column (it breaks the auto date table), so patches add columns only.
 - [ ] **6. Verify, then deliverables.** Every number in both tools matches the answer key. Then the case-study PDF (Olist playbook format), a portfolio page and a résumé bullet. The README states plainly how AI assisted the build.
 
 Rules: every published number carries "Source: OpenRouter (openrouter.ai/rankings), as of <date>"; the key lives only in this repo's `.env`; the pull stops at the first error and never saves an error as data.
