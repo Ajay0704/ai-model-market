@@ -1,0 +1,711 @@
+<title>AI Model Market</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<style>
+/* Layout: a product-style analytics app. Top bar, one tab per stakeholder, a KPI strip, then a 12-column
+   panel grid with one chart per panel that collapses to one column (GitLab Pajamas dashboards). */
+:root {
+  --plane: #f9f9f7; --surface: #fcfcfb; --raised: #ffffff;
+  --ink: #0b0b0b; --ink-2: #52514e; --muted: #6f6d67;
+  --grid: #e1e0d9; --axis: #c3c2b7; --border: rgba(11, 11, 11, 0.10); --hover: rgba(11, 11, 11, 0.04);
+  --c-china: #2a78d6; --c-us: #eb6834; --c-other: #898781;
+  --accent: #6250d6; --compare: #898781;
+  --shadow: 0 1px 2px rgba(11, 11, 11, .05), 0 8px 24px rgba(11, 11, 11, .08);
+  --font: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --mono: ui-monospace, "SF Mono", SFMono-Regular, Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --plane: #0d0d0d; --surface: #1a1a19; --raised: #232321;
+    --ink: #f0efec; --ink-2: #c3c2b7; --muted: #9a988f;
+    --grid: #2c2c2a; --axis: #45453f; --border: rgba(255, 255, 255, 0.10); --hover: rgba(255, 255, 255, 0.05);
+    --c-china: #3987e5; --c-us: #d95926; --c-other: #6e6c66;
+    --accent: #9085e9; --compare: #6e6c66;
+    --shadow: 0 1px 2px rgba(0, 0, 0, .4), 0 8px 24px rgba(0, 0, 0, .45);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --plane: #0d0d0d; --surface: #1a1a19; --raised: #232321;
+  --ink: #f0efec; --ink-2: #c3c2b7; --muted: #9a988f;
+  --grid: #2c2c2a; --axis: #45453f; --border: rgba(255, 255, 255, 0.10); --hover: rgba(255, 255, 255, 0.05);
+  --c-china: #3987e5; --c-us: #d95926; --c-other: #6e6c66;
+  --accent: #9085e9; --compare: #6e6c66;
+  --shadow: 0 1px 2px rgba(0, 0, 0, .4), 0 8px 24px rgba(0, 0, 0, .45);
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { background: var(--plane); color: var(--ink); font: 14px/1.45 var(--font); }
+.wrap { max-width: 1240px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px));
+        padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+.topbar { border-bottom: 1px solid var(--border); background: var(--surface); }
+.topbar .wrap { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 16px; padding-block: 14px; }
+.brand { display: flex; align-items: center; gap: 10px; font-weight: 650; font-size: 15px; letter-spacing: -0.01em; }
+.mark { width: 20px; height: 20px; border-radius: 5px; background: var(--ink); display: grid; place-items: center; }
+.mark i { width: 8px; height: 8px; border-radius: 2px; background: var(--surface); display: block; }
+.meta { color: var(--ink-2); font-size: 12px; display: flex; flex-wrap: wrap; gap: 4px 14px; }
+.meta span { white-space: nowrap; }
+.chip { margin-left: auto; font: 500 11px var(--mono); letter-spacing: .02em; padding: 3px 8px; border-radius: 999px;
+        border: 1px solid var(--border); color: var(--ink-2); white-space: nowrap; }
+.tabs { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: color-mix(in srgb, var(--plane) 88%, transparent);
+        backdrop-filter: saturate(1.2) blur(8px); border-bottom: 1px solid var(--border); }
+.tabs .wrap { display: flex; gap: 4px; overflow-x: auto; scrollbar-width: none; padding-block: 8px; }
+.tab { appearance: none; border: 0; background: none; color: var(--ink-2); font: 500 13px var(--font); padding: 7px 12px;
+       border-radius: 7px; cursor: pointer; white-space: nowrap; }
+.tab:hover { background: var(--hover); color: var(--ink); }
+.tab[aria-selected="true"] { background: var(--surface); color: var(--ink); box-shadow: inset 0 0 0 1px var(--border); }
+.tab:focus-visible, .tblbtn:focus-visible, svg:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+main .wrap { padding-block: 24px 40px; display: flex; flex-direction: column; gap: 20px; }
+.page { display: flex; flex-direction: column; gap: 20px; }
+.eyebrow { font: 500 12px var(--mono); color: var(--muted); letter-spacing: .02em; margin: 0 0 6px; }
+h1 { font-size: clamp(22px, 2.6vw, 30px); line-height: 1.15; letter-spacing: -0.02em; margin: 0; font-weight: 650;
+     text-wrap: balance; max-width: 30ch; }
+.lede { color: var(--ink-2); margin: 10px 0 0; max-width: 72ch; font-size: 15px; }
+.kpis { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1px; background: var(--border);
+        border: 1px solid var(--border); border-radius: 10px; overflow: hidden; }
+.kpi { background: var(--surface); padding: 14px 16px; display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+.kpi .l { color: var(--ink-2); font-size: 12px; }
+.kpi .v { font-size: 26px; font-weight: 650; letter-spacing: -0.02em; line-height: 1.1; }
+.kpi .d { color: var(--muted); font-size: 12px; }
+.grid { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 16px; }
+.span-12 { grid-column: span 12; } .span-7 { grid-column: span 7; } .span-6 { grid-column: span 6; } .span-5 { grid-column: span 5; }
+.panel { margin: 0; background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 16px 16px 12px;
+         display: flex; flex-direction: column; gap: 10px; min-width: 0; }
+.panel figcaption { display: flex; gap: 12px; align-items: flex-start; justify-content: space-between; }
+.panel h2 { font-size: 15px; font-weight: 600; letter-spacing: -0.01em; margin: 0; text-wrap: balance; }
+.sub { color: var(--muted); font-size: 12px; margin: 3px 0 0; }
+.tblbtn { appearance: none; border: 1px solid var(--border); background: var(--surface); color: var(--ink-2); font: 500 12px var(--font);
+          padding: 4px 9px; border-radius: 6px; cursor: pointer; flex: none; }
+.tblbtn[aria-pressed="true"] { background: var(--ink); color: var(--surface); border-color: var(--ink); }
+.legend { display: flex; flex-wrap: wrap; gap: 4px 14px; font-size: 12px; color: var(--ink-2); }
+.legend span { display: inline-flex; align-items: center; gap: 6px; }
+.legend i { display: inline-block; flex: none; }
+.legend i.line { width: 14px; height: 2px; border-radius: 1px; }
+.legend i.dot { width: 9px; height: 9px; border-radius: 50%; }
+.legend i.rect { width: 10px; height: 10px; border-radius: 2px; }
+.chart { width: 100%; min-height: 40px; }
+.chart svg { display: block; overflow: visible; }
+.table-wrap { overflow-x: auto; }
+table { border-collapse: collapse; width: 100%; font-size: 12.5px; font-variant-numeric: tabular-nums; }
+th, td { text-align: left; padding: 6px 10px; border-bottom: 1px solid var(--border); white-space: nowrap; }
+th { color: var(--ink-2); font-weight: 600; font-size: 12px; }
+td.num, th.num { text-align: right; }
+.source { color: var(--muted); font: 11px var(--mono); margin: 0; }
+.note { color: var(--ink-2); font-size: 12.5px; margin: 0; max-width: 90ch; }
+.note b { color: var(--ink); font-weight: 600; }
+.tick { fill: var(--ink-2); font: 11px var(--font); font-variant-numeric: tabular-nums; }
+.gridline { stroke: var(--grid); stroke-width: 1; shape-rendering: crispEdges; }
+.baseline { stroke: var(--axis); stroke-width: 1; shape-rendering: crispEdges; }
+.annot { stroke: var(--ink-2); stroke-width: 1; shape-rendering: crispEdges; }
+.annot-label { fill: var(--ink-2); font: 500 11px var(--font); }
+.lbl { fill: var(--ink); font: 600 12px var(--font); font-variant-numeric: tabular-nums; }
+.lbl2 { fill: var(--ink-2); font: 12px var(--font); }
+.halo, .chart .lbl, .chart .lbl2, .annot-label { paint-order: stroke; stroke: var(--surface); stroke-width: 3px; stroke-linejoin: round; }
+.leader { stroke: var(--axis); stroke-width: 1; }
+.cross { stroke: var(--ink-2); stroke-width: 1; shape-rendering: crispEdges; pointer-events: none; }
+.hit { fill: transparent; cursor: crosshair; }
+.mark-hover:hover, .mark-hover.on { filter: brightness(1.12); }
+.mini-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px 20px; }
+.mini h3 { font-size: 12.5px; font-weight: 600; margin: 0; display: flex; justify-content: space-between; gap: 8px; }
+.mini h3 span { color: var(--ink-2); font-weight: 500; font-variant-numeric: tabular-nums; }
+.pill { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; padding: 2px 8px; border-radius: 999px;
+        border: 1px solid var(--border); color: var(--ink); }
+.pill i { width: 8px; height: 8px; border-radius: 50%; display: inline-block; }
+.rob td:first-child { white-space: normal; min-width: 180px; }
+#tip { position: fixed; z-index: 20; pointer-events: none; background: var(--raised); color: var(--ink); border: 1px solid var(--border);
+       box-shadow: var(--shadow); border-radius: 8px; padding: 8px 10px; font-size: 12px; min-width: 150px; max-width: 280px; }
+.tip-h { color: var(--ink-2); font-weight: 500; margin-bottom: 4px; }
+.tip-r { display: grid; grid-template-columns: 14px auto 1fr; align-items: center; gap: 6px; padding: 1px 0; }
+.tip-r strong { font-variant-numeric: tabular-nums; font-weight: 650; }
+.tip-r .tip-l { color: var(--ink-2); }
+.tip-k { width: 12px; height: 2px; border-radius: 1px; }
+.tip-k.dot { width: 8px; height: 8px; border-radius: 50%; }
+footer { border-top: 1px solid var(--border); }
+footer .wrap { padding-block: 16px 28px; color: var(--muted); font-size: 12px; display: flex; flex-direction: column; gap: 4px; }
+footer a { color: var(--ink-2); }
+@media (max-width: 900px) { .grid > * { grid-column: span 12; } .kpis { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 560px) { .mini-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } .chip { margin-left: 0; } .kpi .v { font-size: 22px; } }
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+
+<header class="topbar">
+  <div class="wrap">
+    <div class="brand"><span class="mark" aria-hidden="true"><i></i></span>AI Model Market</div>
+    <div class="meta"><span>OpenRouter traffic, Jan 1, 2025 to Oct 18, 2026</span><span>Data as of Oct 19, 2026</span></div>
+    <span class="chip">Mockup for review</span>
+  </div>
+</header>
+<nav class="tabs" aria-label="Stakeholder pages">
+  <div class="wrap" role="tablist">
+    <button class="tab" role="tab" id="t-leadership" aria-controls="leadership" data-page="leadership">Leadership</button>
+    <button class="tab" role="tab" id="t-pricing" aria-controls="pricing" data-page="pricing">Pricing &amp; finance</button>
+    <button class="tab" role="tab" id="t-platform" aria-controls="platform" data-page="platform">AI platform</button>
+    <button class="tab" role="tab" id="t-intel" aria-controls="intel" data-page="intel">Competitive intel</button>
+    <button class="tab" role="tab" id="t-product" aria-controls="product" data-page="product">Product &amp; GTM</button>
+  </div>
+</nav>
+
+<main><div class="wrap">
+
+<section class="page" id="leadership" role="tabpanel" aria-labelledby="t-leadership">
+  <div><p class="eyebrow">Leadership · Who is winning, and is the market concentrating?</p>
+  <h1>Chinese labs have processed more OpenRouter tokens than US labs every week since April 27</h1>
+  <p class="lede" data-text="lede-leadership"></p></div>
+  <div class="kpis" data-kpis="leadership"></div>
+  <div class="grid">
+    <figure class="panel span-12" data-chart="share"></figure>
+    <figure class="panel span-6" data-chart="volume"></figure>
+    <figure class="panel span-6" data-chart="hhi"></figure>
+  </div>
+  <p class="note"><b>Reading it right:</b> this is traffic routed through OpenRouter, not the whole market. Apps that call OpenAI, Anthropic or Google directly are invisible here. "Everyone else" combines labs outside China and the US with stealth models and the long tail outside each day's top 50.</p>
+</section>
+
+<section class="page" id="pricing" role="tabpanel" aria-labelledby="t-pricing" hidden>
+  <div><p class="eyebrow">Pricing &amp; finance · Does cheaper win? Where is the money?</p>
+  <h1>China wins the tokens; US labs still win the money</h1>
+  <p class="lede" data-text="lede-pricing"></p></div>
+  <div class="kpis" data-kpis="pricing"></div>
+  <div class="grid">
+    <figure class="panel span-6" data-chart="groups"></figure>
+    <figure class="panel span-6" data-chart="labs"></figure>
+    <figure class="panel span-6" data-chart="tiers"></figure>
+    <figure class="panel span-6" data-chart="priceidx"></figure>
+  </div>
+  <p class="note"><b>Estimated spend</b> = tokens x list price, blending input and output 15:1 (OpenRouter's own study reports about 6K prompt vs 400 completion tokens per request). It's before caching discounts, so it's an upper bound: use it for shares, not dollar totals. Under Artificial Analysis's 3:1 blend, China's September spend share is 36.5% and the US's is 63.5%.</p>
+</section>
+
+<section class="page" id="platform" role="tabpanel" aria-labelledby="t-platform" hidden>
+  <div><p class="eyebrow">AI platform team · Which models give the best quality for the price?</p>
+  <h1>The most-used models are cheap mid-scorers, not the benchmark leaders</h1>
+  <p class="lede" data-text="lede-platform"></p></div>
+  <div class="kpis" data-kpis="platform"></div>
+  <div class="grid">
+    <figure class="panel span-12" data-chart="scatter"></figure>
+  </div>
+  <p class="note"><b>Routing, not taste:</b> benchmarks score one setting per model (for example "Max" reasoning), while usage counts every setting. Bulk jobs such as classification, the largest task by requests this week, can rationally use cheap models. Benchmarks: Artificial Analysis (artificialanalysis.ai) via OpenRouter, as of Oct 17, 2026.</p>
+</section>
+
+<section class="page" id="intel" role="tabpanel" aria-labelledby="t-intel" hidden>
+  <div><p class="eyebrow">Competitive intelligence · Where do the threats come from?</p>
+  <h1>China's lead is broad: it holds without DeepSeek and under the worst-case count</h1>
+  <p class="lede" data-text="lede-intel"></p></div>
+  <div class="kpis" data-kpis="intel"></div>
+  <div class="grid">
+    <figure class="panel span-12" data-chart="multiples"></figure>
+    <figure class="panel span-12" data-chart="robust"></figure>
+  </div>
+  <p class="note"><b>Country</b> means the developer's stated headquarters, from each lab's own legal or about page (`data/reference/labs.csv`). It's not where a model is hosted, and not where a base model it was tuned from came from.</p>
+</section>
+
+<section class="page" id="product" role="tabpanel" aria-labelledby="t-product" hidden>
+  <div><p class="eyebrow">Product &amp; GTM · Do launches stick? What drives demand?</p>
+  <h1>Models churn within weeks; labs keep most of their users</h1>
+  <p class="lede" data-text="lede-product"></p></div>
+  <div class="kpis" data-kpis="product"></div>
+  <div class="grid">
+    <figure class="panel span-7" data-chart="launch"></figure>
+    <figure class="panel span-5" data-chart="cats"></figure>
+    <figure class="panel span-12" data-chart="apps"></figure>
+  </div>
+  <p class="note"><b>Launches</b> are model families that first entered the daily top 50 on or after Feb 1, 2025, peaked at 1% or more of daily tokens, and have at least 13 weeks of data. Stealth models are excluded, because they "end" when renamed at launch. A lab that drops out of the top 50 counts as zero.</p>
+</section>
+
+</div></main>
+
+<footer><div class="wrap">
+  <span>Source: OpenRouter (openrouter.ai/rankings), as of 2026-10-19. Licensed under CC BY 4.0. Model prices: OpenRouter's model list, monthly snapshots via the Internet Archive.</span>
+  <span>Every number reconciles to an independent answer key (42 of 42) and a spot-check against the public rankings page (29 of 30 rows). Mockup only: the Tableau Story and Power BI report follow this spec.</span>
+</div></footer>
+<div id="tip" hidden></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
+<script id="mm-data" type="application/json">{"as_of": "2026-10-19", "weekly_share": [{"week": "2024-12-30", "g": "China", "share": 0.06894576986901754}, {"week": "2024-12-30", "g": "Other named", "share": 0.061339546648031276}, {"week": "2024-12-30", "g": "US", "share": 0.781596334785255}, {"week": "2024-12-30", "g": "Unattributed", "share": 0.08811834869769611}, {"week": "2025-01-06", "g": "China", "share": 0.06114470597843648}, {"week": "2025-01-06", "g": "Other named", "share": 0.05871664089472386}, {"week": "2025-01-06", "g": "US", "share": 0.8073291127479097}, {"week": "2025-01-06", "g": "Unattributed", "share": 0.07280954037892991}, {"week": "2025-01-13", "g": "China", "share": 0.04406825179119644}, {"week": "2025-01-13", "g": "Other named", "share": 0.051418712274679305}, {"week": "2025-01-13", "g": "US", "share": 0.8284933771365967}, {"week": "2025-01-13", "g": "Unattributed", "share": 0.07601965879752764}, {"week": "2025-01-20", "g": "China", "share": 0.057555449736985134}, {"week": "2025-01-20", "g": "Other named", "share": 0.046603742482564284}, {"week": "2025-01-20", "g": "US", "share": 0.8212289720139434}, {"week": "2025-01-20", "g": "Unattributed", "share": 0.07461183576650716}, {"week": "2025-01-27", "g": "China", "share": 0.08021226166711877}, {"week": "2025-01-27", "g": "Other named", "share": 0.056365780487312105}, {"week": "2025-01-27", "g": "US", "share": 0.7998320436355415}, {"week": "2025-01-27", "g": "Unattributed", "share": 0.06358991421002765}, {"week": "2025-02-03", "g": "China", "share": 0.07780226917283212}, {"week": "2025-02-03", "g": "Other named", "share": 0.07447073696058881}, {"week": "2025-02-03", "g": "US", "share": 0.7848405801665986}, {"week": "2025-02-03", "g": "Unattributed", "share": 0.06288641369998044}, {"week": "2025-02-10", "g": "China", "share": 0.08024320977643126}, {"week": "2025-02-10", "g": "Other named", "share": 0.07465250429941993}, {"week": "2025-02-10", "g": "US", "share": 0.7858417237870157}, {"week": "2025-02-10", "g": "Unattributed", "share": 0.05926256213713316}, {"week": "2025-02-17", "g": "China", "share": 0.09616789733381134}, {"week": "2025-02-17", "g": "Other named", "share": 0.03492271744104567}, {"week": "2025-02-17", "g": "US", "share": 0.8159852741982195}, {"week": "2025-02-17", "g": "Unattributed", "share": 0.052924111026923445}, {"week": "2025-02-24", "g": "China", "share": 0.09657405328281854}, {"week": "2025-02-24", "g": "Other named", "share": 0.03896634997574788}, {"week": "2025-02-24", "g": "US", "share": 0.8229122699135879}, {"week": "2025-02-24", "g": "Unattributed", "share": 0.04154732682784563}, {"week": "2025-03-03", "g": "China", "share": 0.10434726026003667}, {"week": "2025-03-03", "g": "Other named", "share": 0.03676722823207538}, {"week": "2025-03-03", "g": "US", "share": 0.817870856112408}, {"week": "2025-03-03", "g": "Unattributed", "share": 0.04101465539547999}, {"week": "2025-03-10", "g": "China", "share": 0.10872417516558966}, {"week": "2025-03-10", "g": "Other named", "share": 0.031828635680222095}, {"week": "2025-03-10", "g": "US", "share": 0.8207201234731214}, {"week": "2025-03-10", "g": "Unattributed", "share": 0.038727065681066826}, {"week": "2025-03-17", "g": "China", "share": 0.11845562037612652}, {"week": "2025-03-17", "g": "Other named", "share": 0.03166150644524236}, {"week": "2025-03-17", "g": "US", "share": 0.8090675002334443}, {"week": "2025-03-17", "g": "Unattributed", "share": 0.04081537294518676}, {"week": "2025-03-24", "g": "China", "share": 0.1623006396007218}, {"week": "2025-03-24", "g": "Other named", "share": 0.03229807671326052}, {"week": "2025-03-24", "g": "US", "share": 0.7656716549393217}, {"week": "2025-03-24", "g": "Unattributed", "share": 0.039729628746696055}, {"week": "2025-03-31", "g": "China", "share": 0.1535250157111775}, {"week": "2025-03-31", "g": "Other named", "share": 0.022132077177859245}, {"week": "2025-03-31", "g": "US", "share": 0.7497519247256647}, {"week": "2025-03-31", "g": "Unattributed", "share": 0.0745909823852986}, {"week": "2025-04-07", "g": "China", "share": 0.11727594324301811}, {"week": "2025-04-07", "g": "Other named", "share": 0.018188051551558945}, {"week": "2025-04-07", "g": "US", "share": 0.6812066498728121}, {"week": "2025-04-07", "g": "Unattributed", "share": 0.18332935533261085}, {"week": "2025-04-14", "g": "China", "share": 0.1280528942625899}, {"week": "2025-04-14", "g": "Other named", "share": 0.02461951270055521}, {"week": "2025-04-14", "g": "US", "share": 0.7818541642431275}, {"week": "2025-04-14", "g": "Unattributed", "share": 0.06547342879372745}, {"week": "2025-04-21", "g": "China", "share": 0.13745858801517225}, {"week": "2025-04-21", "g": "Other named", "share": 0.024417488194156543}, {"week": "2025-04-21", "g": "US", "share": 0.7838980408256407}, {"week": "2025-04-21", "g": "Unattributed", "share": 0.05422588296503044}, {"week": "2025-04-28", "g": "China", "share": 0.14884323142464645}, {"week": "2025-04-28", "g": "Other named", "share": 0.024233574216323103}, {"week": "2025-04-28", "g": "US", "share": 0.7638007072925945}, {"week": "2025-04-28", "g": "Unattributed", "share": 0.06312248706643588}, {"week": "2025-05-05", "g": "China", "share": 0.13478860493586173}, {"week": "2025-05-05", "g": "Other named", "share": 0.017856294859439778}, {"week": "2025-05-05", "g": "US", "share": 0.7895779573381319}, {"week": "2025-05-05", "g": "Unattributed", "share": 0.05777714286656663}, {"week": "2025-05-12", "g": "China", "share": 0.12127280469384136}, {"week": "2025-05-12", "g": "Other named", "share": 0.01713846020535049}, {"week": "2025-05-12", "g": "US", "share": 0.8058796696451144}, {"week": "2025-05-12", "g": "Unattributed", "share": 0.05570906545569374}, {"week": "2025-05-19", "g": "China", "share": 0.11660533409975284}, {"week": "2025-05-19", "g": "Other named", "share": 0.021251868633654063}, {"week": "2025-05-19", "g": "US", "share": 0.8126108581566205}, {"week": "2025-05-19", "g": "Unattributed", "share": 0.049531939109972584}, {"week": "2025-05-26", "g": "China", "share": 0.12258517770040465}, {"week": "2025-05-26", "g": "Other named", "share": 0.021369490081725676}, {"week": "2025-05-26", "g": "US", "share": 0.8079762536027273}, {"week": "2025-05-26", "g": "Unattributed", "share": 0.04806907861514243}, {"week": "2025-06-02", "g": "China", "share": 0.1468209358034061}, {"week": "2025-06-02", "g": "Other named", "share": 0.02325515026283639}, {"week": "2025-06-02", "g": "US", "share": 0.778122807049765}, {"week": "2025-06-02", "g": "Unattributed", "share": 0.05180110688399252}, {"week": "2025-06-09", "g": "China", "share": 0.1668801844168776}, {"week": "2025-06-09", "g": "Other named", "share": 0.02521421680186992}, {"week": "2025-06-09", "g": "US", "share": 0.7490574348952865}, {"week": "2025-06-09", "g": "Unattributed", "share": 0.05884816388596589}, {"week": "2025-06-16", "g": "China", "share": 0.1682354365913305}, {"week": "2025-06-16", "g": "Other named", "share": 0.02040783553622706}, {"week": "2025-06-16", "g": "US", "share": 0.7559576788671052}, {"week": "2025-06-16", "g": "Unattributed", "share": 0.05539904900533725}, {"week": "2025-06-23", "g": "China", "share": 0.16595792079751695}, {"week": "2025-06-23", "g": "Other named", "share": 0.02075925365322436}, {"week": "2025-06-23", "g": "US", "share": 0.7600739461235924}, {"week": "2025-06-23", "g": "Unattributed", "share": 0.05320887942566635}, {"week": "2025-06-30", "g": "China", "share": 0.18629231147612715}, {"week": "2025-06-30", "g": "Other named", "share": 0.02694794369537806}, {"week": "2025-06-30", "g": "US", "share": 0.7254164174389459}, {"week": "2025-06-30", "g": "Unattributed", "share": 0.06134332738954888}, {"week": "2025-07-07", "g": "China", "share": 0.20147875791591163}, {"week": "2025-07-07", "g": "Other named", "share": 0.02745035691548208}, {"week": "2025-07-07", "g": "US", "share": 0.7143048749901872}, {"week": "2025-07-07", "g": "Unattributed", "share": 0.056766010178419014}, {"week": "2025-07-14", "g": "China", "share": 0.2461005924323285}, {"week": "2025-07-14", "g": "Other named", "share": 0.03377912092441814}, {"week": "2025-07-14", "g": "US", "share": 0.6709488848927945}, {"week": "2025-07-14", "g": "Unattributed", "share": 0.049171401750458824}, {"week": "2025-07-21", "g": "China", "share": 0.2558813531664478}, {"week": "2025-07-21", "g": "Other named", "share": 0.035575844117381655}, {"week": "2025-07-21", "g": "US", "share": 0.6604397798399081}, {"week": "2025-07-21", "g": "Unattributed", "share": 0.048103022876262475}, {"week": "2025-07-28", "g": "China", "share": 0.27697319450812863}, {"week": "2025-07-28", "g": "Other named", "share": 0.027161485449492945}, {"week": "2025-07-28", "g": "US", "share": 0.6005008590063193}, {"week": "2025-07-28", "g": "Unattributed", "share": 0.09536446103605914}, {"week": "2025-08-04", "g": "China", "share": 0.31131845800581776}, {"week": "2025-08-04", "g": "Other named", "share": 0.027951512887672343}, {"week": "2025-08-04", "g": "US", "share": 0.5494947948649707}, {"week": "2025-08-04", "g": "Unattributed", "share": 0.11123523424153928}, {"week": "2025-08-11", "g": "China", "share": 0.30972777192022893}, {"week": "2025-08-11", "g": "Other named", "share": 0.03428156140713124}, {"week": "2025-08-11", "g": "US", "share": 0.5946531859648326}, {"week": "2025-08-11", "g": "Unattributed", "share": 0.06133748070780715}, {"week": "2025-08-18", "g": "China", "share": 0.29728227408127295}, {"week": "2025-08-18", "g": "Other named", "share": 0.03778829764677825}, {"week": "2025-08-18", "g": "US", "share": 0.6014870121388282}, {"week": "2025-08-18", "g": "Unattributed", "share": 0.06344241613312063}, {"week": "2025-08-25", "g": "China", "share": 0.2382743166132132}, {"week": "2025-08-25", "g": "Other named", "share": 0.03655627259668224}, {"week": "2025-08-25", "g": "US", "share": 0.6649057132631125}, {"week": "2025-08-25", "g": "Unattributed", "share": 0.06026369752699205}, {"week": "2025-09-01", "g": "China", "share": 0.18555262641015843}, {"week": "2025-09-01", "g": "Other named", "share": 0.024491656190037722}, {"week": "2025-09-01", "g": "US", "share": 0.7194996847816727}, {"week": "2025-09-01", "g": "Unattributed", "share": 0.07045603261813113}, {"week": "2025-09-08", "g": "China", "share": 0.18843788163695696}, {"week": "2025-09-08", "g": "Other named", "share": 0.01766240577825011}, {"week": "2025-09-08", "g": "US", "share": 0.6880580847785159}, {"week": "2025-09-08", "g": "Unattributed", "share": 0.10584162780627697}, {"week": "2025-09-15", "g": "China", "share": 0.15648621939641116}, {"week": "2025-09-15", "g": "Other named", "share": 0.01912993018876345}, {"week": "2025-09-15", "g": "US", "share": 0.7113880922873764}, {"week": "2025-09-15", "g": "Unattributed", "share": 0.11299575812744898}, {"week": "2025-09-22", "g": "China", "share": 0.12953197135622083}, {"week": "2025-09-22", "g": "Other named", "share": 0.011650275105082316}, {"week": "2025-09-22", "g": "US", "share": 0.8043916202030857}, {"week": "2025-09-22", "g": "Unattributed", "share": 0.05442613333561114}, {"week": "2025-09-29", "g": "China", "share": 0.14272835559214986}, {"week": "2025-09-29", "g": "Other named", "share": 0.014391721252363862}, {"week": "2025-09-29", "g": "US", "share": 0.7822645215368712}, {"week": "2025-09-29", "g": "Unattributed", "share": 0.06061540161861507}, {"week": "2025-10-06", "g": "China", "share": 0.15235321546693648}, {"week": "2025-10-06", "g": "Other named", "share": 0.027317619042797905}, {"week": "2025-10-06", "g": "US", "share": 0.7592613575583637}, {"week": "2025-10-06", "g": "Unattributed", "share": 0.061067807931901995}, {"week": "2025-10-13", "g": "China", "share": 0.12933293780929017}, {"week": "2025-10-13", "g": "Other named", "share": 0.033753873153687095}, {"week": "2025-10-13", "g": "US", "share": 0.7673600250207894}, {"week": "2025-10-13", "g": "Unattributed", "share": 0.06955316401623336}, {"week": "2025-10-20", "g": "China", "share": 0.13484187537012324}, {"week": "2025-10-20", "g": "Other named", "share": 0.0330095412319894}, {"week": "2025-10-20", "g": "US", "share": 0.7611933095501785}, {"week": "2025-10-20", "g": "Unattributed", "share": 0.07095527384770883}, {"week": "2025-10-27", "g": "China", "share": 0.15668212161061784}, {"week": "2025-10-27", "g": "Other named", "share": 0.031577226278102326}, {"week": "2025-10-27", "g": "US", "share": 0.7488366954005861}, {"week": "2025-10-27", "g": "Unattributed", "share": 0.06290395671069376}, {"week": "2025-11-03", "g": "China", "share": 0.18746250177730786}, {"week": "2025-11-03", "g": "Other named", "share": 0.03063859619017868}, {"week": "2025-11-03", "g": "US", "share": 0.7045603871058669}, {"week": "2025-11-03", "g": "Unattributed", "share": 0.07733851492664656}, {"week": "2025-11-10", "g": "China", "share": 0.16539200760688086}, {"week": "2025-11-10", "g": "Other named", "share": 0.029551063066109145}, {"week": "2025-11-10", "g": "US", "share": 0.6956860325687152}, {"week": "2025-11-10", "g": "Unattributed", "share": 0.10937089675829481}, {"week": "2025-11-17", "g": "China", "share": 0.15672151659681524}, {"week": "2025-11-17", "g": "Other named", "share": 0.027133826408832083}, {"week": "2025-11-17", "g": "US", "share": 0.7085274419680616}, {"week": "2025-11-17", "g": "Unattributed", "share": 0.10761721502629104}, {"week": "2025-11-24", "g": "China", "share": 0.13153720540284586}, {"week": "2025-11-24", "g": "Other named", "share": 0.02519112284325764}, {"week": "2025-11-24", "g": "US", "share": 0.7702125004002423}, {"week": "2025-11-24", "g": "Unattributed", "share": 0.07305917135365424}, {"week": "2025-12-01", "g": "China", "share": 0.1494422497569234}, {"week": "2025-12-01", "g": "Other named", "share": 0.037858907696991004}, {"week": "2025-12-01", "g": "US", "share": 0.7246709015044767}, {"week": "2025-12-01", "g": "Unattributed", "share": 0.08802794104160891}, {"week": "2025-12-08", "g": "China", "share": 0.1662579812760933}, {"week": "2025-12-08", "g": "Other named", "share": 0.04964204403564775}, {"week": "2025-12-08", "g": "US", "share": 0.6937104805834289}, {"week": "2025-12-08", "g": "Unattributed", "share": 0.09038949410483003}, {"week": "2025-12-15", "g": "China", "share": 0.19489648176186192}, {"week": "2025-12-15", "g": "Other named", "share": 0.053571749837318265}, {"week": "2025-12-15", "g": "US", "share": 0.6556726111873358}, {"week": "2025-12-15", "g": "Unattributed", "share": 0.095859157213484}, {"week": "2025-12-22", "g": "China", "share": 0.2647946067368523}, {"week": "2025-12-22", "g": "Other named", "share": 0.05905006991167271}, {"week": "2025-12-22", "g": "US", "share": 0.5885023584518163}, {"week": "2025-12-22", "g": "Unattributed", "share": 0.08765296489965872}, {"week": "2025-12-29", "g": "China", "share": 0.275363553529538}, {"week": "2025-12-29", "g": "Other named", "share": 0.05758743593260925}, {"week": "2025-12-29", "g": "US", "share": 0.5775732826831032}, {"week": "2025-12-29", "g": "Unattributed", "share": 0.0894757278547496}, {"week": "2026-01-05", "g": "China", "share": 0.2368444015059948}, {"week": "2026-01-05", "g": "Other named", "share": 0.04973470749857037}, {"week": "2026-01-05", "g": "US", "share": 0.6261752049668313}, {"week": "2026-01-05", "g": "Unattributed", "share": 0.08724568602860346}, {"week": "2026-01-12", "g": "China", "share": 0.20517032938290677}, {"week": "2026-01-12", "g": "Other named", "share": 0.04326949790233125}, {"week": "2026-01-12", "g": "US", "share": 0.6816284782632688}, {"week": "2026-01-12", "g": "Unattributed", "share": 0.06993169445149322}, {"week": "2026-01-19", "g": "China", "share": 0.22444267108725316}, {"week": "2026-01-19", "g": "Other named", "share": 0.04525332266380307}, {"week": "2026-01-19", "g": "US", "share": 0.6507184790384308}, {"week": "2026-01-19", "g": "Unattributed", "share": 0.079585527210513}, {"week": "2026-01-26", "g": "China", "share": 0.23254420981664906}, {"week": "2026-01-26", "g": "Other named", "share": 0.030720155845370908}, {"week": "2026-01-26", "g": "US", "share": 0.6559139800438482}, {"week": "2026-01-26", "g": "Unattributed", "share": 0.08082165429413193}, {"week": "2026-02-02", "g": "China", "share": 0.31136728349921317}, {"week": "2026-02-02", "g": "Other named", "share": 0.021983821215461625}, {"week": "2026-02-02", "g": "US", "share": 0.5907214723349816}, {"week": "2026-02-02", "g": "Unattributed", "share": 0.0759274229503436}, {"week": "2026-02-09", "g": "China", "share": 0.41922770407114396}, {"week": "2026-02-09", "g": "Other named", "share": 0.009790800238224567}, {"week": "2026-02-09", "g": "US", "share": 0.5002226313942215}, {"week": "2026-02-09", "g": "Unattributed", "share": 0.07075886429641}, {"week": "2026-02-16", "g": "China", "share": 0.4471610806677655}, {"week": "2026-02-16", "g": "Other named", "share": 0.00783300003232879}, {"week": "2026-02-16", "g": "US", "share": 0.4856649533034612}, {"week": "2026-02-16", "g": "Unattributed", "share": 0.05934096599644447}, {"week": "2026-02-23", "g": "China", "share": 0.3759636777433746}, {"week": "2026-02-23", "g": "Other named", "share": 0.008519253321072758}, {"week": "2026-02-23", "g": "US", "share": 0.5452247352238455}, {"week": "2026-02-23", "g": "Unattributed", "share": 0.0702923337117071}, {"week": "2026-03-02", "g": "China", "share": 0.36214256278125645}, {"week": "2026-03-02", "g": "Other named", "share": 0.004955548050932075}, {"week": "2026-03-02", "g": "US", "share": 0.5576213636347722}, {"week": "2026-03-02", "g": "Unattributed", "share": 0.07528052553303927}, {"week": "2026-03-09", "g": "China", "share": 0.35606865965826096}, {"week": "2026-03-09", "g": "Other named", "share": 0.004647434477683921}, {"week": "2026-03-09", "g": "US", "share": 0.5123618640721131}, {"week": "2026-03-09", "g": "Unattributed", "share": 0.126922041791942}, {"week": "2026-03-16", "g": "China", "share": 0.4310795914304849}, {"week": "2026-03-16", "g": "Other named", "share": 0.004102687344473232}, {"week": "2026-03-16", "g": "US", "share": 0.43474935665702596}, {"week": "2026-03-16", "g": "Unattributed", "share": 0.1300683645680159}, {"week": "2026-03-23", "g": "China", "share": 0.5324146517877887}, {"week": "2026-03-23", "g": "Other named", "share": 0.003739048025423136}, {"week": "2026-03-23", "g": "US", "share": 0.3966419848424321}, {"week": "2026-03-23", "g": "Unattributed", "share": 0.06720431534435603}, {"week": "2026-03-30", "g": "China", "share": 0.6178062710686948}, {"week": "2026-03-30", "g": "Other named", "share": 0.0037184395956234156}, {"week": "2026-03-30", "g": "US", "share": 0.3213576149909016}, {"week": "2026-03-30", "g": "Unattributed", "share": 0.05711767434478019}, {"week": "2026-04-06", "g": "China", "share": 0.4335480917244782}, {"week": "2026-04-06", "g": "Other named", "share": 0.007114090346363043}, {"week": "2026-04-06", "g": "US", "share": 0.4696592533021764}, {"week": "2026-04-06", "g": "Unattributed", "share": 0.08967856462698233}, {"week": "2026-04-13", "g": "China", "share": 0.36154894858645453}, {"week": "2026-04-13", "g": "Other named", "share": 0.00633070836902877}, {"week": "2026-04-13", "g": "US", "share": 0.5078887618429795}, {"week": "2026-04-13", "g": "Unattributed", "share": 0.12423158120153727}, {"week": "2026-04-20", "g": "China", "share": 0.39713000461635034}, {"week": "2026-04-20", "g": "Other named", "share": 0.005567590466306451}, {"week": "2026-04-20", "g": "US", "share": 0.48544677978026635}, {"week": "2026-04-20", "g": "Unattributed", "share": 0.11185562513707686}, {"week": "2026-04-27", "g": "China", "share": 0.47458004845347224}, {"week": "2026-04-27", "g": "Other named", "share": 0.0050283243181880755}, {"week": "2026-04-27", "g": "US", "share": 0.41091677166113655}, {"week": "2026-04-27", "g": "Unattributed", "share": 0.10947485556720313}, {"week": "2026-05-04", "g": "China", "share": 0.4603968821737182}, {"week": "2026-05-04", "g": "Other named", "share": 0.004744017609443687}, {"week": "2026-05-04", "g": "US", "share": 0.4121487884309722}, {"week": "2026-05-04", "g": "Unattributed", "share": 0.1227103117858659}, {"week": "2026-05-11", "g": "China", "share": 0.4479621421705142}, {"week": "2026-05-11", "g": "Other named", "share": 0.0050214054130152536}, {"week": "2026-05-11", "g": "US", "share": 0.4108257645187699}, {"week": "2026-05-11", "g": "Unattributed", "share": 0.13619068789770064}, {"week": "2026-05-18", "g": "China", "share": 0.43671507038493523}, {"week": "2026-05-18", "g": "Other named", "share": 0.0052008949713106874}, {"week": "2026-05-18", "g": "US", "share": 0.42058548449526717}, {"week": "2026-05-18", "g": "Unattributed", "share": 0.13749855014848686}, {"week": "2026-05-25", "g": "China", "share": 0.44850424818155266}, {"week": "2026-05-25", "g": "Other named", "share": 0.005026411543061831}, {"week": "2026-05-25", "g": "US", "share": 0.4107179161052685}, {"week": "2026-05-25", "g": "Unattributed", "share": 0.135751424170117}, {"week": "2026-06-01", "g": "China", "share": 0.5050863939298535}, {"week": "2026-06-01", "g": "Other named", "share": 0.004372039308266426}, {"week": "2026-06-01", "g": "US", "share": 0.3611161443909892}, {"week": "2026-06-01", "g": "Unattributed", "share": 0.1294254223708908}, {"week": "2026-06-08", "g": "China", "share": 0.5344555400921746}, {"week": "2026-06-08", "g": "Other named", "share": 0.0038736056038036174}, {"week": "2026-06-08", "g": "US", "share": 0.3396874214039944}, {"week": "2026-06-08", "g": "Unattributed", "share": 0.12198343290002744}, {"week": "2026-06-15", "g": "China", "share": 0.5561594346539289}, {"week": "2026-06-15", "g": "Other named", "share": 0.004761673542206644}, {"week": "2026-06-15", "g": "US", "share": 0.3244089961109456}, {"week": "2026-06-15", "g": "Unattributed", "share": 0.11466989569291879}, {"week": "2026-06-22", "g": "China", "share": 0.5370181550479228}, {"week": "2026-06-22", "g": "Other named", "share": 0.006966936611373647}, {"week": "2026-06-22", "g": "US", "share": 0.3235909894417689}, {"week": "2026-06-22", "g": "Unattributed", "share": 0.13242391889893465}, {"week": "2026-06-29", "g": "China", "share": 0.5585077478823774}, {"week": "2026-06-29", "g": "Other named", "share": 0.008941956924800896}, {"week": "2026-06-29", "g": "US", "share": 0.35378639107130583}, {"week": "2026-06-29", "g": "Unattributed", "share": 0.07876390412151575}, {"week": "2026-07-06", "g": "China", "share": 0.6059564662150243}, {"week": "2026-07-06", "g": "Other named", "share": 0.0067954549936134895}, {"week": "2026-07-06", "g": "US", "share": 0.3267119992636914}, {"week": "2026-07-06", "g": "Unattributed", "share": 0.060536079527670816}, {"week": "2026-07-13", "g": "China", "share": 0.6336514105825273}, {"week": "2026-07-13", "g": "Other named", "share": 0.005805363922209411}, {"week": "2026-07-13", "g": "US", "share": 0.3057722865088456}, {"week": "2026-07-13", "g": "Unattributed", "share": 0.05477093898641773}, {"week": "2026-07-20", "g": "China", "share": 0.6350248939629408}, {"week": "2026-07-20", "g": "Other named", "share": 0.008030712986802942}, {"week": "2026-07-20", "g": "US", "share": 0.2861830965344253}, {"week": "2026-07-20", "g": "Unattributed", "share": 0.070761296515831}, {"week": "2026-07-27", "g": "China", "share": 0.6001040208758235}, {"week": "2026-07-27", "g": "Other named", "share": 0.007151676468135394}, {"week": "2026-07-27", "g": "US", "share": 0.3187104686540759}, {"week": "2026-07-27", "g": "Unattributed", "share": 0.07403383400196518}, {"week": "2026-08-03", "g": "China", "share": 0.5954265639768691}, {"week": "2026-08-03", "g": "Other named", "share": 0.004124633883341476}, {"week": "2026-08-03", "g": "US", "share": 0.3391022473211271}, {"week": "2026-08-03", "g": "Unattributed", "share": 0.061346554818662274}, {"week": "2026-08-10", "g": "China", "share": 0.572546986834456}, {"week": "2026-08-10", "g": "Other named", "share": 0.008221810581478467}, {"week": "2026-08-10", "g": "US", "share": 0.35477972118339096}, {"week": "2026-08-10", "g": "Unattributed", "share": 0.06445148140067458}, {"week": "2026-08-17", "g": "China", "share": 0.507616132591303}, {"week": "2026-08-17", "g": "Other named", "share": 0.010688055415014653}, {"week": "2026-08-17", "g": "US", "share": 0.3008910044330446}, {"week": "2026-08-17", "g": "Unattributed", "share": 0.1808048075606377}, {"week": "2026-08-24", "g": "China", "share": 0.51284115992401}, {"week": "2026-08-24", "g": "Other named", "share": 0.006575481948707521}, {"week": "2026-08-24", "g": "US", "share": 0.2905390339519688}, {"week": "2026-08-24", "g": "Unattributed", "share": 0.1900443241753136}, {"week": "2026-08-31", "g": "China", "share": 0.6128563509996056}, {"week": "2026-08-31", "g": "Other named", "share": 0.011120449403506392}, {"week": "2026-08-31", "g": "US", "share": 0.3163802253264157}, {"week": "2026-08-31", "g": "Unattributed", "share": 0.059642974270472375}, {"week": "2026-09-07", "g": "China", "share": 0.5962935319436844}, {"week": "2026-09-07", "g": "Other named", "share": 0.01425999279410482}, {"week": "2026-09-07", "g": "US", "share": 0.3284765754937029}, {"week": "2026-09-07", "g": "Unattributed", "share": 0.06096989976850794}, {"week": "2026-09-14", "g": "China", "share": 0.6466113254220272}, {"week": "2026-09-14", "g": "Other named", "share": 0.013861088049282301}, {"week": "2026-09-14", "g": "US", "share": 0.27082180547613116}, {"week": "2026-09-14", "g": "Unattributed", "share": 0.06870578105255942}, {"week": "2026-09-21", "g": "China", "share": 0.558587298256106}, {"week": "2026-09-21", "g": "Other named", "share": 0.01186519332730104}, {"week": "2026-09-21", "g": "US", "share": 0.26654962579019353}, {"week": "2026-09-21", "g": "Unattributed", "share": 0.16299788262639947}, {"week": "2026-09-28", "g": "China", "share": 0.46060626259413734}, {"week": "2026-09-28", "g": "Other named", "share": 0.005350337082850375}, {"week": "2026-09-28", "g": "US", "share": 0.24036945070166268}, {"week": "2026-09-28", "g": "Unattributed", "share": 0.2936739496213496}, {"week": "2026-10-05", "g": "China", "share": 0.6277015346824935}, {"week": "2026-10-05", "g": "Other named", "share": 0.01091393355994929}, {"week": "2026-10-05", "g": "US", "share": 0.27100778028198547}, {"week": "2026-10-05", "g": "Unattributed", "share": 0.09037675147557182}, {"week": "2026-10-12", "g": "China", "share": 0.6409030321334912}, {"week": "2026-10-12", "g": "Other named", "share": 0.0111454795991615}, {"week": "2026-10-12", "g": "US", "share": 0.27759360143284745}, {"week": "2026-10-12", "g": "Unattributed", "share": 0.07035788683449984}], "monthly_volume": [{"month": "2025-01", "tokens_t": 2.230133956091, "per_day_t": 0.07193980503519352, "partial": false}, {"month": "2025-02", "tokens_t": 3.496567426903, "per_day_t": 0.12487740810367857, "partial": false}, {"month": "2025-03", "tokens_t": 6.360879821765, "per_day_t": 0.2051896716698387, "partial": false}, {"month": "2025-04", "tokens_t": 8.294859661204, "per_day_t": 0.2764953220401333, "partial": false}, {"month": "2025-05", "tokens_t": 9.861178031695, "per_day_t": 0.31810251715145166, "partial": false}, {"month": "2025-06", "tokens_t": 9.411636910043, "per_day_t": 0.32453920379458623, "partial": false}, {"month": "2025-07", "tokens_t": 11.388650142014, "per_day_t": 0.3796216714004666, "partial": false}, {"month": "2025-08", "tokens_t": 14.972246670487, "per_day_t": 0.4829756990479678, "partial": false}, {"month": "2025-09", "tokens_t": 21.420165808436, "per_day_t": 0.7140055269478667, "partial": false}, {"month": "2025-10", "tokens_t": 22.346458789698, "per_day_t": 0.7208535093450968, "partial": false}, {"month": "2025-11", "tokens_t": 26.560571438251, "per_day_t": 0.8853523812750335, "partial": false}, {"month": "2025-12", "tokens_t": 26.014738422454, "per_day_t": 0.8391851104017419, "partial": false}, {"month": "2026-01", "tokens_t": 31.693294583108, "per_day_t": 1.0223643413905805, "partial": false}, {"month": "2026-02", "tokens_t": 49.787155474465, "per_day_t": 1.7781126955166071, "partial": false}, {"month": "2026-03", "tokens_t": 83.787133376597, "per_day_t": 2.702810754083774, "partial": false}, {"month": "2026-04", "tokens_t": 97.142542677421, "per_day_t": 3.2380847559140333, "partial": false}, {"month": "2026-05", "tokens_t": 122.904718413415, "per_day_t": 3.9646683359166124, "partial": false}, {"month": "2026-06", "tokens_t": 188.35237437443, "per_day_t": 6.278412479147668, "partial": false}, {"month": "2026-07", "tokens_t": 248.392250919283, "per_day_t": 8.012653255460743, "partial": false}, {"month": "2026-08", "tokens_t": 379.379208259751, "per_day_t": 12.238038976121002, "partial": false}, {"month": "2026-09", "tokens_t": 575.897453150323, "per_day_t": 19.196581771677433, "partial": false}, {"month": "2026-10", "tokens_t": 428.493080808339, "per_day_t": 23.805171156018833, "partial": true}], "hhi": [{"month": "2025-01", "hhi_lab": 3072.3648513882063, "partial": false}, {"month": "2025-02", "hhi_lab": 2803.2296621754517, "partial": false}, {"month": "2025-03", "hhi_lab": 2688.7676546588996, "partial": false}, {"month": "2025-04", "hhi_lab": 2443.185274319565, "partial": false}, {"month": "2025-05", "hhi_lab": 2350.4798840790854, "partial": false}, {"month": "2025-06", "hhi_lab": 2671.4006796129515, "partial": false}, {"month": "2025-07", "hhi_lab": 2362.5287750652137, "partial": false}, {"month": "2025-08", "hhi_lab": 1715.992190848104, "partial": false}, {"month": "2025-09", "hhi_lab": 1982.6183350045164, "partial": false}, {"month": "2025-10", "hhi_lab": 1917.1627296519473, "partial": false}, {"month": "2025-11", "hhi_lab": 2012.2899543973365, "partial": false}, {"month": "2025-12", "hhi_lab": 1458.822693830706, "partial": false}, {"month": "2026-01", "hhi_lab": 1475.1278511743083, "partial": false}, {"month": "2026-02", "hhi_lab": 1180.6652028205053, "partial": false}, {"month": "2026-03", "hhi_lab": 1048.3389915357777, "partial": false}, {"month": "2026-04", "hhi_lab": 992.3651614260225, "partial": false}, {"month": "2026-05", "hhi_lab": 1189.190337956398, "partial": false}, {"month": "2026-06", "hhi_lab": 1149.3141017781602, "partial": false}, {"month": "2026-07", "hhi_lab": 1102.7687961200893, "partial": false}, {"month": "2026-08", "hhi_lab": 1285.272078554494, "partial": false}, {"month": "2026-09", "hhi_lab": 1355.5343467613543, "partial": false}, {"month": "2026-10", "hhi_lab": 1477.351627444074, "partial": true}], "kpi": {"tokens_sep": 575.897453150323, "tokens_jan25": 2.230133956091, "china_sep": 0.5851392236663532, "china_jan25": 0.05987549355871577, "us_sep": 0.2887066716829823, "us_jan25": 0.8113644400162506, "hhi_sep": 1355.5343467613543, "hhi_jan25": 3072.3648513882063}, "group_tokens_vs_spend": [{"g": "China", "tok": 0.5851392236663532, "spend": 0.3967996188416375, "spend31": 0.36484197629483006}, {"g": "Other named", "tok": 0.012082611355561431, "spend": 0.0006665828801315133, "spend31": 0.0006385631929314574}, {"g": "US", "tok": 0.2887066716829823, "spend": 0.6025337982782313, "spend31": 0.6345194605122386}, {"g": "Unattributed", "tok": 0.11407149329510306, "spend": 0.0, "spend31": 0.0}], "lab_tokens_vs_spend": [{"lab": "Anthropic", "cg": "US", "tok": 0.03422336652950337, "spend": 0.2825078250451831, "price": 5.190946501303836}, {"lab": "OpenAI", "cg": "US", "tok": 0.13303879922496237, "spend": 0.2581533987533949, "price": 1.220220538617818}, {"lab": "Tencent", "cg": "China", "tok": 0.12454764192454004, "spend": 0.15219991804923344, "price": 0.7684537055073373}, {"lab": "Zhipu AI (Z.ai)", "cg": "China", "tok": 0.13367468524400752, "spend": 0.09055869389075799, "price": 0.4260099864849217}, {"lab": "Moonshot AI", "cg": "China", "tok": 0.011912787691473319, "spend": 0.07078718959428512, "price": 3.736629759039783}, {"lab": "DeepSeek", "cg": "China", "tok": 0.21473391696547156, "spend": 0.05324203935540261, "price": 0.15591677237306015}, {"lab": "Google", "cg": "US", "tok": 0.046223151369191064, "spend": 0.04739170310892111, "price": 0.6447354721013141}, {"lab": "Xiaomi", "cg": "China", "tok": 0.05483932555659243, "spend": 0.014577828569024991, "price": 0.16716276023332077}, {"lab": "Alibaba (Qwen)", "cg": "China", "tok": 0.007888503359835448, "spend": 0.00878069002718886, "price": 0.6999593693694278}, {"lab": "xAI", "cg": "US", "tok": 0.002367512762031799, "spend": 0.008471026628168952, "price": 2.249999999999999}], "china_gap": [{"month": "2025-01", "tok": 0.05987549355871577, "spend": 0.012072278874980894}, {"month": "2025-02", "tok": 0.08862267842764422, "spend": 0.013695151192904964}, {"month": "2025-03", "tok": 0.1246905876368092, "spend": 0.010815685050274575}, {"month": "2025-04", "tok": 0.1350453511673283, "spend": 0.014303405507639273}, {"month": "2025-05", "tok": 0.12492315674015421, "spend": 0.0160451664925144}, {"month": "2025-06", "tok": 0.162234513268747, "spend": 0.01932717678785598}, {"month": "2025-07", "tok": 0.2338776167719707, "spend": 0.02345627788225445}, {"month": "2025-08", "tok": 0.2877381186380007, "spend": 0.028847043834719303}, {"month": "2025-09", "tok": 0.1600419426432678, "spend": 0.025515869579891617}, {"month": "2025-10", "tok": 0.14324709747142267, "spend": 0.04295822188307459}, {"month": "2025-11", "tok": 0.16018051023450253, "spend": 0.04570829914638927}, {"month": "2025-12", "tok": 0.20058181411007905, "spend": 0.04040956395346174}, {"month": "2026-01", "tok": 0.22775037595530256, "spend": 0.037904466283525784}, {"month": "2026-02", "tok": 0.39125353491652404, "spend": 0.16118806766172905}, {"month": "2026-03", "tok": 0.4423902326081759, "spend": 0.21711844037726805}, {"month": "2026-04", "tok": 0.4542802961205296, "spend": 0.18926855113269445}, {"month": "2026-05", "tok": 0.4526212760852971, "spend": 0.12970911442032795}, {"month": "2026-06", "tok": 0.5355976226325938, "spend": 0.1407955375466792}, {"month": "2026-07", "tok": 0.6149258010469012, "spend": 0.20807331619978986}, {"month": "2026-08", "tok": 0.5447769299834525, "spend": 0.31942406695630454}, {"month": "2026-09", "tok": 0.5851392236663532, "spend": 0.3967996188416375}], "tiers": [{"tier": "$5+", "tok": 0.027392272331992235, "spend": 0.3500979933428331}, {"tier": "$0.25-1", "tok": 0.26348415304121015, "spend": 0.24004065438658845}, {"tier": "Free", "tok": 0.1326156658691737, "spend": 0.0}, {"tier": "$1-5", "tok": 0.11193481209707415, "spend": 0.3476202791737961}, {"tier": "Under $0.25", "tok": 0.4645730966605498, "spend": 0.062241073096782354}], "price_index": [{"month": "2025-01", "avg_price": 2.025944240636711, "avg_idx": 1.0, "same_model_idx": 1.0}, {"month": "2025-02", "avg_price": 1.6614354554344049, "avg_idx": 0.8200795570327499, "same_model_idx": 0.9996129822321835}, {"month": "2025-03", "avg_price": 1.4257947184808606, "avg_idx": 0.7037679961185722, "same_model_idx": 0.9977281725327748}, {"month": "2025-04", "avg_price": 1.2206980951172155, "avg_idx": 0.6025329180498947, "same_model_idx": 0.9977469807809358}, {"month": "2025-05", "avg_price": 1.15779257079272, "avg_idx": 0.5714829399395762, "same_model_idx": 0.9963042298340824}, {"month": "2025-06", "avg_price": 1.3274665717105678, "avg_idx": 0.655233517825433, "same_model_idx": 0.9958497451907721}, {"month": "2025-07", "avg_price": 1.3949309799930143, "avg_idx": 0.6885337473822168, "same_model_idx": 0.9945794838558484}, {"month": "2025-08", "avg_price": 1.3460778461769118, "avg_idx": 0.6644199870742091, "same_model_idx": 0.9868359214959692}, {"month": "2025-09", "avg_price": 0.9509648639322343, "avg_idx": 0.46939340424954956, "same_model_idx": 0.9901870931886763}, {"month": "2025-10", "avg_price": 0.93958498426555, "avg_idx": 0.46377632978203714, "same_model_idx": 0.9938183817065824}, {"month": "2025-11", "avg_price": 0.8386021299650777, "avg_idx": 0.41393149581526634, "same_model_idx": 0.9891517088447996}, {"month": "2025-12", "avg_price": 0.9716901895719695, "avg_idx": 0.4796233628160408, "same_model_idx": 0.9855139725434703}, {"month": "2026-01", "avg_price": 1.1624810736500866, "avg_idx": 0.5737971708859784, "same_model_idx": 0.9815629720004948}, {"month": "2026-02", "avg_price": 1.0832906517372238, "avg_idx": 0.5347090161754742, "same_model_idx": 0.9907417815204842}, {"month": "2026-03", "avg_price": 1.1548584031119904, "avg_idx": 0.5700346435739234, "same_model_idx": 0.9823379514207202}, {"month": "2026-04", "avg_price": 1.2279147417040432, "avg_idx": 0.6060950331575443, "same_model_idx": 0.9690346687970367}, {"month": "2026-05", "avg_price": 1.282427383091073, "avg_idx": 0.6330023094258673, "same_model_idx": 0.9680318227848894}, {"month": "2026-06", "avg_price": 1.2138311698315234, "avg_idx": 0.5991434243274347, "same_model_idx": 0.9482152401691659}, {"month": "2026-07", "avg_price": 1.1297830094227372, "avg_idx": 0.557657504466989, "same_model_idx": 0.9538961842423629}, {"month": "2026-08", "avg_price": 0.8178023468247585, "avg_idx": 0.40366478524983523, "same_model_idx": 0.9589361389941876}, {"month": "2026-09", "avg_price": 0.6774611393928986, "avg_idx": 0.33439278623975704, "same_model_idx": 0.8970035213284289}], "scatter": [{"name": "DeepSeek V4 Flash 0420 (High)", "lab": "DeepSeek", "g": "China", "iq": 24.4, "price": 0.15937500000000002, "share": 0.040823105341249714}, {"name": "o3-pro", "lab": "OpenAI", "g": "US", "iq": 21.9, "price": 23.75, "share": 0.0}, {"name": "Claude 4.1 Opus (Reasoning)", "lab": "Anthropic", "g": "US", "iq": 22.8, "price": 9.375, "share": 0.0}, {"name": "Gemini 3.5 Flash-Lite", "lab": "Google", "g": "US", "iq": 22.2, "price": 0.7875000000000001, "share": 0.0004944487445215851}, {"name": "Hy3", "lab": "Tencent", "g": "China", "iq": 25.3, "price": 0.20625, "share": 0.0}, {"name": "GLM-4.7 (Reasoning)", "lab": "Zhipu AI (Z.ai)", "g": "China", "iq": 22.2, "price": 0.3875, "share": 0.0}, {"name": "MiMo-V2.5-Pro (Reasoning)", "lab": "Xiaomi", "g": "China", "iq": 26.0, "price": 0.5546250000000001, "share": 0.002270626930365084}, {"name": "MiniMax-M2.5", "lab": "MiniMax", "g": "China", "iq": 22.8, "price": 0.35624999999999996, "share": 0.0}, {"name": "Nemotron 3.5 Super VL", "lab": "NVIDIA", "g": "US", "iq": 26.5, "price": 0.3125, "share": 0.0005079914599872995}, {"name": "Grok Build 0.1 0616", "lab": "xAI", "g": "US", "iq": 27.2, "price": 2.125, "share": 0.0}, {"name": "Step 5 Preview", "lab": "StepFun", "g": "China", "iq": 43.7, "price": 1.10625, "share": 0.01375023879250703}, {"name": "Kimi K2 Thinking", "lab": "Moonshot AI", "g": "China", "iq": 22.0, "price": 0.71875, "share": 0.0}, {"name": "Qwen3.5 27B (Reasoning)", "lab": "Alibaba (Qwen)", "g": "China", "iq": 22.9, "price": 0.35937499999999994, "share": 0.0}, {"name": "Muse Spark 1.1 (Xhigh)", "lab": "Meta", "g": "US", "iq": 33.7, "price": 1.4375000000000002, "share": 1.5296734502382012e-05}, {"name": "Ling-3.0-flash-VL", "lab": "Ant Group (inclusionAI)", "g": "China", "iq": 24.6, "price": 0.0675, "share": 0.0006992028925453047}, {"name": "Solar Mini 4", "lab": "Upstage", "g": "Other", "iq": 24.1, "price": 0.059375, "share": 0.0015316020511605465}, {"name": "Mistral Large 4 Preview", "lab": "Mistral AI", "g": "Other", "iq": 38.4, "price": 0.8449374999999999, "share": 3.954791197667293e-05}, {"name": "DeepSeek V4.1 Flash (Non-reasoning)", "lab": "DeepSeek", "g": "China", "iq": 24.7, "price": 0.35624999999999996, "share": 0.0946543728047342}, {"name": "GPT-5 (High)", "lab": "OpenAI", "g": "US", "iq": 23.0, "price": 0.8984375, "share": 0.0}, {"name": "Claude Opus 4.5 (Reasoning)", "lab": "Anthropic", "g": "US", "iq": 29.1, "price": 6.25, "share": 0.0}, {"name": "Gemini 3 Flash Preview (Reasoning)", "lab": "Google", "g": "US", "iq": 26.3, "price": 1.18125, "share": 0.007479384859119733}, {"name": "GLM 5V Turbo (Reasoning)", "lab": "Zhipu AI (Z.ai)", "g": "China", "iq": 23.5, "price": 1.375, "share": 0.0}, {"name": "MiMo-V2.6-Flash", "lab": "Xiaomi", "g": "China", "iq": 37.9, "price": 0.139375, "share": 0.024746578724586455}, {"name": "MiniMax-M2.7", "lab": "MiniMax", "g": "China", "iq": 22.8, "price": 0.35624999999999996, "share": 0.0011768378352820204}, {"name": "Nemotron 3 Ultra 550B A55B (Reasoning)", "lab": "NVIDIA", "g": "US", "iq": 22.9, "price": 0.48500000000000004, "share": 0.036585348689376136}, {"name": "Grok 4.3 (High)", "lab": "xAI", "g": "US", "iq": 24.9, "price": 1.0625, "share": 0.0}, {"name": "Kimi K2.5 (Reasoning)", "lab": "Moonshot AI", "g": "China", "iq": 23.5, "price": 0.75, "share": 0.0002426254381965519}, {"name": "Qwen3.8 2.4T A95B", "lab": "Alibaba (Qwen)", "g": "China", "iq": 39.9, "price": 2.2499999999999996, "share": 0.0}, {"name": "Muse Spark 1.2 (Xhigh)", "lab": "Meta", "g": "US", "iq": 39.6, "price": 1.4375000000000002, "share": 3.0498372676414453e-05}, {"name": "Ling 3.1 Flash", "lab": "Ant Group (inclusionAI)", "g": "China", "iq": 41.1, "price": 0.084375, "share": 0.0006518308163827854}, {"name": "Solar Pro 4", "lab": "Upstage", "g": "Other", "iq": 28.2, "price": 0.106875, "share": 0.006701713780165052}, {"name": "DeepSeek V4 Pro 0424 (Max)", "lab": "DeepSeek", "g": "China", "iq": 30.4, "price": 1.6575000000000002, "share": 0.014546927635330649}, {"name": "GPT-5.1 Codex (High)", "lab": "OpenAI", "g": "US", "iq": 23.7, "price": 1.796875, "share": 0.0}, {"name": "Claude Sonnet 4.6 (Max)", "lab": "Anthropic", "g": "US", "iq": 30.1, "price": 3.75, "share": 0.004975747649063618}, {"name": "Gemini 3.1 Pro Preview", "lab": "Google", "g": "US", "iq": 29.7, "price": 4.725, "share": 0.0008559980672319814}, {"name": "GLM-5.1 (Reasoning)", "lab": "Zhipu AI (Z.ai)", "g": "China", "iq": 26.1, "price": 1.5081250000000002, "share": 0.0}, {"name": "MiMo-V2.6-Pro", "lab": "Xiaomi", "g": "China", "iq": 46.3, "price": 0.46218750000000003, "share": 0.003548779018548232}, {"name": "MiniMax-M3", "lab": "MiniMax", "g": "China", "iq": 29.2, "price": 0.265, "share": 0.018975812799306813}, {"name": "Grok 4.20 0309 v2 (Reasoning)", "lab": "xAI", "g": "US", "iq": 25.7, "price": 2.65625, "share": 0.0}, {"name": "Kimi K2.7 Code", "lab": "Moonshot AI", "g": "China", "iq": 25.8, "price": 1.140625, "share": 4.718631488957268e-05}, {"name": "Qwen3.7 Plus", "lab": "Alibaba (Qwen)", "g": "China", "iq": 25.2, "price": 0.273125, "share": 4.4422485858682106e-05}, {"name": "Muse Spark 1.3 (Max)", "lab": "Meta", "g": "US", "iq": 48.1, "price": 1.4375000000000002, "share": 0.0009780208715102821}, {"name": "DeepSeek V4 Flash 0731 (Max)", "lab": "DeepSeek", "g": "China", "iq": 34.3, "price": 0.21037499999999998, "share": 0.06984569104648891}, {"name": "GPT-5.1 (High)", "lab": "OpenAI", "g": "US", "iq": 24.7, "price": 3.59375, "share": 0.0}, {"name": "Claude Opus 4.6 (Max)", "lab": "Anthropic", "g": "US", "iq": 31.9, "price": 6.25, "share": 0.0004929547151766622}, {"name": "Gemini 3.5 Flash (Medium)", "lab": "Google", "g": "US", "iq": 33.6, "price": 3.54375, "share": 0.000592666728888197}, {"name": "GLM-5-Turbo", "lab": "Zhipu AI (Z.ai)", "g": "China", "iq": 26.6, "price": 1.375, "share": 0.0}, {"name": "Grok 4.5 (High)", "lab": "xAI", "g": "US", "iq": 38.8, "price": 4.499999999999999, "share": 0.0009885442390588565}, {"name": "Kimi K2.6 (Reasoning)", "lab": "Moonshot AI", "g": "China", "iq": 27.0, "price": 1.0265625, "share": 0.0004912443228313553}, {"name": "Qwen3.6 Plus", "lab": "Alibaba (Qwen)", "g": "China", "iq": 27.0, "price": 0.4265625, "share": 7.889328394072494e-05}, {"name": "DeepSeek V4 Flash Vision (Max)", "lab": "DeepSeek", "g": "China", "iq": 34.8, "price": 0.49500000000000005, "share": 0.0007410882370303371}, {"name": "GPT-5.2 Codex (Xhigh)", "lab": "OpenAI", "g": "US", "iq": 28.5, "price": 2.515625, "share": 0.0}, {"name": "Claude Sonnet 5 (Max)", "lab": "Anthropic", "g": "US", "iq": 38.2, "price": 2.75, "share": 0.009738089849727441}, {"name": "Gemini 3.6 Flash (High)", "lab": "Google", "g": "US", "iq": 34.0, "price": 1.6875, "share": 0.004559515951170265}, {"name": "GLM-5 (Reasoning)", "lab": "Zhipu AI (Z.ai)", "g": "China", "iq": 27.9, "price": 1.1375, "share": 0.00020805531872879394}, {"name": "Grok 4.6 (High)", "lab": "xAI", "g": "US", "iq": 44.3, "price": 2.475, "share": 0.0015600559376543596}, {"name": "Kimi K3 (Max)", "lab": "Moonshot AI", "g": "China", "iq": 43.6, "price": 1.6875, "share": 0.013842110840427288}, {"name": "Qwen3.7 Max", "lab": "Alibaba (Qwen)", "g": "China", "iq": 29.5, "price": 2.2499999999999996, "share": 9.776809185176026e-05}, {"name": "DeepSeek V4 Pro 0813 (Max)", "lab": "DeepSeek", "g": "China", "iq": 36.0, "price": 1.0625, "share": 0.006749305414021121}, {"name": "GPT-5.3 Codex (Xhigh)", "lab": "OpenAI", "g": "US", "iq": 32.5, "price": 5.03125, "share": 0.0}, {"name": "Claude Opus 4.7 (Max)", "lab": "Anthropic", "g": "US", "iq": 40.7, "price": 6.25, "share": 0.001433170559473007}, {"name": "Gemini 3.7 Flash (Medium)", "lab": "Google", "g": "US", "iq": 39.6, "price": 1.03125, "share": 0.0075607516928310374}, {"name": "GLM-5.2 (Max)", "lab": "Zhipu AI (Z.ai)", "g": "China", "iq": 33.7, "price": 0.511875, "share": 0.021113313389087476}, {"name": "Grok 4.7 (Xhigh)", "lab": "xAI", "g": "US", "iq": 46.4, "price": 2.475, "share": 0.0008487817353865588}, {"name": "Qwen3.8 27B (Xhigh)", "lab": "Alibaba (Qwen)", "g": "China", "iq": 33.7, "price": 0.18125000000000002, "share": 0.0014584326928721856}, {"name": "DeepSeek V4.1 Flash (Max)", "lab": "DeepSeek", "g": "China", "iq": 39.5, "price": 0.095625, "share": 0.0025229241114166283}, {"name": "GPT-5.4 mini (Xhigh)", "lab": "OpenAI", "g": "US", "iq": 24.1, "price": 1.96875, "share": 0.0002626487919086354}, {"name": "Claude Opus 4.8 (Max)", "lab": "Anthropic", "g": "US", "iq": 41.8, "price": 12.5, "share": 0.0034651480710815525}, {"name": "Gemini 3.8 Flash (High)", "lab": "Google", "g": "US", "iq": 40.9, "price": 1.03125, "share": 0.009455580397245488}, {"name": "GLM-5.3-Flash", "lab": "Zhipu AI (Z.ai)", "g": "China", "iq": 41.8, "price": 0.058124999999999996, "share": 0.064389310236516}, {"name": "Qwen3.8 Max (0902)", "lab": "Alibaba (Qwen)", "g": "China", "iq": 45.4, "price": 2.2499999999999996, "share": 0.0007309636472298446}, {"name": "GPT-5.2 (Xhigh)", "lab": "OpenAI", "g": "US", "iq": 30.4, "price": 5.03125, "share": 5.7495077627442144e-05}, {"name": "Claude Haiku 5.5 (Max)", "lab": "Anthropic", "g": "US", "iq": 43.4, "price": 0.1375, "share": 0.0021181123417883837}, {"name": "Gemini 4 Argon (High)", "lab": "Google", "g": "US", "iq": 52.6, "price": 2.75, "share": 0.0004929587466601996}, {"name": "GLM-5.3 (Max)", "lab": "Zhipu AI (Z.ai)", "g": "China", "iq": 44.8, "price": 1.375, "share": 0.016994022679772843}, {"name": "GPT-5.6 Luna (Max)", "lab": "OpenAI", "g": "US", "iq": 37.3, "price": 0.525, "share": 0.05554484351452342}, {"name": "Claude Fable 5 (Max, Opus 4.8 Fallback)", "lab": "Anthropic", "g": "US", "iq": 49.6, "price": 12.5, "share": 0.0010465006050058674}, {"name": "GPT-6 Luna (Max)", "lab": "OpenAI", "g": "US", "iq": 38.1, "price": 0.125, "share": 0.015187682390598428}, {"name": "Claude Opus 5 (Max)", "lab": "Anthropic", "g": "US", "iq": 50.8, "price": 6.875, "share": 0.01046108008153975}, {"name": "GPT-5.5 (Xhigh)", "lab": "OpenAI", "g": "US", "iq": 38.4, "price": 3.28125, "share": 0.000824122195838731}, {"name": "Claude Fable 5.1 (Max, Default Fallback)", "lab": "Anthropic", "g": "US", "iq": 53.4, "price": 6.25, "share": 0.001520851888399863}, {"name": "GPT-5.4 (Xhigh)", "lab": "OpenAI", "g": "US", "iq": 39.0, "price": 6.5625, "share": 0.0006580294148566454}, {"name": "Claude Sonnet 5.5 (Max, Default Fallback)", "lab": "Anthropic", "g": "US", "iq": 56.0, "price": 2.5, "share": 0.0038315230166331158}, {"name": "GPT-5.6 Terra (Max)", "lab": "OpenAI", "g": "US", "iq": 42.1, "price": 5.25, "share": 0.0040961750786717935}, {"name": "Claude Opus 5.5 (Max, Default Fallback)", "lab": "Anthropic", "g": "US", "iq": 57.6, "price": 5.5, "share": 0.009972436139170131}, {"name": "GPT-5.6 Sol (Max)", "lab": "OpenAI", "g": "US", "iq": 47.0, "price": 10.0, "share": 0.010813541930340552}, {"name": "GPT-6 Sol (Max)", "lab": "OpenAI", "g": "US", "iq": 47.6, "price": 2.5, "share": 0.0021517005872533036}, {"name": "GPT-6.1 Sol (Max)", "lab": "OpenAI", "g": "US", "iq": 51.8, "price": 15.0, "share": 0.0032304003901318557}, {"name": "GPT-6 Astra (Max)", "lab": "OpenAI", "g": "US", "iq": 52.7, "price": 75.0, "share": 0.003950283823744957}], "h6": {"spearman": 0.19394356464107987, "top5_scorers": 0.020197838253059913, "top5_used": 0.3252573229435123, "frontier_n": 7, "scored_n": 91, "frontier_share": 0.1318842497644171, "used_n": 72, "scorers_min": 52.7, "scorers_max": 57.6, "used_min": 24.4, "used_max": 41.8}, "frontier": [{"name": "GLM-5.3-Flash", "price": 0.058124999999999996, "iq": 41.8}, {"name": "Claude Haiku 5.5 (Max)", "price": 0.1375, "iq": 43.4}, {"name": "MiMo-V2.6-Pro", "price": 0.46218750000000003, "iq": 46.3}, {"name": "Muse Spark 1.3 (Max)", "price": 1.4375000000000002, "iq": 48.1}, {"name": "Claude Sonnet 5.5 (Max, Default Fallback)", "price": 2.5, "iq": 56.0}, {"name": "Claude Opus 5.5 (Max, Default Fallback)", "price": 5.5, "iq": 57.6}], "robustness": [{"cut": "as measured", "month": "2026-03", "china": 0.44239023260817584, "us": 0.45777477957066975}, {"cut": "as measured", "month": "2026-06", "china": 0.5355976226325938, "us": 0.33549603804565914}, {"cut": "as measured", "month": "2026-09", "china": 0.5851392236663532, "us": 0.2887066716829823}, {"cut": "all stealth + long tail credited to the US", "month": "2026-03", "china": 0.44239023260817584, "us": 0.553289726774632}, {"cut": "all stealth + long tail credited to the US", "month": "2026-06", "china": 0.5355976226325938, "us": 0.45911328059385764}, {"cut": "all stealth + long tail credited to the US", "month": "2026-09", "china": 0.5851392236663532, "us": 0.4027781649780854}, {"cut": "paid tokens only", "month": "2026-03", "china": 0.41444911018818836, "us": 0.47346799201626194}, {"cut": "paid tokens only", "month": "2026-06", "china": 0.5572111238799645, "us": 0.30790020020113484}, {"cut": "paid tokens only", "month": "2026-09", "china": 0.6047301247492318, "us": 0.2583304122615485}, {"cut": "without DeepSeek", "month": "2026-03", "china": 0.40458421888154333, "us": 0.4888119683220529}, {"cut": "without DeepSeek", "month": "2026-06", "china": 0.439759388851606, "us": 0.4047320051591034}, {"cut": "without DeepSeek", "month": "2026-09", "china": 0.47169400882502494, "us": 0.3676545796646712}], "requests_week": {"china": 0.443, "us": 0.44999999999999996, "week": "2026-10-12"}, "launch_split": [{"cut": "All", "n": 103, "model_w12": 0.21156557531659115, "lab_w12": 0.6972258685559313}, {"cut": "China", "n": 44, "model_w12": 0.10794656975335518, "lab_w12": 0.490073290600748}, {"cut": "Europe", "n": 2, "model_w12": 0.16487376549847363, "lab_w12": 0.2208359767878293}, {"cut": "US", "n": 57, "model_w12": 0.3333052926204721, "lab_w12": 0.7242232251080392}], "china_labs": [{"lab": "DeepSeek", "month": "2025-01", "share": 0.042720481659314476}, {"lab": "DeepSeek", "month": "2025-02", "share": 0.07112503411046021}, {"lab": "DeepSeek", "month": "2025-03", "share": 0.10805296219812663}, {"lab": "DeepSeek", "month": "2025-04", "share": 0.12181677853562775}, {"lab": "DeepSeek", "month": "2025-05", "share": 0.10911561254421942}, {"lab": "DeepSeek", "month": "2025-06", "share": 0.15408191216073744}, {"lab": "DeepSeek", "month": "2025-07", "share": 0.18112485412395105}, {"lab": "DeepSeek", "month": "2025-08", "share": 0.15191680215351516}, {"lab": "DeepSeek", "month": "2025-09", "share": 0.10471060049146125}, {"lab": "DeepSeek", "month": "2025-10", "share": 0.06829536125417683}, {"lab": "DeepSeek", "month": "2025-11", "share": 0.0506431748322571}, {"lab": "DeepSeek", "month": "2025-12", "share": 0.0748175064613007}, {"lab": "DeepSeek", "month": "2026-01", "share": 0.08369385011477339}, {"lab": "DeepSeek", "month": "2026-02", "share": 0.07226648422254862}, {"lab": "DeepSeek", "month": "2026-03", "share": 0.06349514897911494}, {"lab": "DeepSeek", "month": "2026-04", "share": 0.06482486807099688}, {"lab": "DeepSeek", "month": "2026-05", "share": 0.15266679990018167}, {"lab": "DeepSeek", "month": "2026-06", "share": 0.17106620240281484}, {"lab": "DeepSeek", "month": "2026-07", "share": 0.16656240147126578}, {"lab": "DeepSeek", "month": "2026-08", "share": 0.22442275427866878}, {"lab": "DeepSeek", "month": "2026-09", "share": 0.21473391696547156}, {"lab": "MiniMax", "month": "2025-01", "share": 0.004335658709465188}, {"lab": "MiniMax", "month": "2025-02", "share": 0.005283936702849272}, {"lab": "MiniMax", "month": "2025-03", "share": 0.002253780483314033}, {"lab": "MiniMax", "month": "2025-04", "share": 0.001344181608779817}, {"lab": "MiniMax", "month": "2025-05", "share": 0.000367064241652052}, {"lab": "MiniMax", "month": "2025-06", "share": 0.0001543843152777726}, {"lab": "MiniMax", "month": "2025-10", "share": 0.007311845995273606}, {"lab": "MiniMax", "month": "2025-11", "share": 0.04382253228470621}, {"lab": "MiniMax", "month": "2025-12", "share": 0.02188944467461931}, {"lab": "MiniMax", "month": "2026-01", "share": 0.021137148453479138}, {"lab": "MiniMax", "month": "2026-02", "share": 0.13420784414022202}, {"lab": "MiniMax", "month": "2026-03", "share": 0.10044071176121194}, {"lab": "MiniMax", "month": "2026-04", "share": 0.08146562103116961}, {"lab": "MiniMax", "month": "2026-05", "share": 0.030869341284881766}, {"lab": "MiniMax", "month": "2026-06", "share": 0.08943213230666223}, {"lab": "MiniMax", "month": "2026-07", "share": 0.06010209065506339}, {"lab": "MiniMax", "month": "2026-08", "share": 0.029089553465829258}, {"lab": "MiniMax", "month": "2026-09", "share": 0.020868819930026563}, {"lab": "Moonshot AI", "month": "2025-07", "share": 0.01335079117437104}, {"lab": "Moonshot AI", "month": "2025-08", "share": 0.02217659778832645}, {"lab": "Moonshot AI", "month": "2025-09", "share": 0.005963810554897259}, {"lab": "Moonshot AI", "month": "2025-10", "share": 0.002726237678655631}, {"lab": "Moonshot AI", "month": "2025-11", "share": 0.004661254887524835}, {"lab": "Moonshot AI", "month": "2025-12", "share": 0.004083857542280765}, {"lab": "Moonshot AI", "month": "2026-01", "share": 0.015167541786085252}, {"lab": "Moonshot AI", "month": "2026-02", "share": 0.0846888374562698}, {"lab": "Moonshot AI", "month": "2026-03", "share": 0.03172237128885231}, {"lab": "Moonshot AI", "month": "2026-04", "share": 0.047038722947933376}, {"lab": "Moonshot AI", "month": "2026-05", "share": 0.04535035635511147}, {"lab": "Moonshot AI", "month": "2026-06", "share": 0.016107337153451168}, {"lab": "Moonshot AI", "month": "2026-07", "share": 0.02038373158387825}, {"lab": "Moonshot AI", "month": "2026-08", "share": 0.017675372096337457}, {"lab": "Moonshot AI", "month": "2026-09", "share": 0.011912787691473319}, {"lab": "Tencent", "month": "2026-04", "share": 0.01885469917995795}, {"lab": "Tencent", "month": "2026-05", "share": 0.11244865761513759}, {"lab": "Tencent", "month": "2026-06", "share": 0.08102220259256651}, {"lab": "Tencent", "month": "2026-07", "share": 0.11795097697341472}, {"lab": "Tencent", "month": "2026-08", "share": 0.10255488954947754}, {"lab": "Tencent", "month": "2026-09", "share": 0.12454764192454004}, {"lab": "Xiaomi", "month": "2025-12", "share": 0.02760261349609462}, {"lab": "Xiaomi", "month": "2026-01", "share": 0.05683720790918007}, {"lab": "Xiaomi", "month": "2026-02", "share": 0.005156684342885906}, {"lab": "Xiaomi", "month": "2026-03", "share": 0.10453620148585321}, {"lab": "Xiaomi", "month": "2026-04", "share": 0.050992104996355536}, {"lab": "Xiaomi", "month": "2026-05", "share": 0.02960926620620931}, {"lab": "Xiaomi", "month": "2026-06", "share": 0.09487737150940856}, {"lab": "Xiaomi", "month": "2026-07", "share": 0.14764686263031052}, {"lab": "Xiaomi", "month": "2026-08", "share": 0.08460767946884445}, {"lab": "Xiaomi", "month": "2026-09", "share": 0.05483932555659243}, {"lab": "Zhipu AI (Z.ai)", "month": "2025-07", "share": 0.0017460603411321787}, {"lab": "Zhipu AI (Z.ai)", "month": "2025-08", "share": 0.026385474828618374}, {"lab": "Zhipu AI (Z.ai)", "month": "2025-09", "share": 0.015458872102735496}, {"lab": "Zhipu AI (Z.ai)", "month": "2025-10", "share": 0.028549357701772214}, {"lab": "Zhipu AI (Z.ai)", "month": "2025-11", "share": 0.024129691196854867}, {"lab": "Zhipu AI (Z.ai)", "month": "2025-12", "share": 0.020439841684629194}, {"lab": "Zhipu AI (Z.ai)", "month": "2026-01", "share": 0.024820355206121913}, {"lab": "Zhipu AI (Z.ai)", "month": "2026-02", "share": 0.05678485948601746}, {"lab": "Zhipu AI (Z.ai)", "month": "2026-03", "share": 0.05098192865332149}, {"lab": "Zhipu AI (Z.ai)", "month": "2026-04", "share": 0.050211529017993535}, {"lab": "Zhipu AI (Z.ai)", "month": "2026-05", "share": 0.029157352875907608}, {"lab": "Zhipu AI (Z.ai)", "month": "2026-06", "share": 0.03878899380649823}, {"lab": "Zhipu AI (Z.ai)", "month": "2026-07", "share": 0.06320829665301027}, {"lab": "Zhipu AI (Z.ai)", "month": "2026-08", "share": 0.06656155865520594}, {"lab": "Zhipu AI (Z.ai)", "month": "2026-09", "share": 0.13367468524400752}], "launch": [{"w": 0, "model_vs_peak": 0.4877428216027202, "lab_vs_base": 0.8392551888716606, "n": 103}, {"w": 1, "model_vs_peak": 0.6669399227478513, "lab_vs_base": 0.8965548100281535, "n": 103}, {"w": 2, "model_vs_peak": 0.5717348544363923, "lab_vs_base": 0.8185255403651891, "n": 103}, {"w": 3, "model_vs_peak": 0.5951722155669731, "lab_vs_base": 0.8407225536181248, "n": 103}, {"w": 4, "model_vs_peak": 0.6196714524811026, "lab_vs_base": 0.8283000997758881, "n": 103}, {"w": 5, "model_vs_peak": 0.6242850000565858, "lab_vs_base": 0.7829051893676704, "n": 103}, {"w": 6, "model_vs_peak": 0.5638106456221518, "lab_vs_base": 0.7492630720409372, "n": 103}, {"w": 7, "model_vs_peak": 0.5019506334688101, "lab_vs_base": 0.7879113801919754, "n": 103}, {"w": 8, "model_vs_peak": 0.4130507627819683, "lab_vs_base": 0.6999259260648014, "n": 103}, {"w": 9, "model_vs_peak": 0.381560179569921, "lab_vs_base": 0.7551479544468016, "n": 103}, {"w": 10, "model_vs_peak": 0.33090795825407254, "lab_vs_base": 0.7285983913784203, "n": 103}, {"w": 11, "model_vs_peak": 0.2888843391305715, "lab_vs_base": 0.7226569675376107, "n": 103}, {"w": 12, "model_vs_peak": 0.21156557531659115, "lab_vs_base": 0.697225868555931, "n": 103}], "categories": [{"month": "2025-05", "category": "academia", "share": 0.01510229493463246}, {"month": "2025-05", "category": "finance", "share": 0.01248179839263351}, {"month": "2025-05", "category": "health", "share": 0.00815278336463849}, {"month": "2025-05", "category": "legal", "share": 0.004853836285909681}, {"month": "2025-05", "category": "marketing", "share": 0.004372909851158971}, {"month": "2025-05", "category": "marketing/seo", "share": 0.0008691453314994099}, {"month": "2025-05", "category": "programming", "share": 0.1837480557741317}, {"month": "2025-05", "category": "roleplay", "share": 0.17565981068638153}, {"month": "2025-05", "category": "science", "share": 0.3555607914658627}, {"month": "2025-05", "category": "technology", "share": 0.18076865029091166}, {"month": "2025-05", "category": "translation", "share": 0.0546008002899}, {"month": "2025-05", "category": "trivia", "share": 0.003829123332339841}, {"month": "2025-06", "category": "academia", "share": 0.025918252162441712}, {"month": "2025-06", "category": "finance", "share": 0.026050234003347425}, {"month": "2025-06", "category": "health", "share": 0.017089418012527252}, {"month": "2025-06", "category": "legal", "share": 0.0168594069802074}, {"month": "2025-06", "category": "marketing", "share": 0.007597796100135504}, {"month": "2025-06", "category": "marketing/seo", "share": 0.006316900506293157}, {"month": "2025-06", "category": "programming", "share": 0.35351817042488887}, {"month": "2025-06", "category": "roleplay", "share": 0.24624628589674827}, {"month": "2025-06", "category": "science", "share": 0.10725690682289168}, {"month": "2025-06", "category": "technology", "share": 0.15384708858109314}, {"month": "2025-06", "category": "translation", "share": 0.033646294621572856}, {"month": "2025-06", "category": "trivia", "share": 0.005653245887852717}, {"month": "2025-07", "category": "academia", "share": 0.022331336989054387}, {"month": "2025-07", "category": "finance", "share": 0.024332364594334358}, {"month": "2025-07", "category": "health", "share": 0.013430734234626377}, {"month": "2025-07", "category": "legal", "share": 0.008497964198400185}, {"month": "2025-07", "category": "marketing", "share": 0.006258864351163506}, {"month": "2025-07", "category": "marketing/seo", "share": 0.005755512296203285}, {"month": "2025-07", "category": "programming", "share": 0.37567905089467574}, {"month": "2025-07", "category": "roleplay", "share": 0.2982977399242761}, {"month": "2025-07", "category": "science", "share": 0.0823365935757148}, {"month": "2025-07", "category": "technology", "share": 0.13518682084068087}, {"month": "2025-07", "category": "translation", "share": 0.024166949456961597}, {"month": "2025-07", "category": "trivia", "share": 0.0037260686439088077}, {"month": "2025-08", "category": "academia", "share": 0.020074820795707608}, {"month": "2025-08", "category": "finance", "share": 0.023603892647339895}, {"month": "2025-08", "category": "health", "share": 0.014797978977222827}, {"month": "2025-08", "category": "legal", "share": 0.009634533608785661}, {"month": "2025-08", "category": "marketing", "share": 0.006938031182458442}, {"month": "2025-08", "category": "marketing/seo", "share": 0.005728550267361943}, {"month": "2025-08", "category": "programming", "share": 0.41897157540182}, {"month": "2025-08", "category": "roleplay", "share": 0.30731077709049415}, {"month": "2025-08", "category": "science", "share": 0.06279558741814285}, {"month": "2025-08", "category": "technology", "share": 0.1028288377931208}, {"month": "2025-08", "category": "translation", "share": 0.02415283158112769}, {"month": "2025-08", "category": "trivia", "share": 0.0031625832364181265}, {"month": "2025-09", "category": "academia", "share": 0.022654221410668352}, {"month": "2025-09", "category": "finance", "share": 0.022739827605378172}, {"month": "2025-09", "category": "health", "share": 0.014216613304300007}, {"month": "2025-09", "category": "legal", "share": 0.012689543860623348}, {"month": "2025-09", "category": "marketing", "share": 0.006573624828601152}, {"month": "2025-09", "category": "marketing/seo", "share": 0.0037622328015183655}, {"month": "2025-09", "category": "programming", "share": 0.4965545690965221}, {"month": "2025-09", "category": "roleplay", "share": 0.2225422895471628}, {"month": "2025-09", "category": "science", "share": 0.06974585567053182}, {"month": "2025-09", "category": "technology", "share": 0.09686249554300527}, {"month": "2025-09", "category": "translation", "share": 0.02895217675085829}, {"month": "2025-09", "category": "trivia", "share": 0.002706549580830289}, {"month": "2025-10", "category": "academia", "share": 0.02569135694425366}, {"month": "2025-10", "category": "finance", "share": 0.02398339446582779}, {"month": "2025-10", "category": "health", "share": 0.014154628035455351}, {"month": "2025-10", "category": "legal", "share": 0.016825217632000813}, {"month": "2025-10", "category": "marketing", "share": 0.009484751354868008}, {"month": "2025-10", "category": "marketing/seo", "share": 0.003616113342229432}, {"month": "2025-10", "category": "programming", "share": 0.5025297871554342}, {"month": "2025-10", "category": "roleplay", "share": 0.19667546235976024}, {"month": "2025-10", "category": "science", "share": 0.0684125485380015}, {"month": "2025-10", "category": "technology", "share": 0.10728885051142553}, {"month": "2025-10", "category": "translation", "share": 0.028846326460021218}, {"month": "2025-10", "category": "trivia", "share": 0.002491563200722217}, {"month": "2025-11", "category": "academia", "share": 0.025028548232802438}, {"month": "2025-11", "category": "finance", "share": 0.034555614341611494}, {"month": "2025-11", "category": "health", "share": 0.012068233535222147}, {"month": "2025-11", "category": "legal", "share": 0.01867833025364371}, {"month": "2025-11", "category": "marketing", "share": 0.011177651591798113}, {"month": "2025-11", "category": "marketing/seo", "share": 0.004374418484252516}, {"month": "2025-11", "category": "programming", "share": 0.4561178549168178}, {"month": "2025-11", "category": "roleplay", "share": 0.19351014407569062}, {"month": "2025-11", "category": "science", "share": 0.06728048320916076}, {"month": "2025-11", "category": "technology", "share": 0.14913845028578593}, {"month": "2025-11", "category": "translation", "share": 0.025226947235173786}, {"month": "2025-11", "category": "trivia", "share": 0.0028433238380407015}, {"month": "2025-12", "category": "academia", "share": 0.025354073245736672}, {"month": "2025-12", "category": "finance", "share": 0.04170130007811092}, {"month": "2025-12", "category": "health", "share": 0.015019122164889374}, {"month": "2025-12", "category": "legal", "share": 0.016830702993897953}, {"month": "2025-12", "category": "marketing", "share": 0.012328521420509449}, {"month": "2025-12", "category": "marketing/seo", "share": 0.005659221562249553}, {"month": "2025-12", "category": "programming", "share": 0.36962775711341955}, {"month": "2025-12", "category": "roleplay", "share": 0.24659167212995434}, {"month": "2025-12", "category": "science", "share": 0.07999239786290668}, {"month": "2025-12", "category": "technology", "share": 0.15947104072240145}, {"month": "2025-12", "category": "translation", "share": 0.024466490025501466}, {"month": "2025-12", "category": "trivia", "share": 0.0029577006804225783}, {"month": "2026-01", "category": "academia", "share": 0.022706104143759637}, {"month": "2026-01", "category": "finance", "share": 0.034725627887631616}, {"month": "2026-01", "category": "health", "share": 0.014461061287750297}, {"month": "2026-01", "category": "legal", "share": 0.014381663606837323}, {"month": "2026-01", "category": "marketing", "share": 0.013058700764252026}, {"month": "2026-01", "category": "marketing/seo", "share": 0.005400117884999946}, {"month": "2026-01", "category": "programming", "share": 0.35644059621279334}, {"month": "2026-01", "category": "roleplay", "share": 0.22322479764499806}, {"month": "2026-01", "category": "science", "share": 0.08669511246087543}, {"month": "2026-01", "category": "technology", "share": 0.2055789683619128}, {"month": "2026-01", "category": "translation", "share": 0.020403626435254327}, {"month": "2026-01", "category": "trivia", "share": 0.002923623308935204}, {"month": "2026-02", "category": "academia", "share": 0.016452301377349106}, {"month": "2026-02", "category": "finance", "share": 0.019007302168675525}, {"month": "2026-02", "category": "health", "share": 0.011640468316692314}, {"month": "2026-02", "category": "legal", "share": 0.011654703636354069}, {"month": "2026-02", "category": "marketing", "share": 0.00903690255445688}, {"month": "2026-02", "category": "marketing/seo", "share": 0.0038777745032013435}, {"month": "2026-02", "category": "programming", "share": 0.3986563166840105}, {"month": "2026-02", "category": "roleplay", "share": 0.18487346444224032}, {"month": "2026-02", "category": "science", "share": 0.05285245202088921}, {"month": "2026-02", "category": "technology", "share": 0.2788069674037296}, {"month": "2026-02", "category": "translation", "share": 0.01165314316642136}, {"month": "2026-02", "category": "trivia", "share": 0.001488203725979742}, {"month": "2026-03", "category": "academia", "share": 0.013475097795678698}, {"month": "2026-03", "category": "finance", "share": 0.026924915338044638}, {"month": "2026-03", "category": "health", "share": 0.01004201791569662}, {"month": "2026-03", "category": "legal", "share": 0.014282276077123368}, {"month": "2026-03", "category": "marketing", "share": 0.008572588378269479}, {"month": "2026-03", "category": "marketing/seo", "share": 0.003082574640052649}, {"month": "2026-03", "category": "programming", "share": 0.4221247746315411}, {"month": "2026-03", "category": "roleplay", "share": 0.15012188041855112}, {"month": "2026-03", "category": "science", "share": 0.06591778009235286}, {"month": "2026-03", "category": "technology", "share": 0.2741471985753383}, {"month": "2026-03", "category": "translation", "share": 0.009583014689864743}, {"month": "2026-03", "category": "trivia", "share": 0.0017258814474864397}, {"month": "2026-04", "category": "academia", "share": 0.015578534818504656}, {"month": "2026-04", "category": "finance", "share": 0.03344806080179157}, {"month": "2026-04", "category": "health", "share": 0.010827870270474712}, {"month": "2026-04", "category": "legal", "share": 0.01603406686486781}, {"month": "2026-04", "category": "marketing", "share": 0.009529143879360822}, {"month": "2026-04", "category": "marketing/seo", "share": 0.004444540804754385}, {"month": "2026-04", "category": "programming", "share": 0.40872466415329417}, {"month": "2026-04", "category": "roleplay", "share": 0.1595330093823766}, {"month": "2026-04", "category": "science", "share": 0.08805670042183297}, {"month": "2026-04", "category": "technology", "share": 0.2411456430127915}, {"month": "2026-04", "category": "translation", "share": 0.010819139760649174}, {"month": "2026-04", "category": "trivia", "share": 0.0018586258293015931}, {"month": "2026-05", "category": "academia", "share": 0.018367036714380464}, {"month": "2026-05", "category": "finance", "share": 0.036849490015547035}, {"month": "2026-05", "category": "health", "share": 0.009603899061097527}, {"month": "2026-05", "category": "legal", "share": 0.017717022954348866}, {"month": "2026-05", "category": "marketing", "share": 0.014185701122443382}, {"month": "2026-05", "category": "marketing/seo", "share": 0.003923850566451283}, {"month": "2026-05", "category": "programming", "share": 0.3905788822019135}, {"month": "2026-05", "category": "roleplay", "share": 0.14957674941930374}, {"month": "2026-05", "category": "science", "share": 0.09191641411804623}, {"month": "2026-05", "category": "technology", "share": 0.2565324938217275}, {"month": "2026-05", "category": "translation", "share": 0.008970255784963051}, {"month": "2026-05", "category": "trivia", "share": 0.0017782042197774135}, {"month": "2026-06", "category": "academia", "share": 0.014357744130130395}, {"month": "2026-06", "category": "finance", "share": 0.030459417456415273}, {"month": "2026-06", "category": "health", "share": 0.007302595505787062}, {"month": "2026-06", "category": "legal", "share": 0.010334438142775751}, {"month": "2026-06", "category": "marketing", "share": 0.010015318093327508}, {"month": "2026-06", "category": "marketing/seo", "share": 0.0030096634707517424}, {"month": "2026-06", "category": "programming", "share": 0.4349758687782979}, {"month": "2026-06", "category": "roleplay", "share": 0.1147127497278792}, {"month": "2026-06", "category": "science", "share": 0.0989270304532872}, {"month": "2026-06", "category": "technology", "share": 0.26825956200284196}, {"month": "2026-06", "category": "translation", "share": 0.006467010704619602}, {"month": "2026-06", "category": "trivia", "share": 0.0011786015338863657}, {"month": "2026-07", "category": "academia", "share": 0.010781428861144936}, {"month": "2026-07", "category": "finance", "share": 0.022331372778411337}, {"month": "2026-07", "category": "health", "share": 0.007895298691401861}, {"month": "2026-07", "category": "legal", "share": 0.0082866180884369}, {"month": "2026-07", "category": "marketing", "share": 0.007741215170413208}, {"month": "2026-07", "category": "marketing/seo", "share": 0.0023838926045643655}, {"month": "2026-07", "category": "programming", "share": 0.5117285314978811}, {"month": "2026-07", "category": "roleplay", "share": 0.08751609016667226}, {"month": "2026-07", "category": "science", "share": 0.11736361979983928}, {"month": "2026-07", "category": "technology", "share": 0.21697242491517657}, {"month": "2026-07", "category": "translation", "share": 0.005945283248608349}, {"month": "2026-07", "category": "trivia", "share": 0.0010542241774497997}, {"month": "2026-08", "category": "academia", "share": 0.00853323642628077}, {"month": "2026-08", "category": "finance", "share": 0.02035906647795585}, {"month": "2026-08", "category": "health", "share": 0.005019143979852918}, {"month": "2026-08", "category": "legal", "share": 0.006973930942094815}, {"month": "2026-08", "category": "marketing", "share": 0.005892859072840382}, {"month": "2026-08", "category": "marketing/seo", "share": 0.002193247408815769}, {"month": "2026-08", "category": "programming", "share": 0.5064888190329486}, {"month": "2026-08", "category": "roleplay", "share": 0.06954375336498186}, {"month": "2026-08", "category": "science", "share": 0.12752855463716023}, {"month": "2026-08", "category": "technology", "share": 0.2406085870057788}, {"month": "2026-08", "category": "translation", "share": 0.0059479110556791455}, {"month": "2026-08", "category": "trivia", "share": 0.0009108905956107755}, {"month": "2026-09", "category": "academia", "share": 0.009089921401977442}, {"month": "2026-09", "category": "finance", "share": 0.02344190834012123}, {"month": "2026-09", "category": "health", "share": 0.0053968266090357545}, {"month": "2026-09", "category": "legal", "share": 0.00609928652420324}, {"month": "2026-09", "category": "marketing", "share": 0.006300065628170959}, {"month": "2026-09", "category": "marketing/seo", "share": 0.0021093282225841327}, {"month": "2026-09", "category": "programming", "share": 0.5859889872194524}, {"month": "2026-09", "category": "roleplay", "share": 0.05825730569380718}, {"month": "2026-09", "category": "science", "share": 0.10595023276949236}, {"month": "2026-09", "category": "technology", "share": 0.18586454804816505}, {"month": "2026-09", "category": "translation", "share": 0.01043551002407707}, {"month": "2026-09", "category": "trivia", "share": 0.0010660795189131986}], "apps": [{"app": "Hermes Agent", "share": 0.08556233218593175}, {"app": "Claude Code", "share": 0.0422749509548397}, {"app": "Kilo Code", "share": 0.029266755151868214}, {"app": "Cline", "share": 0.027175057255618675}, {"app": "pi", "share": 0.017278173615827213}, {"app": "omp", "share": 0.01380805312161249}, {"app": "Codex", "share": 0.011708744993494365}, {"app": "OpenClaw", "share": 0.009353356770011579}, {"app": "Freebuff", "share": 0.008526130653233373}, {"app": "DeepSeek Harness", "share": 0.008448392945214175}]}</script>
+<script>
+(function () {
+const D = JSON.parse(document.getElementById('mm-data').textContent);
+const pct = (v, d = 1) => (v * 100).toFixed(d) + '%';
+const pts = v => (v >= 0 ? '+' : '−') + Math.abs(v * 100).toFixed(1) + ' pts';
+const tokT = v => v >= 100 ? Math.round(v) + 'T' : v >= 1 ? v.toFixed(1) + 'T' : Math.round(v * 1000) + 'B';
+const usd = v => '$' + (v >= 10 ? v.toFixed(0) : v.toFixed(2));
+const M = s => new Date(s + (s.length === 7 ? '-01' : '') + 'T00:00:00');
+const fMonth = d3.timeFormat('%b %Y'), fMon = d3.timeFormat('%b %y'), fDay = d3.timeFormat('%b %-d, %Y');
+const C = { China: 'var(--c-china)', US: 'var(--c-us)', Other: 'var(--c-other)', accent: 'var(--accent)', compare: 'var(--compare)' };
+const el = (tag, cls, text) => { const e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; };
+
+/* ---------- derived numbers (all from the verified export) ---------- */
+const K = D.kpi;
+const growth = K.tokens_sep / K.tokens_jan25;
+const vol = D.monthly_volume;
+const perDayJan = vol.find(r => r.month === '2025-01').per_day_t, perDaySep = vol.find(r => r.month === '2026-09').per_day_t;
+const hhiFull = D.hhi.filter(r => !r.partial);
+const hhiMin = hhiFull.reduce((a, b) => (b.hhi_lab < a.hhi_lab ? b : a));
+const firstBelow = hhiFull.find(r => r.hhi_lab < 1800);
+const lastAbove = hhiFull.map(r => r.hhi_lab >= 1800).lastIndexOf(true);
+const belowSince = hhiFull[lastAbove + 1];
+const G = Object.fromEntries(D.group_tokens_vs_spend.map(r => [r.g, r]));
+const P = D.price_index, P0 = P[0], P1 = P[P.length - 1];
+const tier = Object.fromEntries(D.tiers.map(r => [r.tier, r]));
+const cheapTok = tier['Free'].tok + tier['Under $0.25'].tok, cheapSpend = tier['Free'].spend + tier['Under $0.25'].spend;
+const H6 = D.h6;
+const rob = (cut, m) => D.robustness.find(r => r.cut === cut && r.month === m);
+const chinaLabsSep = D.china_labs.filter(r => r.month === '2026-09' && r.share >= 0.02).length;
+const LS = Object.fromEntries(D.launch_split.map(r => [r.cut, r]));
+const catShare = (m, c) => (D.categories.find(r => r.month === m && r.category === c) || {}).share;
+
+const text = {
+  'lede-leadership': `Volume grew ${Math.round(growth)}-fold in 21 months, and most of it now goes to Chinese labs: ${pct(K.china_sep)} of September tokens, up from ${pct(K.china_jan25)} in January 2025. The market also spread out. Lab concentration has been below the antitrust "highly concentrated" line every month since ${fMonth(M(belowSince.month))} (it first dipped under in ${fMonth(M(firstBelow.month))}), but it has risen since its ${fMonth(M(hhiMin.month))} low.`,
+  'lede-pricing': `In September, Chinese labs carried ${pct(G.China.tok)} of tokens but an estimated ${pct(G.China.spend)} of spend. US labs carried ${pct(G.US.tok)} of tokens and ${pct(G.US.spend)} of spend. The average token got ${Math.round((1 - P1.avg_idx) * 100)}% cheaper since January 2025, mostly because usage moved to cheaper models: the same models' list prices fell only ${Math.round((1 - P1.same_model_idx) * 100)}%.`,
+  'lede-platform': `The five highest-scoring models (Intelligence Index ${H6.scorers_min}-${H6.scorers_max}) took ${pct(H6.top5_scorers)} of tokens in the last 90 days. The five most-used, scoring ${H6.used_min}-${H6.used_max}, took ${pct(H6.top5_used)}. Only ${H6.frontier_n} of ${H6.scored_n} scored models sit on the price-quality frontier.`,
+  'lede-intel': `${chinaLabsSep} Chinese labs each carried 2% or more of September tokens. Credit every unattributed token to the US and China still leads, ${pct(rob('all stealth + long tail credited to the US', '2026-09').china)} to ${pct(rob('all stealth + long tail credited to the US', '2026-09').us)}. By requests rather than tokens it's a tie, which means Chinese models win the long, token-heavy jobs.`,
+  'lede-product': `A typical notable launch keeps ${pct(LS.All.model_w12, 0)} of its peak share by week 12, but its lab keeps ${pct(LS.All.lab_w12, 0)}, because users move to the lab's next model. US labs hold on better (${pct(LS.US.lab_w12, 0)}) than Chinese labs (${pct(LS.China.lab_w12, 0)}). Coding is now ${pct(catShare('2026-09', 'programming'))} of categorized traffic.`
+};
+document.querySelectorAll('[data-text]').forEach(n => { n.textContent = text[n.dataset.text]; });
+
+const kpis = {
+  leadership: [
+    ['Tokens in September 2026', tokT(K.tokens_sep), `${Math.round(growth)}× January 2025 (${tokT(K.tokens_jan25)})`],
+    ["China's share of tokens", pct(K.china_sep), `${pts(K.china_sep - K.china_jan25)} vs Jan 2025 (${pct(K.china_jan25)})`],
+    ['US share of tokens', pct(K.us_sep), `${pts(K.us_sep - K.us_jan25)} vs Jan 2025 (${pct(K.us_jan25)})`],
+    ['Lab concentration (HHI)', Math.round(K.hhi_sep).toLocaleString('en-US'), `From ${Math.round(K.hhi_jan25).toLocaleString('en-US')} in Jan 2025 · line is 1,800`]],
+  pricing: [
+    ["China's share of spend", pct(G.China.spend), `vs ${pct(G.China.tok)} of tokens · Sep 2026`],
+    ['US share of spend', pct(G.US.spend), `vs ${pct(G.US.tok)} of tokens · Sep 2026`],
+    ['Average price paid', usd(P1.avg_price) + '/M', `−${Math.round((1 - P1.avg_idx) * 100)}% vs Jan 2025 (${usd(P0.avg_price)}/M)`],
+    ['Same-model list price', `−${Math.round((1 - P1.same_model_idx) * 100)}%`, 'Jan 2025 to Sep 2026, chained index']],
+  platform: [
+    ['Top 5 scorers, share of tokens', pct(H6.top5_scorers), `Intelligence Index ${H6.scorers_min}-${H6.scorers_max}`],
+    ['Top 5 most-used, share of tokens', pct(H6.top5_used), `Intelligence Index ${H6.used_min}-${H6.used_max}`],
+    ['Score vs usage, rank correlation', H6.spearman.toFixed(2), `${H6.used_n} benchmarked models with usage · weak`],
+    ['On the price-quality frontier', `${H6.frontier_n} of ${H6.scored_n}`, `${pct(H6.frontier_share)} of benchmarked usage`]],
+  intel: [
+    ['Chinese labs with 2%+ of tokens', String(chinaLabsSep), 'September 2026'],
+    ['China without DeepSeek', pct(rob('without DeepSeek', '2026-09').china), `vs US ${pct(rob('without DeepSeek', '2026-09').us)} · Sep 2026`],
+    ['US share, worst case for China', pct(rob('all stealth + long tail credited to the US', '2026-09').us), `China still ${pct(rob('all stealth + long tail credited to the US', '2026-09').china)} · Sep 2026`],
+    ['Share of requests, week of Oct 12', 'Tie', `US ${pct(D.requests_week.us)} · China ${pct(D.requests_week.china)} (public page)`]],
+  product: [
+    ["A model's share at week 12", pct(LS.All.model_w12, 0), `of its peak · median of ${LS.All.n} launches`],
+    ["Its lab's share at week 12", pct(LS.All.lab_w12, 0), "of the lab's level at the model's peak"],
+    ['US labs keep (week 12)', pct(LS.US.lab_w12, 0), `Chinese labs keep ${pct(LS.China.lab_w12, 0)}`],
+    ['Programming share of categorized tokens', pct(catShare('2026-09', 'programming')), `From ${pct(catShare('2025-05', 'programming'))} in May 2025`]]
+};
+document.querySelectorAll('[data-kpis]').forEach(n => {
+  kpis[n.dataset.kpis].forEach(([l, v, d]) => { const t = el('div', 'kpi'); t.append(el('span', 'l', l), el('span', 'v', v), el('span', 'd', d)); n.append(t); });
+});
+
+/* ---------- tooltip ---------- */
+const tip = document.getElementById('tip');
+function showTip(x, y, header, rows) {
+  tip.replaceChildren(el('div', 'tip-h', header));
+  rows.forEach(r => { const row = el('div', 'tip-r'); const k = el('span', 'tip-k' + (r.shape === 'dot' ? ' dot' : '')); k.style.background = r.color;
+    row.append(k, el('strong', null, r.value), el('span', 'tip-l', r.label)); tip.append(row); });
+  tip.hidden = false;
+  const w = tip.offsetWidth, h = tip.offsetHeight; let left = x + 14, top = y + 14;
+  if (left + w > innerWidth - 8) left = x - w - 14; if (top + h > innerHeight - 8) top = y - h - 14;
+  tip.style.left = Math.max(8, left) + 'px'; tip.style.top = Math.max(8, top) + 'px';
+}
+const hideTip = () => { tip.hidden = true; };
+
+/* ---------- shared drawing helpers ---------- */
+function svgFor(node, w, h, label) {
+  return d3.select(node).append('svg').attr('width', w).attr('height', h).attr('viewBox', `0 0 ${w} ${h}`)
+    .attr('role', 'img').attr('aria-label', label);
+}
+function yGrid(svg, y, x0, x1, ticks, fmt) {
+  const g = svg.append('g');
+  ticks.forEach(t => {
+    g.append('line').attr('class', t === y.domain()[0] ? 'baseline' : 'gridline').attr('x1', x0).attr('x2', x1).attr('y1', Math.round(y(t)) + .5).attr('y2', Math.round(y(t)) + .5);
+    g.append('text').attr('class', 'tick').attr('x', x0 - 8).attr('y', y(t)).attr('dy', '0.32em').attr('text-anchor', 'end').text(fmt(t));
+  });
+}
+function xAxisTime(svg, x, y0, ticks, fmt) {
+  const g = svg.append('g');
+  x.ticks(ticks).forEach(t => g.append('text').attr('class', 'tick').attr('x', x(t)).attr('y', y0 + 16).attr('text-anchor', 'middle').text(fmt(t)));
+}
+const roundEnd = (x, y, w, h, r, dir) => { // bar with a rounded data-end; dir 'up' (column) or 'right' (bar)
+  if (dir === 'up') { r = Math.min(r, h, w / 2); return `M${x},${y + h}V${y + r}Q${x},${y} ${x + r},${y}H${x + w - r}Q${x + w},${y} ${x + w},${y + r}V${y + h}Z`; }
+  r = Math.min(r, w, h / 2); return `M${x},${y}H${x + w - r}Q${x + w},${y} ${x + w},${y + r}V${y + h - r}Q${x + w},${y + h} ${x + w - r},${y + h}H${x}Z`;
+};
+function placeLabels(items, minGap, lo, hi) { // items: {y}; nudges apart, keeps order
+  items.sort((a, b) => a.y - b.y);
+  for (let i = 1; i < items.length; i++) if (items[i].ly - items[i - 1].ly < minGap) items[i].ly = items[i - 1].ly + minGap;
+  const over = items.length ? items[items.length - 1].ly - hi : 0; if (over > 0) items.forEach(it => { it.ly -= over; });
+  items.forEach(it => { it.ly = Math.max(lo, it.ly); });
+}
+
+/* Multi-series line chart with a crosshair tooltip and end labels. */
+function lineChart(node, o) {
+  const w = node.clientWidth, h = o.height || 280, narrow = w < 520;
+  const m = { t: o.top || 14, r: o.endLabels ? (narrow ? 92 : 138) : 12, b: 26, l: o.left || 40 };
+  const svg = svgFor(node, w, h, o.aria);
+  const xs = o.series[0].values.map(d => d.x);
+  const x = (o.xLinear ? d3.scaleLinear() : d3.scaleTime()).domain(o.xDomain || d3.extent(xs)).range([m.l, w - m.r]);
+  const y = d3.scaleLinear().domain([0, o.yMax]).range([h - m.b, m.t]);
+  yGrid(svg, y, m.l, w - m.r, o.yTicks || y.ticks(4), o.yFmt);
+  if (o.xLinear) o.xTicks.forEach(t => svg.append('text').attr('class', 'tick').attr('x', x(t)).attr('y', h - m.b + 16).attr('text-anchor', 'middle').text(o.xFmt(t)));
+  else xAxisTime(svg, x, h - m.b, narrow ? 4 : (o.xTickCount || 8), o.xFmt || fMon);
+  (o.refs || []).forEach(r => {
+    svg.append('line').attr('class', 'annot').attr('x1', m.l).attr('x2', w - m.r).attr('y1', Math.round(y(r.y)) + .5).attr('y2', Math.round(y(r.y)) + .5);
+    svg.append('text').attr('class', 'annot-label halo').attr('x', w - m.r - 4).attr('y', y(r.y) - 6).attr('text-anchor', 'end').text(narrow && r.short ? r.short : r.label);
+  });
+  (o.annotations || []).forEach((a, i) => {
+    const ax = Math.round(x(a.x)) + .5;
+    svg.append('line').attr('class', 'annot').attr('x1', ax).attr('x2', ax).attr('y1', m.t).attr('y2', h - m.b);
+    svg.append('text').attr('class', 'annot-label').attr('x', a.anchor === 'end' ? ax - 6 : ax + 6).attr('y', m.t + 11 + i * 15)
+      .attr('text-anchor', a.anchor || 'start').text(narrow && a.short ? a.short : a.label);
+  });
+  const line = d3.line().defined(d => d.y != null).x(d => x(d.x)).y(d => y(d.y)).curve(d3.curveMonotoneX);
+  o.series.forEach(s => {
+    if (s.area) svg.append('path').datum(s.values).attr('d', d3.area().defined(d => d.y != null).x(d => x(d.x)).y0(y(0)).y1(d => y(d.y)).curve(d3.curveMonotoneX))
+      .style('fill', s.color).style('fill-opacity', 0.10);
+    svg.append('path').datum(s.values).attr('d', line).style('fill', 'none').style('stroke', s.color)
+      .style('stroke-width', 2).style('stroke-linejoin', 'round').style('stroke-linecap', 'round');
+  });
+  if (o.endLabels) {
+    const items = o.series.map(s => { const last = [...s.values].reverse().find(d => d.y != null); return { s, last, y: y(last.y), ly: y(last.y) }; });
+    placeLabels(items, 30, m.t + 6, h - m.b - 4);
+    items.forEach(it => {
+      const lx = x(it.last.x);
+      svg.append('circle').attr('cx', lx).attr('cy', it.y).attr('r', 4).style('fill', it.s.color).style('stroke', 'var(--surface)').style('stroke-width', 2);
+      if (Math.abs(it.ly - it.y) > 2) svg.append('line').attr('class', 'leader').attr('x1', lx + 6).attr('x2', lx + 12).attr('y1', it.y).attr('y2', it.ly);
+      svg.append('text').attr('class', 'lbl').attr('x', lx + 14).attr('y', it.ly - 2).text((o.labelFmt || o.yFmt)(it.last.y));
+      svg.append('text').attr('class', 'lbl2').attr('x', lx + 14).attr('y', it.ly + 13).text(it.s.name);
+    });
+  }
+  // crosshair layer
+  const cross = svg.append('line').attr('class', 'cross').attr('y1', m.t).attr('y2', h - m.b).style('opacity', 0);
+  const dots = o.series.map(s => svg.append('circle').attr('r', 4).style('fill', s.color).style('stroke', 'var(--surface)').style('stroke-width', 2).style('opacity', 0).style('pointer-events', 'none'));
+  const bis = d3.bisector(d => d).center;
+  let idx = xs.length - 1;
+  function show(i, cx, cy) {
+    idx = i; const xv = xs[i], px = x(xv);
+    cross.attr('x1', px).attr('x2', px).style('opacity', 1);
+    o.series.forEach((s, k) => { const v = s.values[i]; dots[k].attr('cx', px).attr('cy', v && v.y != null ? y(v.y) : -99).style('opacity', v && v.y != null ? 1 : 0); });
+    const rows = o.series.map(s => ({ color: s.color, value: s.values[i] && s.values[i].y != null ? (o.labelFmt || o.yFmt)(s.values[i].y) : '–', label: s.name, v: s.values[i] ? s.values[i].y : -1 }))
+      .sort((a, b) => (b.v ?? -1) - (a.v ?? -1));
+    showTip(cx, cy, o.tipHeader(xv), rows);
+  }
+  function clear() { cross.style('opacity', 0); dots.forEach(d => d.style('opacity', 0)); hideTip(); }
+  svg.append('rect').attr('class', 'hit').attr('x', m.l).attr('y', m.t).attr('width', w - m.l - m.r).attr('height', h - m.t - m.b)
+    .on('pointermove', e => { const [px] = d3.pointer(e); show(bis(xs, x.invert(px)), e.clientX, e.clientY); })
+    .on('pointerleave', clear);
+  svg.attr('tabindex', 0)
+    .on('keydown', e => { if (e.key === 'ArrowLeft' || e.key === 'ArrowRight') { e.preventDefault(); const r = node.getBoundingClientRect();
+      const i = Math.max(0, Math.min(xs.length - 1, idx + (e.key === 'ArrowRight' ? 1 : -1))); show(i, r.left + x(xs[i]), r.top + 40); } })
+    .on('focus', () => { const r = node.getBoundingClientRect(); show(idx, r.left + x(xs[idx]), r.top + 40); })
+    .on('blur', clear);
+}
+
+/* Columns with rounded tops; one series; tooltip per bar. */
+function columnChart(node, o) {
+  const w = node.clientWidth, h = o.height || 240, m = { t: 22, r: 8, b: 26, l: 40 };
+  const svg = svgFor(node, w, h, o.aria);
+  const x = d3.scaleBand().domain(o.data.map(d => d.k)).range([m.l, w - m.r]).padding(0.25);
+  const y = d3.scaleLinear().domain([0, o.yMax]).range([h - m.b, m.t]);
+  yGrid(svg, y, m.l, w - m.r, y.ticks(4), o.yFmt);
+  const bw = Math.min(24, x.bandwidth());
+  o.data.forEach((d, i) => {
+    const bx = x(d.k) + (x.bandwidth() - bw) / 2, by = y(d.v), bh = y(0) - by;
+    svg.append('path').attr('class', 'mark-hover').attr('d', roundEnd(bx, by, bw, bh, 4, 'up')).style('fill', o.color).style('fill-opacity', d.partial ? 0.4 : 1);
+    if (i % o.tickEvery === 0 || i === o.data.length - 1) svg.append('text').attr('class', 'tick').attr('x', bx + bw / 2).attr('y', h - m.b + 16).attr('text-anchor', 'middle').text(d.tick);
+    if (d.label) svg.append('text').attr('class', 'lbl').attr('x', bx + bw / 2).attr('y', by - 6).attr('text-anchor', i === o.data.length - 1 ? 'end' : 'middle').text(d.label);
+    svg.append('rect').attr('class', 'hit').attr('x', x(d.k)).attr('y', m.t).attr('width', x.bandwidth()).attr('height', h - m.t - m.b)
+      .on('pointermove', e => showTip(e.clientX, e.clientY, d.header, [{ color: o.color, value: o.yFmt(d.v), label: d.note || o.name }]))
+      .on('pointerleave', hideTip);
+  });
+}
+
+/* Horizontal bars, one series, value at the tip. */
+function barChart(node, o) {
+  const w = node.clientWidth, rowH = 28, h = o.data.length * rowH + 8, labW = Math.min(150, w * 0.36), m = { l: labW + 8, r: 56 };
+  const svg = svgFor(node, w, h, o.aria);
+  const x = d3.scaleLinear().domain([0, o.xMax]).range([m.l, w - m.r]);
+  o.data.forEach((d, i) => {
+    const cy = i * rowH + rowH / 2 + 2, bh = 14;
+    svg.append('text').attr('class', 'lbl2').attr('x', labW).attr('y', cy).attr('dy', '0.32em').attr('text-anchor', 'end').text(d.k);
+    svg.append('path').attr('class', 'mark-hover').attr('d', roundEnd(m.l, cy - bh / 2, Math.max(2, x(d.v) - m.l), bh, 4, 'right')).style('fill', o.color);
+    svg.append('text').attr('class', 'lbl').attr('x', x(d.v) + 6).attr('y', cy).attr('dy', '0.32em').text(o.fmt(d.v));
+    svg.append('rect').attr('class', 'hit').attr('x', 0).attr('y', i * rowH + 2).attr('width', w).attr('height', rowH)
+      .on('pointermove', e => showTip(e.clientX, e.clientY, d.k, [{ color: o.color, value: o.fmt(d.v), label: o.name }])).on('pointerleave', hideTip);
+  });
+  svg.insert('line', ':first-child').attr('class', 'baseline').attr('x1', m.l + .5).attr('x2', m.l + .5).attr('y1', 0).attr('y2', h);
+}
+
+/* Dumbbell: two measures in the same unit per row (tokens vs spend). */
+function dumbbell(node, o) {
+  const w = node.clientWidth, rowH = 30, h = o.rows.length * rowH + 24, narrow = w < 460;
+  const labW = Math.min(132, w * 0.3), valW = narrow ? 0 : 104, m = { l: labW + 10, r: valW + 14 };
+  const svg = svgFor(node, w, h, o.aria);
+  const x = d3.scaleLinear().domain([0, o.xMax]).range([m.l, w - m.r]);
+  x.ticks(4).forEach(t => {
+    svg.append('line').attr('class', t === 0 ? 'baseline' : 'gridline').attr('x1', Math.round(x(t)) + .5).attr('x2', Math.round(x(t)) + .5).attr('y1', 0).attr('y2', h - 22);
+    svg.append('text').attr('class', 'tick').attr('x', x(t)).attr('y', h - 6).attr('text-anchor', 'middle').text(pct(t, 0));
+  });
+  o.rows.forEach((r, i) => {
+    const cy = i * rowH + rowH / 2;
+    svg.append('text').attr('class', 'lbl2').attr('x', labW).attr('y', cy).attr('dy', '0.32em').attr('text-anchor', 'end').text(r.k);
+    svg.append('line').attr('x1', x(r.a)).attr('x2', x(r.b)).attr('y1', cy).attr('y2', cy).style('stroke', 'var(--axis)').style('stroke-width', 2);
+    [[r.a, C.compare], [r.b, C.accent]].forEach(([v, c]) => svg.append('circle').attr('cx', x(v)).attr('cy', cy).attr('r', 5)
+      .style('fill', c).style('stroke', 'var(--surface)').style('stroke-width', 2));
+    if (!narrow) svg.append('text').attr('class', 'lbl2').attr('x', w - 4).attr('y', cy).attr('dy', '0.32em').attr('text-anchor', 'end')
+      .style('font-variant-numeric', 'tabular-nums').text(`${pct(r.a)} → ${pct(r.b)}`);
+    svg.append('rect').attr('class', 'hit').attr('x', 0).attr('y', i * rowH).attr('width', w).attr('height', rowH)
+      .on('pointermove', e => showTip(e.clientX, e.clientY, r.k, [{ color: C.accent, value: pct(r.b), label: o.bName, shape: 'dot' }, { color: C.compare, value: pct(r.a), label: o.aName, shape: 'dot' }]))
+      .on('pointerleave', hideTip);
+  });
+}
+
+/* Grouped horizontal bars: two measures per category. */
+function pairedBars(node, o) {
+  const w = node.clientWidth, rowH = 40, h = o.rows.length * rowH + 22, labW = Math.min(96, w * 0.26), m = { l: labW + 10, r: 52 };
+  const svg = svgFor(node, w, h, o.aria);
+  const x = d3.scaleLinear().domain([0, o.xMax]).range([m.l, w - m.r]);
+  x.ticks(4).forEach(t => {
+    svg.append('line').attr('class', t === 0 ? 'baseline' : 'gridline').attr('x1', Math.round(x(t)) + .5).attr('x2', Math.round(x(t)) + .5).attr('y1', 0).attr('y2', h - 20);
+    svg.append('text').attr('class', 'tick').attr('x', x(t)).attr('y', h - 5).attr('text-anchor', 'middle').text(pct(t, 0));
+  });
+  o.rows.forEach((r, i) => {
+    const top = i * rowH + 6, bh = 12;
+    svg.append('text').attr('class', 'lbl2').attr('x', labW).attr('y', top + bh + 1).attr('dy', '0.32em').attr('text-anchor', 'end').text(r.k);
+    [[r.a, C.compare, 0], [r.b, C.accent, bh + 2]].forEach(([v, c, off]) => {
+      svg.append('path').attr('d', roundEnd(m.l, top + off, Math.max(1.5, x(v) - m.l), bh, 4, 'right')).style('fill', c);
+      svg.append('text').attr('class', 'lbl').attr('x', x(v) + 5).attr('y', top + off + bh / 2).attr('dy', '0.32em').style('font-size', '11px').text(pct(v));
+    });
+    svg.append('rect').attr('class', 'hit').attr('x', 0).attr('y', i * rowH).attr('width', w).attr('height', rowH)
+      .on('pointermove', e => showTip(e.clientX, e.clientY, r.k, [{ color: C.accent, value: pct(r.b), label: o.bName }, { color: C.compare, value: pct(r.a), label: o.aName }]))
+      .on('pointerleave', hideTip);
+  });
+}
+
+/* Bubble scatter on a log price axis with the price-quality frontier. */
+function scatter(node, o) {
+  const w = node.clientWidth, h = w < 520 ? 340 : 420, m = { t: 16, r: 18, b: 34, l: 40 };
+  const svg = svgFor(node, w, h, o.aria);
+  const pts = o.points;
+  const x = d3.scaleLog().domain([d3.min(pts, d => d.price) * 0.8, d3.max(pts, d => d.price) * 1.25]).range([m.l, w - m.r]);
+  const y = d3.scaleLinear().domain([10, 60]).range([h - m.b, m.t]);
+  const r = d3.scaleSqrt().domain([0, d3.max(pts, d => d.share)]).range([3, w < 520 ? 16 : 24]);
+  yGrid(svg, y, m.l, w - m.r, [10, 20, 30, 40, 50, 60], v => v);
+  [0.05, 0.1, 0.25, 0.5, 1, 2.5, 5, 10, 25, 50].filter(t => t >= x.domain()[0] && t <= x.domain()[1]).forEach(t => {
+    svg.append('line').attr('class', 'gridline').attr('x1', Math.round(x(t)) + .5).attr('x2', Math.round(x(t)) + .5).attr('y1', m.t).attr('y2', h - m.b);
+    svg.append('text').attr('class', 'tick').attr('x', x(t)).attr('y', h - m.b + 16).attr('text-anchor', 'middle').text('$' + t);
+  });
+  svg.append('text').attr('class', 'tick').attr('x', w - m.r).attr('y', h - 2).attr('text-anchor', 'end').text('Blended price per million tokens (log scale)');
+  svg.append('text').attr('class', 'tick').attr('x', m.l).attr('y', m.t - 4).text('Intelligence Index');
+  const fr = o.frontier.slice().sort((a, b) => a.price - b.price);
+  svg.append('path').datum(fr).attr('d', d3.line().x(d => x(d.price)).y(d => y(d.iq)).curve(d3.curveStepAfter))
+    .style('fill', 'none').style('stroke', 'var(--ink-2)').style('stroke-width', 1);
+  const fl = fr[Math.max(0, fr.length - 2)];
+  svg.append('text').attr('class', 'annot-label').attr('x', x(fl.price) - 6).attr('y', y(fl.iq) - 8).attr('text-anchor', 'end').text('Price-quality frontier');
+  const sorted = pts.slice().sort((a, b) => b.share - a.share);
+  sorted.forEach(d => {
+    const c = C[d.g];
+    svg.append('circle').attr('cx', x(d.price)).attr('cy', y(d.iq)).attr('r', r(d.share))
+      .style('fill', d.share > 0 ? c : 'none').style('fill-opacity', 0.78).style('stroke', d.share > 0 ? 'var(--surface)' : c).style('stroke-width', d.share > 0 ? 1.5 : 1.5);
+  });
+  // selective labels: top 5 by usage, top 3 by score
+  const pick = new Set([...sorted.slice(0, 5), ...pts.slice().sort((a, b) => b.iq - a.iq).slice(0, 3)]);
+  const boxes = [];
+  [...pick].forEach(d => {
+    const cx = x(d.price), cy = y(d.iq), rr = r(d.share) + 4, name = d.name.replace(/ \((Max|High|Non-reasoning)[^)]*\)/, '');
+    const left = cx > w - 170;
+    const t = svg.append('text').attr('class', 'lbl2').attr('x', left ? cx - rr : cx + rr).attr('y', cy).attr('dy', '0.32em')
+      .attr('text-anchor', left ? 'end' : 'start').style('font-size', '11px').text(name);
+    const b = t.node().getBBox();
+    if (boxes.some(o2 => !(b.x > o2.x + o2.width || b.x + b.width < o2.x || b.y > o2.y + o2.height || b.y + b.height < o2.y))) t.remove(); else boxes.push(b);
+  });
+  const del = d3.Delaunay.from(pts, d => x(d.price), d => y(d.iq));
+  svg.append('rect').attr('class', 'hit').attr('x', m.l).attr('y', m.t).attr('width', w - m.l - m.r).attr('height', h - m.t - m.b)
+    .on('pointermove', e => { const [px, py] = d3.pointer(e); const i = del.find(px, py); const d = pts[i];
+      if (Math.hypot(x(d.price) - px, y(d.iq) - py) > 40) return hideTip();
+      showTip(e.clientX, e.clientY, d.name, [{ color: C[d.g], value: pct(d.share, 2), label: 'of last-90-day tokens', shape: 'dot' },
+        { color: 'transparent', value: String(d.iq), label: 'Intelligence Index' }, { color: 'transparent', value: usd(d.price) + '/M', label: `blended price · ${d.lab}` }]); })
+    .on('pointerleave', hideTip);
+}
+
+/* ---------- panel registry: title, subtitle, legend, draw, table ---------- */
+function weeklySeries() {
+  const byWeek = d3.group(D.weekly_share, d => d.week);
+  const weeks = [...byWeek.keys()].sort();
+  const get = (wk, gs) => d3.sum(byWeek.get(wk).filter(r => gs.includes(r.g)), r => r.share);
+  return weeks.map(wk => ({ x: M(wk), china: get(wk, ['China']), us: get(wk, ['US']), rest: get(wk, ['Other named', 'Unattributed']) }));
+}
+const WK = weeklySeries();
+const monthly = (arr, key) => arr.map(r => ({ x: M(r.month), y: r[key] }));
+const panels = {
+  share: {
+    title: 'China first passed the US the week of Mar 23, 2026, and has led every week since Apr 27',
+    sub: 'Share of weekly tokens · Jan 2025 to Oct 18, 2026 · OpenRouter',
+    legend: [['China', C.China, 'line'], ['US', C.US, 'line'], ['Everyone else', C.Other, 'line']],
+    draw: n => lineChart(n, { aria: 'Weekly token share for China, the US and everyone else', height: 300, yMax: 1, yTicks: [0, .25, .5, .75, 1], yFmt: v => pct(v, 0), labelFmt: v => pct(v),
+      endLabels: true, tipHeader: d => 'Week of ' + fDay(d),
+      annotations: [{ x: M('2026-03-23'), label: 'Mar 23: first week ahead', short: 'Mar 23', anchor: 'end' }, { x: M('2026-04-27'), label: 'Apr 27: ahead every week since', short: 'Apr 27' }],
+      series: [{ name: 'China', color: C.China, values: WK.map(d => ({ x: d.x, y: d.china })) }, { name: 'US', color: C.US, values: WK.map(d => ({ x: d.x, y: d.us })) },
+        { name: 'Everyone else', color: C.Other, values: WK.map(d => ({ x: d.x, y: d.rest })) }] }),
+    table: () => [['Week', 'China', 'US', 'Everyone else'], WK.map(d => [fDay(d.x), pct(d.china), pct(d.us), pct(d.rest)])]
+  },
+  volume: {
+    title: `Daily volume grew from ${tokT(perDayJan)} to ${tokT(perDaySep)} tokens a day`,
+    sub: 'Average tokens per day, by month · Oct 2026 runs to the 18th',
+    draw: n => columnChart(n, { aria: 'Average tokens per day by month', name: 'tokens per day', color: C.accent, yMax: Math.ceil(d3.max(vol, d => d.per_day_t) / 5) * 5, yFmt: v => v === 0 ? '0' : v + 'T', tickEvery: 3,
+      data: vol.map(r => ({ k: r.month, v: r.per_day_t, partial: r.partial, tick: fMon(M(r.month)), header: fMonth(M(r.month)) + (r.partial ? ' (to Oct 18)' : ''),
+        label: r.month === '2026-09' ? tokT(r.per_day_t) : r.month === '2025-01' ? tokT(r.per_day_t) : null, note: 'tokens per day' })) }),
+    table: () => [['Month', 'Tokens per day', 'Tokens in month'], vol.map(r => [fMonth(M(r.month)) + (r.partial ? ' (partial)' : ''), tokT(r.per_day_t), tokT(r.tokens_t)])]
+  },
+  hhi: {
+    title: `Lab concentration fell from ${Math.round(K.hhi_jan25).toLocaleString('en-US')} to a low of ${Math.round(hhiMin.hhi_lab).toLocaleString('en-US')} (${fMonth(M(hhiMin.month))}), then rose to ${Math.round(K.hhi_sep).toLocaleString('en-US')}`,
+    sub: 'Herfindahl-Hirschman Index of lab shares, named tokens, by month · Oct 2026 partial',
+    draw: n => lineChart(n, { aria: 'Lab concentration index by month', height: 240, yMax: 3500, yTicks: [0, 1000, 2000, 3000], yFmt: v => v.toLocaleString('en-US'), labelFmt: v => Math.round(v).toLocaleString('en-US'), left: 46,
+      tipHeader: d => fMonth(d), refs: [{ y: 1800, label: '1,800: "highly concentrated" (DOJ/FTC 2023)', short: '1,800 line' }],
+      series: [{ name: 'Lab HHI', color: C.accent, values: monthly(D.hhi, 'hhi_lab') }] }),
+    table: () => [['Month', 'Lab HHI'], D.hhi.map(r => [fMonth(M(r.month)) + (r.partial ? ' (partial)' : ''), Math.round(r.hhi_lab).toLocaleString('en-US')])]
+  },
+  groups: {
+    title: `China: ${pct(G.China.tok)} of tokens, ${pct(G.China.spend)} of spend`,
+    sub: 'Share of tokens vs share of estimated spend · September 2026',
+    legend: [['Share of tokens', C.compare, 'dot'], ['Share of estimated spend', C.accent, 'dot']],
+    draw: n => dumbbell(n, { aria: 'Token share vs spend share by country group', aName: 'of tokens', bName: 'of estimated spend', xMax: 0.7,
+      rows: [['China', 'China'], ['US', 'US'], ['Unattributed', 'Stealth + long tail'], ['Other named', 'Other countries']].map(([g, k]) => ({ k, a: G[g].tok, b: G[g].spend })) }),
+    table: () => [['Group', 'Share of tokens', 'Share of spend (15:1)', 'Share of spend (3:1)'],
+      ['China', 'US', 'Unattributed', 'Other named'].map(g => [g, pct(G[g].tok), pct(G[g].spend), pct(G[g].spend31)])]
+  },
+  labs: {
+    title: (() => { const a = D.lab_tokens_vs_spend[0]; return `${a.lab}: ${pct(a.tok)} of tokens, ${pct(a.spend)} of spend`; })(),
+    sub: 'Top 10 labs by estimated spend · September 2026',
+    legend: [['Share of tokens', C.compare, 'dot'], ['Share of estimated spend', C.accent, 'dot']],
+    draw: n => dumbbell(n, { aria: 'Token share vs spend share for the top 10 labs', aName: 'of tokens', bName: 'of estimated spend', xMax: 0.3,
+      rows: D.lab_tokens_vs_spend.map(r => ({ k: r.lab, a: r.tok, b: r.spend })) }),
+    table: () => [['Lab', 'Country group', 'Share of tokens', 'Share of spend', 'Avg price per M'], D.lab_tokens_vs_spend.map(r => [r.lab, r.cg, pct(r.tok), pct(r.spend), usd(r.price)])]
+  },
+  tiers: {
+    title: `Models under $0.25 carry ${pct(cheapTok)} of tokens but ${pct(cheapSpend)} of spend`,
+    sub: 'Price tier by blended list price per million tokens · September 2026, priced tokens',
+    legend: [['Share of tokens', C.compare, 'rect'], ['Share of estimated spend', C.accent, 'rect']],
+    draw: n => pairedBars(n, { aria: 'Share of tokens vs spend by price tier', aName: 'of tokens', bName: 'of estimated spend', xMax: 0.5,
+      rows: ['Free', 'Under $0.25', '$0.25-1', '$1-5', '$5+'].map(k => ({ k, a: tier[k].tok, b: tier[k].spend })) }),
+    table: () => [['Price tier', 'Share of tokens', 'Share of spend'], ['Free', 'Under $0.25', '$0.25-1', '$1-5', '$5+'].map(k => [k, pct(tier[k].tok), pct(tier[k].spend)])]
+  },
+  priceidx: {
+    title: `The average token got ${Math.round((1 - P1.avg_idx) * 100)}% cheaper; the same models got ${Math.round((1 - P1.same_model_idx) * 100)}% cheaper`,
+    sub: 'Index, January 2025 = 100 · average price paid vs a chained same-model list-price index',
+    legend: [['Average price paid', C.accent, 'line'], ['Same-model list price', C.compare, 'line']],
+    draw: n => lineChart(n, { aria: 'Average price paid vs same-model price index', height: 250, yMax: 1.2, yTicks: [0, .25, .5, .75, 1], yFmt: v => Math.round(v * 100),
+      endLabels: true, tipHeader: d => fMonth(d),
+      series: [{ name: 'Avg price paid', color: C.accent, values: monthly(P, 'avg_idx') }, { name: 'Same models', color: C.compare, values: monthly(P, 'same_model_idx') }] }),
+    table: () => [['Month', 'Average price paid ($/M)', 'Average price index', 'Same-model index'], P.map(r => [fMonth(M(r.month)), usd(r.avg_price), Math.round(r.avg_idx * 100), Math.round(r.same_model_idx * 100)])]
+  },
+  scatter: {
+    title: 'Usage piles up at low prices and middling scores; the top scorers are niche',
+    sub: 'Last 90 days · bubble area = share of tokens · hollow = no usage · one free model is off the log scale',
+    legend: [['China', C.China, 'dot'], ['US', C.US, 'dot'], ['Other', C.Other, 'dot']],
+    draw: n => scatter(n, { aria: 'Benchmark score vs price, sized by usage', points: D.scatter, frontier: D.frontier }),
+    table: () => [['Model', 'Lab', 'Intelligence Index', 'Price per M', 'Share of 90-day tokens'], D.scatter.slice().sort((a, b) => b.share - a.share).map(d => [d.name, d.lab, d.iq, usd(d.price), pct(d.share, 2)])]
+  },
+  multiples: {
+    title: 'Six Chinese labs on one scale: DeepSeek leads, but four others top 5%',
+    sub: 'Monthly share of all tokens · Jan 2025 to Sep 2026 · shared y-axis',
+    draw: n => {
+      const labs = d3.groups(D.china_labs, d => d.lab).map(([lab, rows]) => ({ lab, rows: rows.sort((a, b) => a.month < b.month ? -1 : 1) }))
+        .sort((a, b) => b.rows[b.rows.length - 1].share - a.rows[a.rows.length - 1].share);
+      const months = [...new Set(D.china_labs.map(r => r.month))].sort();
+      const grid = el('div', 'mini-grid'); n.append(grid);
+      const ymax = Math.ceil(d3.max(D.china_labs, r => r.share) * 20) / 20;
+      labs.forEach(L => {
+        const box = el('div', 'mini'); const h3 = el('h3', null, L.lab); h3.append(el('span', null, pct(L.rows[L.rows.length - 1].share) + ' in Sep'));
+        const c = el('div', 'chart'); box.append(h3, c); grid.append(box);
+        const vals = months.map(mo => { const r = L.rows.find(x => x.month === mo); return { x: M(mo), y: r ? r.share : 0 }; });
+        lineChart(c, { aria: L.lab + ' monthly token share', height: 120, top: 8, left: 32, yMax: ymax, yTicks: [0, ymax / 2, ymax], yFmt: v => pct(v, 0), labelFmt: v => pct(v), xTickCount: 3,
+          tipHeader: d => fMonth(d), series: [{ name: L.lab, color: C.China, area: true, values: vals }] });
+      });
+    },
+    table: () => [['Lab', 'Month', 'Share of tokens'], D.china_labs.map(r => [r.lab, r.month, pct(r.share)])]
+  },
+  robust: {
+    title: 'China leads in June and September under every cut, but in March under none',
+    sub: 'China vs US share of tokens under four ways of counting · the requests row is from the public rankings page, one week',
+    draw: n => {
+      const wrap = el('div', 'table-wrap'); const t = el('table', 'rob'); wrap.append(t); n.append(wrap);
+      const months = ['2026-03', '2026-06', '2026-09'];
+      const hr = el('tr'); hr.append(el('th', null, 'Way of counting')); months.forEach(mo => hr.append(el('th', null, fMonth(M(mo))))); const th = el('thead'); th.append(hr); t.append(th);
+      const tb = el('tbody'); t.append(tb);
+      const pill = (who) => { const p = el('span', 'pill'); const i = el('i'); i.style.background = who === 'Tie' ? 'var(--c-other)' : C[who]; p.append(i, document.createTextNode(who === 'Tie' ? 'Tie' : who + ' ahead')); return p; };
+      ['as measured', 'all stealth + long tail credited to the US', 'paid tokens only', 'without DeepSeek'].forEach(cut => {
+        const tr = el('tr'); tr.append(el('td', null, cut[0].toUpperCase() + cut.slice(1)));
+        months.forEach(mo => { const r = rob(cut, mo); const td = el('td'); const who = r.china > r.us ? 'China' : 'US';
+          td.append(pill(who), document.createTextNode(`  ${pct(r.china)} vs ${pct(r.us)}`)); tr.append(td); });
+        tb.append(tr);
+      });
+      const tr = el('tr'); tr.append(el('td', null, 'By requests, not tokens (week of Oct 12)'));
+      tr.append(el('td', null, '–'), el('td', null, '–')); const td = el('td'); td.append(pill('Tie'), document.createTextNode(`  ${pct(D.requests_week.china)} vs ${pct(D.requests_week.us)}`)); tr.append(td); tb.append(tr);
+    }
+  },
+  launch: {
+    title: `By week 12 a model keeps ${pct(LS.All.model_w12, 0)} of its peak; its lab keeps ${pct(LS.All.lab_w12, 0)}`,
+    sub: `Median of ${LS.All.n} launches · indexed to the model's peak week = 100`,
+    legend: [["The lab's share", C.accent, 'line'], ["The model's share", C.compare, 'line']],
+    draw: n => lineChart(n, { aria: 'Median share after launch, model vs its lab', height: 260, xLinear: true, xDomain: [0, 12], xTicks: [0, 2, 4, 6, 8, 10, 12], xFmt: v => 'wk ' + v,
+      yMax: 1, yTicks: [0, .25, .5, .75, 1], yFmt: v => Math.round(v * 100), labelFmt: v => Math.round(v * 100) + '%', endLabels: true, tipHeader: v => 'Week ' + v + ' after launch',
+      series: [{ name: 'Lab', color: C.accent, values: D.launch.map(r => ({ x: r.w, y: r.lab_vs_base })) }, { name: 'Model', color: C.compare, values: D.launch.map(r => ({ x: r.w, y: r.model_vs_peak })) }] }),
+    table: () => [['Weeks since launch', "Model (% of its peak)", "Lab (% of its level at the model's peak)", 'Launches'], D.launch.map(r => [r.w, Math.round(r.model_vs_peak * 100), Math.round(r.lab_vs_base * 100), r.n])]
+  },
+  cats: {
+    title: `Programming went from ${pct(catShare('2025-05', 'programming'))} to ${pct(catShare('2026-09', 'programming'))} of categorized tokens`,
+    sub: 'Monthly share of the 12 categories OpenRouter samples · May 2025 to Sep 2026',
+    legend: [['Programming', C.accent, 'line'], ['Roleplay', C.compare, 'line']],
+    draw: n => { const ms = [...new Set(D.categories.map(r => r.month))].sort();
+      lineChart(n, { aria: 'Programming and roleplay share of categorized tokens', height: 260, yMax: 1, yTicks: [0, .25, .5, .75, 1], yFmt: v => pct(v, 0), labelFmt: v => pct(v), endLabels: true, tipHeader: d => fMonth(d), xTickCount: 4,
+        series: ['programming', 'roleplay'].map((c, i) => ({ name: c === 'programming' ? 'Programming' : 'Roleplay', color: i ? C.compare : C.accent, values: ms.map(mo => ({ x: M(mo), y: catShare(mo, c) })) })) }); },
+    table: () => { const ms = [...new Set(D.categories.map(r => r.month))].sort(); return [['Month', 'Programming', 'Roleplay'], ms.map(mo => [fMonth(M(mo)), pct(catShare(mo, 'programming')), pct(catShare(mo, 'roleplay'))])]; }
+  },
+  apps: {
+    title: `Agents top the app chart: ${D.apps[0].app} alone drew ${pct(D.apps[0].share)} of September tokens`,
+    sub: 'Top 10 apps by tokens, share of all September 2026 tokens',
+    draw: n => barChart(n, { aria: 'Top 10 apps by share of tokens', name: 'of September tokens', color: C.accent, xMax: Math.ceil(D.apps[0].share * 50) / 50, fmt: v => pct(v), data: D.apps.map(a => ({ k: a.app, v: a.share })) }),
+    table: () => [['App', 'Share of September tokens'], D.apps.map(a => [a.app, pct(a.share)])]
+  }
+};
+
+/* ---------- mount panels ---------- */
+function tableFrom([head, rows]) {
+  const t = el('table'), th = el('thead'), tr = el('tr');
+  head.forEach((h, i) => tr.append(el('th', i ? 'num' : null, h))); th.append(tr); t.append(th);
+  const tb = el('tbody'); rows.forEach(r => { const row = el('tr'); r.forEach((c, i) => row.append(el('td', i ? 'num' : null, String(c)))); tb.append(row); }); t.append(tb);
+  return t;
+}
+document.querySelectorAll('[data-chart]').forEach(fig => {
+  const p = panels[fig.dataset.chart];
+  const cap = el('figcaption'), txt = el('div');
+  txt.append(el('h2', null, p.title), el('p', 'sub', p.sub)); cap.append(txt);
+  const chart = el('div', 'chart'), tw = el('div', 'table-wrap'); tw.hidden = true;
+  if (p.table) {
+    const b = el('button', 'tblbtn', 'Table'); b.type = 'button'; b.setAttribute('aria-pressed', 'false');
+    b.addEventListener('click', () => { const on = b.getAttribute('aria-pressed') !== 'true'; b.setAttribute('aria-pressed', String(on));
+      if (on && !tw.firstChild) tw.append(tableFrom(p.table())); tw.hidden = !on; chart.hidden = on; if (legend) legend.hidden = on; if (!on) draw(fig, true); });
+    cap.append(b);
+  }
+  fig.append(cap);
+  let legend = null;
+  if (p.legend) { legend = el('div', 'legend'); p.legend.forEach(([l, c, s]) => { const sp = el('span'); const i = el('i', s); i.style.background = c; sp.append(i, document.createTextNode(l)); legend.append(sp); }); fig.append(legend); }
+  fig.append(chart, tw, el('p', 'source', 'Source: OpenRouter (openrouter.ai/rankings), as of 2026-10-19 · CC BY 4.0'));
+  fig._chart = chart; fig._p = p;
+  if ('ResizeObserver' in window) new ResizeObserver(() => { if (!fig.closest('.page').hidden) draw(fig); }).observe(chart);
+});
+function draw(fig, force) {
+  const c = fig._chart; if (c.hidden) return; const w = c.clientWidth; if (!w || (!force && +c.dataset.w === w)) return;
+  c.replaceChildren(); c.dataset.w = w; fig._p.draw(c);
+}
+
+/* ---------- tabs ---------- */
+const pages = [...document.querySelectorAll('.page')], tabs = [...document.querySelectorAll('.tab')];
+function open(id) {
+  if (!pages.some(p => p.id === id)) id = 'leadership';
+  pages.forEach(p => { p.hidden = p.id !== id; });
+  tabs.forEach(t => { const on = t.dataset.page === id; t.setAttribute('aria-selected', String(on)); t.tabIndex = on ? 0 : -1; });
+  hideTip(); requestAnimationFrame(() => document.querySelectorAll(`#${id} [data-chart]`).forEach(f => draw(f)));
+}
+tabs.forEach((t, i) => {
+  t.addEventListener('click', () => { history.replaceState(null, '', '#' + t.dataset.page); open(t.dataset.page); });
+  t.addEventListener('keydown', e => { if (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft') return; const j = (i + (e.key === 'ArrowRight' ? 1 : tabs.length - 1)) % tabs.length; tabs[j].focus(); tabs[j].click(); });
+});
+let rt; addEventListener('resize', () => { clearTimeout(rt); rt = setTimeout(() => document.querySelectorAll('.page:not([hidden]) [data-chart]').forEach(f => draw(f)), 120); });
+open((location.hash || '').slice(1));
+})();
+</script>

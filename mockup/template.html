@@ -1,0 +1,711 @@
+<title>AI Model Market</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<style>
+/* Layout: a product-style analytics app. Top bar, one tab per stakeholder, a KPI strip, then a 12-column
+   panel grid with one chart per panel that collapses to one column (GitLab Pajamas dashboards). */
+:root {
+  --plane: #f9f9f7; --surface: #fcfcfb; --raised: #ffffff;
+  --ink: #0b0b0b; --ink-2: #52514e; --muted: #6f6d67;
+  --grid: #e1e0d9; --axis: #c3c2b7; --border: rgba(11, 11, 11, 0.10); --hover: rgba(11, 11, 11, 0.04);
+  --c-china: #2a78d6; --c-us: #eb6834; --c-other: #898781;
+  --accent: #6250d6; --compare: #898781;
+  --shadow: 0 1px 2px rgba(11, 11, 11, .05), 0 8px 24px rgba(11, 11, 11, .08);
+  --font: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --mono: ui-monospace, "SF Mono", SFMono-Regular, Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --plane: #0d0d0d; --surface: #1a1a19; --raised: #232321;
+    --ink: #f0efec; --ink-2: #c3c2b7; --muted: #9a988f;
+    --grid: #2c2c2a; --axis: #45453f; --border: rgba(255, 255, 255, 0.10); --hover: rgba(255, 255, 255, 0.05);
+    --c-china: #3987e5; --c-us: #d95926; --c-other: #6e6c66;
+    --accent: #9085e9; --compare: #6e6c66;
+    --shadow: 0 1px 2px rgba(0, 0, 0, .4), 0 8px 24px rgba(0, 0, 0, .45);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --plane: #0d0d0d; --surface: #1a1a19; --raised: #232321;
+  --ink: #f0efec; --ink-2: #c3c2b7; --muted: #9a988f;
+  --grid: #2c2c2a; --axis: #45453f; --border: rgba(255, 255, 255, 0.10); --hover: rgba(255, 255, 255, 0.05);
+  --c-china: #3987e5; --c-us: #d95926; --c-other: #6e6c66;
+  --accent: #9085e9; --compare: #6e6c66;
+  --shadow: 0 1px 2px rgba(0, 0, 0, .4), 0 8px 24px rgba(0, 0, 0, .45);
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { background: var(--plane); color: var(--ink); font: 14px/1.45 var(--font); }
+.wrap { max-width: 1240px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px));
+        padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+.topbar { border-bottom: 1px solid var(--border); background: var(--surface); }
+.topbar .wrap { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 16px; padding-block: 14px; }
+.brand { display: flex; align-items: center; gap: 10px; font-weight: 650; font-size: 15px; letter-spacing: -0.01em; }
+.mark { width: 20px; height: 20px; border-radius: 5px; background: var(--ink); display: grid; place-items: center; }
+.mark i { width: 8px; height: 8px; border-radius: 2px; background: var(--surface); display: block; }
+.meta { color: var(--ink-2); font-size: 12px; display: flex; flex-wrap: wrap; gap: 4px 14px; }
+.meta span { white-space: nowrap; }
+.chip { margin-left: auto; font: 500 11px var(--mono); letter-spacing: .02em; padding: 3px 8px; border-radius: 999px;
+        border: 1px solid var(--border); color: var(--ink-2); white-space: nowrap; }
+.tabs { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: color-mix(in srgb, var(--plane) 88%, transparent);
+        backdrop-filter: saturate(1.2) blur(8px); border-bottom: 1px solid var(--border); }
+.tabs .wrap { display: flex; gap: 4px; overflow-x: auto; scrollbar-width: none; padding-block: 8px; }
+.tab { appearance: none; border: 0; background: none; color: var(--ink-2); font: 500 13px var(--font); padding: 7px 12px;
+       border-radius: 7px; cursor: pointer; white-space: nowrap; }
+.tab:hover { background: var(--hover); color: var(--ink); }
+.tab[aria-selected="true"] { background: var(--surface); color: var(--ink); box-shadow: inset 0 0 0 1px var(--border); }
+.tab:focus-visible, .tblbtn:focus-visible, svg:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+main .wrap { padding-block: 24px 40px; display: flex; flex-direction: column; gap: 20px; }
+.page { display: flex; flex-direction: column; gap: 20px; }
+.eyebrow { font: 500 12px var(--mono); color: var(--muted); letter-spacing: .02em; margin: 0 0 6px; }
+h1 { font-size: clamp(22px, 2.6vw, 30px); line-height: 1.15; letter-spacing: -0.02em; margin: 0; font-weight: 650;
+     text-wrap: balance; max-width: 30ch; }
+.lede { color: var(--ink-2); margin: 10px 0 0; max-width: 72ch; font-size: 15px; }
+.kpis { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1px; background: var(--border);
+        border: 1px solid var(--border); border-radius: 10px; overflow: hidden; }
+.kpi { background: var(--surface); padding: 14px 16px; display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+.kpi .l { color: var(--ink-2); font-size: 12px; }
+.kpi .v { font-size: 26px; font-weight: 650; letter-spacing: -0.02em; line-height: 1.1; }
+.kpi .d { color: var(--muted); font-size: 12px; }
+.grid { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 16px; }
+.span-12 { grid-column: span 12; } .span-7 { grid-column: span 7; } .span-6 { grid-column: span 6; } .span-5 { grid-column: span 5; }
+.panel { margin: 0; background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 16px 16px 12px;
+         display: flex; flex-direction: column; gap: 10px; min-width: 0; }
+.panel figcaption { display: flex; gap: 12px; align-items: flex-start; justify-content: space-between; }
+.panel h2 { font-size: 15px; font-weight: 600; letter-spacing: -0.01em; margin: 0; text-wrap: balance; }
+.sub { color: var(--muted); font-size: 12px; margin: 3px 0 0; }
+.tblbtn { appearance: none; border: 1px solid var(--border); background: var(--surface); color: var(--ink-2); font: 500 12px var(--font);
+          padding: 4px 9px; border-radius: 6px; cursor: pointer; flex: none; }
+.tblbtn[aria-pressed="true"] { background: var(--ink); color: var(--surface); border-color: var(--ink); }
+.legend { display: flex; flex-wrap: wrap; gap: 4px 14px; font-size: 12px; color: var(--ink-2); }
+.legend span { display: inline-flex; align-items: center; gap: 6px; }
+.legend i { display: inline-block; flex: none; }
+.legend i.line { width: 14px; height: 2px; border-radius: 1px; }
+.legend i.dot { width: 9px; height: 9px; border-radius: 50%; }
+.legend i.rect { width: 10px; height: 10px; border-radius: 2px; }
+.chart { width: 100%; min-height: 40px; }
+.chart svg { display: block; overflow: visible; }
+.table-wrap { overflow-x: auto; }
+table { border-collapse: collapse; width: 100%; font-size: 12.5px; font-variant-numeric: tabular-nums; }
+th, td { text-align: left; padding: 6px 10px; border-bottom: 1px solid var(--border); white-space: nowrap; }
+th { color: var(--ink-2); font-weight: 600; font-size: 12px; }
+td.num, th.num { text-align: right; }
+.source { color: var(--muted); font: 11px var(--mono); margin: 0; }
+.note { color: var(--ink-2); font-size: 12.5px; margin: 0; max-width: 90ch; }
+.note b { color: var(--ink); font-weight: 600; }
+.tick { fill: var(--ink-2); font: 11px var(--font); font-variant-numeric: tabular-nums; }
+.gridline { stroke: var(--grid); stroke-width: 1; shape-rendering: crispEdges; }
+.baseline { stroke: var(--axis); stroke-width: 1; shape-rendering: crispEdges; }
+.annot { stroke: var(--ink-2); stroke-width: 1; shape-rendering: crispEdges; }
+.annot-label { fill: var(--ink-2); font: 500 11px var(--font); }
+.lbl { fill: var(--ink); font: 600 12px var(--font); font-variant-numeric: tabular-nums; }
+.lbl2 { fill: var(--ink-2); font: 12px var(--font); }
+.halo, .chart .lbl, .chart .lbl2, .annot-label { paint-order: stroke; stroke: var(--surface); stroke-width: 3px; stroke-linejoin: round; }
+.leader { stroke: var(--axis); stroke-width: 1; }
+.cross { stroke: var(--ink-2); stroke-width: 1; shape-rendering: crispEdges; pointer-events: none; }
+.hit { fill: transparent; cursor: crosshair; }
+.mark-hover:hover, .mark-hover.on { filter: brightness(1.12); }
+.mini-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px 20px; }
+.mini h3 { font-size: 12.5px; font-weight: 600; margin: 0; display: flex; justify-content: space-between; gap: 8px; }
+.mini h3 span { color: var(--ink-2); font-weight: 500; font-variant-numeric: tabular-nums; }
+.pill { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; padding: 2px 8px; border-radius: 999px;
+        border: 1px solid var(--border); color: var(--ink); }
+.pill i { width: 8px; height: 8px; border-radius: 50%; display: inline-block; }
+.rob td:first-child { white-space: normal; min-width: 180px; }
+#tip { position: fixed; z-index: 20; pointer-events: none; background: var(--raised); color: var(--ink); border: 1px solid var(--border);
+       box-shadow: var(--shadow); border-radius: 8px; padding: 8px 10px; font-size: 12px; min-width: 150px; max-width: 280px; }
+.tip-h { color: var(--ink-2); font-weight: 500; margin-bottom: 4px; }
+.tip-r { display: grid; grid-template-columns: 14px auto 1fr; align-items: center; gap: 6px; padding: 1px 0; }
+.tip-r strong { font-variant-numeric: tabular-nums; font-weight: 650; }
+.tip-r .tip-l { color: var(--ink-2); }
+.tip-k { width: 12px; height: 2px; border-radius: 1px; }
+.tip-k.dot { width: 8px; height: 8px; border-radius: 50%; }
+footer { border-top: 1px solid var(--border); }
+footer .wrap { padding-block: 16px 28px; color: var(--muted); font-size: 12px; display: flex; flex-direction: column; gap: 4px; }
+footer a { color: var(--ink-2); }
+@media (max-width: 900px) { .grid > * { grid-column: span 12; } .kpis { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 560px) { .mini-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } .chip { margin-left: 0; } .kpi .v { font-size: 22px; } }
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+
+<header class="topbar">
+  <div class="wrap">
+    <div class="brand"><span class="mark" aria-hidden="true"><i></i></span>AI Model Market</div>
+    <div class="meta"><span>OpenRouter traffic, Jan 1, 2025 to Oct 18, 2026</span><span>Data as of Oct 19, 2026</span></div>
+    <span class="chip">Mockup for review</span>
+  </div>
+</header>
+<nav class="tabs" aria-label="Stakeholder pages">
+  <div class="wrap" role="tablist">
+    <button class="tab" role="tab" id="t-leadership" aria-controls="leadership" data-page="leadership">Leadership</button>
+    <button class="tab" role="tab" id="t-pricing" aria-controls="pricing" data-page="pricing">Pricing &amp; finance</button>
+    <button class="tab" role="tab" id="t-platform" aria-controls="platform" data-page="platform">AI platform</button>
+    <button class="tab" role="tab" id="t-intel" aria-controls="intel" data-page="intel">Competitive intel</button>
+    <button class="tab" role="tab" id="t-product" aria-controls="product" data-page="product">Product &amp; GTM</button>
+  </div>
+</nav>
+
+<main><div class="wrap">
+
+<section class="page" id="leadership" role="tabpanel" aria-labelledby="t-leadership">
+  <div><p class="eyebrow">Leadership · Who is winning, and is the market concentrating?</p>
+  <h1>Chinese labs have processed more OpenRouter tokens than US labs every week since April 27</h1>
+  <p class="lede" data-text="lede-leadership"></p></div>
+  <div class="kpis" data-kpis="leadership"></div>
+  <div class="grid">
+    <figure class="panel span-12" data-chart="share"></figure>
+    <figure class="panel span-6" data-chart="volume"></figure>
+    <figure class="panel span-6" data-chart="hhi"></figure>
+  </div>
+  <p class="note"><b>Reading it right:</b> this is traffic routed through OpenRouter, not the whole market. Apps that call OpenAI, Anthropic or Google directly are invisible here. "Everyone else" combines labs outside China and the US with stealth models and the long tail outside each day's top 50.</p>
+</section>
+
+<section class="page" id="pricing" role="tabpanel" aria-labelledby="t-pricing" hidden>
+  <div><p class="eyebrow">Pricing &amp; finance · Does cheaper win? Where is the money?</p>
+  <h1>China wins the tokens; US labs still win the money</h1>
+  <p class="lede" data-text="lede-pricing"></p></div>
+  <div class="kpis" data-kpis="pricing"></div>
+  <div class="grid">
+    <figure class="panel span-6" data-chart="groups"></figure>
+    <figure class="panel span-6" data-chart="labs"></figure>
+    <figure class="panel span-6" data-chart="tiers"></figure>
+    <figure class="panel span-6" data-chart="priceidx"></figure>
+  </div>
+  <p class="note"><b>Estimated spend</b> = tokens x list price, blending input and output 15:1 (OpenRouter's own study reports about 6K prompt vs 400 completion tokens per request). It's before caching discounts, so it's an upper bound: use it for shares, not dollar totals. Under Artificial Analysis's 3:1 blend, China's September spend share is 36.5% and the US's is 63.5%.</p>
+</section>
+
+<section class="page" id="platform" role="tabpanel" aria-labelledby="t-platform" hidden>
+  <div><p class="eyebrow">AI platform team · Which models give the best quality for the price?</p>
+  <h1>The most-used models are cheap mid-scorers, not the benchmark leaders</h1>
+  <p class="lede" data-text="lede-platform"></p></div>
+  <div class="kpis" data-kpis="platform"></div>
+  <div class="grid">
+    <figure class="panel span-12" data-chart="scatter"></figure>
+  </div>
+  <p class="note"><b>Routing, not taste:</b> benchmarks score one setting per model (for example "Max" reasoning), while usage counts every setting. Bulk jobs such as classification, the largest task by requests this week, can rationally use cheap models. Benchmarks: Artificial Analysis (artificialanalysis.ai) via OpenRouter, as of Oct 17, 2026.</p>
+</section>
+
+<section class="page" id="intel" role="tabpanel" aria-labelledby="t-intel" hidden>
+  <div><p class="eyebrow">Competitive intelligence · Where do the threats come from?</p>
+  <h1>China's lead is broad: it holds without DeepSeek and under the worst-case count</h1>
+  <p class="lede" data-text="lede-intel"></p></div>
+  <div class="kpis" data-kpis="intel"></div>
+  <div class="grid">
+    <figure class="panel span-12" data-chart="multiples"></figure>
+    <figure class="panel span-12" data-chart="robust"></figure>
+  </div>
+  <p class="note"><b>Country</b> means the developer's stated headquarters, from each lab's own legal or about page (`data/reference/labs.csv`). It's not where a model is hosted, and not where a base model it was tuned from came from.</p>
+</section>
+
+<section class="page" id="product" role="tabpanel" aria-labelledby="t-product" hidden>
+  <div><p class="eyebrow">Product &amp; GTM · Do launches stick? What drives demand?</p>
+  <h1>Models churn within weeks; labs keep most of their users</h1>
+  <p class="lede" data-text="lede-product"></p></div>
+  <div class="kpis" data-kpis="product"></div>
+  <div class="grid">
+    <figure class="panel span-7" data-chart="launch"></figure>
+    <figure class="panel span-5" data-chart="cats"></figure>
+    <figure class="panel span-12" data-chart="apps"></figure>
+  </div>
+  <p class="note"><b>Launches</b> are model families that first entered the daily top 50 on or after Feb 1, 2025, peaked at 1% or more of daily tokens, and have at least 13 weeks of data. Stealth models are excluded, because they "end" when renamed at launch. A lab that drops out of the top 50 counts as zero.</p>
+</section>
+
+</div></main>
+
+<footer><div class="wrap">
+  <span>Source: OpenRouter (openrouter.ai/rankings), as of 2026-10-19. Licensed under CC BY 4.0. Model prices: OpenRouter's model list, monthly snapshots via the Internet Archive.</span>
+  <span>Every number reconciles to an independent answer key (42 of 42) and a spot-check against the public rankings page (29 of 30 rows). Mockup only: the Tableau Story and Power BI report follow this spec.</span>
+</div></footer>
+<div id="tip" hidden></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
+<script id="mm-data" type="application/json">/*DATA*/</script>
+<script>
+(function () {
+const D = JSON.parse(document.getElementById('mm-data').textContent);
+const pct = (v, d = 1) => (v * 100).toFixed(d) + '%';
+const pts = v => (v >= 0 ? '+' : '−') + Math.abs(v * 100).toFixed(1) + ' pts';
+const tokT = v => v >= 100 ? Math.round(v) + 'T' : v >= 1 ? v.toFixed(1) + 'T' : Math.round(v * 1000) + 'B';
+const usd = v => '$' + (v >= 10 ? v.toFixed(0) : v.toFixed(2));
+const M = s => new Date(s + (s.length === 7 ? '-01' : '') + 'T00:00:00');
+const fMonth = d3.timeFormat('%b %Y'), fMon = d3.timeFormat('%b %y'), fDay = d3.timeFormat('%b %-d, %Y');
+const C = { China: 'var(--c-china)', US: 'var(--c-us)', Other: 'var(--c-other)', accent: 'var(--accent)', compare: 'var(--compare)' };
+const el = (tag, cls, text) => { const e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; };
+
+/* ---------- derived numbers (all from the verified export) ---------- */
+const K = D.kpi;
+const growth = K.tokens_sep / K.tokens_jan25;
+const vol = D.monthly_volume;
+const perDayJan = vol.find(r => r.month === '2025-01').per_day_t, perDaySep = vol.find(r => r.month === '2026-09').per_day_t;
+const hhiFull = D.hhi.filter(r => !r.partial);
+const hhiMin = hhiFull.reduce((a, b) => (b.hhi_lab < a.hhi_lab ? b : a));
+const firstBelow = hhiFull.find(r => r.hhi_lab < 1800);
+const lastAbove = hhiFull.map(r => r.hhi_lab >= 1800).lastIndexOf(true);
+const belowSince = hhiFull[lastAbove + 1];
+const G = Object.fromEntries(D.group_tokens_vs_spend.map(r => [r.g, r]));
+const P = D.price_index, P0 = P[0], P1 = P[P.length - 1];
+const tier = Object.fromEntries(D.tiers.map(r => [r.tier, r]));
+const cheapTok = tier['Free'].tok + tier['Under $0.25'].tok, cheapSpend = tier['Free'].spend + tier['Under $0.25'].spend;
+const H6 = D.h6;
+const rob = (cut, m) => D.robustness.find(r => r.cut === cut && r.month === m);
+const chinaLabsSep = D.china_labs.filter(r => r.month === '2026-09' && r.share >= 0.02).length;
+const LS = Object.fromEntries(D.launch_split.map(r => [r.cut, r]));
+const catShare = (m, c) => (D.categories.find(r => r.month === m && r.category === c) || {}).share;
+
+const text = {
+  'lede-leadership': `Volume grew ${Math.round(growth)}-fold in 21 months, and most of it now goes to Chinese labs: ${pct(K.china_sep)} of September tokens, up from ${pct(K.china_jan25)} in January 2025. The market also spread out. Lab concentration has been below the antitrust "highly concentrated" line every month since ${fMonth(M(belowSince.month))} (it first dipped under in ${fMonth(M(firstBelow.month))}), but it has risen since its ${fMonth(M(hhiMin.month))} low.`,
+  'lede-pricing': `In September, Chinese labs carried ${pct(G.China.tok)} of tokens but an estimated ${pct(G.China.spend)} of spend. US labs carried ${pct(G.US.tok)} of tokens and ${pct(G.US.spend)} of spend. The average token got ${Math.round((1 - P1.avg_idx) * 100)}% cheaper since January 2025, mostly because usage moved to cheaper models: the same models' list prices fell only ${Math.round((1 - P1.same_model_idx) * 100)}%.`,
+  'lede-platform': `The five highest-scoring models (Intelligence Index ${H6.scorers_min}-${H6.scorers_max}) took ${pct(H6.top5_scorers)} of tokens in the last 90 days. The five most-used, scoring ${H6.used_min}-${H6.used_max}, took ${pct(H6.top5_used)}. Only ${H6.frontier_n} of ${H6.scored_n} scored models sit on the price-quality frontier.`,
+  'lede-intel': `${chinaLabsSep} Chinese labs each carried 2% or more of September tokens. Credit every unattributed token to the US and China still leads, ${pct(rob('all stealth + long tail credited to the US', '2026-09').china)} to ${pct(rob('all stealth + long tail credited to the US', '2026-09').us)}. By requests rather than tokens it's a tie, which means Chinese models win the long, token-heavy jobs.`,
+  'lede-product': `A typical notable launch keeps ${pct(LS.All.model_w12, 0)} of its peak share by week 12, but its lab keeps ${pct(LS.All.lab_w12, 0)}, because users move to the lab's next model. US labs hold on better (${pct(LS.US.lab_w12, 0)}) than Chinese labs (${pct(LS.China.lab_w12, 0)}). Coding is now ${pct(catShare('2026-09', 'programming'))} of categorized traffic.`
+};
+document.querySelectorAll('[data-text]').forEach(n => { n.textContent = text[n.dataset.text]; });
+
+const kpis = {
+  leadership: [
+    ['Tokens in September 2026', tokT(K.tokens_sep), `${Math.round(growth)}× January 2025 (${tokT(K.tokens_jan25)})`],
+    ["China's share of tokens", pct(K.china_sep), `${pts(K.china_sep - K.china_jan25)} vs Jan 2025 (${pct(K.china_jan25)})`],
+    ['US share of tokens', pct(K.us_sep), `${pts(K.us_sep - K.us_jan25)} vs Jan 2025 (${pct(K.us_jan25)})`],
+    ['Lab concentration (HHI)', Math.round(K.hhi_sep).toLocaleString('en-US'), `From ${Math.round(K.hhi_jan25).toLocaleString('en-US')} in Jan 2025 · line is 1,800`]],
+  pricing: [
+    ["China's share of spend", pct(G.China.spend), `vs ${pct(G.China.tok)} of tokens · Sep 2026`],
+    ['US share of spend', pct(G.US.spend), `vs ${pct(G.US.tok)} of tokens · Sep 2026`],
+    ['Average price paid', usd(P1.avg_price) + '/M', `−${Math.round((1 - P1.avg_idx) * 100)}% vs Jan 2025 (${usd(P0.avg_price)}/M)`],
+    ['Same-model list price', `−${Math.round((1 - P1.same_model_idx) * 100)}%`, 'Jan 2025 to Sep 2026, chained index']],
+  platform: [
+    ['Top 5 scorers, share of tokens', pct(H6.top5_scorers), `Intelligence Index ${H6.scorers_min}-${H6.scorers_max}`],
+    ['Top 5 most-used, share of tokens', pct(H6.top5_used), `Intelligence Index ${H6.used_min}-${H6.used_max}`],
+    ['Score vs usage, rank correlation', H6.spearman.toFixed(2), `${H6.used_n} benchmarked models with usage · weak`],
+    ['On the price-quality frontier', `${H6.frontier_n} of ${H6.scored_n}`, `${pct(H6.frontier_share)} of benchmarked usage`]],
+  intel: [
+    ['Chinese labs with 2%+ of tokens', String(chinaLabsSep), 'September 2026'],
+    ['China without DeepSeek', pct(rob('without DeepSeek', '2026-09').china), `vs US ${pct(rob('without DeepSeek', '2026-09').us)} · Sep 2026`],
+    ['US share, worst case for China', pct(rob('all stealth + long tail credited to the US', '2026-09').us), `China still ${pct(rob('all stealth + long tail credited to the US', '2026-09').china)} · Sep 2026`],
+    ['Share of requests, week of Oct 12', 'Tie', `US ${pct(D.requests_week.us)} · China ${pct(D.requests_week.china)} (public page)`]],
+  product: [
+    ["A model's share at week 12", pct(LS.All.model_w12, 0), `of its peak · median of ${LS.All.n} launches`],
+    ["Its lab's share at week 12", pct(LS.All.lab_w12, 0), "of the lab's level at the model's peak"],
+    ['US labs keep (week 12)', pct(LS.US.lab_w12, 0), `Chinese labs keep ${pct(LS.China.lab_w12, 0)}`],
+    ['Programming share of categorized tokens', pct(catShare('2026-09', 'programming')), `From ${pct(catShare('2025-05', 'programming'))} in May 2025`]]
+};
+document.querySelectorAll('[data-kpis]').forEach(n => {
+  kpis[n.dataset.kpis].forEach(([l, v, d]) => { const t = el('div', 'kpi'); t.append(el('span', 'l', l), el('span', 'v', v), el('span', 'd', d)); n.append(t); });
+});
+
+/* ---------- tooltip ---------- */
+const tip = document.getElementById('tip');
+function showTip(x, y, header, rows) {
+  tip.replaceChildren(el('div', 'tip-h', header));
+  rows.forEach(r => { const row = el('div', 'tip-r'); const k = el('span', 'tip-k' + (r.shape === 'dot' ? ' dot' : '')); k.style.background = r.color;
+    row.append(k, el('strong', null, r.value), el('span', 'tip-l', r.label)); tip.append(row); });
+  tip.hidden = false;
+  const w = tip.offsetWidth, h = tip.offsetHeight; let left = x + 14, top = y + 14;
+  if (left + w > innerWidth - 8) left = x - w - 14; if (top + h > innerHeight - 8) top = y - h - 14;
+  tip.style.left = Math.max(8, left) + 'px'; tip.style.top = Math.max(8, top) + 'px';
+}
+const hideTip = () => { tip.hidden = true; };
+
+/* ---------- shared drawing helpers ---------- */
+function svgFor(node, w, h, label) {
+  return d3.select(node).append('svg').attr('width', w).attr('height', h).attr('viewBox', `0 0 ${w} ${h}`)
+    .attr('role', 'img').attr('aria-label', label);
+}
+function yGrid(svg, y, x0, x1, ticks, fmt) {
+  const g = svg.append('g');
+  ticks.forEach(t => {
+    g.append('line').attr('class', t === y.domain()[0] ? 'baseline' : 'gridline').attr('x1', x0).attr('x2', x1).attr('y1', Math.round(y(t)) + .5).attr('y2', Math.round(y(t)) + .5);
+    g.append('text').attr('class', 'tick').attr('x', x0 - 8).attr('y', y(t)).attr('dy', '0.32em').attr('text-anchor', 'end').text(fmt(t));
+  });
+}
+function xAxisTime(svg, x, y0, ticks, fmt) {
+  const g = svg.append('g');
+  x.ticks(ticks).forEach(t => g.append('text').attr('class', 'tick').attr('x', x(t)).attr('y', y0 + 16).attr('text-anchor', 'middle').text(fmt(t)));
+}
+const roundEnd = (x, y, w, h, r, dir) => { // bar with a rounded data-end; dir 'up' (column) or 'right' (bar)
+  if (dir === 'up') { r = Math.min(r, h, w / 2); return `M${x},${y + h}V${y + r}Q${x},${y} ${x + r},${y}H${x + w - r}Q${x + w},${y} ${x + w},${y + r}V${y + h}Z`; }
+  r = Math.min(r, w, h / 2); return `M${x},${y}H${x + w - r}Q${x + w},${y} ${x + w},${y + r}V${y + h - r}Q${x + w},${y + h} ${x + w - r},${y + h}H${x}Z`;
+};
+function placeLabels(items, minGap, lo, hi) { // items: {y}; nudges apart, keeps order
+  items.sort((a, b) => a.y - b.y);
+  for (let i = 1; i < items.length; i++) if (items[i].ly - items[i - 1].ly < minGap) items[i].ly = items[i - 1].ly + minGap;
+  const over = items.length ? items[items.length - 1].ly - hi : 0; if (over > 0) items.forEach(it => { it.ly -= over; });
+  items.forEach(it => { it.ly = Math.max(lo, it.ly); });
+}
+
+/* Multi-series line chart with a crosshair tooltip and end labels. */
+function lineChart(node, o) {
+  const w = node.clientWidth, h = o.height || 280, narrow = w < 520;
+  const m = { t: o.top || 14, r: o.endLabels ? (narrow ? 92 : 138) : 12, b: 26, l: o.left || 40 };
+  const svg = svgFor(node, w, h, o.aria);
+  const xs = o.series[0].values.map(d => d.x);
+  const x = (o.xLinear ? d3.scaleLinear() : d3.scaleTime()).domain(o.xDomain || d3.extent(xs)).range([m.l, w - m.r]);
+  const y = d3.scaleLinear().domain([0, o.yMax]).range([h - m.b, m.t]);
+  yGrid(svg, y, m.l, w - m.r, o.yTicks || y.ticks(4), o.yFmt);
+  if (o.xLinear) o.xTicks.forEach(t => svg.append('text').attr('class', 'tick').attr('x', x(t)).attr('y', h - m.b + 16).attr('text-anchor', 'middle').text(o.xFmt(t)));
+  else xAxisTime(svg, x, h - m.b, narrow ? 4 : (o.xTickCount || 8), o.xFmt || fMon);
+  (o.refs || []).forEach(r => {
+    svg.append('line').attr('class', 'annot').attr('x1', m.l).attr('x2', w - m.r).attr('y1', Math.round(y(r.y)) + .5).attr('y2', Math.round(y(r.y)) + .5);
+    svg.append('text').attr('class', 'annot-label halo').attr('x', w - m.r - 4).attr('y', y(r.y) - 6).attr('text-anchor', 'end').text(narrow && r.short ? r.short : r.label);
+  });
+  (o.annotations || []).forEach((a, i) => {
+    const ax = Math.round(x(a.x)) + .5;
+    svg.append('line').attr('class', 'annot').attr('x1', ax).attr('x2', ax).attr('y1', m.t).attr('y2', h - m.b);
+    svg.append('text').attr('class', 'annot-label').attr('x', a.anchor === 'end' ? ax - 6 : ax + 6).attr('y', m.t + 11 + i * 15)
+      .attr('text-anchor', a.anchor || 'start').text(narrow && a.short ? a.short : a.label);
+  });
+  const line = d3.line().defined(d => d.y != null).x(d => x(d.x)).y(d => y(d.y)).curve(d3.curveMonotoneX);
+  o.series.forEach(s => {
+    if (s.area) svg.append('path').datum(s.values).attr('d', d3.area().defined(d => d.y != null).x(d => x(d.x)).y0(y(0)).y1(d => y(d.y)).curve(d3.curveMonotoneX))
+      .style('fill', s.color).style('fill-opacity', 0.10);
+    svg.append('path').datum(s.values).attr('d', line).style('fill', 'none').style('stroke', s.color)
+      .style('stroke-width', 2).style('stroke-linejoin', 'round').style('stroke-linecap', 'round');
+  });
+  if (o.endLabels) {
+    const items = o.series.map(s => { const last = [...s.values].reverse().find(d => d.y != null); return { s, last, y: y(last.y), ly: y(last.y) }; });
+    placeLabels(items, 30, m.t + 6, h - m.b - 4);
+    items.forEach(it => {
+      const lx = x(it.last.x);
+      svg.append('circle').attr('cx', lx).attr('cy', it.y).attr('r', 4).style('fill', it.s.color).style('stroke', 'var(--surface)').style('stroke-width', 2);
+      if (Math.abs(it.ly - it.y) > 2) svg.append('line').attr('class', 'leader').attr('x1', lx + 6).attr('x2', lx + 12).attr('y1', it.y).attr('y2', it.ly);
+      svg.append('text').attr('class', 'lbl').attr('x', lx + 14).attr('y', it.ly - 2).text((o.labelFmt || o.yFmt)(it.last.y));
+      svg.append('text').attr('class', 'lbl2').attr('x', lx + 14).attr('y', it.ly + 13).text(it.s.name);
+    });
+  }
+  // crosshair layer
+  const cross = svg.append('line').attr('class', 'cross').attr('y1', m.t).attr('y2', h - m.b).style('opacity', 0);
+  const dots = o.series.map(s => svg.append('circle').attr('r', 4).style('fill', s.color).style('stroke', 'var(--surface)').style('stroke-width', 2).style('opacity', 0).style('pointer-events', 'none'));
+  const bis = d3.bisector(d => d).center;
+  let idx = xs.length - 1;
+  function show(i, cx, cy) {
+    idx = i; const xv = xs[i], px = x(xv);
+    cross.attr('x1', px).attr('x2', px).style('opacity', 1);
+    o.series.forEach((s, k) => { const v = s.values[i]; dots[k].attr('cx', px).attr('cy', v && v.y != null ? y(v.y) : -99).style('opacity', v && v.y != null ? 1 : 0); });
+    const rows = o.series.map(s => ({ color: s.color, value: s.values[i] && s.values[i].y != null ? (o.labelFmt || o.yFmt)(s.values[i].y) : '–', label: s.name, v: s.values[i] ? s.values[i].y : -1 }))
+      .sort((a, b) => (b.v ?? -1) - (a.v ?? -1));
+    showTip(cx, cy, o.tipHeader(xv), rows);
+  }
+  function clear() { cross.style('opacity', 0); dots.forEach(d => d.style('opacity', 0)); hideTip(); }
+  svg.append('rect').attr('class', 'hit').attr('x', m.l).attr('y', m.t).attr('width', w - m.l - m.r).attr('height', h - m.t - m.b)
+    .on('pointermove', e => { const [px] = d3.pointer(e); show(bis(xs, x.invert(px)), e.clientX, e.clientY); })
+    .on('pointerleave', clear);
+  svg.attr('tabindex', 0)
+    .on('keydown', e => { if (e.key === 'ArrowLeft' || e.key === 'ArrowRight') { e.preventDefault(); const r = node.getBoundingClientRect();
+      const i = Math.max(0, Math.min(xs.length - 1, idx + (e.key === 'ArrowRight' ? 1 : -1))); show(i, r.left + x(xs[i]), r.top + 40); } })
+    .on('focus', () => { const r = node.getBoundingClientRect(); show(idx, r.left + x(xs[idx]), r.top + 40); })
+    .on('blur', clear);
+}
+
+/* Columns with rounded tops; one series; tooltip per bar. */
+function columnChart(node, o) {
+  const w = node.clientWidth, h = o.height || 240, m = { t: 22, r: 8, b: 26, l: 40 };
+  const svg = svgFor(node, w, h, o.aria);
+  const x = d3.scaleBand().domain(o.data.map(d => d.k)).range([m.l, w - m.r]).padding(0.25);
+  const y = d3.scaleLinear().domain([0, o.yMax]).range([h - m.b, m.t]);
+  yGrid(svg, y, m.l, w - m.r, y.ticks(4), o.yFmt);
+  const bw = Math.min(24, x.bandwidth());
+  o.data.forEach((d, i) => {
+    const bx = x(d.k) + (x.bandwidth() - bw) / 2, by = y(d.v), bh = y(0) - by;
+    svg.append('path').attr('class', 'mark-hover').attr('d', roundEnd(bx, by, bw, bh, 4, 'up')).style('fill', o.color).style('fill-opacity', d.partial ? 0.4 : 1);
+    if (i % o.tickEvery === 0 || i === o.data.length - 1) svg.append('text').attr('class', 'tick').attr('x', bx + bw / 2).attr('y', h - m.b + 16).attr('text-anchor', 'middle').text(d.tick);
+    if (d.label) svg.append('text').attr('class', 'lbl').attr('x', bx + bw / 2).attr('y', by - 6).attr('text-anchor', i === o.data.length - 1 ? 'end' : 'middle').text(d.label);
+    svg.append('rect').attr('class', 'hit').attr('x', x(d.k)).attr('y', m.t).attr('width', x.bandwidth()).attr('height', h - m.t - m.b)
+      .on('pointermove', e => showTip(e.clientX, e.clientY, d.header, [{ color: o.color, value: o.yFmt(d.v), label: d.note || o.name }]))
+      .on('pointerleave', hideTip);
+  });
+}
+
+/* Horizontal bars, one series, value at the tip. */
+function barChart(node, o) {
+  const w = node.clientWidth, rowH = 28, h = o.data.length * rowH + 8, labW = Math.min(150, w * 0.36), m = { l: labW + 8, r: 56 };
+  const svg = svgFor(node, w, h, o.aria);
+  const x = d3.scaleLinear().domain([0, o.xMax]).range([m.l, w - m.r]);
+  o.data.forEach((d, i) => {
+    const cy = i * rowH + rowH / 2 + 2, bh = 14;
+    svg.append('text').attr('class', 'lbl2').attr('x', labW).attr('y', cy).attr('dy', '0.32em').attr('text-anchor', 'end').text(d.k);
+    svg.append('path').attr('class', 'mark-hover').attr('d', roundEnd(m.l, cy - bh / 2, Math.max(2, x(d.v) - m.l), bh, 4, 'right')).style('fill', o.color);
+    svg.append('text').attr('class', 'lbl').attr('x', x(d.v) + 6).attr('y', cy).attr('dy', '0.32em').text(o.fmt(d.v));
+    svg.append('rect').attr('class', 'hit').attr('x', 0).attr('y', i * rowH + 2).attr('width', w).attr('height', rowH)
+      .on('pointermove', e => showTip(e.clientX, e.clientY, d.k, [{ color: o.color, value: o.fmt(d.v), label: o.name }])).on('pointerleave', hideTip);
+  });
+  svg.insert('line', ':first-child').attr('class', 'baseline').attr('x1', m.l + .5).attr('x2', m.l + .5).attr('y1', 0).attr('y2', h);
+}
+
+/* Dumbbell: two measures in the same unit per row (tokens vs spend). */
+function dumbbell(node, o) {
+  const w = node.clientWidth, rowH = 30, h = o.rows.length * rowH + 24, narrow = w < 460;
+  const labW = Math.min(132, w * 0.3), valW = narrow ? 0 : 104, m = { l: labW + 10, r: valW + 14 };
+  const svg = svgFor(node, w, h, o.aria);
+  const x = d3.scaleLinear().domain([0, o.xMax]).range([m.l, w - m.r]);
+  x.ticks(4).forEach(t => {
+    svg.append('line').attr('class', t === 0 ? 'baseline' : 'gridline').attr('x1', Math.round(x(t)) + .5).attr('x2', Math.round(x(t)) + .5).attr('y1', 0).attr('y2', h - 22);
+    svg.append('text').attr('class', 'tick').attr('x', x(t)).attr('y', h - 6).attr('text-anchor', 'middle').text(pct(t, 0));
+  });
+  o.rows.forEach((r, i) => {
+    const cy = i * rowH + rowH / 2;
+    svg.append('text').attr('class', 'lbl2').attr('x', labW).attr('y', cy).attr('dy', '0.32em').attr('text-anchor', 'end').text(r.k);
+    svg.append('line').attr('x1', x(r.a)).attr('x2', x(r.b)).attr('y1', cy).attr('y2', cy).style('stroke', 'var(--axis)').style('stroke-width', 2);
+    [[r.a, C.compare], [r.b, C.accent]].forEach(([v, c]) => svg.append('circle').attr('cx', x(v)).attr('cy', cy).attr('r', 5)
+      .style('fill', c).style('stroke', 'var(--surface)').style('stroke-width', 2));
+    if (!narrow) svg.append('text').attr('class', 'lbl2').attr('x', w - 4).attr('y', cy).attr('dy', '0.32em').attr('text-anchor', 'end')
+      .style('font-variant-numeric', 'tabular-nums').text(`${pct(r.a)} → ${pct(r.b)}`);
+    svg.append('rect').attr('class', 'hit').attr('x', 0).attr('y', i * rowH).attr('width', w).attr('height', rowH)
+      .on('pointermove', e => showTip(e.clientX, e.clientY, r.k, [{ color: C.accent, value: pct(r.b), label: o.bName, shape: 'dot' }, { color: C.compare, value: pct(r.a), label: o.aName, shape: 'dot' }]))
+      .on('pointerleave', hideTip);
+  });
+}
+
+/* Grouped horizontal bars: two measures per category. */
+function pairedBars(node, o) {
+  const w = node.clientWidth, rowH = 40, h = o.rows.length * rowH + 22, labW = Math.min(96, w * 0.26), m = { l: labW + 10, r: 52 };
+  const svg = svgFor(node, w, h, o.aria);
+  const x = d3.scaleLinear().domain([0, o.xMax]).range([m.l, w - m.r]);
+  x.ticks(4).forEach(t => {
+    svg.append('line').attr('class', t === 0 ? 'baseline' : 'gridline').attr('x1', Math.round(x(t)) + .5).attr('x2', Math.round(x(t)) + .5).attr('y1', 0).attr('y2', h - 20);
+    svg.append('text').attr('class', 'tick').attr('x', x(t)).attr('y', h - 5).attr('text-anchor', 'middle').text(pct(t, 0));
+  });
+  o.rows.forEach((r, i) => {
+    const top = i * rowH + 6, bh = 12;
+    svg.append('text').attr('class', 'lbl2').attr('x', labW).attr('y', top + bh + 1).attr('dy', '0.32em').attr('text-anchor', 'end').text(r.k);
+    [[r.a, C.compare, 0], [r.b, C.accent, bh + 2]].forEach(([v, c, off]) => {
+      svg.append('path').attr('d', roundEnd(m.l, top + off, Math.max(1.5, x(v) - m.l), bh, 4, 'right')).style('fill', c);
+      svg.append('text').attr('class', 'lbl').attr('x', x(v) + 5).attr('y', top + off + bh / 2).attr('dy', '0.32em').style('font-size', '11px').text(pct(v));
+    });
+    svg.append('rect').attr('class', 'hit').attr('x', 0).attr('y', i * rowH).attr('width', w).attr('height', rowH)
+      .on('pointermove', e => showTip(e.clientX, e.clientY, r.k, [{ color: C.accent, value: pct(r.b), label: o.bName }, { color: C.compare, value: pct(r.a), label: o.aName }]))
+      .on('pointerleave', hideTip);
+  });
+}
+
+/* Bubble scatter on a log price axis with the price-quality frontier. */
+function scatter(node, o) {
+  const w = node.clientWidth, h = w < 520 ? 340 : 420, m = { t: 16, r: 18, b: 34, l: 40 };
+  const svg = svgFor(node, w, h, o.aria);
+  const pts = o.points;
+  const x = d3.scaleLog().domain([d3.min(pts, d => d.price) * 0.8, d3.max(pts, d => d.price) * 1.25]).range([m.l, w - m.r]);
+  const y = d3.scaleLinear().domain([10, 60]).range([h - m.b, m.t]);
+  const r = d3.scaleSqrt().domain([0, d3.max(pts, d => d.share)]).range([3, w < 520 ? 16 : 24]);
+  yGrid(svg, y, m.l, w - m.r, [10, 20, 30, 40, 50, 60], v => v);
+  [0.05, 0.1, 0.25, 0.5, 1, 2.5, 5, 10, 25, 50].filter(t => t >= x.domain()[0] && t <= x.domain()[1]).forEach(t => {
+    svg.append('line').attr('class', 'gridline').attr('x1', Math.round(x(t)) + .5).attr('x2', Math.round(x(t)) + .5).attr('y1', m.t).attr('y2', h - m.b);
+    svg.append('text').attr('class', 'tick').attr('x', x(t)).attr('y', h - m.b + 16).attr('text-anchor', 'middle').text('$' + t);
+  });
+  svg.append('text').attr('class', 'tick').attr('x', w - m.r).attr('y', h - 2).attr('text-anchor', 'end').text('Blended price per million tokens (log scale)');
+  svg.append('text').attr('class', 'tick').attr('x', m.l).attr('y', m.t - 4).text('Intelligence Index');
+  const fr = o.frontier.slice().sort((a, b) => a.price - b.price);
+  svg.append('path').datum(fr).attr('d', d3.line().x(d => x(d.price)).y(d => y(d.iq)).curve(d3.curveStepAfter))
+    .style('fill', 'none').style('stroke', 'var(--ink-2)').style('stroke-width', 1);
+  const fl = fr[Math.max(0, fr.length - 2)];
+  svg.append('text').attr('class', 'annot-label').attr('x', x(fl.price) - 6).attr('y', y(fl.iq) - 8).attr('text-anchor', 'end').text('Price-quality frontier');
+  const sorted = pts.slice().sort((a, b) => b.share - a.share);
+  sorted.forEach(d => {
+    const c = C[d.g];
+    svg.append('circle').attr('cx', x(d.price)).attr('cy', y(d.iq)).attr('r', r(d.share))
+      .style('fill', d.share > 0 ? c : 'none').style('fill-opacity', 0.78).style('stroke', d.share > 0 ? 'var(--surface)' : c).style('stroke-width', d.share > 0 ? 1.5 : 1.5);
+  });
+  // selective labels: top 5 by usage, top 3 by score
+  const pick = new Set([...sorted.slice(0, 5), ...pts.slice().sort((a, b) => b.iq - a.iq).slice(0, 3)]);
+  const boxes = [];
+  [...pick].forEach(d => {
+    const cx = x(d.price), cy = y(d.iq), rr = r(d.share) + 4, name = d.name.replace(/ \((Max|High|Non-reasoning)[^)]*\)/, '');
+    const left = cx > w - 170;
+    const t = svg.append('text').attr('class', 'lbl2').attr('x', left ? cx - rr : cx + rr).attr('y', cy).attr('dy', '0.32em')
+      .attr('text-anchor', left ? 'end' : 'start').style('font-size', '11px').text(name);
+    const b = t.node().getBBox();
+    if (boxes.some(o2 => !(b.x > o2.x + o2.width || b.x + b.width < o2.x || b.y > o2.y + o2.height || b.y + b.height < o2.y))) t.remove(); else boxes.push(b);
+  });
+  const del = d3.Delaunay.from(pts, d => x(d.price), d => y(d.iq));
+  svg.append('rect').attr('class', 'hit').attr('x', m.l).attr('y', m.t).attr('width', w - m.l - m.r).attr('height', h - m.t - m.b)
+    .on('pointermove', e => { const [px, py] = d3.pointer(e); const i = del.find(px, py); const d = pts[i];
+      if (Math.hypot(x(d.price) - px, y(d.iq) - py) > 40) return hideTip();
+      showTip(e.clientX, e.clientY, d.name, [{ color: C[d.g], value: pct(d.share, 2), label: 'of last-90-day tokens', shape: 'dot' },
+        { color: 'transparent', value: String(d.iq), label: 'Intelligence Index' }, { color: 'transparent', value: usd(d.price) + '/M', label: `blended price · ${d.lab}` }]); })
+    .on('pointerleave', hideTip);
+}
+
+/* ---------- panel registry: title, subtitle, legend, draw, table ---------- */
+function weeklySeries() {
+  const byWeek = d3.group(D.weekly_share, d => d.week);
+  const weeks = [...byWeek.keys()].sort();
+  const get = (wk, gs) => d3.sum(byWeek.get(wk).filter(r => gs.includes(r.g)), r => r.share);
+  return weeks.map(wk => ({ x: M(wk), china: get(wk, ['China']), us: get(wk, ['US']), rest: get(wk, ['Other named', 'Unattributed']) }));
+}
+const WK = weeklySeries();
+const monthly = (arr, key) => arr.map(r => ({ x: M(r.month), y: r[key] }));
+const panels = {
+  share: {
+    title: 'China first passed the US the week of Mar 23, 2026, and has led every week since Apr 27',
+    sub: 'Share of weekly tokens · Jan 2025 to Oct 18, 2026 · OpenRouter',
+    legend: [['China', C.China, 'line'], ['US', C.US, 'line'], ['Everyone else', C.Other, 'line']],
+    draw: n => lineChart(n, { aria: 'Weekly token share for China, the US and everyone else', height: 300, yMax: 1, yTicks: [0, .25, .5, .75, 1], yFmt: v => pct(v, 0), labelFmt: v => pct(v),
+      endLabels: true, tipHeader: d => 'Week of ' + fDay(d),
+      annotations: [{ x: M('2026-03-23'), label: 'Mar 23: first week ahead', short: 'Mar 23', anchor: 'end' }, { x: M('2026-04-27'), label: 'Apr 27: ahead every week since', short: 'Apr 27' }],
+      series: [{ name: 'China', color: C.China, values: WK.map(d => ({ x: d.x, y: d.china })) }, { name: 'US', color: C.US, values: WK.map(d => ({ x: d.x, y: d.us })) },
+        { name: 'Everyone else', color: C.Other, values: WK.map(d => ({ x: d.x, y: d.rest })) }] }),
+    table: () => [['Week', 'China', 'US', 'Everyone else'], WK.map(d => [fDay(d.x), pct(d.china), pct(d.us), pct(d.rest)])]
+  },
+  volume: {
+    title: `Daily volume grew from ${tokT(perDayJan)} to ${tokT(perDaySep)} tokens a day`,
+    sub: 'Average tokens per day, by month · Oct 2026 runs to the 18th',
+    draw: n => columnChart(n, { aria: 'Average tokens per day by month', name: 'tokens per day', color: C.accent, yMax: Math.ceil(d3.max(vol, d => d.per_day_t) / 5) * 5, yFmt: v => v === 0 ? '0' : v + 'T', tickEvery: 3,
+      data: vol.map(r => ({ k: r.month, v: r.per_day_t, partial: r.partial, tick: fMon(M(r.month)), header: fMonth(M(r.month)) + (r.partial ? ' (to Oct 18)' : ''),
+        label: r.month === '2026-09' ? tokT(r.per_day_t) : r.month === '2025-01' ? tokT(r.per_day_t) : null, note: 'tokens per day' })) }),
+    table: () => [['Month', 'Tokens per day', 'Tokens in month'], vol.map(r => [fMonth(M(r.month)) + (r.partial ? ' (partial)' : ''), tokT(r.per_day_t), tokT(r.tokens_t)])]
+  },
+  hhi: {
+    title: `Lab concentration fell from ${Math.round(K.hhi_jan25).toLocaleString('en-US')} to a low of ${Math.round(hhiMin.hhi_lab).toLocaleString('en-US')} (${fMonth(M(hhiMin.month))}), then rose to ${Math.round(K.hhi_sep).toLocaleString('en-US')}`,
+    sub: 'Herfindahl-Hirschman Index of lab shares, named tokens, by month · Oct 2026 partial',
+    draw: n => lineChart(n, { aria: 'Lab concentration index by month', height: 240, yMax: 3500, yTicks: [0, 1000, 2000, 3000], yFmt: v => v.toLocaleString('en-US'), labelFmt: v => Math.round(v).toLocaleString('en-US'), left: 46,
+      tipHeader: d => fMonth(d), refs: [{ y: 1800, label: '1,800: "highly concentrated" (DOJ/FTC 2023)', short: '1,800 line' }],
+      series: [{ name: 'Lab HHI', color: C.accent, values: monthly(D.hhi, 'hhi_lab') }] }),
+    table: () => [['Month', 'Lab HHI'], D.hhi.map(r => [fMonth(M(r.month)) + (r.partial ? ' (partial)' : ''), Math.round(r.hhi_lab).toLocaleString('en-US')])]
+  },
+  groups: {
+    title: `China: ${pct(G.China.tok)} of tokens, ${pct(G.China.spend)} of spend`,
+    sub: 'Share of tokens vs share of estimated spend · September 2026',
+    legend: [['Share of tokens', C.compare, 'dot'], ['Share of estimated spend', C.accent, 'dot']],
+    draw: n => dumbbell(n, { aria: 'Token share vs spend share by country group', aName: 'of tokens', bName: 'of estimated spend', xMax: 0.7,
+      rows: [['China', 'China'], ['US', 'US'], ['Unattributed', 'Stealth + long tail'], ['Other named', 'Other countries']].map(([g, k]) => ({ k, a: G[g].tok, b: G[g].spend })) }),
+    table: () => [['Group', 'Share of tokens', 'Share of spend (15:1)', 'Share of spend (3:1)'],
+      ['China', 'US', 'Unattributed', 'Other named'].map(g => [g, pct(G[g].tok), pct(G[g].spend), pct(G[g].spend31)])]
+  },
+  labs: {
+    title: (() => { const a = D.lab_tokens_vs_spend[0]; return `${a.lab}: ${pct(a.tok)} of tokens, ${pct(a.spend)} of spend`; })(),
+    sub: 'Top 10 labs by estimated spend · September 2026',
+    legend: [['Share of tokens', C.compare, 'dot'], ['Share of estimated spend', C.accent, 'dot']],
+    draw: n => dumbbell(n, { aria: 'Token share vs spend share for the top 10 labs', aName: 'of tokens', bName: 'of estimated spend', xMax: 0.3,
+      rows: D.lab_tokens_vs_spend.map(r => ({ k: r.lab, a: r.tok, b: r.spend })) }),
+    table: () => [['Lab', 'Country group', 'Share of tokens', 'Share of spend', 'Avg price per M'], D.lab_tokens_vs_spend.map(r => [r.lab, r.cg, pct(r.tok), pct(r.spend), usd(r.price)])]
+  },
+  tiers: {
+    title: `Models under $0.25 carry ${pct(cheapTok)} of tokens but ${pct(cheapSpend)} of spend`,
+    sub: 'Price tier by blended list price per million tokens · September 2026, priced tokens',
+    legend: [['Share of tokens', C.compare, 'rect'], ['Share of estimated spend', C.accent, 'rect']],
+    draw: n => pairedBars(n, { aria: 'Share of tokens vs spend by price tier', aName: 'of tokens', bName: 'of estimated spend', xMax: 0.5,
+      rows: ['Free', 'Under $0.25', '$0.25-1', '$1-5', '$5+'].map(k => ({ k, a: tier[k].tok, b: tier[k].spend })) }),
+    table: () => [['Price tier', 'Share of tokens', 'Share of spend'], ['Free', 'Under $0.25', '$0.25-1', '$1-5', '$5+'].map(k => [k, pct(tier[k].tok), pct(tier[k].spend)])]
+  },
+  priceidx: {
+    title: `The average token got ${Math.round((1 - P1.avg_idx) * 100)}% cheaper; the same models got ${Math.round((1 - P1.same_model_idx) * 100)}% cheaper`,
+    sub: 'Index, January 2025 = 100 · average price paid vs a chained same-model list-price index',
+    legend: [['Average price paid', C.accent, 'line'], ['Same-model list price', C.compare, 'line']],
+    draw: n => lineChart(n, { aria: 'Average price paid vs same-model price index', height: 250, yMax: 1.2, yTicks: [0, .25, .5, .75, 1], yFmt: v => Math.round(v * 100),
+      endLabels: true, tipHeader: d => fMonth(d),
+      series: [{ name: 'Avg price paid', color: C.accent, values: monthly(P, 'avg_idx') }, { name: 'Same models', color: C.compare, values: monthly(P, 'same_model_idx') }] }),
+    table: () => [['Month', 'Average price paid ($/M)', 'Average price index', 'Same-model index'], P.map(r => [fMonth(M(r.month)), usd(r.avg_price), Math.round(r.avg_idx * 100), Math.round(r.same_model_idx * 100)])]
+  },
+  scatter: {
+    title: 'Usage piles up at low prices and middling scores; the top scorers are niche',
+    sub: 'Last 90 days · bubble area = share of tokens · hollow = no usage · one free model is off the log scale',
+    legend: [['China', C.China, 'dot'], ['US', C.US, 'dot'], ['Other', C.Other, 'dot']],
+    draw: n => scatter(n, { aria: 'Benchmark score vs price, sized by usage', points: D.scatter, frontier: D.frontier }),
+    table: () => [['Model', 'Lab', 'Intelligence Index', 'Price per M', 'Share of 90-day tokens'], D.scatter.slice().sort((a, b) => b.share - a.share).map(d => [d.name, d.lab, d.iq, usd(d.price), pct(d.share, 2)])]
+  },
+  multiples: {
+    title: 'Six Chinese labs on one scale: DeepSeek leads, but four others top 5%',
+    sub: 'Monthly share of all tokens · Jan 2025 to Sep 2026 · shared y-axis',
+    draw: n => {
+      const labs = d3.groups(D.china_labs, d => d.lab).map(([lab, rows]) => ({ lab, rows: rows.sort((a, b) => a.month < b.month ? -1 : 1) }))
+        .sort((a, b) => b.rows[b.rows.length - 1].share - a.rows[a.rows.length - 1].share);
+      const months = [...new Set(D.china_labs.map(r => r.month))].sort();
+      const grid = el('div', 'mini-grid'); n.append(grid);
+      const ymax = Math.ceil(d3.max(D.china_labs, r => r.share) * 20) / 20;
+      labs.forEach(L => {
+        const box = el('div', 'mini'); const h3 = el('h3', null, L.lab); h3.append(el('span', null, pct(L.rows[L.rows.length - 1].share) + ' in Sep'));
+        const c = el('div', 'chart'); box.append(h3, c); grid.append(box);
+        const vals = months.map(mo => { const r = L.rows.find(x => x.month === mo); return { x: M(mo), y: r ? r.share : 0 }; });
+        lineChart(c, { aria: L.lab + ' monthly token share', height: 120, top: 8, left: 32, yMax: ymax, yTicks: [0, ymax / 2, ymax], yFmt: v => pct(v, 0), labelFmt: v => pct(v), xTickCount: 3,
+          tipHeader: d => fMonth(d), series: [{ name: L.lab, color: C.China, area: true, values: vals }] });
+      });
+    },
+    table: () => [['Lab', 'Month', 'Share of tokens'], D.china_labs.map(r => [r.lab, r.month, pct(r.share)])]
+  },
+  robust: {
+    title: 'China leads in June and September under every cut, but in March under none',
+    sub: 'China vs US share of tokens under four ways of counting · the requests row is from the public rankings page, one week',
+    draw: n => {
+      const wrap = el('div', 'table-wrap'); const t = el('table', 'rob'); wrap.append(t); n.append(wrap);
+      const months = ['2026-03', '2026-06', '2026-09'];
+      const hr = el('tr'); hr.append(el('th', null, 'Way of counting')); months.forEach(mo => hr.append(el('th', null, fMonth(M(mo))))); const th = el('thead'); th.append(hr); t.append(th);
+      const tb = el('tbody'); t.append(tb);
+      const pill = (who) => { const p = el('span', 'pill'); const i = el('i'); i.style.background = who === 'Tie' ? 'var(--c-other)' : C[who]; p.append(i, document.createTextNode(who === 'Tie' ? 'Tie' : who + ' ahead')); return p; };
+      ['as measured', 'all stealth + long tail credited to the US', 'paid tokens only', 'without DeepSeek'].forEach(cut => {
+        const tr = el('tr'); tr.append(el('td', null, cut[0].toUpperCase() + cut.slice(1)));
+        months.forEach(mo => { const r = rob(cut, mo); const td = el('td'); const who = r.china > r.us ? 'China' : 'US';
+          td.append(pill(who), document.createTextNode(`  ${pct(r.china)} vs ${pct(r.us)}`)); tr.append(td); });
+        tb.append(tr);
+      });
+      const tr = el('tr'); tr.append(el('td', null, 'By requests, not tokens (week of Oct 12)'));
+      tr.append(el('td', null, '–'), el('td', null, '–')); const td = el('td'); td.append(pill('Tie'), document.createTextNode(`  ${pct(D.requests_week.china)} vs ${pct(D.requests_week.us)}`)); tr.append(td); tb.append(tr);
+    }
+  },
+  launch: {
+    title: `By week 12 a model keeps ${pct(LS.All.model_w12, 0)} of its peak; its lab keeps ${pct(LS.All.lab_w12, 0)}`,
+    sub: `Median of ${LS.All.n} launches · indexed to the model's peak week = 100`,
+    legend: [["The lab's share", C.accent, 'line'], ["The model's share", C.compare, 'line']],
+    draw: n => lineChart(n, { aria: 'Median share after launch, model vs its lab', height: 260, xLinear: true, xDomain: [0, 12], xTicks: [0, 2, 4, 6, 8, 10, 12], xFmt: v => 'wk ' + v,
+      yMax: 1, yTicks: [0, .25, .5, .75, 1], yFmt: v => Math.round(v * 100), labelFmt: v => Math.round(v * 100) + '%', endLabels: true, tipHeader: v => 'Week ' + v + ' after launch',
+      series: [{ name: 'Lab', color: C.accent, values: D.launch.map(r => ({ x: r.w, y: r.lab_vs_base })) }, { name: 'Model', color: C.compare, values: D.launch.map(r => ({ x: r.w, y: r.model_vs_peak })) }] }),
+    table: () => [['Weeks since launch', "Model (% of its peak)", "Lab (% of its level at the model's peak)", 'Launches'], D.launch.map(r => [r.w, Math.round(r.model_vs_peak * 100), Math.round(r.lab_vs_base * 100), r.n])]
+  },
+  cats: {
+    title: `Programming went from ${pct(catShare('2025-05', 'programming'))} to ${pct(catShare('2026-09', 'programming'))} of categorized tokens`,
+    sub: 'Monthly share of the 12 categories OpenRouter samples · May 2025 to Sep 2026',
+    legend: [['Programming', C.accent, 'line'], ['Roleplay', C.compare, 'line']],
+    draw: n => { const ms = [...new Set(D.categories.map(r => r.month))].sort();
+      lineChart(n, { aria: 'Programming and roleplay share of categorized tokens', height: 260, yMax: 1, yTicks: [0, .25, .5, .75, 1], yFmt: v => pct(v, 0), labelFmt: v => pct(v), endLabels: true, tipHeader: d => fMonth(d), xTickCount: 4,
+        series: ['programming', 'roleplay'].map((c, i) => ({ name: c === 'programming' ? 'Programming' : 'Roleplay', color: i ? C.compare : C.accent, values: ms.map(mo => ({ x: M(mo), y: catShare(mo, c) })) })) }); },
+    table: () => { const ms = [...new Set(D.categories.map(r => r.month))].sort(); return [['Month', 'Programming', 'Roleplay'], ms.map(mo => [fMonth(M(mo)), pct(catShare(mo, 'programming')), pct(catShare(mo, 'roleplay'))])]; }
+  },
+  apps: {
+    title: `Agents top the app chart: ${D.apps[0].app} alone drew ${pct(D.apps[0].share)} of September tokens`,
+    sub: 'Top 10 apps by tokens, share of all September 2026 tokens',
+    draw: n => barChart(n, { aria: 'Top 10 apps by share of tokens', name: 'of September tokens', color: C.accent, xMax: Math.ceil(D.apps[0].share * 50) / 50, fmt: v => pct(v), data: D.apps.map(a => ({ k: a.app, v: a.share })) }),
+    table: () => [['App', 'Share of September tokens'], D.apps.map(a => [a.app, pct(a.share)])]
+  }
+};
+
+/* ---------- mount panels ---------- */
+function tableFrom([head, rows]) {
+  const t = el('table'), th = el('thead'), tr = el('tr');
+  head.forEach((h, i) => tr.append(el('th', i ? 'num' : null, h))); th.append(tr); t.append(th);
+  const tb = el('tbody'); rows.forEach(r => { const row = el('tr'); r.forEach((c, i) => row.append(el('td', i ? 'num' : null, String(c)))); tb.append(row); }); t.append(tb);
+  return t;
+}
+document.querySelectorAll('[data-chart]').forEach(fig => {
+  const p = panels[fig.dataset.chart];
+  const cap = el('figcaption'), txt = el('div');
+  txt.append(el('h2', null, p.title), el('p', 'sub', p.sub)); cap.append(txt);
+  const chart = el('div', 'chart'), tw = el('div', 'table-wrap'); tw.hidden = true;
+  if (p.table) {
+    const b = el('button', 'tblbtn', 'Table'); b.type = 'button'; b.setAttribute('aria-pressed', 'false');
+    b.addEventListener('click', () => { const on = b.getAttribute('aria-pressed') !== 'true'; b.setAttribute('aria-pressed', String(on));
+      if (on && !tw.firstChild) tw.append(tableFrom(p.table())); tw.hidden = !on; chart.hidden = on; if (legend) legend.hidden = on; if (!on) draw(fig, true); });
+    cap.append(b);
+  }
+  fig.append(cap);
+  let legend = null;
+  if (p.legend) { legend = el('div', 'legend'); p.legend.forEach(([l, c, s]) => { const sp = el('span'); const i = el('i', s); i.style.background = c; sp.append(i, document.createTextNode(l)); legend.append(sp); }); fig.append(legend); }
+  fig.append(chart, tw, el('p', 'source', 'Source: OpenRouter (openrouter.ai/rankings), as of 2026-10-19 · CC BY 4.0'));
+  fig._chart = chart; fig._p = p;
+  if ('ResizeObserver' in window) new ResizeObserver(() => { if (!fig.closest('.page').hidden) draw(fig); }).observe(chart);
+});
+function draw(fig, force) {
+  const c = fig._chart; if (c.hidden) return; const w = c.clientWidth; if (!w || (!force && +c.dataset.w === w)) return;
+  c.replaceChildren(); c.dataset.w = w; fig._p.draw(c);
+}
+
+/* ---------- tabs ---------- */
+const pages = [...document.querySelectorAll('.page')], tabs = [...document.querySelectorAll('.tab')];
+function open(id) {
+  if (!pages.some(p => p.id === id)) id = 'leadership';
+  pages.forEach(p => { p.hidden = p.id !== id; });
+  tabs.forEach(t => { const on = t.dataset.page === id; t.setAttribute('aria-selected', String(on)); t.tabIndex = on ? 0 : -1; });
+  hideTip(); requestAnimationFrame(() => document.querySelectorAll(`#${id} [data-chart]`).forEach(f => draw(f)));
+}
+tabs.forEach((t, i) => {
+  t.addEventListener('click', () => { history.replaceState(null, '', '#' + t.dataset.page); open(t.dataset.page); });
+  t.addEventListener('keydown', e => { if (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft') return; const j = (i + (e.key === 'ArrowRight' ? 1 : tabs.length - 1)) % tabs.length; tabs[j].focus(); tabs[j].click(); });
+});
+let rt; addEventListener('resize', () => { clearTimeout(rt); rt = setTimeout(() => document.querySelectorAll('.page:not([hidden]) [data-chart]').forEach(f => draw(f)), 120); });
+open((location.hash || '').slice(1));
+})();
+</script>

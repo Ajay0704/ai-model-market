@@ -7,3 +7,4 @@ __pycache__/
 *.duckdb.wal
 ~$*
 data/raw/models_wayback/
+mockup/preview.html
