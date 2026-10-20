@@ -22,8 +22,8 @@ sys.path.insert(0, str(ROOT / "tableau"))
 import make_workbook as TW  # noqa: E402  (titles, KPI tiles and notes)
 
 MODEL_NAME = "AI Model Market"
-W, H, G = 1280, 1040, 16
-DY = 40  # extra height given to the header and KPI tiles
+W, H, G = 1280, 1080, 16
+DY = 56  # extra height given to the header and KPI tiles
 HALF = (W - 3 * G) // 2
 SCHEMA = "https://developer.microsoft.com/json-schemas/fabric/item/report/definition"
 THEME_NAME = "AIModelMarket.json"
@@ -138,11 +138,11 @@ class Page:
         self.visuals, self.z, self.height = [], 0, height
         rows = next(r for n, _, r in TW.PAGES if n == tab)
         head = [t.strip() for t, _ in rows[0][1][0][1]]
-        self.text((G, 8, W - 2 * G, 104), [(head[0], 9, MUTED, False), (head[1], 18, INK, True), (head[2], 10, INK2, False)])
+        self.text((G, 8, W - 2 * G, 120), [(head[0], 9, MUTED, False), (head[1], 18, INK, True), (head[2], 10, INK2, False)])
         kw = (W - 2 * G - 3 * G) // 4
         for i, (_, runs, _) in enumerate(rows[1][1]):
             label, value, delta = [t.strip() for t, _ in runs]
-            self.text((G + i * (kw + G), 120, kw, 104), [(label, 9, INK2, False), (value, 20, INK, True), (delta, 8, MUTED, False)], card=True)
+            self.text((G + i * (kw + G), 136, kw, 104), [(label, 9, INK2, False), (value, 20, INK, True), (delta, 8, MUTED, False)], card=True)
         self.note_runs = [t for t, _ in rows[-1][1][0][1]]
 
     def add(self, box, visual: dict, shift: bool = True):
@@ -166,7 +166,7 @@ class Page:
 
     def note(self, y: int):
         bold, rest = self.note_runs[0].strip(), self.note_runs[1].strip()
-        self.add((G, y, W - 2 * G, 64), {"visualType": "textbox", "objects": {"general": [{"properties": {"paragraphs": [
+        self.add((G, y, W - 2 * G, 84), {"visualType": "textbox", "objects": {"general": [{"properties": {"paragraphs": [
             {"textRuns": [{"value": bold + " ", "textStyle": {"fontWeight": "bold", "fontSize": "9pt", "color": INK}},
                           {"value": rest, "textStyle": {"fontSize": "9pt", "color": INK2}}]},
             {"textRuns": [{"value": TW.SOURCE + ". Model and report generated as code: github.com/Ajay0704/ai-model-market",
