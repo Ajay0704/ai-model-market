@@ -24,7 +24,12 @@ Approved by Ajay on 2026-10-19: both a Tableau Story and a Power BI report, like
   - [x] **5a. Style guide and mockup.** Done 2026-10-19, **awaiting Ajay's approval**.
     - `docs/STYLE_GUIDE.md` sources each rule to IBM Carbon, GitLab Pajamas (charts and dashboards) or Atlassian, and records the palette validator results.
     - `mockup/` holds a five-page HTML mockup with verified numbers. `analysis/export_mockup_data.py` writes `mockup/data.json`, and `mockup/build_mockup.py` inlines it. Published (private): https://claude.ai/artifact/Uwbgi7ZNMq6qfm9cQVxQvm
-  - [ ] **5b. Tableau Story**: one story point per stakeholder, matching the approved mockup. The `.twbx` is generated in code with the `tableau_xml.py` approach from `~/olist-text2sql/scripts/`, then published to Tableau Public.
+  - [x] **5b. Tableau Story.** Built 2026-10-19 and awaiting Ajay's visual check.
+    - `tableau/make_workbook.py` (with `tableau/tableau_xml.py`, extended from the Olist helper) writes `tableau/AI_Model_Market.twbx`: 13 sheets, 5 dashboards and a 5-point story, using the style-guide palette, Tableau Book/Semibold fonts, hairline gridlines and card zones.
+    - Data: `analysis/export_tableau_data.py` writes `tableau/data/*.csv` from the same `mockup/data.json`.
+    - Verified through Tableau Desktop's own log: the workbook, sheets, dashboards and story parse, and the opening pages' queries run with 0 issues. One manual-sort error was found and fixed.
+    - Not verifiable without a screen: the log-scale x-axis on "Quality vs price" (`scale='log'` isn't in any sample workbook) and overall visual polish.
+    - Next: Ajay's look, then publish to Tableau Public (needs his sign-in).
   - [ ] **5c. Power BI report**: one page per stakeholder, built in Power BI web (a Mac and a Free license). As with the Olist report (`Ajay0704/ecommerce-powerbi`), the CSVs live in a public GitHub repo and Power Query Online reads them over HTTPS. The model is TMDL plus DAX, as in `~/retail-margin-churn/powerbi/`. Creating the public GitHub repo needs Ajay's go first.
 - [ ] **6. Verify, then deliverables.** Every number in both tools matches the answer key. Then the case-study PDF (Olist playbook format), a portfolio page and a résumé bullet. The README states plainly how AI assisted the build.
 

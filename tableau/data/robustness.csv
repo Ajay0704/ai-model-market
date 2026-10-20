@@ -1,0 +1,14 @@
+Way of Counting,Cut Order,Month,Result,Leader
+As measured,1,2026-03-01,US ahead   44.2% vs 45.8%,US ahead
+As measured,1,2026-06-01,China ahead   53.6% vs 33.5%,China ahead
+As measured,1,2026-09-01,China ahead   58.5% vs 28.9%,China ahead
+All stealth + long tail credited to the US,2,2026-03-01,US ahead   44.2% vs 55.3%,US ahead
+All stealth + long tail credited to the US,2,2026-06-01,China ahead   53.6% vs 45.9%,China ahead
+All stealth + long tail credited to the US,2,2026-09-01,China ahead   58.5% vs 40.3%,China ahead
+Paid tokens only,3,2026-03-01,US ahead   41.4% vs 47.3%,US ahead
+Paid tokens only,3,2026-06-01,China ahead   55.7% vs 30.8%,China ahead
+Paid tokens only,3,2026-09-01,China ahead   60.5% vs 25.8%,China ahead
+Without DeepSeek,4,2026-03-01,US ahead   40.5% vs 48.9%,US ahead
+Without DeepSeek,4,2026-06-01,China ahead   44.0% vs 40.5%,China ahead
+Without DeepSeek,4,2026-09-01,China ahead   47.2% vs 36.8%,China ahead
+"By requests, not tokens (week of Oct 12)",5,2026-09-01,Tie   44.3% vs 45.0%,Tie

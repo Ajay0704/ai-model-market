@@ -1,0 +1,23 @@
+Month,Month Label,Tokens per Day (T),Status,Bar Label
+2025-01-01,Jan 25,0.0719,Full month,72B
+2025-02-01,Feb 25,0.1249,Full month,
+2025-03-01,Mar 25,0.2052,Full month,
+2025-04-01,Apr 25,0.2765,Full month,
+2025-05-01,May 25,0.3181,Full month,
+2025-06-01,Jun 25,0.3245,Full month,
+2025-07-01,Jul 25,0.3796,Full month,
+2025-08-01,Aug 25,0.483,Full month,
+2025-09-01,Sep 25,0.714,Full month,
+2025-10-01,Oct 25,0.7209,Full month,
+2025-11-01,Nov 25,0.8854,Full month,
+2025-12-01,Dec 25,0.8392,Full month,
+2026-01-01,Jan 26,1.0224,Full month,
+2026-02-01,Feb 26,1.7781,Full month,
+2026-03-01,Mar 26,2.7028,Full month,
+2026-04-01,Apr 26,3.2381,Full month,
+2026-05-01,May 26,3.9647,Full month,
+2026-06-01,Jun 26,6.2784,Full month,
+2026-07-01,Jul 26,8.0127,Full month,
+2026-08-01,Aug 26,12.238,Full month,
+2026-09-01,Sep 26,19.1966,Full month,19.2T
+2026-10-01,Oct 26,23.8052,Partial month,

@@ -25,6 +25,10 @@ cp .env.example .env   # then paste your own OpenRouter key into .env
 .venv/bin/python scripts/check_model.py       # writes docs/MODEL_CHECKS.md, fails on any broken check
 .venv/bin/python scripts/answer_key.py        # independent pandas recompute, writes docs/ANSWER_KEY.md
 .venv/bin/python scripts/spotcheck_rankings.py 2026-10-19  # vs the public rankings page
+.venv/bin/python analysis/export_mockup_data.py   # verified numbers -> mockup/data.json
+.venv/bin/python mockup/build_mockup.py           # HTML mockup
+.venv/bin/python analysis/export_tableau_data.py  # -> tableau/data/*.csv
+.venv/bin/python tableau/make_workbook.py         # -> tableau/AI_Model_Market.twbx
 ```
 
 ## Data and license

@@ -1,0 +1,90 @@
+Model,Lab,Group,Intelligence Index,Price per M,Share of 90-day Tokens,Point Label,Highlight
+DeepSeek V4 Flash 0420 (High),DeepSeek,China,24.4,0.1594,0.040823,DeepSeek V4 Flash 0420,Top 5 by usage
+o3-pro,OpenAI,US,21.9,23.75,0.0,,Other
+Claude 4.1 Opus (Reasoning),Anthropic,US,22.8,9.375,0.0,,Other
+Gemini 3.5 Flash-Lite,Google,US,22.2,0.7875,0.000494,,Other
+Hy3,Tencent,China,25.3,0.2062,0.0,,Other
+GLM-4.7 (Reasoning),Zhipu AI (Z.ai),China,22.2,0.3875,0.0,,Other
+MiMo-V2.5-Pro (Reasoning),Xiaomi,China,26.0,0.5546,0.002271,,Other
+MiniMax-M2.5,MiniMax,China,22.8,0.3562,0.0,,Other
+Nemotron 3.5 Super VL,NVIDIA,US,26.5,0.3125,0.000508,,Other
+Grok Build 0.1 0616,xAI,US,27.2,2.125,0.0,,Other
+Step 5 Preview,StepFun,China,43.7,1.1062,0.01375,,Other
+Kimi K2 Thinking,Moonshot AI,China,22.0,0.7188,0.0,,Other
+Qwen3.5 27B (Reasoning),Alibaba (Qwen),China,22.9,0.3594,0.0,,Other
+Muse Spark 1.1 (Xhigh),Meta,US,33.7,1.4375,1.5e-05,,Other
+Ling-3.0-flash-VL,Ant Group (inclusionAI),China,24.6,0.0675,0.000699,,Other
+Solar Mini 4,Upstage,Other,24.1,0.0594,0.001532,,Other
+Mistral Large 4 Preview,Mistral AI,Other,38.4,0.8449,4e-05,,Other
+DeepSeek V4.1 Flash (Non-reasoning),DeepSeek,China,24.7,0.3562,0.094654,DeepSeek V4.1 Flash,Top 5 by usage
+GPT-5 (High),OpenAI,US,23.0,0.8984,0.0,,Other
+Claude Opus 4.5 (Reasoning),Anthropic,US,29.1,6.25,0.0,,Other
+Gemini 3 Flash Preview (Reasoning),Google,US,26.3,1.1812,0.007479,,Other
+GLM 5V Turbo (Reasoning),Zhipu AI (Z.ai),China,23.5,1.375,0.0,,Other
+MiMo-V2.6-Flash,Xiaomi,China,37.9,0.1394,0.024747,,Other
+MiniMax-M2.7,MiniMax,China,22.8,0.3562,0.001177,,Other
+Nemotron 3 Ultra 550B A55B (Reasoning),NVIDIA,US,22.9,0.485,0.036585,,Other
+Grok 4.3 (High),xAI,US,24.9,1.0625,0.0,,Other
+Kimi K2.5 (Reasoning),Moonshot AI,China,23.5,0.75,0.000243,,Other
+Qwen3.8 2.4T A95B,Alibaba (Qwen),China,39.9,2.25,0.0,,Other
+Muse Spark 1.2 (Xhigh),Meta,US,39.6,1.4375,3e-05,,Other
+Ling 3.1 Flash,Ant Group (inclusionAI),China,41.1,0.0844,0.000652,,Other
+Solar Pro 4,Upstage,Other,28.2,0.1069,0.006702,,Other
+DeepSeek V4 Pro 0424 (Max),DeepSeek,China,30.4,1.6575,0.014547,,Other
+GPT-5.1 Codex (High),OpenAI,US,23.7,1.7969,0.0,,Other
+Claude Sonnet 4.6 (Max),Anthropic,US,30.1,3.75,0.004976,,Other
+Gemini 3.1 Pro Preview,Google,US,29.7,4.725,0.000856,,Other
+GLM-5.1 (Reasoning),Zhipu AI (Z.ai),China,26.1,1.5081,0.0,,Other
+MiMo-V2.6-Pro,Xiaomi,China,46.3,0.4622,0.003549,MiMo-V2.6-Pro,Price-quality frontier
+MiniMax-M3,MiniMax,China,29.2,0.265,0.018976,,Other
+Grok 4.20 0309 v2 (Reasoning),xAI,US,25.7,2.6562,0.0,,Other
+Kimi K2.7 Code,Moonshot AI,China,25.8,1.1406,4.7e-05,,Other
+Qwen3.7 Plus,Alibaba (Qwen),China,25.2,0.2731,4.4e-05,,Other
+Muse Spark 1.3 (Max),Meta,US,48.1,1.4375,0.000978,Muse Spark 1.3,Price-quality frontier
+DeepSeek V4 Flash 0731 (Max),DeepSeek,China,34.3,0.2104,0.069846,DeepSeek V4 Flash 0731,Top 5 by usage
+GPT-5.1 (High),OpenAI,US,24.7,3.5938,0.0,,Other
+Claude Opus 4.6 (Max),Anthropic,US,31.9,6.25,0.000493,,Other
+Gemini 3.5 Flash (Medium),Google,US,33.6,3.5438,0.000593,,Other
+GLM-5-Turbo,Zhipu AI (Z.ai),China,26.6,1.375,0.0,,Other
+Grok 4.5 (High),xAI,US,38.8,4.5,0.000989,,Other
+Kimi K2.6 (Reasoning),Moonshot AI,China,27.0,1.0266,0.000491,,Other
+Qwen3.6 Plus,Alibaba (Qwen),China,27.0,0.4266,7.9e-05,,Other
+DeepSeek V4 Flash Vision (Max),DeepSeek,China,34.8,0.495,0.000741,,Other
+GPT-5.2 Codex (Xhigh),OpenAI,US,28.5,2.5156,0.0,,Other
+Claude Sonnet 5 (Max),Anthropic,US,38.2,2.75,0.009738,,Other
+Gemini 3.6 Flash (High),Google,US,34.0,1.6875,0.00456,,Other
+GLM-5 (Reasoning),Zhipu AI (Z.ai),China,27.9,1.1375,0.000208,,Other
+Grok 4.6 (High),xAI,US,44.3,2.475,0.00156,,Other
+Kimi K3 (Max),Moonshot AI,China,43.6,1.6875,0.013842,,Other
+Qwen3.7 Max,Alibaba (Qwen),China,29.5,2.25,9.8e-05,,Other
+DeepSeek V4 Pro 0813 (Max),DeepSeek,China,36.0,1.0625,0.006749,,Other
+GPT-5.3 Codex (Xhigh),OpenAI,US,32.5,5.0312,0.0,,Other
+Claude Opus 4.7 (Max),Anthropic,US,40.7,6.25,0.001433,,Other
+Gemini 3.7 Flash (Medium),Google,US,39.6,1.0312,0.007561,,Other
+GLM-5.2 (Max),Zhipu AI (Z.ai),China,33.7,0.5119,0.021113,,Other
+Grok 4.7 (Xhigh),xAI,US,46.4,2.475,0.000849,,Other
+Qwen3.8 27B (Xhigh),Alibaba (Qwen),China,33.7,0.1813,0.001458,,Other
+DeepSeek V4.1 Flash (Max),DeepSeek,China,39.5,0.0956,0.002523,,Other
+GPT-5.4 mini (Xhigh),OpenAI,US,24.1,1.9688,0.000263,,Other
+Claude Opus 4.8 (Max),Anthropic,US,41.8,12.5,0.003465,,Other
+Gemini 3.8 Flash (High),Google,US,40.9,1.0312,0.009456,,Other
+GLM-5.3-Flash,Zhipu AI (Z.ai),China,41.8,0.0581,0.064389,GLM-5.3-Flash,Top 5 by usage
+Qwen3.8 Max (0902),Alibaba (Qwen),China,45.4,2.25,0.000731,,Other
+GPT-5.2 (Xhigh),OpenAI,US,30.4,5.0312,5.7e-05,,Other
+Claude Haiku 5.5 (Max),Anthropic,US,43.4,0.1375,0.002118,Claude Haiku 5.5,Price-quality frontier
+Gemini 4 Argon (High),Google,US,52.6,2.75,0.000493,,Other
+GLM-5.3 (Max),Zhipu AI (Z.ai),China,44.8,1.375,0.016994,,Other
+GPT-5.6 Luna (Max),OpenAI,US,37.3,0.525,0.055545,GPT-5.6 Luna,Top 5 by usage
+"Claude Fable 5 (Max, Opus 4.8 Fallback)",Anthropic,US,49.6,12.5,0.001047,,Other
+GPT-6 Luna (Max),OpenAI,US,38.1,0.125,0.015188,,Other
+Claude Opus 5 (Max),Anthropic,US,50.8,6.875,0.010461,,Other
+GPT-5.5 (Xhigh),OpenAI,US,38.4,3.2812,0.000824,,Other
+"Claude Fable 5.1 (Max, Default Fallback)",Anthropic,US,53.4,6.25,0.001521,,Other
+GPT-5.4 (Xhigh),OpenAI,US,39.0,6.5625,0.000658,,Other
+"Claude Sonnet 5.5 (Max, Default Fallback)",Anthropic,US,56.0,2.5,0.003832,Claude Sonnet 5.5,Price-quality frontier
+GPT-5.6 Terra (Max),OpenAI,US,42.1,5.25,0.004096,,Other
+"Claude Opus 5.5 (Max, Default Fallback)",Anthropic,US,57.6,5.5,0.009972,Claude Opus 5.5,Price-quality frontier
+GPT-5.6 Sol (Max),OpenAI,US,47.0,10.0,0.010814,,Other
+GPT-6 Sol (Max),OpenAI,US,47.6,2.5,0.002152,,Other
+GPT-6.1 Sol (Max),OpenAI,US,51.8,15.0,0.00323,,Other
+GPT-6 Astra (Max),OpenAI,US,52.7,75.0,0.00395,,Other

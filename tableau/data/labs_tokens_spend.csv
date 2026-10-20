@@ -1,0 +1,21 @@
+Lab,Spend Rank,Measure,Share
+Anthropic,1,Share of tokens,0.034223
+Anthropic,1,Share of estimated spend,0.282508
+OpenAI,2,Share of tokens,0.133039
+OpenAI,2,Share of estimated spend,0.258153
+Tencent,3,Share of tokens,0.124548
+Tencent,3,Share of estimated spend,0.1522
+Zhipu AI (Z.ai),4,Share of tokens,0.133675
+Zhipu AI (Z.ai),4,Share of estimated spend,0.090559
+Moonshot AI,5,Share of tokens,0.011913
+Moonshot AI,5,Share of estimated spend,0.070787
+DeepSeek,6,Share of tokens,0.214734
+DeepSeek,6,Share of estimated spend,0.053242
+Google,7,Share of tokens,0.046223
+Google,7,Share of estimated spend,0.047392
+Xiaomi,8,Share of tokens,0.054839
+Xiaomi,8,Share of estimated spend,0.014578
+Alibaba (Qwen),9,Share of tokens,0.007889
+Alibaba (Qwen),9,Share of estimated spend,0.008781
+xAI,10,Share of tokens,0.002368
+xAI,10,Share of estimated spend,0.008471
