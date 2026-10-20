@@ -125,10 +125,17 @@ def single(c: str) -> list[dict]:
 SHEETS = {sh.name: sh for sh in TW.sheets()}
 
 
+# Where Power BI renders a chart differently from Tableau, its subtitle says so (Tableau labels points; Power BI uses hover).
+SUBTITLE_FIX = {"Quality vs price": ("labeled: top 5 by usage and the price-quality frontier", "hover a bubble for the model")}
+
+
 def headings(sheet: str) -> dict:
     sh = SHEETS[sheet]
+    sub = sh.subtitle
+    if sheet in SUBTITLE_FIX:
+        sub = sub.replace(*SUBTITLE_FIX[sheet])
     return {"title": [{"properties": {"show": lit("true"), "text": lit(s(sh.title))}}],
-            "subTitle": [{"properties": {"show": lit("true"), "text": lit(s(sh.subtitle))}}]}
+            "subTitle": [{"properties": {"show": lit("true"), "text": lit(s(sub))}}]}
 
 
 class Page:

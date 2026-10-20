@@ -159,7 +159,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Last 90 days · x: blended price per million tokens (log) · y: Intelligence Index · size: share of tokens · labeled: top 5 by usage and the price-quality frontier · Benchmarks: Artificial Analysis via OpenRouter · Source: OpenRouter (openrouter.ai/rankings), as of 2026-10-19 · CC BY 4.0'"
+                  "Value": "'Last 90 days · x: blended price per million tokens (log) · y: Intelligence Index · size: share of tokens · hover a bubble for the model · Benchmarks: Artificial Analysis via OpenRouter · Source: OpenRouter (openrouter.ai/rankings), as of 2026-10-19 · CC BY 4.0'"
                 }
               }
             }
