@@ -11,13 +11,11 @@ Approved by Ajay on 2026-10-19: both a Tableau Story and a Power BI report, like
   - the 7-day task mix
 
   Every response is saved whole, with its `meta`. Profiling covers: stealth models, renamed or versioned slugs, the "other" row, gaps in days.
-- [ ] **2. Model and metric dictionary.** In DuckDB:
-  - `fct_model_day` (date x model x tokens)
-  - `dim_model` (lab, release date, price, context, open-weight)
-  - `dim_lab` (country, open or closed; a hand-built lookup with a source per lab)
-  - `fct_app_month`, `fct_benchmark`
-
-  Metrics are written down once: token share, estimated spend, HHI, launch-week share.
+- [x] **2. Model and metric dictionary.** Done 2026-10-19.
+  - `scripts/build_model.py` + `sql/01_dims.sql`, `02_facts.sql`, `03_marts.sql` -> `data/processed/*.csv`: 4 base tables, monthly prices, 8 marts, and a flat Tableau table.
+  - `docs/METRICS.md` is the metric dictionary.
+  - `data/reference/labs.csv` maps 45 prefixes to 42 organizations, each with a source (44 first-party, 1 secondary).
+  - `scripts/check_model.py` runs 15 integrity checks, all passing (`docs/MODEL_CHECKS.md`).
 - [ ] **3. Answer key.** Recompute the headline numbers a second, independent way (pandas vs DuckDB SQL), then spot-check against openrouter.ai/rankings.
 - [ ] **4. Explore.** Test H1-H6 from `docs/BRIEF.md`. Keep only findings that are big, reliable across cuts, and that someone can act on.
 - [ ] **5. Build.**

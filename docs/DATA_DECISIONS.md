@@ -13,6 +13,16 @@ Each finding comes from `docs/DATA_PROFILE.md` (regenerate it with `python scrip
 | 7 | **Benchmarks are a snapshot**, not history. Artificial Analysis covers 69% of the last 90 days' named tokens; Design Arena only 16%. | The quality-vs-price chart uses the **last 90 days**, Artificial Analysis's intelligence index, and states its coverage on the chart. Design Arena is left out. |
 | 8 | **The task mix is a 7-day snapshot** only. | It's used as a "this week" panel. Task history comes from the monthly categories (finding 6). |
 
+## Lab lookup (`data/reference/labs.csv`)
+- **Country means the developer's stated HQ**, from its own legal, imprint, contact, investor or about page. It's not where the model is hosted, and not the origin of a base model it was tuned from. TNG's DeepSeek "Chimera" merges count as Germany.
+- **Judgment calls, written down:**
+  - `intfloat` (a Microsoft Research Asia researcher's account) is coded to Microsoft, US.
+  - `sentence-transformers` is coded to its maintainer, Hugging Face (US).
+  - Individual and community fine-tuners with no stated location are Unknown.
+- **Re-checked by hand:** TypeSafe AI and Poolside, both San Francisco per their own legal pages.
+- **Not verifiable:** xAI's terms page returned 403 on re-check. The US country isn't in doubt, but the entity name and city are flagged as unverified in the notes.
+- **Secondary source:** ByteDance (Seed) uses one, because no first-party HQ statement was found. It's under 0.01% of tokens.
+
 ## Storage
 - `data/raw/models_wayback/` (9.7 MB) is gitignored. It can be rebuilt any time with `scripts/pull_wayback_models.py`.
 - What gets republished in a public repo (for Power BI's web refresh) is decided before that repo is created. By default it's the processed tables only, each with the OpenRouter attribution.

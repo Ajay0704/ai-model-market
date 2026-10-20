@@ -1,0 +1,46 @@
+org_name,hq_country,country_group,org_type,source_url,source_type
+Hugging Face,United States,US,ai_startup,https://sbert.net/,first_party
+Infermatic,United States,US,ai_startup,https://infermatic.ai/privacy-policy/,first_party
+Cohere,Canada,Rest of world,ai_startup,https://cohere.com/privacy,first_party
+Gryphe (individual),Unknown,Unknown,community_finetuner,https://huggingface.co/Gryphe,first_party
+Tencent,China,China,big_tech,https://www.tencent.com/en-us/about.html,first_party
+ByteDance (Seed),China,China,big_tech,https://en.wikipedia.org/wiki/ByteDance,secondary
+OpenChat (community),Unknown,Unknown,community_finetuner,https://github.com/imoneoi/openchat,first_party
+xAI,United States,US,frontier_lab,https://x.ai/legal/terms-of-service,first_party
+Google,United States,US,big_tech,https://policies.google.com/terms,first_party
+Microsoft,United States,US,big_tech,https://www.microsoft.com/en-us/research/people/wangliang/,first_party
+Moonshot AI,China,China,frontier_lab,https://www.moonshot.cn/,first_party
+NVIDIA,United States,US,big_tech,https://www.nvidia.com/en-us/contact/,first_party
+NeverSleep (community),Unknown,Unknown,community_finetuner,https://huggingface.co/NeverSleep,first_party
+OpenAI,United States,US,frontier_lab,https://openai.com/policies/row-privacy-policy/,first_party
+Sao10K (individual),Unknown,Unknown,community_finetuner,https://huggingface.co/Sao10K,first_party
+Xiaomi,China,China,big_tech,https://ir.mi.com/investor-resources/ir-contacts,first_party
+Arcee AI,United States,US,ai_startup,https://www.arcee.ai/about,first_party
+BAAI,China,China,research_institute,https://www.baai.ac.cn/zh-cn/about-us,first_party
+Kuaishou (Kwaipilot),China,China,big_tech,https://ir.kuaishou.com/investor-resources/investor-faqs,first_party
+Cognitive Computations (community),Unknown,Unknown,community_finetuner,https://github.com/ehartford,first_party
+DeepSeek,China,China,frontier_lab,https://cdn.deepseek.com/policies/en-US/deepseek-terms-of-use.html,first_party
+Liquid AI,United States,US,ai_startup,https://www.liquid.ai/privacy-policy,first_party
+StepFun,China,China,frontier_lab,https://www.stepfun.com/,first_party
+Thinking Machines Lab,United States,US,frontier_lab,https://thinkingmachines.ai/legal/privacy/,first_party
+Anthropic,United States,US,frontier_lab,https://www.anthropic.com/legal/privacy,first_party
+TheDrummer (individual),Unknown,Unknown,community_finetuner,https://huggingface.co/TheDrummer,first_party
+Meta,United States,US,big_tech,https://www.facebook.com/privacy/policy/,first_party
+Nex-AGI (Shanghai Innovation Institute),China,China,research_institute,https://nex.sii.edu.cn/,first_party
+Amazon,United States,US,big_tech,https://www.aboutamazon.com/about-us,first_party
+Anthracite (community),Unknown,Unknown,community_finetuner,https://huggingface.co/anthracite-org,first_party
+MiniMax,China,China,frontier_lab,https://www.minimax.cn/,first_party
+Mistral AI,France,Europe,frontier_lab,https://legal.mistral.ai/terms/privacy-policy,first_party
+Xiaohongshu (rednote),China,China,big_tech,https://www.xiaohongshu.com/explore,first_party
+Nous Research,United States,US,ai_startup,https://nousresearch.com/careers,first_party
+TypeSafe AI,United States,US,ai_startup,https://typesafe.ai/legal/terms,first_party
+Perplexity,United States,US,ai_startup,https://www.perplexity.ai/hub/legal/terms-of-service,first_party
+Poolside,United States,US,ai_startup,https://poolside.ai/legal/eula,first_party
+TNG Technology Consulting,Germany,Europe,consultancy,https://www.tngtech.com/en/imprint.html,first_party
+Upstage,South Korea,Rest of world,ai_startup,https://www.upstage.ai/,first_party
+Alibaba (Qwen),China,China,big_tech,https://www.alibabagroup.com/en-US/global-location,first_party
+Ant Group (inclusionAI),China,China,big_tech,https://www.antgroup.com/en,first_party
+Zhipu AI (Z.ai),China,China,frontier_lab,https://www.zhipuai.cn/en,first_party
+Stealth (unnamed lab),Unknown,Stealth,stealth,https://openrouter.ai/rankings,first_party
+Long tail (outside top 50),Unknown,Long tail,long_tail,https://openrouter.ai/rankings,first_party
+Pending lookup,Unknown,Unknown,pending,,

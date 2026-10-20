@@ -1,0 +1,30 @@
+tag,display_name,macro_category,usage_share,token_share,as_of
+classification_tagging,Classification,general,0.322,0.084,2026-10-18
+data:extraction,Data Extraction,data,0.136,0.053,2026-10-18
+agent:workflow_execution,Workflow Execution,agent,0.083,0.218,2026-10-18
+roleplay_fiction,Roleplay & Fiction,general,0.071,0.029,2026-10-18
+content_writing,Content Writing,general,0.057,0.03,2026-10-18
+data:transformation,Data Transformation,data,0.047,0.019,2026-10-18
+qa_knowledge,Q&A & Knowledge,general,0.033,0.042,2026-10-18
+agent:multi_step_planning,Multi-step Planning,agent,0.031,0.076,2026-10-18
+code:general_impl,Code Generation,code,0.028,0.099,2026-10-18
+summarization,Summarization,general,0.023,0.044,2026-10-18
+conversational_reply,Conversation,general,0.022,0.023,2026-10-18
+translation,Translation,general,0.02,0.002,2026-10-18
+code:debugging,Debugging,code,0.018,0.058,2026-10-18
+customer_support,Customer Support,general,0.016,0.01,2026-10-18
+code:file_read_write,File I/O,code,0.015,0.049,2026-10-18
+code:review_security,Code Review,code,0.013,0.027,2026-10-18
+finance_trading,Finance & Trading,general,0.009,0.004,2026-10-18
+agent:memory_extraction,Memory Extraction,agent,0.007,0.011,2026-10-18
+code:shell_execution,Shell Execution,code,0.007,0.022,2026-10-18
+agent:tool_dispatch,Tool Dispatch,agent,0.007,0.013,2026-10-18
+code:frontend_ui,Frontend & UI,code,0.006,0.026,2026-10-18
+security_audit,Security Audit,general,0.006,0.015,2026-10-18
+agent:web_search,Web Search,agent,0.005,0.009,2026-10-18
+research_report,Research & Reports,general,0.005,0.011,2026-10-18
+code:repo_scan,Repo Scanning,code,0.004,0.013,2026-10-18
+math,Math,general,0.004,0.002,2026-10-18
+code:sql_database,SQL & Database,code,0.002,0.004,2026-10-18
+code:devops_config,DevOps & Config,code,0.001,0.005,2026-10-18
+devops,DevOps,general,0.001,0.004,2026-10-18
