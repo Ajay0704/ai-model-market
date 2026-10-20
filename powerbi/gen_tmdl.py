@@ -22,6 +22,7 @@ SEED_TABLE = "dim_lab"
 
 # table -> CSV path in the repo. Star schema first, then the small chart-ready tables Tableau also reads.
 TABLES = {
+    "dim_lab": "data/processed/dim_lab.csv",  # replaces the untyped seed table (no date columns, so a full replace is safe)
     "dim_date": "data/processed/dim_date.csv",
     "dim_month": "data/processed/dim_month.csv",
     "dim_model": "data/processed/dim_model.csv",

@@ -1,5 +1,52 @@
 createOrReplace
 
+	table dim_lab
+
+		column org_name
+			dataType: string
+			summarizeBy: none
+			sourceColumn: org_name
+
+		column hq_country
+			dataType: string
+			summarizeBy: none
+			sourceColumn: hq_country
+
+		column country_group
+			dataType: string
+			summarizeBy: none
+			sourceColumn: country_group
+
+		column org_type
+			dataType: string
+			summarizeBy: none
+			sourceColumn: org_type
+
+		column source_url
+			dataType: string
+			summarizeBy: none
+			sourceColumn: source_url
+
+		column source_type
+			dataType: string
+			summarizeBy: none
+			sourceColumn: source_type
+
+		column chart_group
+			dataType: string
+			summarizeBy: none
+			sourceColumn: chart_group
+
+		partition dim_lab = m
+			mode: import
+			source =
+					let
+						Source = Csv.Document(Web.Contents("https://raw.githubusercontent.com", [RelativePath = "Ajay0704/ai-model-market/main/data/processed/dim_lab.csv"]), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+						Headers = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+						Typed = Table.TransformColumnTypes(Headers, {{"org_name", type text}, {"hq_country", type text}, {"country_group", type text}, {"org_type", type text}, {"source_url", type text}, {"source_type", type text}, {"chart_group", type text}}, "en-US")
+					in
+						Typed
+
 	table dim_date
 		dataCategory: Time
 
